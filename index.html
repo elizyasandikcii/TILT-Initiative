@@ -4,65 +4,298 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TILT - The Initiative for Life and Thoughts</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Professional Base */
+        :root {
+            --primary: #2563eb;
+            --primary-light: #3b82f6;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-edge: rgba(255, 255, 255, 0.15);
+            --text-dark: #1e293b;
+            --text-light: #f8fafc;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f9fafb, #f1f5f9);
+            color: var(--text-dark);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Professional Liquid Glass Effect */
+        .glass-container {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .glass-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        body:hover .glass-layer {
+            opacity: 1;
+        }
+
+        /* Elegant Navigation */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 120px;
+            padding-bottom: 4rem;
+        }
+
+        /* Professional Glass Panels */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 16px;
+            border: 1px solid var(--glass-edge);
+            box-shadow: 
+                0 4px 30px rgba(0, 0, 0, 0.05),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+            padding: 3rem;
+            margin-bottom: 2rem;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.1),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            margin-top: 0;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .lead-text {
+            font-size: 1.25rem;
+            color: var(--text-dark);
+            opacity: 0.9;
+            max-width: 700px;
+            margin-bottom: 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .footer-text {
+            color: var(--text-dark);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1.5rem;
+            }
+            
+            .main-content {
+                padding-top: 150px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="liquid-glass-container">
-        <header class="glass-panel">
-            <h1>TILT</h1>
-            <p class="tagline">The Initiative for Life and Thoughts</p>
-        </header>
+    <div class="glass-layer"></div>
+    
+    <!-- Professional Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo">TILT</div>
+            <div class="nav-links">
+                <a href="about.html">About</a>
+                <a href="research.html">Research</a>
+                <a href="projects.html">Projects</a>
+                <a href="publications.html">Publications</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
 
-        <main>
-            <section class="hero glass-panel">
-                <h2>Redefining Boundaries</h2>
-                <p>TILT is a forward-thinking initiative dedicated to exploring the intersection of human consciousness, technology, and the future of our species.</p>
-                <div class="neon-pulse"></div>
+    <!-- Main Content -->
+    <div class="glass-container">
+        <main class="main-content">
+            <section class="hero glass-card">
+                <h1>The Initiative for Life and Thoughts</h1>
+                <p class="lead-text">Advancing interdisciplinary research at the intersection of cognitive science, philosophy, and technology to understand and enhance human potential.</p>
             </section>
 
-            <section class="info-boxes">
-                <div class="glass-card">
-                    <div class="card-content">
-                        <h3>Vision</h3>
-                        <p>Creating a future where technology amplifies human potential without compromising our essence.</p>
+            <section>
+                <h2>Our Focus Areas</h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>Cognitive Enhancement</h3>
+                        <p>Developing ethical frameworks and technologies to augment human cognition while preserving individual autonomy.</p>
                     </div>
-                </div>
-                <div class="glass-card">
-                    <div class="card-content">
-                        <h3>Mission</h3>
-                        <p>Bridging the gap between emerging technologies and ethical frameworks for human advancement.</p>
+                    <div class="feature-card">
+                        <h3>Consciousness Studies</h3>
+                        <p>Pioneering research into the nature of consciousness through both empirical and theoretical approaches.</p>
                     </div>
-                </div>
-                <div class="glass-card">
-                    <div class="card-content">
-                        <h3>Research</h3>
-                        <p>Pioneering studies in neurotechnology, artificial intelligence, and cognitive enhancement.</p>
-                    </div>
-                </div>
-                <div class="glass-card">
-                    <div class="card-content">
-                        <h3>Community</h3>
-                        <p>Building a global network of thinkers, creators, and visionaries shaping tomorrow.</p>
+                    <div class="feature-card">
+                        <h3>Ethical Technology</h3>
+                        <p>Ensuring emerging technologies align with human values and promote societal well-being.</p>
                     </div>
                 </div>
             </section>
-
-            <nav class="glass-nav">
-                <ul>
-                    <li><a href="about.html" class="nav-link">About Us</a></li>
-                    <li><a href="projects.html" class="nav-link">Our Projects</a></li>
-                    <li><a href="blog.html" class="nav-link">Blog</a></li>
-                    <li><a href="contact.html" class="nav-link">Contact</a></li>
-                    <li><a href="join.html" class="nav-link highlight">Join TILT</a></li>
-                </ul>
-            </nav>
         </main>
-
-        <footer class="glass-panel">
-            <p>© 2025 TILT – The Initiative for Life and Thoughts</p>
-            <p class="signature">Designed with 8.6 billion neurons and a dream</p>
-        </footer>
     </div>
+
+    <footer>
+        <div class="glass-container">
+            <p>© 2025 TILT – The Initiative for Life and Thoughts</p>
+            <p class="footer-text">Designed with precision and purpose</p>
+        </div>
+    </footer>
 </body>
 </html>

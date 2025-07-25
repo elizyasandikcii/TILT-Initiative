@@ -12,6 +12,8 @@
             --text-color: #333;
             --light-text: #f8f9fa;
             --transition-speed: 0.3s;
+            --header-height: 90px;
+            --header-shrink-height: 60px;
         }
 
         body {
@@ -21,7 +23,8 @@
             color: var(--text-color);
             line-height: 1.6;
             transition: background-color var(--transition-speed);
-            padding-top: 90px; /* Space for fixed header */
+            padding-top: var(--header-height);
+            background-color: white; /* Default light mode */
         }
 
         .dark-mode {
@@ -43,7 +46,22 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            height: 70px;
+            height: var(--header-height);
+            transition: all 0.4s ease;
+        }
+
+        header.shrink {
+            height: var(--header-shrink-height);
+            padding: 0.5rem 2rem;
+        }
+
+        header.shrink .logo {
+            height: 40px;
+            width: 120px;
+        }
+
+        header.shrink nav a {
+            font-size: 0.9rem;
         }
 
         .logo {
@@ -54,6 +72,7 @@
             align-items: center;
             justify-content: center;
             color: #999;
+            transition: all 0.4s ease;
         }
 
         nav ul {
@@ -74,7 +93,8 @@
             font-weight: 500;
             padding: 0.5rem 0;
             position: relative;
-            transition: color var(--transition-speed);
+            transition: all var(--transition-speed);
+            font-size: 1rem;
         }
 
         nav a:hover {
@@ -147,51 +167,90 @@
         .theme-switch {
             display: flex;
             align-items: center;
-        }
-
-        .switch {
             position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 30px;
+            width: 44px;
+            height: 44px;
         }
 
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
+        .theme-toggle {
+            appearance: none;
+            -webkit-appearance: none;
             position: absolute;
+            width: 100%;
+            height: 100%;
+            margin: 0;
             cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
+            z-index: 2;
+            opacity: 0;
         }
 
-        .slider:before {
+        .theme-icon {
             position: absolute;
-            content: "";
-            height: 22px;
-            width: 22px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
+            width: 24px;
+            height: 24px;
+            top: 10px;
+            left: 10px;
+            transition: all 0.4s ease;
+            transform-origin: center;
+        }
+
+        .sun {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        .dark-mode .sun {
+            opacity: 0;
+            transform: scale(0.5) rotate(90deg);
+        }
+
+        .moon {
+            opacity: 0;
+            transform: scale(0.5) rotate(-90deg);
+        }
+
+        .dark-mode .moon {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        .sun-icon, .moon-icon {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .sun-icon {
+            background: radial-gradient(circle, currentColor 30%, transparent 30%);
+            box-shadow: 0 0 0 2px currentColor;
             border-radius: 50%;
         }
 
-        input:checked + .slider {
-            background-color: var(--accent-color);
+        .sun-icon::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            width: 2px;
+            height: 8px;
+            background: currentColor;
+            transform: translateX(-50%);
         }
 
-        input:checked + .slider:before {
-            transform: translateX(30px);
+        .sun-icon::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            width: 2px;
+            height: 8px;
+            background: currentColor;
+            transform: translateX(-50%);
+        }
+
+        .moon-icon {
+            border-radius: 50%;
+            box-shadow: -6px 0 0 2px currentColor;
         }
 
         main {
@@ -293,14 +352,19 @@
         }
 
         @media (max-width: 768px) {
-            body {
-                padding-top: 140px; /* More space for stacked header */
+            :root {
+                --header-height: 140px;
+                --header-shrink-height: 100px;
             }
             
             header {
                 flex-direction: column;
                 padding: 1rem;
-                height: auto;
+                height: var(--header-height);
+            }
+
+            header.shrink {
+                height: var(--header-shrink-height);
             }
 
             nav ul {
@@ -324,7 +388,7 @@
     </style>
 </head>
 <body>
-    <header>
+    <header id="main-header">
         <div class="logo">Logo</div>
         <nav>
             <ul>
@@ -345,10 +409,13 @@
                 </div>
             </div>
             <div class="theme-switch">
-                <label class="switch">
-                    <input type="checkbox" id="theme-toggle">
-                    <span class="slider"></span>
-                </label>
+                <input type="checkbox" id="theme-toggle" class="theme-toggle">
+                <div class="theme-icon sun">
+                    <div class="sun-icon"></div>
+                </div>
+                <div class="theme-icon moon">
+                    <div class="moon-icon"></div>
+                </div>
             </div>
         </div>
     </header>
@@ -385,6 +452,9 @@
                 </section>
             </div>
         </div>
+        
+        <!-- Additional content to enable scrolling -->
+        <div style="height: 1000px;"></div>
     </main>
 
     <footer>
@@ -407,11 +477,28 @@
 
         // Check for saved theme preference
         const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark' || 
-            (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && !savedTheme)) {
+        if (savedTheme === 'dark') {
             document.body.classList.add('dark-mode');
             themeToggle.checked = true;
         }
+
+        // Shrink header on scroll
+        const header = document.getElementById('main-header');
+        let lastScroll = 0;
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                // Scroll down
+                header.classList.add('shrink');
+            } else if (currentScroll < lastScroll || currentScroll <= 100) {
+                // Scroll up or at top
+                header.classList.remove('shrink');
+            }
+            
+            lastScroll = currentScroll;
+        });
     </script>
 </body>
 </html>

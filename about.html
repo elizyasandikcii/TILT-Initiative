@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About TILT - The Initiative for Life and Thoughts</title>
+    <style>
+        :root {
+            --primary-color: #000033;
+            --secondary-color: #f8f9fa;
+            --accent-color: #003366;
+            --text-color: #333;
+            --light-text: #f8f9fa;
+            --transition-speed: 0.3s;
+            --header-height: 90px;
+            --header-shrink-height: 60px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color var(--transition-speed);
+            padding-top: var(--header-height);
+            background-color: white; /* Default light mode */
+        }
+
+        .dark-mode {
+            background-color: #121212;
+            color: #f0f0f0;
+            --text-color: #f0f0f0;
+            --secondary-color: #1e1e1e;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: var(--secondary-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: var(--header-height);
+            transition: all 0.4s ease;
+        }
+
+        header.shrink {
+            height: var(--header-shrink-height);
+            padding: 0.5rem 2rem;
+        }
+
+        header.shrink .logo {
+            height: 40px;
+            width: 120px;
+        }
+
+        header.shrink nav a {
+            font-size: 0.9rem;
+        }
+
+        .logo {
+            width: 150px;
+            height: 50px;
+            border: 1px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            transition: all 0.4s ease;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            margin: 0 1rem;
+            position: relative;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: all var(--transition-speed);
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width var(--transition-speed) ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .language-selector {
+            position: relative;
+        }
+
+        .language-btn {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            font-weight: 500;
+            padding: 0.5rem;
+        }
+
+        .language-menu {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: var(--secondary-color);
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            padding: 0.5rem 0;
+            min-width: 120px;
+            display: none;
+            z-index: 100;
+        }
+
+        .language-menu a {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: background-color var(--transition-speed);
+        }
+
+        .language-menu a:hover {
+            background-color: rgba(0, 51, 102, 0.1);
+        }
+
+        .language-selector:hover .language-menu {
+            display: block;
+        }
+
+        .theme-switch {
+            display: flex;
+            align-items: center;
+            position: relative;
+            width: 44px;
+            height: 44px;
+        }
+
+        .theme-toggle {
+            appearance: none;
+            -webkit-appearance: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            cursor: pointer;
+            z-index: 2;
+            opacity: 0;
+        }
+
+        .theme-icon {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            top: 10px;
+            left: 10px;
+            transition: all 0.4s ease;
+            transform-origin: center;
+        }
+
+        .sun {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        .dark-mode .sun {
+            opacity: 0;
+            transform: scale(0.5) rotate(90deg);
+        }
+
+        .moon {
+            opacity: 0;
+            transform: scale(0.5) rotate(-90deg);
+        }
+
+        .dark-mode .moon {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        .sun-icon, .moon-icon {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .sun-icon {
+            background: radial-gradient(circle, currentColor 30%, transparent 30%);
+            box-shadow: 0 0 0 2px currentColor;
+            border-radius: 50%;
+        }
+
+        .sun-icon::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            width: 2px;
+            height: 8px;
+            background: currentColor;
+            transform: translateX(-50%);
+        }
+
+        .sun-icon::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            width: 2px;
+            height: 8px;
+            background: currentColor;
+            transform: translateX(-50%);
+        }
+
+        .moon-icon {
+            border-radius: 50%;
+            box-shadow: -6px 0 0 2px currentColor;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background-color: var(--secondary-color);
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .content-section h2 {
+            color: var(--accent-color);
+            margin-top: 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .value-item {
+            padding: 1.5rem;
+            background-color: rgba(0, 51, 102, 0.05);
+            border-radius: 8px;
+            transition: transform var(--transition-speed);
+        }
+
+        .value-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-item h3 {
+            color: var(--accent-color);
+            margin-top: 0;
+        }
+
+        .board-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .board-member {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: all var(--transition-speed);
+            cursor: pointer;
+        }
+
+        .dark-mode .board-member {
+            background-color: #1e1e1e;
+        }
+
+        .board-member:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .member-image {
+            height: 200px;
+            background-color: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+        }
+
+        .member-info {
+            padding: 1.5rem;
+        }
+
+        .member-info h3 {
+            margin: 0 0 0.5rem 0;
+            color: var(--accent-color);
+        }
+
+        .member-info p {
+            margin: 0;
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
+        .member-role {
+            font-weight: 600;
+            margin-top: 0.5rem;
+            color: var(--accent-color) !important;
+        }
+
+        footer {
+            background-color: var(--secondary-color);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --header-height: 140px;
+                --header-shrink-height: 100px;
+            }
+            
+            header {
+                flex-direction: column;
+                padding: 1rem;
+                height: var(--header-height);
+            }
+
+            header.shrink {
+                height: var(--header-shrink-height);
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 1rem;
+            }
+
+            nav li {
+                margin: 0.5rem;
+            }
+
+            .header-controls {
+                margin-top: 1rem;
+            }
+            
+            .board-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="main-header">
+        <div class="logo">
+            <img src="path/to/logo-kase.png" alt="TILT Logo" class="logo-image">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
+                <li><a href="get-involved.html">Get Involved</a></li>
+            </ul>
+        </nav>
+        <div class="header-controls">
+            <div class="language-selector">
+                <button class="language-btn">EN</button>
+                <div class="language-menu">
+                    <a href="#">🇬🇧English</a>
+                    <a href="#">🇹🇷Türkçe</a>
+                </div>
+            </div>
+            <div class="theme-switch">
+                <input type="checkbox" id="theme-toggle" class="theme-toggle">
+                <div class="theme-icon sun">
+                    <div class="sun-icon"></div>
+                </div>
+                <div class="theme-icon moon">
+                    <div class="moon-icon"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-header">
+            <h1>About TILT</h1>
+            <p>The Initiative for Life and Thoughts</p>
+        </div>
+
+        <section class="content-section">
+            <h2>Our Vision</h2>
+            <p>TILT helps young people use their ideas, creativity, and emotions to make a better world. We combine science, art, and care to build tools that support healing, resilience, and positive change.</p>
+            
+            <p>TILT exists to empower youth to imagine the future, redesign reality, and bring bold ideas to life. We are a movement rooted in the belief that young minds, when equipped with knowledge, empathy, and creativity, can spark revolutions of thought and action. At TILT, we blend science, art, and humanity into dynamic tools that not only heal but also ignite innovation and purpose. From emotional resilience technologies to systems that simulate hope and possibility, we are building a future where youth are not just participants—but creators of change. Our mission is to transform trauma into strength, curiosity into courage, and dreams into data-driven solutions that shape a more just, beautiful, and sustainable world.</p>
+        </section>
+
+        <section class="content-section">
+            <h2>What We Do</h2>
+            <p>We lead interdisciplinary projects that tackle real-world problems, from neuroscience and emotional resilience to biodiversity and clean technology. TILT is a nonprofit driven by young minds, and our motto is simple: "Tilt your head and dream."</p>
+        </section>
+
+        <section class="content-section">
+            <h2>Our Values</h2>
+            <div class="values-grid">
+                <div class="value-item">
+                    <h3>✨ Innovation with depth</h3>
+                    <p>We believe in creating meaningful change through thoughtful innovation that addresses root causes.</p>
+                </div>
+                <div class="value-item">
+                    <h3>🧠 Science + soul</h3>
+                    <p>We integrate empirical evidence with human-centered design and emotional intelligence.</p>
+                </div>
+                <div class="value-item">
+                    <h3>🌍 Equity, sustainability, and empathy</h3>
+                    <p>Our work is guided by principles of justice, ecological stewardship, and deep compassion.</p>
+                </div>
+                <div class="value-item">
+                    <h3>🚀 Leadership by youth, for the world</h3>
+                    <p>We empower young people to lead initiatives that create global impact.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Board of Directors</h2>
+            <div class="board-grid">
+                <div class="board-member" onclick="window.location.href='elizya.html'">
+                    <div class="member-image">Elizya Jane SANDIKCI</div>
+                    <div class="member-info">
+                        <h3>Elizya Jane SANDIKCI</h3>
+                        <p class="member-role">Chairwoman, Founding Member, CFO/ Chief Finance Officer</p>
+                    </div>
+                </div>
+                
+                <div class="board-member" onclick="window.location.href='yilmaz.html'">
+                    <div class="member-image">Yılmaz Kutlu ONAY</div>
+                    <div class="member-info">
+                        <h3>Yılmaz Kutlu ONAY</h3>
+                        <p class="member-role">Founding Member, CTO/ Chief Technology Officer</p>
+                    </div>
+                </div>
+                
+                <div class="board-member" onclick="window.location.href='uras.html'">
+                    <div class="member-image">Uras DEMİRCAN</div>
+                    <div class="member-info">
+                        <h3>Uras DEMİRCAN</h3>
+                        <p class="member-role">COO/ Chief Operating Officer</p>
+                    </div>
+                </div>
+                
+                <div class="board-member" onclick="window.location.href='azra.html'">
+                    <div class="member-image">Azra AL</div>
+                    <div class="member-info">
+                        <h3>Azra AL</h3>
+                        <p class="member-role">CCO-CMO/ Chief Human Resources, Public Relations, and Communication Officer and Chief Marketing Officer</p>
+                    </div>
+                </div>
+                
+                <div class="board-member" onclick="window.location.href='yagmur.html'">
+                    <div class="member-image">Yağmur PADAR</div>
+                    <div class="member-info">
+                        <h3>Yağmur PADAR</h3>
+                        <p class="member-role">CLO/ Chief Legal Officer</p>
+                    </div>
+                </div>
+                
+                <div class="board-member" onclick="window.location.href='ceren.html'">
+                    <div class="member-image">Ceren ÖZGÖREN</div>
+                    <div class="member-info">
+                        <h3>Ceren ÖZGÖREN</h3>
+                        <p class="member-role">CSO/ Chief Strategy Officer</p>
+                    </div>
+                </div>
+                
+                <div class="board-member" onclick="window.location.href='nihan.html'">
+                    <div class="member-image">Nihan KAFADAR</div>
+                    <div class="member-info">
+                        <h3>Nihan KAFADAR</h3>
+                        <p class="member-role">CDO/ Chief Design Officer</p>
+                    </div>
+                </div>
+                
+                <div class="board-member" onclick="window.location.href='nizli.html'">
+                    <div class="member-image">Nazlı Eylül ŞEN</div>
+                    <div class="member-info">
+                        <h3>Nazlı Eylül ŞEN</h3>
+                        <p class="member-role">CRO/ Chief Research Officer</p>
+                    </div>
+                </div>
+                
+                <div class="board-member" onclick="window.location.href='ipek.html'">
+                    <div class="member-image">İpek ACAR</div>
+                    <div class="member-info">
+                        <h3>İpek ACAR</h3>
+                        <p class="member-role">CSSO/ Chief Sustainability and Space Management Officer</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 TILT - The Initiative for Life and Thoughts. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Dark/Light mode toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode');
+            
+            // Save preference to localStorage
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeToggle.checked = true;
+        }
+
+        // Shrink header on scroll
+        const header = document.getElementById('main-header');
+        let lastScroll = 0;
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                // Scroll down
+                header.classList.add('shrink');
+            } else if (currentScroll < lastScroll || currentScroll <= 100) {
+                // Scroll up or at top
+                header.classList.remove('shrink');
+            }
+            
+            lastScroll = currentScroll;
+        });
+    </script>
+</body>
+</html>

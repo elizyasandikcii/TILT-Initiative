@@ -69,12 +69,16 @@
         .logo {
             width: 150px;
             height: 50px;
-            border: 1px dashed #ccc;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #999;
             transition: all 0.4s ease;
+        }
+
+        .logo img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
         }
 
         nav ul {
@@ -306,7 +310,7 @@
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 2rem; /* Added gap between cards */
             margin-bottom: 3rem;
         }
 
@@ -409,6 +413,7 @@
             
             .projects-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem; /* Adjusted gap for mobile */
             }
         }
     </style>
@@ -449,7 +454,10 @@
     </header>
 
     <main>
-   
+        <div class="top-bar">
+            <a href="index.html" class="back-btn">← Back To Menu</a>
+        </div>
+
         <section class="page-header">
             <h1>Our Projects</h1>
             <p class="subtitle">Ideas born from bold dreams and built by young minds.</p>

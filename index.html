@@ -389,15 +389,15 @@ object-fit: contain;
             .content-columns {
                 flex-direction: column;
             }
-            /* Back to Top Button */
+          /* Back to Top Button */
 .back-to-top {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    background-color: #003366;
+    background: #003366;
     color: white;
     display: flex;
     align-items: center;
@@ -405,11 +405,12 @@ object-fit: contain;
     cursor: pointer;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     border: none;
-    font-size: 24px;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 .back-to-top.show {
@@ -418,10 +419,19 @@ object-fit: contain;
 }
 
 .back-to-top:hover {
-    background-color: #002244;
-    transform: translateY(-3px);
+    background: #002244;
+    transform: scale(1.1);
 }
-        }
+
+@media (max-width: 768px) {
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
+}
     </style>
 </head>
 <body>
@@ -496,7 +506,8 @@ object-fit: contain;
         <!-- Additional content to enable scrolling -->
         <div style="height: 1000px;"></div>
     </main>
-
+    
+<button class="back-to-top" aria-label="Back to Top">↑</button>
     <footer>
 <p>© 2025 TILT – The Initiative for Life and Thoughts</p>
 <p>Designed with 8.6 billion neurons and a dream</p>
@@ -540,7 +551,7 @@ object-fit: contain;
             
             lastScroll = currentScroll;
         });
-        // Back to Top Button functionality
+      // Back to Top Button
 const backToTopButton = document.querySelector('.back-to-top');
 
 // Show button when scrolling down
@@ -560,7 +571,6 @@ backToTopButton.addEventListener('click', () => {
     });
 });
     </script>
-    <!-- Back to Top Button -->
-<button class="back-to-top" aria-label="Back to Top">↑</button>
+   
 </body>
 </html>

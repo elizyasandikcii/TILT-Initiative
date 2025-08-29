@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TILT - The Initiative for Life and Thoughts</title>
-  <link rel="icon" href="https://cdn.glitch.global/5f72f9b5-5a11-4f80-b63f-8b4fc4574362/logoka%C5%9Fe%20(2).png?v=1745342288049" type="image/png">
-<style>
+    <link rel="icon" href="https://cdn.glitch.global/5f72f9b5-5a11-4f80-b63f-8b4fc4574362/logoka%C5%9Fe%20(2).png?v=1745342288049" type="image/png">
+    <style>
         :root {
             --primary-color: #000033;
             --secondary-color: #f8f9fa;
@@ -65,20 +65,20 @@
             font-size: 0.9rem;
         }
 
-      .logo {
-width: 150px;
-height: 50px;
-display: flex;
-align-items: center;
-justify-content: center;
-transition: all 0.4s ease;
-}
+        .logo {
+            width: 150px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+        }
 
-.logo img {
-max-height: 100%;
-max-width: 100%;
-object-fit: contain;
-}
+        .logo img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
 
         nav ul {
             display: flex;
@@ -405,6 +405,9 @@ object-fit: contain;
             padding: 0.75rem;
             text-align: center;
             border: 1px solid #ddd;
+            position: relative;
+            height: 40px;
+            width: 40px;
         }
 
         .calendar td:hover {
@@ -425,6 +428,19 @@ object-fit: contain;
 
         .other-month {
             color: #ccc;
+        }
+
+        .event-indicator {
+            height: 6px;
+            width: 6px;
+            background-color: #dc3545;
+            border-radius: 50%;
+            margin: 2px auto;
+            cursor: pointer;
+        }
+
+        .event-day {
+            background-color: rgba(220, 53, 69, 0.1);
         }
 
         footer {
@@ -467,20 +483,15 @@ object-fit: contain;
             .content-columns {
                 flex-direction: column;
             }
-         .gap {
-  display: block;
-  height: 3cm;
-  width: 100%;
-  content: "";
-}
+        }
     </style>
 </head>
 <body>
     <header id="main-header">
-  <div class="logo">
-   <img src="https://cdn.glitch.global/5f72f9b5-5a11-4f80-b63f-8b4fc4574362/logoka%C5%9Fe%20(2).png?v=1745342288049" alt="TILT Logo" class="logo-image">
-</div>
-  <nav>
+        <div class="logo">
+            <img src="https://cdn.glitch.global/5f72f9b5-5a11-4f80-b63f-8b4fc4574362/logoka%C5%9Fe%20(2).png?v=1745342288049" alt="TILT Logo" class="logo-image">
+        </div>
+        <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
@@ -543,7 +554,7 @@ object-fit: contain;
                 </section>
             </div>
         </div>
-        <div class="gap"></div>
+        
         <!-- Calendar Section -->
         <section class="calendar-container">
             <div class="calendar-header">
@@ -577,9 +588,9 @@ object-fit: contain;
     </main>
 
     <footer>
-<p>© 2025 TILT – The Initiative for Life and Thoughts</p>
-<p>Designed with 8.6 billion neurons and a dream</p>
-</footer>
+        <p>© 2025 TILT – The Initiative for Life and Thoughts</p>
+        <p>Designed with 8.6 billion neurons and a dream</p>
+    </footer>
 
     <script>
         // Dark/Light mode toggle
@@ -627,6 +638,31 @@ object-fit: contain;
 
         const months = ["January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"];
+
+        // Event data structure - ADD YOUR EVENTS HERE
+        const events = [
+            {
+                id: 1,
+                title: "TILT Annual Conference 2025",
+                date: new Date(2025, 8, 8), // September 8th, 2025 (months are 0-indexed)
+                description: "Join us for our annual conference exploring the future of human thought and technological advancement. Keynote speakers and workshops included.",
+                color: "#dc3545"
+            },
+            {
+                id: 2,
+                title: "Philosophy Discussion Group",
+                date: new Date(currentYear, currentMonth, 15),
+                description: "Monthly meeting to discuss philosophical texts and ideas",
+                color: "#28a745"
+            },
+            {
+                id: 3,
+                title: "Science & Society Workshop",
+                date: new Date(currentYear, currentMonth, 22),
+                description: "How scientific advancements are shaping our future society",
+                color: "#007bff"
+            }
+        ];
 
         function generateCalendar(month, year) {
             const calendarBody = document.getElementById("calendar-body");
@@ -686,6 +722,22 @@ object-fit: contain;
                             cell.classList.add("other-month");
                         }
                         
+                        // Check if this date has any events
+                        const hasEvent = events.some(event => {
+                            const eventDate = event.date;
+                            return eventDate.getDate() === date && 
+                                   eventDate.getMonth() === month && 
+                                   eventDate.getFullYear() === year;
+                        });
+                        
+                        if (hasEvent) {
+                            cell.classList.add("event-day");
+                            const indicator = document.createElement("div");
+                            indicator.className = "event-indicator";
+                            indicator.title = "Event on this day";
+                            cell.appendChild(indicator);
+                        }
+                        
                         row.appendChild(cell);
                         date++;
                     }
@@ -729,8 +781,6 @@ object-fit: contain;
 
         // Initialize calendar
         generateCalendar(currentMonth, currentYear);
-
     </script>
-   
 </body>
 </html>

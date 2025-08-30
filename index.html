@@ -368,6 +368,9 @@
         .calendar-header h2 {
             margin: 0;
             color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .calendar-nav {
@@ -443,6 +446,121 @@
             background-color: rgba(220, 53, 69, 0.1);
         }
 
+        /* News Section Styles */
+        .news-section {
+            background-color: var(--secondary-color);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .news-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .news-header h2 {
+            margin: 0;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nyt-logo {
+            height: 30px;
+            vertical-align: middle;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .news-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .news-content {
+            padding: 1.2rem;
+        }
+
+        .news-title {
+            font-size: 1.1rem;
+            margin: 0 0 0.8rem 0;
+            line-height: 1.4;
+        }
+
+        .news-title a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .news-title a:hover {
+            text-decoration: underline;
+        }
+
+        .news-description {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        .news-section .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #6c757d;
+        }
+
+        .news-section .error {
+            text-align: center;
+            padding: 2rem;
+            color: #dc3545;
+        }
+
+        .refresh-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+
+        .refresh-btn:hover {
+            background-color: var(--primary-color);
+        }
+
         footer {
             background-color: var(--secondary-color);
             padding: 2rem;
@@ -483,72 +601,10 @@
             .content-columns {
                 flex-direction: column;
             }
-        }
-        /* Event indicator styles */
-        .event-indicator {
-            height: 6px;
-            width: 6px;
-            background-color: #dc3545;
-            border-radius: 50%;
-            margin: 2px auto;
-            cursor: pointer;
-        }
 
-        .event-day {
-            background-color: rgba(220, 53, 69, 0.1);
-        }
-
-        /* Event modal styles */
-        .event-modal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-            z-index: 1000;
-            min-width: 300px;
-            max-width: 500px;
-            display: none;
-        }
-
-        .event-modal h3 {
-            color: var(--accent-color);
-            margin-top: 0;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 10px;
-        }
-
-        .event-modal .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: none;
-            border: none;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        .event-modal .event-date {
-            color: #6c757d;
-            margin-bottom: 15px;
-        }
-
-        .event-modal .event-description {
-            line-height: 1.5;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            display: none;
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -620,6 +676,30 @@
                 </section>
             </div>
         </div>
+        
+        <!-- News Section -->
+        <section class="news-section">
+            <div class="news-header">
+                <h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"></path>
+                        <path d="M18 14h-8"></path>
+                        <path d="M15 18h-5"></path>
+                        <path d="M10 6h8v4h-8V6Z"></path>
+                    </svg>
+                    Latest News from New York Times
+                </h2>
+                <button class="refresh-btn" id="refresh-news">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 0 1 9-9"></path>
+                    </svg>
+                    Refresh
+                </button>
+            </div>
+            <div class="news-grid" id="news-container">
+                <div class="loading">Loading news...</div>
+            </div>
+        </section>
         
         <!-- Calendar Section -->
         <section class="calendar-container">
@@ -705,7 +785,7 @@
         const months = ["January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"];
 
-        // Event data structure - ADD YOUR EVENTS HERE
+        // Event data structure
         const events = [
             {
                 id: 1,
@@ -925,6 +1005,66 @@
 
         // Initialize calendar
         generateCalendar(currentMonth, currentYear);
+
+        // NYT News API Integration
+        const newsContainer = document.getElementById('news-container');
+        const refreshButton = document.getElementById('refresh-news');
+        
+        // NYT API Key (you'll need to replace this with your own API key)
+        // Get one from https://developer.nytimes.com/
+        const API_KEY = '6NNf0KIZZZElhq4ZSOTfYqInqbB84dRN';
+        
+        // Function to fetch news from NYT
+        async function fetchNews() {
+            try {
+                newsContainer.innerHTML = '<div class="loading">Loading news...</div>';
+                
+                // In a real implementation, you would use the NYT API
+               
+                
+            } catch (error) {
+                console.error('Error fetching news:', error);
+                newsContainer.innerHTML = `
+                    <div class="error">
+                        <p>Failed to load news. Please try again later.</p>
+                        <p><small>${error.message}</small></p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Function to display news articles
+        function displayNews(articles) {
+            if (!articles || articles.length === 0) {
+                newsContainer.innerHTML = '<div class="error">No news articles found.</div>';
+                return;
+            }
+            
+            // Limit to 4 articles for better layout
+            const articlesToShow = articles.slice(0, 4);
+            
+            newsContainer.innerHTML = articlesToShow.map(article => `
+                <div class="news-card">
+                    <img src="${article.multimedia && article.multimedia.length > 0 ? article.multimedia[0].url : 'https://via.placeholder.com/300x160?text=News'}" alt="${article.title}" class="news-image">
+                    <div class="news-content">
+                        <h3 class="news-title">
+                            <a href="${article.url}" target="_blank" rel="noopener">${article.title}</a>
+                        </h3>
+                        <p class="news-description">${article.abstract}</p>
+                        <div class="news-meta">
+                            <span>${article.byline || 'By New York Times'}</span>
+                            <span>${new Date(article.published_date).toLocaleDateString()}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Event listener for refresh button
+        refreshButton.addEventListener('click', fetchNews);
+        
+        // Fetch news on page load
+        fetchNews();
     </script>
 </body>
 </html>

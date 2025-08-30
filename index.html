@@ -6,6 +6,8 @@
     <title>TILT - The Initiative for Life and Thoughts</title>
     <!-- Chart.js for stock charts -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Add Leaflet JS before the closing body tag -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <link rel="icon" href="https://cdn.glitch.global/5f72f9b5-5a11-4f80-b63f-8b4fc4574362/logoka%C5%9Fe%20(2).png?v=1745342288049" type="image/png">
     <style>
         :root {
@@ -812,6 +814,124 @@
                 grid-template-columns: 1fr;
             }
         }
+        
+    /* Map and Clocks Section Styles */
+    .map-clocks-section {
+        display: flex;
+        gap: 2rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .map-container {
+        flex: 1;
+        min-width: 300px;
+        height: 400px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .clocks-container {
+        flex: 1;
+        min-width: 300px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .clock-card {
+        background-color: var(--secondary-color);
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .clock-city {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: var(--accent-color);
+        margin-bottom: 0.5rem;
+    }
+
+    .clock-time {
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin: 0.5rem 0;
+    }
+
+    .clock-date {
+        font-size: 0.9rem;
+        color: #6c757d;
+    }
+
+    .clock-flag {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Dark mode adjustments */
+    .dark-mode .clock-card {
+        background-color: #1e1e1e;
+        color: #f0f0f0;
+    }
+
+    .dark-mode .clock-date {
+        color: #cccccc;
+    }
+
+    .dark-mode .upcoming-episodes,
+    .dark-mode .newsflash,
+    .dark-mode .calendar-container,
+    .dark-mode .news-section,
+    .dark-mode .stocks-section,
+    .dark-mode .currency-section {
+        background-color: #1e1e1e;
+        color: #f0f0f0;
+    }
+
+    .dark-mode .news-card,
+    .dark-mode .stock-info,
+    .dark-mode .currency-card {
+        background-color: #2d2d2d;
+        color: #f0f0f0;
+    }
+
+    .dark-mode .news-description,
+    .dark-mode .news-meta,
+    .dark-mode .currency-info {
+        color: #cccccc;
+    }
+
+    .dark-mode .calendar td {
+        border-color: #444;
+    }
+
+    .dark-mode .stock-select,
+    .dark-mode .timeframe-select {
+        background-color: #2d2d2d;
+        color: #f0f0f0;
+        border-color: #555;
+    }
+
+    @media (max-width: 768px) {
+        .map-clocks-section {
+            flex-direction: column;
+        }
+        
+        .map-container, .clocks-container {
+            width: 100%;
+        }
+        
+        .clocks-container {
+            grid-template-columns: 1fr;
+        }
+    }
 
 </style>
     
@@ -1002,6 +1122,41 @@
             <div class="loading">Loading currency data...</div>
         </div>
     </section>
+       
+<!-- Map and Clocks Section -->
+<section class="map-clocks-section">
+    <div class="map-container" id="satellite-map"></div>
+    
+    <div class="clocks-container">
+        <div class="clock-card">
+            <div class="clock-flag">🇺🇸</div>
+            <div class="clock-city">New York</div>
+            <div class="clock-time" id="time-ny">--:--:--</div>
+            <div class="clock-date" id="date-ny">--</div>
+        </div>
+        
+        <div class="clock-card">
+            <div class="clock-flag">🇹🇷</div>
+            <div class="clock-city">Istanbul</div>
+            <div class="clock-time" id="time-istanbul">--:--:--</div>
+            <div class="clock-date" id="date-istanbul">--</div>
+        </div>
+        
+        <div class="clock-card">
+            <div class="clock-flag">🇬🇧</div>
+            <div class="clock-city">London</div>
+            <div class="clock-time" id="time-london">--:--:--</div>
+            <div class="clock-date" id="date-london">--</div>
+        </div>
+        
+        <div class="clock-card">
+            <div class="clock-flag">🇯🇵</div>
+            <div class="clock-city">Tokyo</div>
+            <div class="clock-time" id="time-tokyo">--:--:--</div>
+            <div class="clock-date" id="date-tokyo">--</div>
+        </div>
+    </div>
+</section>
 
     <footer>
         <p>© 2025 TILT – The Initiative for Life and Thoughts</p>
@@ -1857,7 +2012,111 @@
     
     // Refresh currency data every 5 minutes
     setInterval(fetchCurrencyData, 5 * 60 * 1000);
+// Add this JavaScript code to your existing script section
+// Initialize satellite map
+function initMap() {
+    // Create map centered on the world
+    const map = L.map('satellite-map').setView([20, 0], 2);
+    
+    // Add satellite tile layer (using NASA's GIBS)
+    L.tileLayer('https://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default/{time}/{tilematrixset}{maxZoom}/{z}/{y}/{x}.{format}', {
+        attribution: 'Imagery provided by services from the Global Imagery Browse Services (GIBS), operated by the NASA/GSFC/Earth Science Data and Information System (<a href="https://earthdata.nasa.gov">ESDIS</a>) with funding provided by NASA/HQ.',
+        bounds: [[-85.0511287776, -179.999999975], [85.0511287776, 179.999999975]],
+        minZoom: 1,
+        maxZoom: 8,
+        format: 'jpg',
+        time: '',
+        tilematrixset: 'GoogleMapsCompatible_Level'
+    }).addTo(map);
+    
+    // Add some markers for the cities we're showing clocks for
+    const cities = [
+        {name: "New York", coords: [40.7128, -74.0060]},
+        {name: "Istanbul", coords: [41.0082, 28.9784]},
+        {name: "London", coords: [51.5074, -0.1278]},
+        {name: "Tokyo", coords: [35.6762, 139.6503]}
+    ];
+    
+    cities.forEach(city => {
+        L.marker(city.coords)
+            .addTo(map)
+            .bindPopup(city.name);
+    });
+}
 
+// Update world clocks
+function updateClocks() {
+    const timeOptions = { 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        second: '2-digit',
+        hour12: false 
+    };
+    
+    const dateOptions = { 
+        weekday: 'short', 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric' 
+    };
+    
+    // New York (EST/EDT)
+    const nyTime = new Date().toLocaleString('en-US', { 
+        timeZone: 'America/New_York',
+        ...timeOptions
+    });
+    const nyDate = new Date().toLocaleString('en-US', { 
+        timeZone: 'America/New_York',
+        ...dateOptions
+    });
+    document.getElementById('time-ny').textContent = nyTime;
+    document.getElementById('date-ny').textContent = nyDate;
+    
+    // Istanbul
+    const istanbulTime = new Date().toLocaleString('en-US', { 
+        timeZone: 'Europe/Istanbul',
+        ...timeOptions
+    });
+    const istanbulDate = new Date().toLocaleString('en-US', { 
+        timeZone: 'Europe/Istanbul',
+        ...dateOptions
+    });
+    document.getElementById('time-istanbul').textContent = istanbulTime;
+    document.getElementById('date-istanbul').textContent = istanbulDate;
+    
+    // London
+    const londonTime = new Date().toLocaleString('en-US', { 
+        timeZone: 'Europe/London',
+        ...timeOptions
+    });
+    const londonDate = new Date().toLocaleString('en-US', { 
+        timeZone: 'Europe/London',
+        ...dateOptions
+    });
+    document.getElementById('time-london').textContent = londonTime;
+    document.getElementById('date-london').textContent = londonDate;
+    
+    // Tokyo
+    const tokyoTime = new Date().toLocaleString('en-US', { 
+        timeZone: 'Asia/Tokyo',
+        ...timeOptions
+    });
+    const tokyoDate = new Date().toLocaleString('en-US', { 
+        timeZone: 'Asia/Tokyo',
+        ...dateOptions
+    });
+    document.getElementById('time-tokyo').textContent = tokyoTime;
+    document.getElementById('date-tokyo').textContent = tokyoDate;
+}
+
+// Initialize map and clocks when page loads
+document.addEventListener('DOMContentLoaded', () => {
+    initMap();
+    updateClocks();
+    
+    // Update clocks every second
+    setInterval(updateClocks, 1000);
+});
 </script>
 </body>
 </html>

@@ -174,58 +174,128 @@
         .language-selector:hover .language-menu {
             display: block;
         }
+.theme-switch {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 44px;
+    height: 44px;
+}
 
-     /* 🌞 SUN */
+/* Invisible toggle */
+.theme-toggle {
+    appearance: none;
+    -webkit-appearance: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0;
+}
+
+.theme-icon {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 10px;
+    left: 10px;
+    transition: all 0.6s ease;
+    transform-origin: center;
+}
+    /* 🌞 SUN */
+.sun {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+.dark-mode .sun {
+    opacity: 0;
+    transform: scale(0.4) rotate(120deg);
+}
+
 .sun-icon {
     position: relative;
     width: 100%;
     height: 100%;
-    border-radius: 50%;
     background: radial-gradient(circle, #FFD93D 45%, transparent 46%);
-    box-shadow: 0 0 15px 5px rgba(255, 217, 61, 0.7);
+    border-radius: 50%;
+    box-shadow: 0 0 18px 5px rgba(255, 217, 61, 0.7);
     animation: sunPulse 3s infinite ease-in-out;
+    overflow: visible;
 }
 
 .sun-icon::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: -10px;
     border-radius: 50%;
     background: conic-gradient(
         from 0deg,
         #FFD93D 0deg 15deg,
-        transparent 15deg 30deg
+        transparent 15deg 30deg,
+        #FFD93D 30deg 45deg,
+        transparent 45deg 60deg,
+        #FFD93D 60deg 75deg,
+        transparent 75deg 90deg,
+        #FFD93D 90deg 105deg,
+        transparent 105deg 120deg,
+        #FFD93D 120deg 135deg,
+        transparent 135deg 150deg,
+        #FFD93D 150deg 165deg,
+        transparent 165deg 180deg,
+        #FFD93D 180deg 195deg,
+        transparent 195deg 210deg,
+        #FFD93D 210deg 225deg,
+        transparent 225deg 240deg,
+        #FFD93D 240deg 255deg,
+        transparent 255deg 270deg,
+        #FFD93D 270deg 285deg,
+        transparent 285deg 300deg,
+        #FFD93D 300deg 315deg,
+        transparent 315deg 330deg,
+        #FFD93D 330deg 345deg,
+        transparent 345deg 360deg
     );
-    animation: sunRays 6s linear infinite;
+    animation: sunRays 8s linear infinite;
     opacity: 0.9;
 }
 
 /* 🌙 MOON */
+.moon {
+    opacity: 0;
+    transform: scale(0.6) rotate(-120deg); /* bigger moon */
+}
+.dark-mode .moon {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
 .moon-icon {
     position: relative;
-    width: 100%;
-    height: 100%;
+    width: 110%; /* make it a bit bigger than sun */
+    height: 110%;
     border-radius: 50%;
-    background: #f0f0f0; /* moon body */
-    box-shadow: inset -8px 0 8px rgba(0, 0, 0, 0.7);
+    background: #F0F0F0;
+    box-shadow: inset -10px 0 8px -3px rgba(0,0,0,0.7);
     overflow: hidden;
 }
 
 .moon-icon::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
-    left: 10px;
+    left: 12px; /* adjust for thicker crescent */
     width: 100%;
     height: 100%;
+    background: #101010;
     border-radius: 50%;
-    background: #101010; /* cutout for crescent */
 }
 
-/* ☀️ Animations */
+/* ☀️ Sun animations */
 @keyframes sunPulse {
-    0%, 100% { box-shadow: 0 0 15px 5px rgba(255, 217, 61, 0.7); }
-    50% { box-shadow: 0 0 25px 7px rgba(255, 217, 61, 0.9); }
+    0%, 100% { box-shadow: 0 0 18px 5px rgba(255, 217, 61, 0.7); }
+    50% { box-shadow: 0 0 28px 8px rgba(255, 217, 61, 0.9); }
 }
 @keyframes sunRays {
     0% { transform: rotate(0deg); }

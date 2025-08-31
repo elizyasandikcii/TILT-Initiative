@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - TILT</title>
+    <title>Hakkında - TILT</title>
     <link rel="icon" href="https://cdn.glitch.global/5f72f9b5-5a11-4f80-b63f-8b4fc4574362/logoka%C5%9Fe%20(2).png?v=1745342288049" type="image/png">
     <style>
         :root {
@@ -26,7 +26,7 @@
             line-height: 1.6;
             transition: background-color var(--transition-speed);
             padding-top: var(--header-height);
-            background-color: white; /* Varsayılan açık mod */
+            background-color: white; /* Default light mode */
         }
 
         .dark-mode {
@@ -66,7 +66,7 @@
             font-size: 0.9rem;
         }
 
-        .logo {
+ .logo {
             width: 150px;
             height: 50px;
             display: flex;
@@ -171,93 +171,133 @@
         }
 
         .theme-switch {
-            display: flex;
-            align-items: center;
-            position: relative;
-            width: 44px;
-            height: 44px;
-        }
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 44px;
+    height: 44px;
+}
 
-        .theme-toggle {
-            appearance: none;
-            -webkit-appearance: none;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            cursor: pointer;
-            z-index: 2;
-            opacity: 0;
-        }
+/* Invisible toggle */
+.theme-toggle {
+    appearance: none;
+    -webkit-appearance: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0;
+}
 
-        .theme-icon {
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            top: 10px;
-            left: 10px;
-            transition: all 0.4s ease;
-            transform-origin: center;
-        }
+.theme-icon {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 10px;
+    left: 10px;
+    transition: all 0.6s ease;
+    transform-origin: center;
+}
+    /* 🌞 SUN */
+.sun {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+.dark-mode .sun {
+    opacity: 0;
+    transform: scale(0.4) rotate(120deg);
+}
 
-        .sun {
-            opacity: 1;
-            transform: scale(1) rotate(0deg);
-        }
+.sun-icon {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, #FFD93D 45%, transparent 46%);
+    border-radius: 50%;
+    box-shadow: 0 0 18px 5px rgba(255, 217, 61, 0.7);
+    animation: sunPulse 3s infinite ease-in-out;
+    overflow: visible;
+}
 
-        .dark-mode .sun {
-            opacity: 0;
-            transform: scale(0.5) rotate(90deg);
-        }
+.sun-icon::before {
+    content: '';
+    position: absolute;
+    inset: -10px;
+    border-radius: 50%;
+    background: conic-gradient(
+        from 0deg,
+        #FFD93D 0deg 15deg,
+        transparent 15deg 30deg,
+        #FFD93D 30deg 45deg,
+        transparent 45deg 60deg,
+        #FFD93D 60deg 75deg,
+        transparent 75deg 90deg,
+        #FFD93D 90deg 105deg,
+        transparent 105deg 120deg,
+        #FFD93D 120deg 135deg,
+        transparent 135deg 150deg,
+        #FFD93D 150deg 165deg,
+        transparent 165deg 180deg,
+        #FFD93D 180deg 195deg,
+        transparent 195deg 210deg,
+        #FFD93D 210deg 225deg,
+        transparent 225deg 240deg,
+        #FFD93D 240deg 255deg,
+        transparent 255deg 270deg,
+        #FFD93D 270deg 285deg,
+        transparent 285deg 300deg,
+        #FFD93D 300deg 315deg,
+        transparent 315deg 330deg,
+        #FFD93D 330deg 345deg,
+        transparent 345deg 360deg
+    );
+    animation: sunRays 8s linear infinite;
+    opacity: 0.9;
+}
 
-        .moon {
-            opacity: 0;
-            transform: scale(0.5) rotate(-90deg);
-        }
+/* 🌙 MOON */
+.moon {
+    opacity: 0;
+    transform: scale(0.6) rotate(-120deg); /* bigger moon */
+}
+.dark-mode .moon {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
 
-        .dark-mode .moon {
-            opacity: 1;
-            transform: scale(1) rotate(0deg);
-        }
+.moon-icon {
+    position: relative;
+    width: 110%; /* make it a bit bigger than sun */
+    height: 110%;
+    border-radius: 50%;
+    background: #F0F0F0;
+    box-shadow: inset -10px 0 8px -3px rgba(0,0,0,0.7);
+    overflow: hidden;
+}
 
-        .sun-icon, .moon-icon {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
+.moon-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 12px; /* adjust for thicker crescent */
+    width: 100%;
+    height: 100%;
+    background: #101010;
+    border-radius: 50%;
+}
 
-        .sun-icon {
-            background: radial-gradient(circle, currentColor 30%, transparent 30%);
-            box-shadow: 0 0 0 2px currentColor;
-            border-radius: 50%;
-        }
+/* ☀️ Sun animations */
+@keyframes sunPulse {
+    0%, 100% { box-shadow: 0 0 18px 5px rgba(255, 217, 61, 0.7); }
+    50% { box-shadow: 0 0 28px 8px rgba(255, 217, 61, 0.9); }
+}
+@keyframes sunRays {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
-        .sun-icon::before {
-            content: '';
-            position: absolute;
-            top: -8px;
-            left: 50%;
-            width: 2px;
-            height: 8px;
-            background: currentColor;
-            transform: translateX(-50%);
-        }
-
-        .sun-icon::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            width: 2px;
-            height: 8px;
-            background: currentColor;
-            transform: translateX(-50%);
-        }
-
-        .moon-icon {
-            border-radius: 50%;
-            box-shadow: -6px 0 0 2px currentColor;
-        }
 
         main {
             max-width: 1200px;
@@ -265,31 +305,11 @@
             padding: 0 2rem;
         }
 
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .back-btn {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background-color: var(--accent-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background-color var(--transition-speed);
-        }
-
-        .back-btn:hover {
-            background-color: var(--primary-color);
-        }
-
         .page-header {
             text-align: center;
             margin-bottom: 3rem;
             padding: 2rem 0;
+            border-bottom: 2px solid var(--accent-color);
         }
 
         .page-header h1 {
@@ -298,67 +318,104 @@
             color: var(--accent-color);
         }
 
-        .subtitle {
+        .page-header p {
             font-size: 1.2rem;
             color: var(--text-color);
             max-width: 800px;
             margin: 0 auto;
         }
 
-        .blog-container {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .blog-post-preview {
-            background-color: var(--secondary-color);
+        .content-section {
+            margin-bottom: 4rem;
             padding: 2rem;
+            background-color: var(--secondary-color);
             border-radius: 8px;
             box-shadow: var(--box-shadow);
+        }
+
+        .content-section h2 {
+            color: var(--accent-color);
+            margin-top: 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .value-item {
+            padding: 1.5rem;
+            background-color: rgba(0, 51, 102, 0.05);
+            border-radius: 8px;
             transition: transform var(--transition-speed);
         }
 
-        .blog-post-preview:hover {
+        .value-item:hover {
             transform: translateY(-5px);
         }
 
-        .blog-post-preview h2 {
+        .value-item h3 {
+            color: var(--accent-color);
             margin-top: 0;
-            color: var(--accent-color);
         }
 
-        .blog-post-preview h2 a {
-            color: inherit;
-            text-decoration: none;
+        .board-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
-        .blog-post-preview h2 a:hover {
-            text-decoration: underline;
+        .board-member {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: all var(--transition-speed);
+            cursor: pointer;
         }
 
-        .preview-date {
-            font-size: 0.9rem;
+        .dark-mode .board-member {
+            background-color: #1e1e1e;
+        }
+
+        .board-member:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .member-image {
+            height: 200px;
+            background-color: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: #6c757d;
-            margin-bottom: 1rem;
         }
 
-        .preview-text {
-            margin-bottom: 1.5rem;
+        .member-info {
+            padding: 1.5rem;
         }
 
-        .read-more {
+        .member-info h3 {
+            margin: 0 0 0.5rem 0;
             color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 500;
-            display: inline-block;
-            transition: transform 0.2s;
         }
 
-        .read-more:hover {
-            text-decoration: underline;
-            transform: translateX(5px);
+        .member-info p {
+            margin: 0;
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
+        .member-role {
+            font-weight: 600;
+            margin-top: 0.5rem;
+            color: var(--accent-color) !important;
         }
 
         footer {
@@ -397,30 +454,34 @@
             .header-controls {
                 margin-top: 1rem;
             }
+            
+            .board-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <header id="main-header">
-        <div class="logo">
+             <div class="logo">
             <img src="https://cdn.glitch.global/5f72f9b5-5a11-4f80-b63f-8b4fc4574362/logoka%C5%9Fe%20(2).png?v=1745342288049" alt="TILT Logo" class="logo-image">
         </div>
         <nav>
             <ul>
-                <li><a href="index.html">Ana Sayfa</a></li>
-                <li><a href="about.html">Hakkımızda</a></li>
-                <li><a href="projects.html">Projeler</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
                 <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact-us.html">İletişim</a></li>
-                <li><a href="get-involved.html">Bize Katılın</a></li>
+                <li><a href="contact-us.html">Contact Us</a></li>
+                <li><a href="get-involved.html">Get Involved</a></li>
             </ul>
         </nav>
         <div class="header-controls">
             <div class="language-selector">
-                <button class="language-btn">TR</button>
+                <button class="language-btn">EN</button>
                 <div class="language-menu">
-                    <a href="trblog.html">🇹🇷Türkçe</a>
-                    <a href="blog.html">🇬🇧English</a>
+                    <a href="about.html">🇬🇧English</a>
+                    <a href="tr-about.html">🇹🇷Türkçe</a>
                 </div>
             </div>
             <div class="theme-switch">
@@ -436,55 +497,135 @@
     </header>
 
     <main>
-        <section class="page-header">
-            <h1>TILT Blog</h1>
-            <p class="subtitle">İnisiyatifimizden fikirler, araştırma hikayeleri, proje güncellemeleri ve genç sesler.</p>
+        <div class="page-header">
+            <h1>About TILT</h1>
+            <p>The Initiative for Life and Thoughts</p>
+        </div>
+
+        <section class="content-section">
+            <h2>Our Vision</h2>
+            <p>TILT helps young people use their ideas, creativity, and emotions to make a better world. We combine science, art, and care to build tools that support healing, resilience, and positive change.</p>
+            
+            <p>TILT exists to empower youth to imagine the future, redesign reality, and bring bold ideas to life. We are a movement rooted in the belief that young minds, when equipped with knowledge, empathy, and creativity, can spark revolutions of thought and action. At TILT, we blend science, art, and humanity into dynamic tools that not only heal but also ignite innovation and purpose. From emotional resilience technologies to systems that simulate hope and possibility, we are building a future where youth are not just participants—but creators of change. Our mission is to transform trauma into strength, curiosity into courage, and dreams into data-driven solutions that shape a more just, beautiful, and sustainable world.</p>
         </section>
 
-        <section class="blog-container">
-            <div class="blog-post-preview">
-                <h2><a href="blog-post1.html">MINDRAISE'ı Neden Geliştirdik?</a></h2>
-                <p class="preview-date">15 Nisan 2025 · Elizya</p>
-                <p class="preview-text">MINDRAISE'ın - giyilebilir destekli duygusal dayanıklılık platformumuzun - doğuşuna yol açan nörobilim, misyon ve tutkuya içeriden bir bakış.</p>
-                <a class="read-more" href="blog-post1.html">Devamını oku →</a>
-            </div>
+        <section class="content-section">
+            <h2>What We Do</h2>
+            <p>We lead interdisciplinary projects that tackle real-world problems, from neuroscience and emotional resilience to biodiversity and clean technology. TILT is a nonprofit driven by young minds, and our motto is simple: "Tilt your head and dream."</p>
+        </section>
 
-            <div class="blog-post-preview">
-                <h2><a href="blog-post2.html">Topraktan Devreye: EcoFrame'ın İnşası</a></h2>
-                <p class="preview-date">8 Nisan 2025 · Ceren</p>
-                <p class="preview-text">Çevresel tahmin aracımızı oluştururken biyoçeşitlilik riskine, iklim kodlamasına ve tasarım adaletine nasıl yaklaştığımızın bir analizi.</p>
-                <a class="read-more" href="blog-post2.html">Devamını oku →</a>
+        <section class="content-section">
+            <h2>Our Values</h2>
+            <div class="values-grid">
+                <div class="value-item">
+                    <h3>✨ Innovation with depth</h3>
+                    <p>We believe in creating meaningful change through thoughtful innovation that addresses root causes.</p>
+                </div>
+                <div class="value-item">
+                    <h3>🧠 Science + soul</h3>
+                    <p>We integrate empirical evidence with human-centered design and emotional intelligence.</p>
+                </div>
+                <div class="value-item">
+                    <h3>🌍 Equity, sustainability, and empathy</h3>
+                    <p>Our work is guided by principles of justice, ecological stewardship, and deep compassion.</p>
+                </div>
+                <div class="value-item">
+                    <h3>🚀 Leadership by youth, for the world</h3>
+                    <p>We empower young people to lead initiatives that create global impact.</p>
+                </div>
             </div>
+        </section>
 
-            <!-- Ek blog yazısı önizlemeleri buraya eklenebilir -->
-            <div class="blog-post-preview">
-                <h2><a href="blog-post3.html">Yenilik Psikolojisi: Genç Zihinler Karmaşık Sorunları Nasıl Çözer?</a></h2>
-                <p class="preview-date">28 Mart 2025 · Yılmaz</p>
-                <p class="preview-text">Genç yenilikçilerin sorunlara benzersiz perspektiflerden yaklaşmalarını ve çığır açan çözümler geliştirmelerini sağlayan bilişsel süreçlerin keşfi.</p>
-                <a class="read-more" href="blog-post3.html">Devamını oku →</a>
-            </div>
-
-            <div class="blog-post-preview">
-                <h2><a href="blog-post4.html">Teknolojide Duygusal Zekâ: İnsan Bağlantısı İçin Tasarım</a></h2>
-                <p class="preview-date">15 Mart 2025 · Azra</p>
-                <p class="preview-text">Dijital bir dünyada gerçek insan bağlantısını teşvik etmek için duygusal zekâ ilkelerini teknolojik çözümlerimize nasıl entegre ettiğimiz.</p>
-                <a class="read-more" href="blog-post4.html">Devamını oku →</a>
+        <section class="content-section">
+            <h2>Board of Directors</h2>
+            <div class="board-grid">
+                <div class="board-member" onclick="window.location.href='elizya.html'">
+                    <div class="member-image">Elizya Jane SANDIKCI</div>
+                    <div class="member-info">
+                        <h3>Elizya Jane SANDIKCI</h3>
+                        <p class="member-role">Chairwoman, Founding Member, CFO/ Chief Finance Officer</p>
+                    </div>
+                </div>
+                
+                <div class="board-member" onclick="window.location.href='yilmaz.html'">
+                    <div class="member-image">Yılmaz Kutlu ONAY</div>
+                    <div class="member-info">
+                        <h3>Yılmaz Kutlu ONAY</h3>
+                        <p class="member-role">Founding Member, CTO/ Chief Technology Officer</p>
+                    </div>
+                </div>
+                
+                <div class="board-member" onclick="window.location.href='uras.html'">
+                    <div class="member-image">Uras DEMİRCAN</div>
+                    <div class="member-info">
+                        <h3>Uras DEMİRCAN</h3>
+                        <p class="member-role">COO/ Chief Operating Officer</p>
+                    </div>
+                </div>
+                
+                <div class="board-member" onclick="window.location.href='azra.html'">
+                    <div class="member-image">Azra AL</div>
+                    <div class="member-info">
+                        <h3>Azra AL</h3>
+                        <p class="member-role">CCO-CMO/ Chief Human Resources, Public Relations, and Communication Officer and Chief Marketing Officer</p>
+                    </div>
+                </div>
+                
+                <div class="board-member" onclick="window.location.href='yagmur.html'">
+                    <div class="member-image">Yağmur PADAR</div>
+                    <div class="member-info">
+                        <h3>Yağmur PADAR</h3>
+                        <p class="member-role">CLO/ Chief Legal Officer</p>
+                    </div>
+                </div>
+                
+                <div class="board-member" onclick="window.location.href='ceren.html'">
+                    <div class="member-image">Ceren ÖZGÖREN</div>
+                    <div class="member-info">
+                        <h3>Ceren ÖZGÖREN</h3>
+                        <p class="member-role">CSO/ Chief Strategy Officer</p>
+                    </div>
+                </div>
+                
+                <div class="board-member" onclick="window.location.href='nihan.html'">
+                    <div class="member-image">Nihan KAFADAR</div>
+                    <div class="member-info">
+                        <h3>Nihan KAFADAR</h3>
+                        <p class="member-role">CDO/ Chief Design Officer</p>
+                    </div>
+                </div>
+                
+                <div class="board-member" onclick="window.location.href='nizli.html'">
+                    <div class="member-image">Nazlı Eylül ŞEN</div>
+                    <div class="member-info">
+                        <h3>Nazlı Eylül ŞEN</h3>
+                        <p class="member-role">CRO/ Chief Research Officer</p>
+                    </div>
+                </div>
+                
+                <div class="board-member" onclick="window.location.href='ipek.html'">
+                    <div class="member-image">İpek ACAR</div>
+                    <div class="member-info">
+                        <h3>İpek ACAR</h3>
+                        <p class="member-role">CSSO/ Chief Sustainability and Space Management Officer</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>© 2025 TILT – Yaşam ve Düşünce İnisiyatifi</p>
-        <p>8.6 milyar nöron ve bir hayal ile tasarlandı</p>
-    </footer>
+   <footer>
+<p>© 2025 TILT – The Initiative for Life and Thoughts</p>
+<p>Designed with 8.6 billion neurons and a dream</p>
+</footer>
 
     <script>
-        // Koyu/Açık mod değiştirici
+        // Dark/Light mode toggle
         const themeToggle = document.getElementById('theme-toggle');
         themeToggle.addEventListener('change', () => {
             document.body.classList.toggle('dark-mode');
             
-            // Tercihi localStorage'a kaydet
+            // Save preference to localStorage
             if (document.body.classList.contains('dark-mode')) {
                 localStorage.setItem('theme', 'dark');
             } else {
@@ -492,14 +633,14 @@
             }
         });
 
-        // Kayıtlı tema tercihini kontrol et
+        // Check for saved theme preference
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
             document.body.classList.add('dark-mode');
             themeToggle.checked = true;
         }
 
-        // Kaydırma sırasında başlığı küçült
+        // Shrink header on scroll
         const header = document.getElementById('main-header');
         let lastScroll = 0;
         
@@ -507,10 +648,10 @@
             const currentScroll = window.pageYOffset;
             
             if (currentScroll > lastScroll && currentScroll > 100) {
-                // Aşağı kaydır
+                // Scroll down
                 header.classList.add('shrink');
             } else if (currentScroll < lastScroll || currentScroll <= 100) {
-                // Yukarı kaydır veya en üstte
+                // Scroll up or at top
                 header.classList.remove('shrink');
             }
             

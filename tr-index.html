@@ -1528,13 +1528,13 @@
         <p>8.6 milyar nöron ve bir hayal ile tasarlandı</p>
     </footer>
 </body>
-    <script>
-        // Dark/Light mode toggle
+  <script>
+        // Koyu/Açık mod değiştirici
         const themeToggle = document.getElementById('theme-toggle');
         themeToggle.addEventListener('change', () => {
             document.body.classList.toggle('dark-mode');
             
-            // Save preference to localStorage
+            // Tercihi localStorage'a kaydet
             if (document.body.classList.contains('dark-mode')) {
                 localStorage.setItem('theme', 'dark');
             } else {
@@ -1542,14 +1542,14 @@
             }
         });
 
-        // Check for saved theme preference
+        // Kaydedilmiş tema tercihini kontrol et
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
             document.body.classList.add('dark-mode');
             themeToggle.checked = true;
         }
 
-        // Shrink header on scroll
+        // Aşağı kaydırıldığında başlığı küçült
         const header = document.getElementById('main-header');
         let lastScroll = 0;
         
@@ -1557,45 +1557,45 @@
             const currentScroll = window.pageYOffset;
             
             if (currentScroll > lastScroll && currentScroll > 100) {
-                // Scroll down
+                // Aşağı kaydırma
                 header.classList.add('shrink');
             } else if (currentScroll < lastScroll || currentScroll <= 100) {
-                // Scroll up or at top
+                // Yukarı kaydırma veya en üstte
                 header.classList.remove('shrink');
             }
             
             lastScroll = currentScroll;
         });
 
-        // Calendar functionality
+        // Takvim işlevselliği
         let currentDate = new Date();
         let currentMonth = currentDate.getMonth();
         let currentYear = currentDate.getFullYear();
 
-        const months = ["January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"];
+        const months = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran",
+            "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
 
-        // Event data structure
+        // Etkinlik veri yapısı
         const events = [
             {
                 id: 1,
-                title: "TILT Annual Conference 2025",
-                date: new Date(2025, 8, 8), // September 8th, 2025 (months are 0-indexed)
-                description: "Join us for our annual conference exploring the future of human thought and technological advancement. Keynote speakers and workshops included.",
+                title: "TILT Yıllık Konferansı 2025",
+                date: new Date(2025, 8, 8), // 8 Eylül 2025 (aylar 0'dan başlar)
+                description: "İnsan düşüncesinin ve teknolojik ilerlemenin geleceğini keşfedeceğimiz yıllık konferansımıza katılın. Açılış konuşmacıları ve atölye çalışmaları dahil.",
                 color: "#dc3545"
             },
             {
                 id: 2,
-                title: "Philosophy Discussion Group",
+                title: "Felsefe Tartışma Grubu",
                 date: new Date(currentYear, currentMonth, 15),
-                description: "Monthly meeting to discuss philosophical texts and ideas",
+                description: "Felsefi metinleri ve fikirleri tartışmak için aylık toplantı",
                 color: "#28a745"
             },
             {
                 id: 3,
-                title: "Science & Society Workshop",
+                title: "Bilim ve Toplum Atölyesi",
                 date: new Date(currentYear, currentMonth, 22),
-                description: "How scientific advancements are shaping our future society",
+                description: "Bilimsel ilerlemeler gelecek toplumumuzu nasıl şekillendiriyor",
                 color: "#007bff"
             }
         ];
@@ -1604,45 +1604,45 @@
             const calendarBody = document.getElementById("calendar-body");
             const monthYearElement = document.getElementById("calendar-month-year");
             
-            // Clear previous calendar
+            // Önceki takvimi temizle
             calendarBody.innerHTML = "";
             
-            // Set month and year header
+            // Ay ve yıl başlığını ayarla
             monthYearElement.textContent = `${months[month]} ${year}`;
             
-            // Get first day of month and number of days in month
+            // Ayın ilk gününü ve ayın gün sayısını al
             const firstDay = new Date(year, month, 1).getDay();
             const daysInMonth = new Date(year, month + 1, 0).getDate();
             
-            // Create date object for today to compare
+            // Karşılaştırma için bugünün tarih nesnesini oluştur
             const today = new Date();
             const isCurrentMonth = month === today.getMonth() && year === today.getFullYear();
             
-            // Create calendar
+            // Takvimi oluştur
             let date = 1;
             for (let i = 0; i < 6; i++) {
-                // Create a table row
+                // Bir tablo satırı oluştur
                 const row = document.createElement("tr");
                 
-                // Create individual cells for each day
+                // Her gün için tek tek hücreler oluştur
                 for (let j = 0; j < 7; j++) {
                     if (i === 0 && j < firstDay) {
-                        // Empty cells before the first day of the month
+                        // Ayın ilk gününden önceki boş hücreler
                         const cell = document.createElement("td");
                         const cellText = document.createTextNode("");
                         cell.appendChild(cellText);
                         row.appendChild(cell);
                     } else if (date > daysInMonth) {
-                        // Empty cells after the last day of the month
+                        // Ayın son gününden sonraki boş hücreler
                         const cell = document.createElement("td");
                         const cellText = document.createTextNode("");
                         cell.appendChild(cellText);
                         row.appendChild(cell);
                     } else {
-                        // Cells with dates
+                        // Tarih içeren hücreler
                         const cell = document.createElement("td");
                         
-                        // Check if this is the current day
+                        // Bugünün günü olup olmadığını kontrol et
                         if (isCurrentMonth && date === today.getDate()) {
                             const dayDiv = document.createElement("div");
                             dayDiv.className = "current-day";
@@ -1653,12 +1653,12 @@
                             cell.appendChild(cellText);
                         }
                         
-                        // Check if this date is from a different month (for next/prev month days)
+                        // Bu tarihin farklı bir aya ait olup olmadığını kontrol et (sonraki/önceki ay günleri için)
                         if ((i === 0 && j < firstDay) || date > daysInMonth) {
                             cell.classList.add("other-month");
                         }
                         
-                        // Check if this date has any events
+                        // Bu tarihte herhangi bir etkinlik olup olmadığını kontrol et
                         const hasEvent = events.some(event => {
                             const eventDate = event.date;
                             return eventDate.getDate() === date && 
@@ -1670,10 +1670,10 @@
                             cell.classList.add("event-day");
                             const indicator = document.createElement("div");
                             indicator.className = "event-indicator";
-                            indicator.title = "Click to view events";
+                            indicator.title = "Etkinlikleri görüntülemek için tıklayın";
                             cell.appendChild(indicator);
                             
-                            // Add click event to show events
+                            // Etkinlikleri göstermek için tıklama olayı ekle
                             cell.addEventListener('click', () => {
                                 showEventsForDate(date, month, year);
                             });
@@ -1684,21 +1684,21 @@
                     }
                 }
                 
-                // Append the row to the calendar body
+                // Satırı takvim gövdesine ekle
                 calendarBody.appendChild(row);
                 
-                // Stop making rows if we've run out of days
+                // Günler biterse satır yapmayı durdur
                 if (date > daysInMonth) {
                     break;
                 }
             }
         }
 
-        // Function to show events for a specific date
+        // Belirli bir tarih için etkinlikleri gösteren fonksiyon
         function showEventsForDate(day, month, year) {
             const selectedDate = new Date(year, month, day);
             
-            // Find events for this date
+            // Bu tarih için etkinlikleri bul
             const eventsForDate = events.filter(event => {
                 const eventDate = event.date;
                 return eventDate.getDate() === day && 
@@ -1711,19 +1711,19 @@
             }
         }
 
-        // Function to show event modal
+        // Etkinlik modalını gösteren fonksiyon
         function showEventModal(events, date) {
-            // Create or show modal
+            // Modal oluştur veya göster
             let modal = document.getElementById('event-modal');
             let overlay = document.getElementById('modal-overlay');
             
             if (!modal) {
-                // Create modal
+                // Modal oluştur
                 modal = document.createElement('div');
                 modal.id = 'event-modal';
                 modal.className = 'event-modal';
                 
-                // Create overlay
+                // Overlay oluştur
                 overlay = document.createElement('div');
                 overlay.id = 'modal-overlay';
                 overlay.className = 'overlay';
@@ -1733,10 +1733,10 @@
                 document.body.appendChild(overlay);
             }
             
-            // Build modal content
+            // Modal içeriğini oluştur
             let modalContent = `
                 <button class="close-btn">&times;</button>
-                <h3>Events on ${date.toDateString()}</h3>
+                <h3>${date.toLocaleDateString('tr-TR')} Tarihindeki Etkinlikler</h3>
             `;
             
             events.forEach(event => {
@@ -1750,15 +1750,15 @@
             
             modal.innerHTML = modalContent;
             
-            // Add close event to button
+            // Butona kapatma olayı ekle
             modal.querySelector('.close-btn').addEventListener('click', closeEventModal);
             
-            // Show modal and overlay
+            // Modal ve overlay'i göster
             modal.style.display = 'block';
             overlay.style.display = 'block';
         }
 
-        // Function to close event modal
+        // Etkinlik modalını kapatan fonksiyon
         function closeEventModal() {
             const modal = document.getElementById('event-modal');
             const overlay = document.getElementById('modal-overlay');
@@ -1767,7 +1767,7 @@
             if (overlay) overlay.style.display = 'none';
         }
 
-        // Navigation functions
+        // Navigasyon fonksiyonları
         document.getElementById("prev-month").addEventListener("click", () => {
             currentMonth--;
             if (currentMonth < 0) {
@@ -1793,26 +1793,26 @@
             generateCalendar(currentMonth, currentYear);
         });
 
-        // Initialize calendar
+        // Takvimi başlat
         generateCalendar(currentMonth, currentYear);
 
-        // NYT News API Integration
+        // NYT Haber API Entegrasyonu
         const newsContainer = document.getElementById('news-container');
         const refreshButton = document.getElementById('refresh-news');
         
-        // NYT API Key
+        // NYT API Anahtarı
         const API_KEY = '6NNf0KIZZZElhq4ZSOTfYqInqbB84dRN';
         
-        // Function to fetch news from NYT
+        // NYT'den haber getiren fonksiyon
         async function fetchNews() {
             try {
-                newsContainer.innerHTML = '<div class="loading">Loading news...</div>';
+                newsContainer.innerHTML = '<div class="loading">Haberler yükleniyor...</div>';
                 
-                // Fetch news from NYT API
+                // NYT API'den haberleri getir
                 const response = await fetch(`https://api.nytimes.com/svc/topstories/v2/home.json?api-key=${API_KEY}`);
                 
                 if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                    throw new Error(`HTTP hatası! durum: ${response.status}`);
                 }
                 
                 const data = await response.json();
@@ -1820,62 +1820,62 @@
                 if (data.results && data.results.length > 0) {
                     displayNews(data.results);
                 } else {
-                    throw new Error('No news articles found in response');
+                    throw new Error('Yanıtta hiç haber makalesi bulunamadı');
                 }
                 
             } catch (error) {
-                console.error('Error fetching news:', error);
+                console.error('Haber getirme hatası:', error);
                 
-                // Fallback to mock data if API fails
+                // API başarısız olursa yedek veri kullan
                 const mockNews = [
                     {
-                        title: 'Climate Change Agreement Reached at International Summit',
-                        abstract: 'World leaders have agreed on a new set of measures to combat climate change, aiming for carbon neutrality by 2050.',
+                        title: 'İklim Değişikliği Anlaşması Uluslararası Zirvede Sağlandı',
+                        abstract: 'Dünya liderleri, 2050 yılına kadar karbon nötrlüğü hedefleyen iklim değişikliğiyle mücadele için yeni bir dizi önlem üzerinde anlaştı.',
                         url: 'https://www.nytimes.com/',
-                        byline: 'By JANE DOE',
+                        byline: 'JANE DOE',
                         published_date: '2023-09-15',
                         multimedia: [
                             {
-                                url: 'https://via.placeholder.com/300x160?text=Climate+News',
+                                url: 'https://via.placeholder.com/300x160?text=İklim+Haberleri',
                                 format: 'Standard Thumbnail'
                             }
                         ]
                     },
                     {
-                        title: 'New Breakthrough in Quantum Computing',
-                        abstract: 'Scientists announce a major advancement in quantum computing that could revolutionize technology industries.',
+                        title: 'Kuantum Hesaplamada Yeni Çığır Açıldı',
+                        abstract: 'Bilim insanları, teknoloji endüstrilerinde devrim yaratabilecek kuantum hesaplamada büyük bir ilerleme duyurdu.',
                         url: 'https://www.nytimes.com/',
-                        byline: 'By JOHN SMITH',
+                        byline: 'JOHN SMITH',
                         published_date: '2023-09-14',
                         multimedia: [
                             {
-                                url: 'https://via.placeholder.com/300x160?text=Quantum+Computing',
+                                url: 'https://via.placeholder.com/300x160?text=Kuantum+Hesaplama',
                                 format: 'Standard Thumbnail'
                             }
                         ]
                     },
                     {
-                        title: 'Global Economic Forum Addresses Rising Inflation',
-                        abstract: 'Economists and policymakers gather to discuss strategies for managing inflation and supporting economic growth.',
+                        title: 'Küresel Ekonomik Forum Yükselen Enflasyonu Ele Alıyor',
+                        abstract: 'Ekonomistler ve politika yapıcılar, enflasyonu yönetmek ve ekonomik büyümeyi desteklemek için stratejileri tartışmak üzere bir araya geldi.',
                         url: 'https://www.nytimes.com/',
-                        byline: 'By ALICE JOHNSON',
+                        byline: 'ALICE JOHNSON',
                         published_date: '2023-09-13',
                         multimedia: [
                             {
-                                url: 'https://via.placeholder.com/300x160?text=Economy',
+                                url: 'https://via.placeholder.com/300x160?text=Ekonomi',
                                 format: 'Standard Thumbnail'
                             }
                         ]
                     },
                     {
-                        title: 'Space Exploration Reaches New Milestone',
-                        abstract: 'The latest space mission has successfully reached its destination, marking a new era in interstellar exploration.',
+                        title: 'Uzay Keşfi Yeni Bir Dönüm Noktasına Ulaştı',
+                        abstract: 'Son uzay görevi başarıyla hedefine ulaşarak yıldızlararası keşifte yeni bir çağ başlattı.',
                         url: 'https://www.nytimes.com/',
-                        byline: 'By ROBERT WILLIAMS',
+                        byline: 'ROBERT WILLIAMS',
                         published_date: '2023-09-12',
                         multimedia: [
                             {
-                                url: 'https://via.placeholder.com/300x160?text=Space',
+                                url: 'https://via.placeholder.com/300x160?text=Uzay',
                                 format: 'Standard Thumbnail'
                             }
                         ]
@@ -1884,31 +1884,31 @@
                 
                 displayNews(mockNews);
                 
-                // Show error message but still display mock data
+                // Hata mesajını göster ama yine de yedek veriyi görüntüle
                 newsContainer.innerHTML = `
                     <div class="error">
-                        <p>NYT API connection failed. Showing sample news.</p>
+                        <p>NYT API bağlantısı başarısız oldu. Örnek haberler gösteriliyor.</p>
                         <p><small>${error.message}</small></p>
                     </div>
                 ` + newsContainer.innerHTML;
             }
         }
         
-        // Function to display news articles
+        // Haber makalelerini görüntüleyen fonksiyon
         function displayNews(articles) {
             if (!articles || articles.length === 0) {
-                newsContainer.innerHTML = '<div class="error">No news articles found.</div>';
+                newsContainer.innerHTML = '<div class="error">Hiç haber makalesi bulunamadı.</div>';
                 return;
             }
             
-            // Limit to 4 articles for better layout
+            // Daha iyi düzen için 4 makale ile sınırla
             const articlesToShow = articles.slice(0, 4);
             
             newsContainer.innerHTML = articlesToShow.map(article => {
-                // Find a suitable image
-                let imageUrl = 'https://via.placeholder.com/300x160?text=News';
+                // Uygun bir resim bul
+                let imageUrl = 'https://via.placeholder.com/300x160?text=Haber';
                 if (article.multimedia && article.multimedia.length > 0) {
-                    // Try to find a large image first
+                    // Önce büyük bir resim bulmaya çalış
                     const largeImage = article.multimedia.find(media => media.format === 'superJumbo');
                     const normalImage = article.multimedia.find(media => media.format === 'Normal');
                     const thumbImage = article.multimedia.find(media => media.format === 'Standard Thumbnail');
@@ -1928,8 +1928,8 @@
                             </h3>
                             <p class="news-description">${article.abstract}</p>
                             <div class="news-meta">
-                                <span>${article.byline || 'By New York Times'}</span>
-                                <span>${new Date(article.published_date).toLocaleDateString()}</span>
+                                <span>${article.byline || 'New York Times'}</span>
+                                <span>${new Date(article.published_date).toLocaleDateString('tr-TR')}</span>
                             </div>
                             </div>
                     </div>
@@ -1937,230 +1937,268 @@
             }).join('');
         }
         
-        // Event listener for refresh button
+        // Yenile butonu için olay dinleyicisi
         refreshButton.addEventListener('click', fetchNews);
         
-        // Fetch news on page load
+        // Sayfa yüklendiğinde haberleri getir
         fetchNews();
         
-        // Stock Market Data Section
-        const stockSelect = document.getElementById('stock-select');
-        const timeframeSelect = document.getElementById('timeframe-select');
-        const refreshStocksButton = document.getElementById('refresh-stocks');
-        const stockChartCanvas = document.getElementById('stock-chart');
-        const stockPriceElement = document.getElementById('stock-price');
-        const changeAmountElement = document.getElementById('change-amount');
-        const changePercentElement = document.getElementById('change-percent');
-        const stockInfoElement = document.getElementById('stock-info');
-        
-        let stockChart = null;
-        
-        // Function to fetch stock data
-        async function fetchStockData(symbol = 'AAPL', timeframe = 'TIME_SERIES_DAILY') {
-            try {
-                stockInfoElement.innerHTML = '<div class="loading">Loading stock data...</div>';
-                
-                // Use mock data instead of API to avoid errors
-                const mockData = generateMockStockData(symbol, timeframe);
-                displayStockData(mockData);
-                
-            } catch (error) {
-                console.error('Error fetching stock data:', error);
-                
-                // Fallback to mock data if API fails
-                const mockData = generateMockStockData(symbol, timeframe);
-                displayStockData(mockData);
-                
-                // Show error message but still display data
-                stockInfoElement.innerHTML = `
-                    <div class="error">
-                        <p>Stock API connection issue. Showing sample data.</p>
-                        <p><small>${error.message}</small></p>
-                    </div>
-                ` + stockInfoElement.innerHTML;
-            }
-        }
-        
-        // Function to generate mock stock data (fallback)
-        function generateMockStockData(symbol, timeframe) {
-            const data = { 
-                symbol: symbol,
-                values: [],
-                currentPrice: 0,
-                previousPrice: 0
-            };
+        // Borsa Verileri Bölümü
+    const stockSelect = document.getElementById('stock-select');
+    const timeframeSelect = document.getElementById('timeframe-select');
+    const refreshStocksButton = document.getElementById('refresh-stocks');
+    const stockChartCanvas = document.getElementById('stock-chart');
+    const stockPriceElement = document.getElementById('stock-price');
+    const changeAmountElement = document.getElementById('change-amount');
+    const changePercentElement = document.getElementById('change-percent');
+    const stockInfoElement = document.getElementById('stock-info');
+    
+    let stockChart = null;
+    const ALPHA_VANTAGE_API_KEY = 'd11672c0-1325-4987-be09-22caa6f2eee6';
+    
+    // Borsa verilerini getiren fonksiyon
+    async function fetchStockData(symbol = 'AAPL', timeframe = 'TIME_SERIES_DAILY') {
+        try {
+            stockInfoElement.innerHTML = '<div class="loading">Borsa verileri yükleniyor...</div>';
             
-            // Set base price based on symbol
-            const basePrices = {
-                'AAPL': 170, 'MSFT': 330, 'GOOGL': 135, 
-                'AMZN': 140, 'TSLA': 240, 'SPY': 450
-            };
+            // Alpha Vantage API kullan
+            const response = await fetch(`https://www.alphavantage.co/query?function=${timeframe}&symbol=${symbol}&apikey=${ALPHA_VANTAGE_API_KEY}`);
             
-            const basePrice = basePrices[symbol] || 100;
-            const volatility = basePrice * 0.02; // 2% volatility
-            
-            // Generate data points
-            const points = timeframe === 'TIME_SERIES_MONTHLY' ? 30 : 
-                          timeframe === 'TIME_SERIES_WEEKLY' ? 60 : 90;
-            
-            let currentValue = basePrice;
-            const values = [];
-            
-            for (let i = points; i >= 0; i--) {
-                // Random walk for stock price
-                const change = (Math.random() - 0.5) * volatility;
-                currentValue += change;
-                
-                // Ensure price doesn't go negative
-                currentValue = Math.max(5, currentValue);
-                
-                // Format date
-                const date = new Date();
-                date.setDate(date.getDate() - i);
-                
-                values.push({
-                    date: date.toISOString().split('T')[0],
-                    price: parseFloat(currentValue.toFixed(2))
-                });
+            if (!response.ok) {
+                throw new Error(`HTTP hatası! durum: ${response.status}`);
             }
             
-            data.values = values;
-            data.currentPrice = values[values.length - 1].price;
-            data.previousPrice = values[values.length - 2].price;
+            const data = await response.json();
             
-            return data;
-        }
-        
-        // Function to display stock data in chart
-        function displayStockData(stockData) {
-            const dates = stockData.values.map(item => {
-                const date = new Date(item.date);
-                return date.toLocaleDateString('en-US', { 
-                    month: 'short', 
-                    day: 'numeric' 
-                });
+            // Hangi zaman dilimi verisine sahip olduğumuzu kontrol et
+            let timeSeriesData;
+            if (data['Time Series (Daily)']) {
+                timeSeriesData = data['Time Series (Daily)'];
+            } else if (data['Weekly Time Series']) {
+                timeSeriesData = data['Weekly Time Series'];
+            } else if (data['Monthly Time Series']) {
+                timeSeriesData = data['Monthly Time Series'];
+            } else {
+                throw new Error('Yanıtta zaman serisi verisi bulunamadı');
+            }
+            
+            // Veriyi işle
+            const dates = Object.keys(timeSeriesData).sort();
+            const values = dates.map(date => {
+                return {
+                    date: date,
+                    price: parseFloat(timeSeriesData[date]['4. close'])
+                };
             });
             
-            const prices = stockData.values.map(item => item.price);
+            // Mevcut ve önceki fiyatları al
+            const currentPrice = values[values.length - 1].price;
+            const previousPrice = values[values.length - 2].price;
             
-            // Calculate price change
-            const change = stockData.currentPrice - stockData.previousPrice;
-            const changePercent = (change / stockData.previousPrice) * 100;
+            displayStockData({
+                symbol: symbol,
+                values: values,
+                currentPrice: currentPrice,
+                previousPrice: previousPrice
+            });
             
-            // Update price display
-            stockPriceElement.textContent = `$${stockData.currentPrice.toFixed(2)}`;
-            changeAmountElement.textContent = `${change >= 0 ? '+' : ''}${change.toFixed(2)}`;
-            changePercentElement.textContent = `(${change >= 0 ? '+' : ''}${changePercent.toFixed(2)}%)`;
+        } catch (error) {
+            console.error('Borsa verileri getirme hatası:', error);
             
-            // Set color based on change
-            if (change > 0) {
-                changeAmountElement.className = 'positive';
-                changePercentElement.className = 'positive';
-                stockPriceElement.className = 'stock-price positive';
-            } else if (change < 0) {
-                changeAmountElement.className = 'negative';
-                changePercentElement.className = 'negative';
-                stockPriceElement.className = 'stock-price negative';
-            } else {
-                changeAmountElement.className = '';
-                changePercentElement.className = '';
-                stockPriceElement.className = 'stock-price';
-            }
+            // API başarısız olursa yedek veri kullan
+            const mockData = generateMockStockData(symbol, timeframe);
+            displayStockData(mockData);
             
-            // Create or update chart
-            const ctx = stockChartCanvas.getContext('2d');
+            // Hata mesajını göster ama yine de veriyi görüntüle
+            stockInfoElement.innerHTML = `
+                <div class="error">
+                    <p>Alpha Vantage API bağlantı sorunu. Örnek veriler gösteriliyor.</p>
+                    <p><small>${error.message}</small></p>
+                </div>
+            ` + stockInfoElement.innerHTML;
+        }
+    }
+    
+    // Yedek borsa verisi oluşturan fonksiyon
+    function generateMockStockData(symbol, timeframe) {
+        const data = { 
+            symbol: symbol,
+            values: [],
+            currentPrice: 0,
+            previousPrice: 0
+        };
+        
+        // Sembole göre temel fiyatı ayarla
+        const basePrices = {
+            'AAPL': 170, 'MSFT': 330, 'GOOGL': 135, 
+            'AMZN': 140, 'TSLA': 240, 'SPY': 450
+        };
+        
+        const basePrice = basePrices[symbol] || 100;
+        const volatility = basePrice * 0.02; // %2 oynaklık
+        
+        // Veri noktaları oluştur
+        const points = timeframe === 'TIME_SERIES_MONTHLY' ? 30 : 
+                      timeframe === 'TIME_SERIES_WEEKLY' ? 60 : 90;
+        
+        let currentValue = basePrice;
+        const values = [];
+        
+        for (let i = points; i >= 0; i--) {
+            // Hisse fiyatı için rastgele yürüyüş
+            const change = (Math.random() - 0.5) * volatility;
+            currentValue += change;
             
-            if (stockChart) {
-                stockChart.destroy();
-            }
+            // Fiyatın negatif olmamasını sağla
+            currentValue = Math.max(5, currentValue);
             
-            stockChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: dates,
-                    datasets: [{
-                        label: `${stockData.symbol} Price`,
-                        data: prices,
-                        borderColor: change >= 0 ? '#28a745' : '#dc3545',
-                        backgroundColor: change >= 0 ? 'rgba(40, 167, 69, 0.1)' : 'rgba(220, 53, 69, 0.1)',
-                        fill: true,
-                        tension: 0.1,
-                        pointRadius: 0,
-                        pointHoverRadius: 5
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            mode: 'index',
-                            intersect: false,
-                            callbacks: {
-                                label: function(context) {
-                                    return `$${context.raw.toFixed(2)}`;
-                                }
+            // Tarihi biçimlendir
+            const date = new Date();
+            date.setDate(date.getDate() - i);
+            
+            values.push({
+                date: date.toISOString().split('T')[0],
+                price: parseFloat(currentValue.toFixed(2))
+            });
+        }
+        
+        data.values = values;
+        data.currentPrice = values[values.length - 1].price;
+        data.previousPrice = values[values.length - 2].price;
+        
+        return data;
+    }
+    
+    // Borsa verilerini grafikte görüntüleyen fonksiyon
+    function displayStockData(stockData) {
+        const dates = stockData.values.map(item => {
+            const date = new Date(item.date);
+            return date.toLocaleDateString('tr-TR', { 
+                month: 'short', 
+                day: 'numeric' 
+            });
+        });
+        
+        const prices = stockData.values.map(item => item.price);
+        
+        // Fiyat değişimini hesapla
+        const change = stockData.currentPrice - stockData.previousPrice;
+        const changePercent = (change / stockData.previousPrice) * 100;
+        
+        // Fiyat görüntüsünü güncelle
+        stockPriceElement.textContent = `$${stockData.currentPrice.toFixed(2)}`;
+        changeAmountElement.textContent = `${change >= 0 ? '+' : ''}${change.toFixed(2)}`;
+        changePercentElement.textContent = `(${change >= 0 ? '+' : ''}${changePercent.toFixed(2)}%)`;
+        
+        // Değişime göre renk ayarla
+        if (change > 0) {
+            changeAmountElement.className = 'positive';
+            changePercentElement.className = 'positive';
+            stockPriceElement.className = 'stock-price positive';
+        } else if (change < 0) {
+            changeAmountElement.className = 'negative';
+            changePercentElement.className = 'negative';
+            stockPriceElement.className = 'stock-price negative';
+        } else {
+            changeAmountElement.className = '';
+            changePercentElement.className = '';
+            stockPriceElement.className = 'stock-price';
+        }
+        
+        // Grafik oluştur veya güncelle
+        const ctx = stockChartCanvas.getContext('2d');
+        
+        if (stockChart) {
+            stockChart.destroy();
+        }
+        
+        stockChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: `${stockData.symbol} Fiyatı`,
+                    data: prices,
+                    borderColor: change >= 0 ? '#28a745' : '#dc3545',
+                    backgroundColor: change >= 0 ? 'rgba(40, 167, 69, 0.1)' : 'rgba(220, 53, 69, 0.1)',
+                    fill: true,
+                    tension: 0.1,
+                    pointRadius: 0,
+                    pointHoverRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        callbacks: {
+                            label: function(context) {
+                                return `$${context.raw.toFixed(2)}`;
                             }
                         }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        }
                     },
-                    scales: {
-                        x: {
-                            grid: {
-                                display: false
-                            }
+                    y: {
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)'
                         },
-                        y: {
-                            grid: {
-                                color: 'rgba(0, 0, 0, 0.05)'
-                            },
-                            ticks: {
-                                callback: function(value) {
-                                    return '$' + value;
-                                }
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value;
                             }
                         }
                     }
                 }
-            });
-        }
-        
-        // Event listeners for stock controls
-        stockSelect.addEventListener('change', () => {
-            fetchStockData(stockSelect.value, timeframeSelect.value);
+            }
         });
-        
-        timeframeSelect.addEventListener('change', () => {
-            fetchStockData(stockSelect.value, timeframeSelect.value);
-        });
-        
-        refreshStocksButton.addEventListener('click', () => {
-            fetchStockData(stockSelect.value, timeframeSelect.value);
-        });
-        
-        // Initialize stock data
-        fetchStockData();
+    }
+    
+    // Borsa kontrolleri için olay dinleyicileri
+    stockSelect.addEventListener('change', () => {
+        fetchStockData(stockSelect.value, timeframeSelect.value);
+    });
+    
+    timeframeSelect.addEventListener('change', () => {
+        fetchStockData(stockSelect.value, timeframeSelect.value);
+    });
+    
+    refreshStocksButton.addEventListener('click', () => {
+        fetchStockData(stockSelect.value, timeframeSelect.value);
+    });
+    
+    // Borsa verilerini başlat
+    fetchStockData();
           
-      // Currency Exchange Rates Section
+      // Döviz Kuru Bölümü
     const currencyContainer = document.getElementById('currency-container');
     const refreshCurrencyButton = document.getElementById('refresh-currency');
     const EXCHANGE_RATE_API_KEY = '5cae913d674df6bdbd3b6951';
     
-    // Store previous rates to calculate changes
+    // Değişiklikleri hesaplamak için önceki oranları sakla
     let previousRates = {};
     
-    // Function to fetch currency data
+    // Döviz verilerini getiren fonksiyon
     async function fetchCurrencyData() {
         try {
-            currencyContainer.innerHTML = '<div class="loading">Loading currency data...</div>';
+            currencyContainer.innerHTML = '<div class="loading">Döviz verileri yükleniyor...</div>';
             
-            // Fetch data from ExchangeRate-API
+            // ExchangeRate-API'den veri getir
             const response = await fetch(`https://v6.exchangerate-api.com/v6/${EXCHANGE_RATE_API_KEY}/latest/USD`);
             
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error(`HTTP hatası! durum: ${response.status}`);
             }
             
             const data = await response.json();
@@ -2169,16 +2207,16 @@
                 const rates = data.conversion_rates;
                 const currentTime = new Date().toISOString();
                 
-                // Calculate changes if we have previous data
+                // Önceki verilerimiz varsa değişiklikleri hesapla
                 let changes = {};
                 if (Object.keys(previousRates).length > 0) {
                     changes = calculateChanges(previousRates, rates);
                 }
                 
-                // Store current rates for next comparison
+                // Bir sonraki karşılaştırma için mevcut oranları sakla
                 previousRates = {...rates};
                 
-                // Prepare currency data
+                // Döviz verilerini hazırla
                 const currencyData = [
                     {
                         pair: "USD/EUR",
@@ -2212,13 +2250,13 @@
                 
                 displayCurrencyData(currencyData);
             } else {
-                throw new Error('No currency data found in response');
+                throw new Error('Yanıtta döviz verisi bulunamadı');
             }
             
         } catch (error) {
-            console.error('Error fetching currency data:', error);
+            console.error('Döviz verileri getirme hatası:', error);
             
-            // Fallback to mock data if API fails
+            // API başarısız olursa yedek veri kullan
             const mockCurrencyData = [
                 {
                     pair: "USD/EUR",
@@ -2252,21 +2290,21 @@
             
             displayCurrencyData(mockCurrencyData);
             
-            // Show error message but still display data
+            // Hata mesajını göster ama yine de veriyi görüntüle
             currencyContainer.innerHTML = `
                 <div class="error">
-                    <p>Currency API connection issue. Showing sample data.</p>
+                    <p>Döviz API bağlantı sorunu. Örnek veriler gösteriliyor.</p>
                     <p><small>${error.message}</small></p>
                 </div>
             ` + currencyContainer.innerHTML;
         }
     }
     
-    // Function to calculate changes between previous and current rates
+    // Önceki ve mevcut oranlar arasındaki değişiklikleri hesaplayan fonksiyon
     function calculateChanges(prevRates, currentRates) {
         const changes = {};
         
-        // Calculate direct rate changes
+        // Doğrudan oran değişikliklerini hesapla
         if (prevRates.EUR && currentRates.EUR) {
             changes.EUR = currentRates.EUR - prevRates.EUR;
         }
@@ -2277,7 +2315,7 @@
             changes.GBP = currentRates.GBP - prevRates.GBP;
         }
         
-        // Calculate cross rate changes (EUR/TRY)
+        // Çapraz oran değişikliklerini hesapla (EUR/TRY)
         if (prevRates.EUR && prevRates.TRY && currentRates.EUR && currentRates.TRY) {
             const prevEurTry = prevRates.TRY / prevRates.EUR;
             const currentEurTry = currentRates.TRY / currentRates.EUR;
@@ -2287,10 +2325,10 @@
         return changes;
     }
     
-    // Function to display currency data
+    // Döviz verilerini görüntüleyen fonksiyon
     function displayCurrencyData(currencies) {
         if (!currencies || currencies.length === 0) {
-            currencyContainer.innerHTML = '<div class="error">No currency data found.</div>';
+            currencyContainer.innerHTML = '<div class="error">Döviz verisi bulunamadı.</div>';
             return;
         }
         
@@ -2310,15 +2348,15 @@
                         <span>(${isPositive ? '+' : ''}${currency.changePercent.toFixed(2)}%)</span>
                     </div>
                     <div class="currency-info">
-                        <span>Last updated:</span>
-                        <span>${new Date(currency.lastUpdated).toLocaleTimeString()}</span>
+                        <span>Son güncelleme:</span>
+                        <span>${new Date(currency.lastUpdated).toLocaleTimeString('tr-TR')}</span>
                     </div>
                 </div>
             `;
         }).join('');
     }
     
-    // Helper function to get flag emojis for currency pairs
+    // Döviz çiftleri için bayrak emojilerini alan yardımcı fonksiyon
     function getFlagEmoji(pair) {
         const flagMap = {
             'USD': '🇺🇸',
@@ -2331,47 +2369,47 @@
         return `${flagMap[from] || '💵'} → ${flagMap[to] || '💵'}`;
     }
     
-    // Event listener for refresh button
+    // Yenile butonu için olay dinleyicisi
     refreshCurrencyButton.addEventListener('click', fetchCurrencyData);
     
-    // Fetch currency data on page load
+    // Sayfa yüklendiğinde döviz verilerini getir
     fetchCurrencyData();
     
-    // Refresh currency data every 5 minutes
+    // Döviz verilerini her 5 dakikada bir yenile
     setInterval(fetchCurrencyData, 5 * 60 * 1000);
         
-        // Initialize satellite map with better tile source
+        // Daha iyi döşeme kaynağı ile uydu haritasını başlat
         function initMap() {
-            // Create map centered on the world
+            // Dünya merkezli harita oluştur
             const map = L.map('satellite-map').setView([20, 0], 2);
             
-            // Add better satellite tile layer
+            // Daha iyi uydu döşeme katmanı ekle
             const satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+                attribution: 'Döşemeler &copy; Esri &mdash; Kaynak: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP ve GIS Kullanıcı Topluluğu',
                 maxZoom: 18
             });
             
-            // Add a fallback standard map layer
+            // Yedek standart harita katmanı ekle
             const standardLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> katkıda bulunanlar',
                 maxZoom: 18
             });
             
-            // Add layer control
+            // Katman kontrolü ekle
             const baseMaps = {
-                "Satellite": satelliteLayer,
-                "Standard": standardLayer
+                "Uydu": satelliteLayer,
+                "Standart": standardLayer
             };
             
-            // Add the satellite layer by default
+            // Varsayılan olarak uydu katmanını ekle
             satelliteLayer.addTo(map);
             L.control.layers(baseMaps).addTo(map);
             
-            // Add some markers for the cities we're showing clocks for
+            // Saatlerini gösterdiğimiz şehirler için bazı işaretçiler ekle
             const cities = [
                 {name: "New York", coords: [40.7128, -74.0060]},
-                {name: "Istanbul", coords: [41.0082, 28.9784]},
-                {name: "London", coords: [51.5074, -0.1278]},
+                {name: "İstanbul", coords: [41.0082, 28.9784]},
+                {name: "Londra", coords: [51.5074, -0.1278]},
                 {name: "Tokyo", coords: [35.6762, 139.6503]}
             ];
             
@@ -2382,7 +2420,7 @@
             });
         }
 
-        // Update world clocks
+        // Dünya saatlerini güncelle
         function updateClocks() {
             const timeOptions = { 
                 hour: '2-digit', 
@@ -2399,35 +2437,35 @@
             };
             
             // New York (EST/EDT)
-            const nyTime = new Date().toLocaleString('en-US', { 
+            const nyTime = new Date().toLocaleString('tr-TR', { 
                 timeZone: 'America/New_York',
                 ...timeOptions
             });
-            const nyDate = new Date().toLocaleString('en-US', { 
+            const nyDate = new Date().toLocaleString('tr-TR', { 
                 timeZone: 'America/New_York',
                 ...dateOptions
             });
             document.getElementById('time-ny').textContent = nyTime;
             document.getElementById('date-ny').textContent = nyDate;
             
-            // Istanbul
-            const istanbulTime = new Date().toLocaleString('en-US', { 
+            // İstanbul
+            const istanbulTime = new Date().toLocaleString('tr-TR', { 
                 timeZone: 'Europe/Istanbul',
                 ...timeOptions
             });
-            const istanbulDate = new Date().toLocaleString('en-US', { 
+            const istanbulDate = new Date().toLocaleString('tr-TR', { 
                 timeZone: 'Europe/Istanbul',
                 ...dateOptions
             });
             document.getElementById('time-istanbul').textContent = istanbulTime;
             document.getElementById('date-istanbul').textContent = istanbulDate;
             
-            // London
-            const londonTime = new Date().toLocaleString('en-US', { 
+            // Londra
+            const londonTime = new Date().toLocaleString('tr-TR', { 
                 timeZone: 'Europe/London',
                 ...timeOptions
             });
-            const londonDate = new Date().toLocaleString('en-US', { 
+            const londonDate = new Date().toLocaleString('tr-TR', { 
                 timeZone: 'Europe/London',
                 ...dateOptions
             });
@@ -2435,11 +2473,11 @@
             document.getElementById('date-london').textContent = londonDate;
             
             // Tokyo
-            const tokyoTime = new Date().toLocaleString('en-US', { 
+            const tokyoTime = new Date().toLocaleString('tr-TR', { 
                 timeZone: 'Asia/Tokyo',
                 ...timeOptions
             });
-            const tokyoDate = new Date().toLocaleString('en-US', { 
+            const tokyoDate = new Date().toLocaleString('tr-TR', { 
                 timeZone: 'Asia/Tokyo',
                 ...dateOptions
             });
@@ -2447,51 +2485,51 @@
             document.getElementById('date-tokyo').textContent = tokyoDate;
         }
 
-        // Initialize map and clocks when page loads
+        // Sayfa yüklendiğinde harita ve saatleri başlat
         document.addEventListener('DOMContentLoaded', () => {
             initMap();
             updateClocks();
             
-            // Update clocks every second
+            // Saatleri her saniye güncelle
             setInterval(updateClocks, 1000);
         });
         
-        // Quote of the Day Feature
+        // Günün Sözü Özelliği
 function getQuoteOfTheDay() {
     const quotes = [
-        "The unexamined life is not worth living. - Socrates",
-        "Life is what happens when you're busy making other plans. - John Lennon",
-        "The purpose of our lives is to be happy. - Dalai Lama",
-        "Get busy living or get busy dying. - Stephen King",
-        "You only live once, but if you do it right, once is enough. - Mae West",
-        "The greatest glory in living lies not in never falling, but in rising every time we fall. - Nelson Mandela",
-        "Your time is limited, so don't waste it living someone else's life. - Steve Jobs",
-        "Life is either a daring adventure or nothing at all. - Helen Keller",
-        "The way to get started is to quit talking and begin doing. - Walt Disney",
-        "If life were predictable it would cease to be life, and be without flavor. - Eleanor Roosevelt",
-        "If you look at what you have in life, you'll always have more. - Oprah Winfrey",
-        "Life is a long lesson in humility. - James M. Barrie",
-        "In the end, it's not the years in your life that count. It's the life in your years. - Abraham Lincoln",
-        "Love the life you live. Live the life you love. - Bob Marley",
-        "Life is really simple, but we insist on making it complicated. - Confucius",
-        "The future belongs to those who believe in the beauty of their dreams. - Eleanor Roosevelt",
-        "The best way to predict your future is to create it. - Abraham Lincoln",
-        "The only impossible journey is the one you never begin. - Tony Robbins",
-        "It is during our darkest moments that we must focus to see the light. - Aristotle",
-        "Whoever is happy will make others happy too. - Anne Frank"
+        "Sorgulanmamış bir hayat yaşamaya değmez. - Sokrates",
+        "Hayat, sen başka planlar yaparken olan şeydir. - John Lennon",
+        "Hayatımızın amacı mutlu olmaktır. - Dalay Lama",
+        "Ya yaşamakla meşgul olun ya da ölmekle. - Stephen King",
+        "Sadece bir kez yaşarsınız, ama doğru yaşarsanız, bir kez yeterlidir. - Mae West",
+        "Yaşamaktaki en büyük zafer hiç düşmemekte değil, her düştüğümüzde kalkabilmektedir. - Nelson Mandela",
+        "Zamanın kısıtlı, bu yüzden onu başkasının hayatını yaşayarak harcama. - Steve Jobs",
+        "Hayat ya cesur bir maceradır ya da hiçbir şey. - Helen Keller",
+        "Başlamanın yolu, konuşmayı bırakıp yapmaya başlamaktır. - Walt Disney",
+        "Hayat öngörülebilir olsaydı, hayat olmaktan çıkar ve tatsız olurdu. - Eleanor Roosevelt",
+        "Hayatta sahip olduklarınıza bakarsanız, her zaman daha fazlasına sahip olursunuz. - Oprah Winfrey",
+        "Hayat alçakgönüllülük üzerine uzun bir derstir. - James M. Barrie",
+        "Sonunda, hayatınızdaki yıllar değil, yıllarınızdaki hayat önemlidir. - Abraham Lincoln",
+        "Yaşadığın hayatı sev. Sevdiğin hayatı yaşa. - Bob Marley",
+        "Hayat aslında basittir, ama biz onu karmaşık hale getirmekte ısrar ederiz. - Konfüçyüs",
+        "Gelecek, hayallerinin güzelliğine inananlarındır. - Eleanor Roosevelt",
+        "Geleceğinizi tahmin etmenin en iyi yolu onu yaratmaktır. - Abraham Lincoln",
+        "İmkansız olan tek yolculuk, asla başlamadığınız yolculuktur. - Tony Robbins",
+        "En karanlık anlarımızda, ışığı görmek için odaklanmalıyız. - Aristoteles",
+        "Mutlu olan herkes başkalarını da mutlu edecektir. - Anne Frank"
     ];
     
-    // Get today's date as a unique seed for the day
+    // Gün için benzersiz bir tohum olarak bugünün tarihini al
     const today = new Date();
     const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
     
-    // Simple deterministic random based on the date
+    // Tarihe dayalı basit deterministik rastgele
     const index = seed % quotes.length;
     
     return quotes[index];
 }
 
-// Function to update the quote in the blog section
+// Blog bölümündeki sözü güncelleyen fonksiyon
 function updateQuoteOfTheDay() {
     const quoteElement = document.querySelector('.newsflash blockquote');
     if (quoteElement) {
@@ -2499,35 +2537,35 @@ function updateQuoteOfTheDay() {
     }
 }
 
-// Update the quote when the page loads
+// Sayfa yüklendiğinde sözü güncelle
 document.addEventListener('DOMContentLoaded', updateQuoteOfTheDay);
           document.addEventListener('DOMContentLoaded', function() {
-        // Canvas setup
+        // Canvas kurulumu
         const canvas = document.getElementById('doodle-canvas');
         const ctx = canvas.getContext('2d');
         
-        // Set canvas size appropriately
+        // Canvas boyutunu uygun şekilde ayarla
         function resizeCanvas() {
             const container = canvas.parentElement;
-            canvas.width = container.clientWidth - 40; // Account for padding
+            canvas.width = container.clientWidth - 40; // Dolgu için hesaba kat
             canvas.height = Math.min(500, window.innerHeight * 0.6);
             redrawCanvas();
         }
         
-        // Initialize canvas with white background
+        // Beyaz arka planla canvas'ı başlat
         function initCanvas() {
             ctx.fillStyle = document.body.classList.contains('dark-mode') ? '#1a1a1a' : '#ffffff';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
         }
         
-        // Redraw canvas content (for resizing)
+        // Canvas içeriğini yeniden çiz (yeniden boyutlandırma için)
         function redrawCanvas() {
-            // This would need to be implemented if you want to preserve drawings on resize
-            // For now, we'll just reinitialize
+            // Yeniden boyutlandırmada çizimleri korumak istiyorsanız bunun uygulanması gerekir
+            // Şimdilik sadece yeniden başlatacağız
             initCanvas();
         }
         
-        // Drawing state
+        // Çizim durumu
         let isDrawing = false;
         let lastX = 0;
         let lastY = 0;
@@ -2536,12 +2574,12 @@ document.addEventListener('DOMContentLoaded', updateQuoteOfTheDay);
         let brushSize = 5;
         let globalAlpha = 1;
         
-        // Initialize
+        // Başlat
         initCanvas();
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
         
-        // Tool buttons
+        // Araç butonları
         const toolButtons = document.querySelectorAll('.tool-btn');
         toolButtons.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -2549,7 +2587,7 @@ document.addEventListener('DOMContentLoaded', updateQuoteOfTheDay);
                 btn.classList.add('active');
                 currentTool = btn.dataset.tool;
                 
-                // Set tool-specific properties
+                // Araç özel özellikleri ayarla
                 switch(currentTool) {
                     case 'ballpoint':
                         brushSize = 5;
@@ -2606,7 +2644,7 @@ document.addEventListener('DOMContentLoaded', updateQuoteOfTheDay);
             });
         });
         
-        // Brush size control
+        // Fırça boyutu kontrolü
         const brushSizeSlider = document.getElementById('brush-size');
         const brushSizeValue = document.getElementById('brush-size-value');
         
@@ -2615,7 +2653,7 @@ document.addEventListener('DOMContentLoaded', updateQuoteOfTheDay);
             brushSizeValue.textContent = `${brushSize}px`;
         });
         
-        // Color selection
+        // Renk seçimi
         const colorOptions = document.querySelectorAll('.color-option');
         const customColorPicker = document.getElementById('custom-color-picker');
         
@@ -2632,7 +2670,7 @@ document.addEventListener('DOMContentLoaded', updateQuoteOfTheDay);
             colorOptions.forEach(o => o.classList.remove('selected'));
         });
         
-        // Drawing functions
+        // Çizim fonksiyonları
         function startDrawing(e) {
             isDrawing = true;
             [lastX, lastY] = getPosition(e);
@@ -2661,7 +2699,7 @@ document.addEventListener('DOMContentLoaded', updateQuoteOfTheDay);
             ctx.globalAlpha = globalAlpha;
             ctx.stroke();
             
-            // Special tools
+            // Özel araçlar
             if (currentTool === 'spray') {
                 sprayPaint(x, y);
             }
@@ -2711,13 +2749,13 @@ document.addEventListener('DOMContentLoaded', updateQuoteOfTheDay);
             ];
         }
         
-        // Event listeners for drawing
+        // Çizim için olay dinleyicileri
         canvas.addEventListener('mousedown', startDrawing);
         canvas.addEventListener('mousemove', draw);
         canvas.addEventListener('mouseup', stopDrawing);
         canvas.addEventListener('mouseout', stopDrawing);
         
-        // Touch support
+        // Dokunmatik destek
         canvas.addEventListener('touchstart', (e) => {
             e.preventDefault();
             startDrawing(e);
@@ -2733,14 +2771,14 @@ document.addEventListener('DOMContentLoaded', updateQuoteOfTheDay);
             stopDrawing();
         });
         
-        // Clear canvas
+        // Canvas'ı temizle
         document.getElementById('clear-canvas').addEventListener('click', () => {
-            if (confirm('Are you sure you want to clear the canvas?')) {
+            if (confirm('Canvas\'ı temizlemek istediğinizden emin misiniz?')) {
                 initCanvas();
             }
         });
         
-        // Save drawing
+        // Çizimi kaydet
         document.getElementById('save-doodle').addEventListener('click', () => {
             const tempCanvas = document.createElement('canvas');
             const tempCtx = tempCanvas.getContext('2d');
@@ -2748,7 +2786,7 @@ document.addEventListener('DOMContentLoaded', updateQuoteOfTheDay);
             tempCanvas.width = canvas.width;
             tempCanvas.height = canvas.height;
             
-            // Fill with white background for saving
+            // Kaydetme için beyaz arka planla doldur
             tempCtx.fillStyle = '#ffffff';
             tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
             tempCtx.drawImage(canvas, 0, 0);
@@ -2760,22 +2798,22 @@ document.addEventListener('DOMContentLoaded', updateQuoteOfTheDay);
             link.click();
         });
         
-        // Fullscreen toggle
+        // Tam ekran geçişi
         document.getElementById('toggle-fullscreen').addEventListener('click', () => {
             if (!document.fullscreenElement) {
                 canvas.requestFullscreen().catch(err => {
-                    alert(`Error attempting to enable fullscreen: ${err.message}`);
+                    alert(`Tam ekran etkinleştirilirken hata: ${err.message}`);
                 });
             } else {
                 document.exitFullscreen();
             }
         });
         
-        // Handle dark mode changes
+        // Koyu mod değişikliklerini yönet
         const observer = new MutationObserver(() => {
-            // If we're in eraser mode, we might need to adjust the eraser color
+            // Silgi modundaysak, silgi rengini ayarlamamız gerekebilir
             if (currentTool === 'eraser') {
-                // Just redraw the canvas to update the background
+                // Sadece arka planı güncellemek için canvas'ı yeniden çiz
                 initCanvas();
             }
         });

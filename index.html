@@ -972,6 +972,201 @@
                 grid-template-columns: 1fr;
             }
         }
+         /* Doodle Den Styles */
+    .doodle-den-section {
+        margin: 2rem 0;
+        padding: 1.5rem;
+        background-color: #f8f9fa;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .dark-mode .doodle-den-section {
+        background-color: #2d2d2d;
+        color: #f0f0f0;
+    }
+    
+    .doodle-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    #doodle-canvas {
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        background-color: #ffffff;
+        cursor: crosshair;
+        touch-action: none;
+    }
+    
+    .dark-mode #doodle-canvas {
+        border-color: #555;
+        background-color: #1a1a1a;
+    }
+    
+    .doodle-controls {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+    
+    .dark-mode .doodle-controls {
+        background-color: #2d2d2d;
+    }
+    
+    .tools-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+    
+    .tool-group {
+        flex: 1;
+        min-width: 250px;
+    }
+    
+    .tool-group h3 {
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+        color: #333;
+    }
+    
+    .dark-mode .tool-group h3 {
+        color: #f0f0f0;
+    }
+    
+    .tool-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .tool-btn {
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #f8f9fa;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    
+    .tool-btn:hover {
+        background-color: #e9ecef;
+    }
+    
+    .tool-btn.active {
+        background-color: #007bff;
+        color: white;
+        border-color: #007bff;
+    }
+    
+    .dark-mode .tool-btn {
+        background-color: #3d3d3d;
+        border-color: #555;
+        color: #f0f0f0;
+    }
+    
+    .dark-mode .tool-btn:hover {
+        background-color: #4d4d4d;
+    }
+    
+    .dark-mode .tool-btn.active {
+        background-color: #0d6efd;
+        border-color: #0d6efd;
+    }
+    
+    .color-palette {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .colors-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 0.5rem;
+    }
+    
+    .color-option {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+    
+    .color-option:hover {
+        transform: scale(1.1);
+    }
+    
+    .color-option.selected {
+        transform: scale(1.2);
+        box-shadow: 0 0 0 2px white, 0 0 0 4px #007bff;
+    }
+    
+    .custom-color {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+    }
+    
+    #custom-color-picker {
+        width: 40px;
+        height: 40px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    .actions {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+    
+    .action-btn {
+        padding: 0.5rem 1rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #f8f9fa;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    
+    .action-btn:hover {
+        background-color: #e9ecef;
+    }
+    
+    .dark-mode .action-btn {
+        background-color: #3d3d3d;
+        border-color: #555;
+        color: #f0f0f0;
+    }
+    
+    .dark-mode .action-btn:hover {
+        background-color: #4d4d4d;
+    }
+    
+    @media (max-width: 768px) {
+        .tools-row {
+            flex-direction: column;
+        }
+        
+        .tool-group {
+            min-width: 100%;
+        }
+        
+        #doodle-canvas {
+            width: 100%;
+            height: 300px;
+        }
+    }
     </style>
 </head>
 <body>
@@ -1200,6 +1395,94 @@
                 </div>
             </div>
         </section>
+        <section class="doodle-den-section">
+    <div class="section-header">
+        <h2>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg>
+            Doodle Den
+        </h2>
+        <p>Unleash your creativity with our drawing tools</p>
+    </div>
+    
+    <div class="doodle-container">
+        <canvas id="doodle-canvas" width="800" height="500"></canvas>
+        
+        <div class="doodle-controls">
+            <div class="tools-row">
+                <div class="tool-group">
+                    <h3>Pens & Tools</h3>
+                    <div class="tool-buttons">
+                        <button class="tool-btn active" data-tool="ballpoint" title="Ballpoint Pen">
+                            <span class="tool-icon">•</span> Ballpoint
+                        </button>
+                        <button class="tool-btn" data-tool="pencil" title="Pencil">
+                            <span class="tool-icon">✏️</span> Pencil
+                        </button>
+                        <button class="tool-btn" data-tool="marker" title="Marker">
+                            <span class="tool-icon">🖊️</span> Marker
+                        </button>
+                        <button class="tool-btn" data-tool="brush" title="Paint Brush">
+                            <span class="tool-icon">🖌️</span> Brush
+                        </button>
+                        <button class="tool-btn" data-tool="highlighter" title="Highlighter">
+                            <span class="tool-icon">🖍️</span> Highlighter
+                        </button>
+                        <button class="tool-btn" data-tool="calligraphy" title="Calligraphy Pen">
+                            <span class="tool-icon">✒️</span> Calligraphy
+                        </button>
+                        <button class="tool-btn" data-tool="eraser" title="Eraser">
+                            <span class="tool-icon">🧽</span> Eraser
+                        </button>
+                        <button class="tool-btn" data-tool="spray" title="Spray Can">
+                            <span class="tool-icon">💨</span> Spray
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="tool-group">
+                    <h3>Line Width</h3>
+                    <input type="range" id="brush-size" min="1" max="50" value="5">
+                    <span id="brush-size-value">5px</span>
+                </div>
+            </div>
+            
+            <div class="tools-row">
+                <div class="tool-group color-palette">
+                    <h3>Colors</h3>
+                    <div class="colors-grid">
+                        <div class="color-option" data-color="#000000" style="background-color: #000000;"></div>
+                        <div class="color-option" data-color="#ff0000" style="background-color: #ff0000;"></div>
+                        <div class="color-option" data-color="#ff9900" style="background-color: #ff9900;"></div>
+                        <div class="color-option" data-color="#ffff00" style="background-color: #ffff00;"></div>
+                        <div class="color-option" data-color="#00ff00" style="background-color: #00ff00;"></div>
+                        <div class="color-option" data-color="#00ffff" style="background-color: #00ffff;"></div>
+                        <div class="color-option" data-color="#0000ff" style="background-color: #0000ff;"></div>
+                        <div class="color-option" data-color="#9900ff" style="background-color: #9900ff;"></div>
+                        <div class="color-option" data-color="#ff00ff" style="background-color: #ff00ff;"></div>
+                        <div class="color-option" data-color="#ffffff" style="background-color: #ffffff; border: 1px solid #ccc;"></div>
+                        <div class="color-option" data-color="#aaaaaa" style="background-color: #aaaaaa;"></div>
+                        <div class="color-option" data-color="#555555" style="background-color: #555555;"></div>
+                    </div>
+                    <div class="custom-color">
+                        <label for="custom-color-picker">Custom:</label>
+                        <input type="color" id="custom-color-picker" value="#ff0000">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tools-row">
+                <div class="tool-group actions">
+                    <button id="clear-canvas" class="action-btn">🧹 Clear Canvas</button>
+                    <button id="save-doodle" class="action-btn">💾 Save Drawing</button>
+                    <button id="toggle-fullscreen" class="action-btn">📺 Fullscreen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
     </main>
 
     <footer>
@@ -2180,6 +2463,291 @@ function updateQuoteOfTheDay() {
 
 // Update the quote when the page loads
 document.addEventListener('DOMContentLoaded', updateQuoteOfTheDay);
+          document.addEventListener('DOMContentLoaded', function() {
+        // Canvas setup
+        const canvas = document.getElementById('doodle-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Set canvas size appropriately
+        function resizeCanvas() {
+            const container = canvas.parentElement;
+            canvas.width = container.clientWidth - 40; // Account for padding
+            canvas.height = Math.min(500, window.innerHeight * 0.6);
+            redrawCanvas();
+        }
+        
+        // Initialize canvas with white background
+        function initCanvas() {
+            ctx.fillStyle = document.body.classList.contains('dark-mode') ? '#1a1a1a' : '#ffffff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+        
+        // Redraw canvas content (for resizing)
+        function redrawCanvas() {
+            // This would need to be implemented if you want to preserve drawings on resize
+            // For now, we'll just reinitialize
+            initCanvas();
+        }
+        
+        // Drawing state
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+        let currentTool = 'ballpoint';
+        let currentColor = '#000000';
+        let brushSize = 5;
+        let globalAlpha = 1;
+        
+        // Initialize
+        initCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        
+        // Tool buttons
+        const toolButtons = document.querySelectorAll('.tool-btn');
+        toolButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                toolButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentTool = btn.dataset.tool;
+                
+                // Set tool-specific properties
+                switch(currentTool) {
+                    case 'ballpoint':
+                        brushSize = 5;
+                        globalAlpha = 1;
+                        ctx.lineCap = 'round';
+                        ctx.lineJoin = 'round';
+                        break;
+                    case 'pencil':
+                        brushSize = 3;
+                        globalAlpha = 0.7;
+                        ctx.lineCap = 'round';
+                        ctx.lineJoin = 'round';
+                        break;
+                    case 'marker':
+                        brushSize = 10;
+                        globalAlpha = 0.8;
+                        ctx.lineCap = 'square';
+                        ctx.lineJoin = 'bevel';
+                        break;
+                    case 'brush':
+                        brushSize = 15;
+                        globalAlpha = 0.9;
+                        ctx.lineCap = 'round';
+                        ctx.lineJoin = 'round';
+                        break;
+                    case 'highlighter':
+                        brushSize = 20;
+                        globalAlpha = 0.3;
+                        ctx.lineCap = 'square';
+                        ctx.lineJoin = 'bevel';
+                        break;
+                    case 'calligraphy':
+                        brushSize = 8;
+                        globalAlpha = 1;
+                        ctx.lineCap = 'square';
+                        ctx.lineJoin = 'miter';
+                        break;
+                    case 'eraser':
+                        brushSize = document.getElementById('brush-size').value;
+                        globalAlpha = 1;
+                        ctx.lineCap = 'round';
+                        ctx.lineJoin = 'round';
+                        break;
+                    case 'spray':
+                        brushSize = 15;
+                        globalAlpha = 0.5;
+                        ctx.lineCap = 'round';
+                        ctx.lineJoin = 'round';
+                        break;
+                }
+                
+                document.getElementById('brush-size').value = brushSize;
+                document.getElementById('brush-size-value').textContent = `${brushSize}px`;
+            });
+        });
+        
+        // Brush size control
+        const brushSizeSlider = document.getElementById('brush-size');
+        const brushSizeValue = document.getElementById('brush-size-value');
+        
+        brushSizeSlider.addEventListener('input', () => {
+            brushSize = parseInt(brushSizeSlider.value);
+            brushSizeValue.textContent = `${brushSize}px`;
+        });
+        
+        // Color selection
+        const colorOptions = document.querySelectorAll('.color-option');
+        const customColorPicker = document.getElementById('custom-color-picker');
+        
+        colorOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                colorOptions.forEach(o => o.classList.remove('selected'));
+                option.classList.add('selected');
+                currentColor = option.dataset.color;
+            });
+        });
+        
+        customColorPicker.addEventListener('input', () => {
+            currentColor = customColorPicker.value;
+            colorOptions.forEach(o => o.classList.remove('selected'));
+        });
+        
+        // Drawing functions
+        function startDrawing(e) {
+            isDrawing = true;
+            [lastX, lastY] = getPosition(e);
+            
+            if (currentTool === 'spray') {
+                sprayPaint(lastX, lastY);
+            }
+        }
+        
+        function draw(e) {
+            if (!isDrawing) return;
+            
+            const [x, y] = getPosition(e);
+            
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(x, y);
+            
+            if (currentTool === 'eraser') {
+                ctx.strokeStyle = document.body.classList.contains('dark-mode') ? '#1a1a1a' : '#ffffff';
+            } else {
+                ctx.strokeStyle = currentColor;
+            }
+            
+            ctx.lineWidth = brushSize;
+            ctx.globalAlpha = globalAlpha;
+            ctx.stroke();
+            
+            // Special tools
+            if (currentTool === 'spray') {
+                sprayPaint(x, y);
+            }
+            
+            [lastX, lastY] = [x, y];
+        }
+        
+        function stopDrawing() {
+            isDrawing = false;
+        }
+        
+        function sprayPaint(x, y) {
+            ctx.fillStyle = currentColor;
+            ctx.globalAlpha = globalAlpha;
+            
+            const density = brushSize * 2;
+            for (let i = 0; i < density; i++) {
+                const offsetX = (Math.random() - 0.5) * brushSize * 2;
+                const offsetY = (Math.random() - 0.5) * brushSize * 2;
+                
+                if (Math.sqrt(offsetX * offsetX + offsetY * offsetY) <= brushSize) {
+                    ctx.beginPath();
+                    ctx.arc(x + offsetX, y + offsetY, Math.random() * 2 + 1, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+        }
+        
+        function getPosition(e) {
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            
+            let clientX, clientY;
+            
+            if (e.type.includes('touch')) {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            } else {
+                clientX = e.clientX;
+                clientY = e.clientY;
+            }
+            
+            return [
+                (clientX - rect.left) * scaleX,
+                (clientY - rect.top) * scaleY
+            ];
+        }
+        
+        // Event listeners for drawing
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+        
+        // Touch support
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            startDrawing(e);
+        });
+        
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            draw(e);
+        });
+        
+        canvas.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            stopDrawing();
+        });
+        
+        // Clear canvas
+        document.getElementById('clear-canvas').addEventListener('click', () => {
+            if (confirm('Are you sure you want to clear the canvas?')) {
+                initCanvas();
+            }
+        });
+        
+        // Save drawing
+        document.getElementById('save-doodle').addEventListener('click', () => {
+            const tempCanvas = document.createElement('canvas');
+            const tempCtx = tempCanvas.getContext('2d');
+            
+            tempCanvas.width = canvas.width;
+            tempCanvas.height = canvas.height;
+            
+            // Fill with white background for saving
+            tempCtx.fillStyle = '#ffffff';
+            tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+            tempCtx.drawImage(canvas, 0, 0);
+            
+            const dataURL = tempCanvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.download = 'tilt-doodle.png';
+            link.href = dataURL;
+            link.click();
+        });
+        
+        // Fullscreen toggle
+        document.getElementById('toggle-fullscreen').addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                canvas.requestFullscreen().catch(err => {
+                    alert(`Error attempting to enable fullscreen: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        });
+        
+        // Handle dark mode changes
+        const observer = new MutationObserver(() => {
+            // If we're in eraser mode, we might need to adjust the eraser color
+            if (currentTool === 'eraser') {
+                // Just redraw the canvas to update the background
+                initCanvas();
+            }
+        });
+        
+        observer.observe(document.body, { 
+            attributes: true, 
+            attributeFilter: ['class'] 
+        });
+    });
+        
     </script>
 </body>
 </html>

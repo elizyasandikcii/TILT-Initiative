@@ -175,94 +175,112 @@
             display: block;
         }
 
-        .theme-switch {
-            display: flex;
-            align-items: center;
-            position: relative;
-            width: 44px;
-            height: 44px;
-        }
+       .theme-switch {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 44px;
+    height: 44px;
+}
 
-        .theme-toggle {
-            appearance: none;
-            -webkit-appearance: none;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            cursor: pointer;
-            z-index: 2;
-            opacity: 0;
-        }
+/* Invisible toggle */
+.theme-toggle {
+    appearance: none;
+    -webkit-appearance: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0;
+}
 
-        .theme-icon {
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            top: 10px;
-            left: 10px;
-            transition: all 0.4s ease;
-            transform-origin: center;
-        }
+.theme-icon {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 10px;
+    left: 10px;
+    transition: all 0.6s ease;
+    transform-origin: center;
+}
 
-        .sun {
-            opacity: 1;
-            transform: scale(1) rotate(0deg);
-        }
+/* 🌞 SUN */
+.sun {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+.dark-mode .sun {
+    opacity: 0;
+    transform: scale(0.4) rotate(120deg);
+}
 
-        .dark-mode .sun {
-            opacity: 0;
-            transform: scale(0.5) rotate(90deg);
-        }
+.sun-icon {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, #FFD93D 40%, transparent 41%);
+    border-radius: 50%;
+    box-shadow: 0 0 15px 4px rgba(255, 217, 61, 0.6);
+    animation: sunPulse 3s infinite ease-in-out;
+}
 
-        .moon {
-            opacity: 0;
-            transform: scale(0.5) rotate(-90deg);
-        }
+.sun-icon::before, .sun-icon::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, transparent 0deg 30deg, #FFD93D 30deg 60deg, transparent 60deg 90deg);
+    animation: sunRays 6s linear infinite;
+}
+.sun-icon::after {
+    inset: -12px;
+    opacity: 0.5;
+    animation-direction: reverse;
+}
 
-        .dark-mode .moon {
-            opacity: 1;
-            transform: scale(1) rotate(0deg);
-        }
+/* 🌙 MOON */
+.moon {
+    opacity: 0;
+    transform: scale(0.4) rotate(-120deg);
+}
+.dark-mode .moon {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
 
-        .sun-icon, .moon-icon {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
+.moon-icon {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #F0F0F0;
+    box-shadow: inset -8px 0 6px -2px rgba(0,0,0,0.7);
+    overflow: hidden;
+}
 
-        .sun-icon {
-            background: radial-gradient(circle, currentColor 30%, transparent 30%);
-            box-shadow: 0 0 0 2px currentColor;
-            border-radius: 50%;
-        }
+.moon-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 8px;
+    width: 100%;
+    height: 100%;
+    background: #101010;
+    border-radius: 50%;
+}
 
-        .sun-icon::before {
-            content: '';
-            position: absolute;
-            top: -8px;
-            left: 50%;
-            width: 2px;
-            height: 8px;
-            background: currentColor;
-            transform: translateX(-50%);
-        }
+/* ☀️ Sun animations */
+@keyframes sunPulse {
+    0%, 100% { box-shadow: 0 0 15px 4px rgba(255, 217, 61, 0.6); }
+    50% { box-shadow: 0 0 25px 6px rgba(255, 217, 61, 0.8); }
+}
+@keyframes sunRays {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
-        .sun-icon::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            width: 2px;
-            height: 8px;
-            background: currentColor;
-            transform: translateX(-50%);
-        }
-
-        .moon-icon {
-            border-radius: 50%;
-            box-shadow: -6px 0 0 2px currentColor;
-        }
 
         main {
             max-width: 1200px;

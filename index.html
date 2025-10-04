@@ -35,12 +35,129 @@
         }
 
          .dark-mode {
-            background-color: #111827;
-            color: #f3f4f6;
-            --text-color: #f3f4f6;
-            --secondary-color: #1f2937;
-            --accent-color: #3b82f6;
-        }
+    background-color: #111827;
+    color: #f3f4f6;
+    --text-color: #f3f4f6;
+    --secondary-color: #1f2937;
+    --accent-color: #3b82f6;
+}
+
+/* Update all dark mode specific styles to use the new color scheme */
+.dark-mode .upcoming-episodes,
+.dark-mode .newsflash,
+.dark-mode .calendar-container,
+.dark-mode .news-section,
+.dark-mode .stocks-section,
+.dark-mode .currency-section,
+.dark-mode .doodle-den-section {
+    background-color: #1f2937;
+    color: #f3f4f6;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .news-card,
+.dark-mode .stock-info,
+.dark-mode .currency-card,
+.dark-mode .clock-card,
+.dark-mode .doodle-controls {
+    background-color: #374151;
+    color: #f3f4f6;
+}
+
+.dark-mode .newsflash blockquote {
+    background-color: rgba(59, 130, 246, 0.1);
+    color: #f3f4f6;
+}
+
+.dark-mode .placeholder-image {
+    background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+    color: #d1d5db;
+}
+
+.dark-mode .news-description,
+.dark-mode .news-meta,
+.dark-mode .currency-info,
+.dark-mode .clock-date {
+    color: #d1d5db;
+}
+
+.dark-mode .calendar td {
+    border-color: #4b5563;
+}
+
+.dark-mode .stock-select,
+.dark-mode .timeframe-select {
+    background-color: #374151;
+    color: #f3f4f6;
+    border-color: #6b7280;
+}
+
+.dark-mode .tool-group h3 {
+    color: #f3f4f6;
+}
+
+.dark-mode .tool-btn {
+    background-color: #4b5563;
+    border-color: #6b7280;
+    color: #f3f4f6;
+}
+
+.dark-mode .tool-btn:hover {
+    background-color: #6b7280;
+}
+
+.dark-mode .tool-btn.active {
+    background-color: #3b82f6;
+    border-color: #3b82f6;
+}
+
+.dark-mode .action-btn {
+    background-color: #4b5563;
+    border-color: #6b7280;
+    color: #f3f4f6;
+}
+
+.dark-mode .action-btn:hover {
+    background-color: #6b7280;
+}
+
+.dark-mode #doodle-canvas {
+    border-color: #6b7280;
+    background-color: #1f2937;
+}
+
+/* Update hover effects for dark mode */
+.dark-mode nav a:hover {
+    color: #60a5fa;
+}
+
+.dark-mode .learn-more:hover {
+    color: #60a5fa;
+}
+
+.dark-mode .calendar td:hover {
+    background-color: rgba(59, 130, 246, 0.1);
+}
+
+.dark-mode .news-card:hover,
+.dark-mode .currency-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Update current day in calendar for dark mode */
+.dark-mode .current-day {
+    background-color: #3b82f6;
+    color: white;
+}
+
+/* Update event indicator for dark mode */
+.dark-mode .event-indicator {
+    background-color: #ef4444;
+}
+
+.dark-mode .event-day {
+    background-color: rgba(239, 68, 68, 0.2);
+}
 
         header {
             display: flex;

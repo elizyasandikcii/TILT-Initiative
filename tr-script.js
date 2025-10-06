@@ -372,7 +372,7 @@
             }
             
             // Daha iyi düzen için 4 makale ile sınırla
-            const articlesToShow = articles.slice(0, 4);
+            const articlesToShow = articles.slice(0, 6);
             
             newsContainer.innerHTML = articlesToShow.map(article => {
                 // Uygun bir resim bul

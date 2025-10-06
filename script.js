@@ -1,5 +1,4 @@
- <script>
-        // Dark/Light mode toggle
+ // Dark/Light mode toggle
         const themeToggle = document.getElementById('theme-toggle');
         themeToggle.addEventListener('change', () => {
             document.body.classList.toggle('dark-mode');
@@ -1296,4 +1295,3 @@ document.addEventListener('DOMContentLoaded', updateQuoteOfTheDay);
         });
     });
         
-    </script>

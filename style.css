@@ -1586,4 +1586,70 @@
 
         .popup-content button:hover {
             background-color: var(--primary-color);
+          .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem; /* Added gap between cards */
+            margin-bottom: 3rem;
+        }
+
+        .project-card {
+            background-color: var(--secondary-color);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            transition: transform var(--transition-speed);
+            position: relative;
+            padding-bottom: 80px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card h2 {
+            color: var(--accent-color);
+            margin-top: 0;
+        }
+
+        .project-card p {
+            flex-grow: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-card .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            text-align: center;
+            transition: background-color var(--transition-speed);
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            width: 90%;
+        }
+
+        .project-card .btn:hover {
+            background-color: var(--primary-color);
+        }
+
+        .wip-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: #ff9800;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
       

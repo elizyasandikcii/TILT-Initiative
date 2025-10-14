@@ -20,7 +20,7 @@
     <script src="script.js" defer></script>
 
         <style>
-       :root {
+    :root {
     /* Color System */
     --primary-blue: #000033;
     --primary-blue-light: #1a1a4a;
@@ -108,8 +108,6 @@ body {
     transition: background-color var(--transition-normal), color var(--transition-normal);
     padding-top: var(--header-height);
     min-height: 100vh;
-}
-            
 }
 
 /* Header */
@@ -713,25 +711,25 @@ h2 svg {
     color: var(--text-muted);
 }
 
-/* Map & Clocks */
+/* Map & Clocks - FIXED */
 .map-clocks-section {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: var(--space-2xl);
     margin-bottom: var(--space-2xl);
-    height: 500px;
+    min-height: 500px;
 }
 
 .map-container {
     border-radius: var(--border-radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-md);
-    height: 100%; /* Added to fill grid cell */
+    height: 100%;
 }
 
 .clocks-container {
     display: grid;
-    grid-template-rows: repeat(4, 1fr); /* Changed to rows for vertical stacking */
+    grid-template-rows: repeat(4, 1fr);
     gap: var(--space-lg);
     height: 100%;
 }
@@ -747,8 +745,8 @@ h2 svg {
     align-items: center;
     justify-content: center;
     transition: all var(--transition-normal);
-    min-height: 0; /* Crucial fix for grid items */
-    overflow: hidden; /* Prevent content overflow */
+    min-height: 0;
+    overflow: hidden;
 }
 
 .clock-card:hover {
@@ -757,7 +755,7 @@ h2 svg {
 }
 
 .clock-flag {
-    font-size: 1.75rem; /* Slightly smaller for better fit */
+    font-size: 1.75rem;
     margin-bottom: var(--space-sm);
 }
 
@@ -765,11 +763,11 @@ h2 svg {
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: var(--space-sm);
-    font-size: 0.95rem; /* Slightly smaller for better fit */
+    font-size: 0.95rem;
 }
 
 .clock-time {
-    font-size: 1.25rem; /* Slightly smaller for better fit */
+    font-size: 1.25rem;
     font-weight: 700;
     color: var(--accent-blue);
     margin: var(--space-sm) 0;
@@ -777,11 +775,11 @@ h2 svg {
 }
 
 .clock-date {
-    font-size: 0.85rem; /* Slightly smaller for better fit */
+    font-size: 0.85rem;
     color: var(--text-muted);
 }
 
-/* Doodle Den */
+/* Doodle Den - FIXED */
 .doodle-den-section {
     background: var(--bg-card);
     border: 1px solid var(--border-light);
@@ -789,7 +787,6 @@ h2 svg {
     padding: var(--space-2xl);
     box-shadow: var(--shadow-sm);
     transition: all var(--transition-normal);
-    margin-top: var(--space-xl); /* Added top margin to separate from previous section */
     margin-bottom: var(--space-2xl);
 }
 
@@ -811,7 +808,7 @@ h2 svg {
     cursor: crosshair;
     width: 100%;
     height: 400px;
-    max-width: 100%; /* Prevent horizontal overflow */
+    max-width: 100%;
 }
 
 .doodle-controls {
@@ -925,6 +922,7 @@ h2 svg {
     border-color: var(--accent-blue);
     transform: translateY(-1px);
 }
+
 /* Footer */
 footer {
     background: var(--bg-secondary);
@@ -1016,6 +1014,15 @@ select:focus-visible {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
+}
+
+/* Section Spacing Fix */
+main > section {
+    margin-bottom: var(--space-2xl);
+}
+
+main > section:last-child {
+    margin-bottom: 0;
 }
         </style>
 

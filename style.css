@@ -1778,6 +1778,21 @@ main > section:last-child {
     box-shadow: var(--shadow-sm);
     animation: pulse 2s infinite;
 }
+.ec-badge {
+    position: absolute;
+    top: var(--space-lg);
+    right: var(--space-lg);
+   background: linear-gradient(135deg, #22c55e, #15803d);
+    color: var(--white);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--border-radius);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: var(--shadow-sm);
+    animation: pulse 2s infinite;
+}
 
 @keyframes pulse {
     0%, 100% {

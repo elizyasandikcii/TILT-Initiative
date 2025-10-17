@@ -86,8 +86,17 @@
             </div>
         </section>
 
-        <section class="content-section">
-            <h2>Board of Directors</h2>
+               <section class="content-section">
+            <h2>Our Team</h2>
+            
+            <!-- Tab Navigation -->
+            <div class="board-tabs">
+                <button class="tab-button active" data-tab="board">Board of Directors</button>
+                <button class="tab-button" data-tab="academic">Academic Advisors</button>
+                <button class="tab-button" data-tab="advisory">Advisory Board</button>
+            </div>
+                   <!-- Board of Directors Tab -->
+            <div class="tab-content active" id="board-content">
             <div class="board-grid">
                 <div class="board-member" onclick="window.location.href='/board/founder/cfo/elizya'">
                     <div class="member-image">Elizya Jane SANDIKCI</div>
@@ -162,6 +171,40 @@
                     </div>
                 </div>
             </div>
+            </div>
+                   <!-- Academic Advisors Tab -->
+            <div class="tab-content" id="academic-content">
+                <div class="board-grid">
+                    <div class="board-member">
+                        <div class="member-image">Dr. Alex JOHNSON</div>
+                        <div class="member-info">
+                            <h3>Dr. Alex JOHNSON</h3>
+                            <p class="member-role">Professor of Neuroscience, University of Cambridge</p>
+                            <p>Expert in cognitive development and youth mental health research</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Add more academic advisors here as needed -->
+                </div>
+            </div>
+
+            <!-- Advisory Board Tab -->
+            <div class="tab-content" id="advisory-content">
+                <div class="board-grid">
+                    <div class="board-member">
+                        <div class="member-image">Sarah CHEN</div>
+                        <div class="member-info">
+                            <h3>Sarah CHEN</h3>
+                            <p class="member-role">Technology Innovation Advisor</p>
+                            <p>Former tech executive with 15+ years experience in startup ecosystem</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Add more advisory board members here as needed -->
+                </div>
+            </div>
+        </section>
+    </main>
         </section>
     </main>
 <footer>

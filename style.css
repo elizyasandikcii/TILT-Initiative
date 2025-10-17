@@ -2826,3 +2826,79 @@ button[type="submit"]:focus-visible {
         print-color-adjust: exact;
     }
 }
+/* Board Tabs Styles */
+.board-tabs {
+    display: flex;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-2xl);
+    border-bottom: 2px solid var(--border-light);
+    padding-bottom: var(--space-sm);
+}
+
+.tab-button {
+    background: var(--bg-secondary);
+    border: 2px solid transparent;
+    color: var(--text-secondary);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all var(--transition-normal);
+    position: relative;
+}
+
+.tab-button:hover {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    transform: translateY(-1px);
+}
+
+.tab-button.active {
+    background: var(--bg-card);
+    color: var(--accent-blue);
+    border-color: var(--accent-blue);
+    border-bottom-color: var(--bg-card);
+    margin-bottom: -2px;
+}
+
+.tab-button.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--bg-card);
+}
+
+.tab-content {
+    display: none;
+    animation: fadeInUp 0.4s ease-out;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Responsive tabs */
+@media (max-width: 768px) {
+    .board-tabs {
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+    
+    .tab-button {
+        border-radius: var(--border-radius);
+        text-align: center;
+    }
+    
+    .tab-button.active {
+        border-bottom-color: var(--accent-blue);
+        margin-bottom: 0;
+    }
+    
+    .tab-button.active::after {
+        display: none;
+    }
+}

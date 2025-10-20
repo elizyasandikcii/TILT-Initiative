@@ -372,7 +372,7 @@
                 return;
             }
             
-            // Limit to 4 articles for better layout
+            // Limit to 6 0articles for better layout
             const articlesToShow = articles.slice(0, 6);
             
             newsContainer.innerHTML = articlesToShow.map(article => {
@@ -653,201 +653,183 @@
     fetchStockData();
           
       // Currency Exchange Rates Section
-    const currencyContainer = document.getElementById('currency-container');
-    const refreshCurrencyButton = document.getElementById('refresh-currency');
-    const EXCHANGE_RATE_API_KEY = '5cae913d674df6bdbd3b6951';
-    
-    // Store previous rates to calculate changes
-    let previousRates = {};
-    
-    // Function to fetch currency data
-    async function fetchCurrencyData() {
-        try {
-            currencyContainer.innerHTML = '<div class="loading">Loading currency data...</div>';
+const currencyContainer = document.getElementById('currency-container');
+const refreshCurrencyButton = document.getElementById('refresh-currency');
+
+// Store previous rates to calculate changes
+let previousRates = {};
+
+// Function to fetch currency data using a free API
+async function fetchCurrencyData() {
+    try {
+        currencyContainer.innerHTML = '<div class="loading">Loading currency data...</div>';
+        
+        // Using Frankfurter API (free, no API key required)
+        const response = await fetch('https://api.frankfurter.app/latest?from=USD');
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        if (data && data.rates) {
+            const rates = data.rates;
+            const currentTime = new Date().toISOString();
             
-            // Fetch data from ExchangeRate-API
-            const response = await fetch(`https://v6.exchangerate-api.com/v6/${EXCHANGE_RATE_API_KEY}/latest/USD`);
-            
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+            // Calculate changes if we have previous data
+            let changes = {};
+            if (Object.keys(previousRates).length > 0) {
+                changes = calculateChanges(previousRates, rates);
             }
             
-            const data = await response.json();
+            // Store current rates for next comparison
+            previousRates = {...rates};
             
-            if (data && data.conversion_rates) {
-                const rates = data.conversion_rates;
-                const currentTime = new Date().toISOString();
-                
-                // Calculate changes if we have previous data
-                let changes = {};
-                if (Object.keys(previousRates).length > 0) {
-                    changes = calculateChanges(previousRates, rates);
-                }
-                
-                // Store current rates for next comparison
-                previousRates = {...rates};
-                
-                // Prepare currency data
-                const currencyData = [
-                    {
-                        pair: "USD/EUR",
-                        rate: rates.EUR || 0,
-                        change: changes.EUR || 0,
-                        changePercent: changes.EUR ? (changes.EUR / (rates.EUR - changes.EUR)) * 100 : 0,
-                        lastUpdated: currentTime
-                    },
-                    {
-                        pair: "USD/TRY",
-                        rate: rates.TRY || 0,
-                        change: changes.TRY || 0,
-                        changePercent: changes.TRY ? (changes.TRY / (rates.TRY - changes.TRY)) * 100 : 0,
-                        lastUpdated: currentTime
-                    },
-                    {
-                        pair: "EUR/TRY",
-                        rate: rates.TRY && rates.EUR ? rates.TRY / rates.EUR : 0,
-                        change: changes.EUR_TRY || 0,
-                        changePercent: changes.EUR_TRY ? (changes.EUR_TRY / ((rates.TRY / rates.EUR) - changes.EUR_TRY)) * 100 : 0,
-                        lastUpdated: currentTime
-                    },
-                    {
-                        pair: "USD/GBP",
-                        rate: rates.GBP || 0,
-                        change: changes.GBP || 0,
-                        changePercent: changes.GBP ? (changes.GBP / (rates.GBP - changes.GBP)) * 100 : 0,
-                        lastUpdated: currentTime
-                    }
-                ];
-                
-                displayCurrencyData(currencyData);
-            } else {
-                throw new Error('No currency data found in response');
-            }
-            
-        } catch (error) {
-            console.error('Error fetching currency data:', error);
-            
-            // Fallback to mock data if API fails
-            const mockCurrencyData = [
+            // Prepare currency data
+            const currencyData = [
                 {
                     pair: "USD/EUR",
-                    rate: 0.93,
-                    change: 0.002,
-                    changePercent: 0.22,
-                    lastUpdated: new Date().toISOString()
+                    rate: rates.EUR || 0,
+                    change: changes.EUR || 0,
+                    changePercent: changes.EUR ? (changes.EUR / (rates.EUR - changes.EUR)) * 100 : 0,
+                    lastUpdated: currentTime
                 },
                 {
                     pair: "USD/TRY",
-                    rate: 32.15,
-                    change: -0.25,
-                    changePercent: -0.77,
-                    lastUpdated: new Date().toISOString()
+                    rate: rates.TRY || 0,
+                    change: changes.TRY || 0,
+                    changePercent: changes.TRY ? (changes.TRY / (rates.TRY - changes.TRY)) * 100 : 0,
+                    lastUpdated: currentTime
                 },
                 {
                     pair: "EUR/TRY",
-                    rate: 34.58,
-                    change: 0.12,
-                    changePercent: 0.35,
-                    lastUpdated: new Date().toISOString()
-                },
-                {
-                    pair: "USD/GBP",
-                    rate: 0.79,
-                    change: 0.005,
-                    changePercent: 0.64,
-                    lastUpdated: new Date().toISOString()
+                    rate: rates.TRY && rates.EUR ? rates.TRY / rates.EUR : 0,
+                    change: changes.EUR_TRY || 0,
+                    changePercent: changes.EUR_TRY ? (changes.EUR_TRY / ((rates.TRY / rates.EUR) - changes.EUR_TRY)) * 100 : 0,
+                    lastUpdated: currentTime
                 }
+       
             ];
             
-            displayCurrencyData(mockCurrencyData);
-            
-            // Show error message but still display data
-            currencyContainer.innerHTML = `
-                <div class="error">
-                    <p>Currency API connection issue. Showing sample data.</p>
-                    <p><small>${error.message}</small></p>
+            displayCurrencyData(currencyData);
+        } else {
+            throw new Error('No currency data found in response');
+        }
+        
+    } catch (error) {
+        console.error('Error fetching currency data:', error);
+        
+        // Fallback to mock data if API fails
+        const mockCurrencyData = [
+            {
+                pair: "USD/EUR",
+                rate: 0.93,
+                change: 0.002,
+                changePercent: 0.22,
+                lastUpdated: new Date().toISOString()
+            },
+            {
+                pair: "USD/TRY",
+                rate: 32.15,
+                change: -0.25,
+                changePercent: -0.77,
+                lastUpdated: new Date().toISOString()
+            },
+            {
+                pair: "EUR/TRY",
+                rate: 34.58,
+                change: 0.12,
+                changePercent: 0.35,
+                lastUpdated: new Date().toISOString()
+              }
+        ];
+        
+        displayCurrencyData(mockCurrencyData);
+        
+        // Show error message but still display data
+        currencyContainer.innerHTML = `
+            <div class="error">
+                <p>Currency API connection issue. Showing sample data.</p>
+                <p><small>${error.message}</small></p>
+            </div>
+        ` + currencyContainer.innerHTML;
+    }
+}
+
+// Function to calculate changes between previous and current rates
+function calculateChanges(prevRates, currentRates) {
+    const changes = {};
+    
+    // Calculate direct rate changes
+    if (prevRates.EUR && currentRates.EUR) {
+        changes.EUR = currentRates.EUR - prevRates.EUR;
+    }
+    if (prevRates.TRY && currentRates.TRY) {
+        changes.TRY = currentRates.TRY - prevRates.TRY;
+    }
+    
+    // Calculate cross rate changes (EUR/TRY)
+    if (prevRates.EUR && prevRates.TRY && currentRates.EUR && currentRates.TRY) {
+        const prevEurTry = prevRates.TRY / prevRates.EUR;
+        const currentEurTry = currentRates.TRY / currentRates.EUR;
+        changes.EUR_TRY = currentEurTry - prevEurTry;
+    }
+    
+    return changes;
+}
+
+// Function to display currency data
+function displayCurrencyData(currencies) {
+    if (!currencies || currencies.length === 0) {
+        currencyContainer.innerHTML = '<div class="error">No currency data found.</div>';
+        return;
+    }
+    
+    currencyContainer.innerHTML = currencies.map(currency => {
+        const isPositive = currency.change >= 0;
+        const changeIcon = isPositive ? '↗' : '↘';
+        
+        return `
+            <div class="currency-card">
+                <div class="currency-pair">
+                    <span>${currency.pair}</span>
+                    <span class="currency-flag">${getFlagEmoji(currency.pair)}</span>
                 </div>
-            ` + currencyContainer.innerHTML;
-        }
-    }
-    
-    // Function to calculate changes between previous and current rates
-    function calculateChanges(prevRates, currentRates) {
-        const changes = {};
-        
-        // Calculate direct rate changes
-        if (prevRates.EUR && currentRates.EUR) {
-            changes.EUR = currentRates.EUR - prevRates.EUR;
-        }
-        if (prevRates.TRY && currentRates.TRY) {
-            changes.TRY = currentRates.TRY - prevRates.TRY;
-        }
-        if (prevRates.GBP && currentRates.GBP) {
-            changes.GBP = currentRates.GBP - prevRates.GBP;
-        }
-        
-        // Calculate cross rate changes (EUR/TRY)
-        if (prevRates.EUR && prevRates.TRY && currentRates.EUR && currentRates.TRY) {
-            const prevEurTry = prevRates.TRY / prevRates.EUR;
-            const currentEurTry = currentRates.TRY / currentRates.EUR;
-            changes.EUR_TRY = currentEurTry - prevEurTry;
-        }
-        
-        return changes;
-    }
-    
-    // Function to display currency data
-    function displayCurrencyData(currencies) {
-        if (!currencies || currencies.length === 0) {
-            currencyContainer.innerHTML = '<div class="error">No currency data found.</div>';
-            return;
-        }
-        
-        currencyContainer.innerHTML = currencies.map(currency => {
-            const isPositive = currency.change >= 0;
-            const changeIcon = isPositive ? '↗' : '↘';
-            
-            return `
-                <div class="currency-card">
-                    <div class="currency-pair">
-                        <span>${currency.pair}</span>
-                        <span class="currency-flag">${getFlagEmoji(currency.pair)}</span>
-                    </div>
-                    <div class="currency-rate">${currency.rate.toFixed(4)}</div>
-                    <div class="currency-change ${isPositive ? 'positive' : 'negative'}">
-                        <span>${changeIcon} ${isPositive ? '+' : ''}${currency.change.toFixed(4)}</span>
-                        <span>(${isPositive ? '+' : ''}${currency.changePercent.toFixed(2)}%)</span>
-                    </div>
-                    <div class="currency-info">
-                        <span>Last updated:</span>
-                        <span>${new Date(currency.lastUpdated).toLocaleTimeString()}</span>
-                    </div>
+                <div class="currency-rate">${currency.rate.toFixed(4)}</div>
+                <div class="currency-change ${isPositive ? 'positive' : 'negative'}">
+                    <span>${changeIcon} ${isPositive ? '+' : ''}${currency.change.toFixed(4)}</span>
+                    <span>(${isPositive ? '+' : ''}${currency.changePercent.toFixed(2)}%)</span>
                 </div>
-            `;
-        }).join('');
-    }
+                <div class="currency-info">
+                    <span>Last updated:</span>
+                    <span>${new Date(currency.lastUpdated).toLocaleTimeString()}</span>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// Helper function to get flag emojis for currency pairs
+function getFlagEmoji(pair) {
+    const flagMap = {
+        'USD': '🇺🇸',
+        'EUR': '🇪🇺',
+        'TRY': '🇹🇷',
+    };
     
-    // Helper function to get flag emojis for currency pairs
-    function getFlagEmoji(pair) {
-        const flagMap = {
-            'USD': '🇺🇸',
-            'EUR': '🇪🇺',
-            'TRY': '🇹🇷',
-            'GBP': '🇬🇧'
-        };
-        
-        const [from, to] = pair.split('/');
-        return `${flagMap[from] || '💵'} → ${flagMap[to] || '💵'}`;
-    }
-    
-    // Event listener for refresh button
-    refreshCurrencyButton.addEventListener('click', fetchCurrencyData);
-    
-    // Fetch currency data on page load
-    fetchCurrencyData();
-    
-    // Refresh currency data every 5 minutes
-    setInterval(fetchCurrencyData, 5 * 60 * 1000);
+    const [from, to] = pair.split('/');
+    return `${flagMap[from] || '💵'} → ${flagMap[to] || '💵'}`;
+}
+
+// Event listener for refresh button
+refreshCurrencyButton.addEventListener('click', fetchCurrencyData);
+
+// Fetch currency data on page load
+fetchCurrencyData();
+
+// Refresh currency data every 5 minutes
+setInterval(fetchCurrencyData, 5 * 60 * 1000);
         
         // Initialize satellite map with better tile source
         function initMap() {

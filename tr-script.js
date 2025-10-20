@@ -651,209 +651,194 @@
     // Borsa verilerini başlat
     fetchStockData();
           
-      // Döviz Kuru Bölümü
-    const currencyContainer = document.getElementById('currency-container');
-    const refreshCurrencyButton = document.getElementById('refresh-currency');
-    const EXCHANGE_RATE_API_KEY = '5cae913d674df6bdbd3b6951';
-    
-    // Değişiklikleri hesaplamak için önceki oranları sakla
-    let previousRates = {};
-    
-    // Döviz Kuru Bölümü
-const currencyContainer = document.getElementById('currency-container');
-const refreshCurrencyButton = document.getElementById('refresh-currency');
-
-// Önceki oranları sakla
-let previousRates = {};
-
-// Döviz verilerini getiren fonksiyon
-async function fetchCurrencyData() {
-    try {
-        currencyContainer.innerHTML = '<div class="loading">Döviz verileri yükleniyor...</div>';
-        
-        // Frankfurter API kullan (ücretsiz, API anahtarı gerekmez)
-        const response = await fetch('https://api.frankfurter.app/latest?from=USD');
-        
-        if (!response.ok) {
-            throw new Error(`HTTP hatası! durum: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        
-        if (data && data.rates) {
-            const rates = data.rates;
-            const currentTime = new Date().toISOString();
+      // Döviz verilerini getiren fonksiyon
+    async function fetchCurrencyData() {
+        try {
+            currencyContainer.innerHTML = '<div class="loading">Döviz verileri yükleniyor...</div>';
             
-            // Önceki verilerimiz varsa değişiklikleri hesapla
-            let changes = {};
-            if (Object.keys(previousRates).length > 0) {
-                changes = calculateChanges(previousRates, rates);
+            // ExchangeRate-API'den veri getir
+            const response = await fetch(`https://v6.exchangerate-api.com/v6/${EXCHANGE_RATE_API_KEY}/latest/USD`);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP hatası! durum: ${response.status}`);
             }
             
-            // Bir sonraki karşılaştırma için mevcut oranları sakla
-            previousRates = {...rates};
+            const data = await response.json();
             
-            // Döviz verilerini hazırla
-            const currencyData = [
+            if (data && data.conversion_rates) {
+                const rates = data.conversion_rates;
+                const currentTime = new Date().toISOString();
+                
+                // Önceki verilerimiz varsa değişiklikleri hesapla
+                let changes = {};
+                if (Object.keys(previousRates).length > 0) {
+                    changes = calculateChanges(previousRates, rates);
+                }
+                
+                // Bir sonraki karşılaştırma için mevcut oranları sakla
+                previousRates = {...rates};
+                
+                // Döviz verilerini hazırla
+                const currencyData = [
+                    {
+                        pair: "USD/EUR",
+                        rate: rates.EUR || 0,
+                        change: changes.EUR || 0,
+                        changePercent: changes.EUR ? (changes.EUR / (rates.EUR - changes.EUR)) * 100 : 0,
+                        lastUpdated: currentTime
+                    },
+                    {
+                        pair: "USD/TRY",
+                        rate: rates.TRY || 0,
+                        change: changes.TRY || 0,
+                        changePercent: changes.TRY ? (changes.TRY / (rates.TRY - changes.TRY)) * 100 : 0,
+                        lastUpdated: currentTime
+                    },
+                    {
+                        pair: "EUR/TRY",
+                        rate: rates.TRY && rates.EUR ? rates.TRY / rates.EUR : 0,
+                        change: changes.EUR_TRY || 0,
+                        changePercent: changes.EUR_TRY ? (changes.EUR_TRY / ((rates.TRY / rates.EUR) - changes.EUR_TRY)) * 100 : 0,
+                        lastUpdated: currentTime
+                    },
+                    {
+                        pair: "USD/GBP",
+                        rate: rates.GBP || 0,
+                        change: changes.GBP || 0,
+                        changePercent: changes.GBP ? (changes.GBP / (rates.GBP - changes.GBP)) * 100 : 0,
+                        lastUpdated: currentTime
+                    }
+                ];
+                
+                displayCurrencyData(currencyData);
+            } else {
+                throw new Error('Yanıtta döviz verisi bulunamadı');
+            }
+            
+        } catch (error) {
+            console.error('Döviz verileri getirme hatası:', error);
+            
+            // API başarısız olursa yedek veri kullan
+            const mockCurrencyData = [
                 {
                     pair: "USD/EUR",
-                    rate: rates.EUR || 0,
-                    change: changes.EUR || 0,
-                    changePercent: changes.EUR ? (changes.EUR / (rates.EUR - changes.EUR)) * 100 : 0,
-                    lastUpdated: currentTime
+                    rate: 0.93,
+                    change: 0.002,
+                    changePercent: 0.22,
+                    lastUpdated: new Date().toISOString()
                 },
                 {
                     pair: "USD/TRY",
-                    rate: rates.TRY || 0,
-                    change: changes.TRY || 0,
-                    changePercent: changes.TRY ? (changes.TRY / (rates.TRY - changes.TRY)) * 100 : 0,
-                    lastUpdated: currentTime
+                    rate: 32.15,
+                    change: -0.25,
+                    changePercent: -0.77,
+                    lastUpdated: new Date().toISOString()
                 },
                 {
                     pair: "EUR/TRY",
-                    rate: rates.TRY && rates.EUR ? rates.TRY / rates.EUR : 0,
-                    change: changes.EUR_TRY || 0,
-                    changePercent: changes.EUR_TRY ? (changes.EUR_TRY / ((rates.TRY / rates.EUR) - changes.EUR_TRY)) * 100 : 0,
-                    lastUpdated: currentTime
+                    rate: 34.58,
+                    change: 0.12,
+                    changePercent: 0.35,
+                    lastUpdated: new Date().toISOString()
                 },
                 {
                     pair: "USD/GBP",
-                    rate: rates.GBP || 0,
-                    change: changes.GBP || 0,
-                    changePercent: changes.GBP ? (changes.GBP / (rates.GBP - changes.GBP)) * 100 : 0,
-                    lastUpdated: currentTime
+                    rate: 0.79,
+                    change: 0.005,
+                    changePercent: 0.64,
+                    lastUpdated: new Date().toISOString()
                 }
             ];
             
-            displayCurrencyData(currencyData);
-        } else {
-            throw new Error('Yanıtta döviz verisi bulunamadı');
+            displayCurrencyData(mockCurrencyData);
+            
+            // Hata mesajını göster ama yine de veriyi görüntüle
+            currencyContainer.innerHTML = `
+                <div class="error">
+                    <p>Döviz API bağlantı sorunu. Örnek veriler gösteriliyor.</p>
+                    <p><small>${error.message}</small></p>
+                </div>
+            ` + currencyContainer.innerHTML;
+        }
+    }
+    
+    // Önceki ve mevcut oranlar arasındaki değişiklikleri hesaplayan fonksiyon
+    function calculateChanges(prevRates, currentRates) {
+        const changes = {};
+        
+        // Doğrudan oran değişikliklerini hesapla
+        if (prevRates.EUR && currentRates.EUR) {
+            changes.EUR = currentRates.EUR - prevRates.EUR;
+        }
+        if (prevRates.TRY && currentRates.TRY) {
+            changes.TRY = currentRates.TRY - prevRates.TRY;
+        }
+        if (prevRates.GBP && currentRates.GBP) {
+            changes.GBP = currentRates.GBP - prevRates.GBP;
         }
         
-    } catch (error) {
-        console.error('Döviz verileri getirme hatası:', error);
+        // Çapraz oran değişikliklerini hesapla (EUR/TRY)
+        if (prevRates.EUR && prevRates.TRY && currentRates.EUR && currentRates.TRY) {
+            const prevEurTry = prevRates.TRY / prevRates.EUR;
+            const currentEurTry = currentRates.TRY / currentRates.EUR;
+            changes.EUR_TRY = currentEurTry - prevEurTry;
+        }
         
-        // API başarısız olursa yedek veri kullan
-        const mockCurrencyData = [
-            {
-                pair: "USD/EUR",
-                rate: 0.93,
-                change: 0.002,
-                changePercent: 0.22,
-                lastUpdated: new Date().toISOString()
-            },
-            {
-                pair: "USD/TRY",
-                rate: 32.15,
-                change: -0.25,
-                changePercent: -0.77,
-                lastUpdated: new Date().toISOString()
-            },
-            {
-                pair: "EUR/TRY",
-                rate: 34.58,
-                change: 0.12,
-                changePercent: 0.35,
-                lastUpdated: new Date().toISOString()
-            },
-            {
-                pair: "USD/GBP",
-                rate: 0.79,
-                change: 0.005,
-                changePercent: 0.64,
-                lastUpdated: new Date().toISOString()
-            }
-        ];
-        
-        displayCurrencyData(mockCurrencyData);
-        
-        // Hata mesajını göster ama yine de veriyi görüntüle
-        currencyContainer.innerHTML = `
-            <div class="error">
-                <p>Döviz API bağlantı sorunu. Örnek veriler gösteriliyor.</p>
-                <p><small>${error.message}</small></p>
-            </div>
-        ` + currencyContainer.innerHTML;
-    }
-}
-
-// Önceki ve mevcut oranlar arasındaki değişiklikleri hesaplayan fonksiyon
-function calculateChanges(prevRates, currentRates) {
-    const changes = {};
-    
-    // Doğrudan oran değişikliklerini hesapla
-    if (prevRates.EUR && currentRates.EUR) {
-        changes.EUR = currentRates.EUR - prevRates.EUR;
-    }
-    if (prevRates.TRY && currentRates.TRY) {
-        changes.TRY = currentRates.TRY - prevRates.TRY;
-    }
-    if (prevRates.GBP && currentRates.GBP) {
-        changes.GBP = currentRates.GBP - prevRates.GBP;
+        return changes;
     }
     
-    // Çapraz oran değişikliklerini hesapla (EUR/TRY)
-    if (prevRates.EUR && prevRates.TRY && currentRates.EUR && currentRates.TRY) {
-        const prevEurTry = prevRates.TRY / prevRates.EUR;
-        const currentEurTry = currentRates.TRY / currentRates.EUR;
-        changes.EUR_TRY = currentEurTry - prevEurTry;
-    }
-    
-    return changes;
-}
-
-// Döviz verilerini görüntüleyen fonksiyon
-function displayCurrencyData(currencies) {
-    if (!currencies || currencies.length === 0) {
-        currencyContainer.innerHTML = '<div class="error">Döviz verisi bulunamadı.</div>';
-        return;
-    }
-    
-    currencyContainer.innerHTML = currencies.map(currency => {
-        const isPositive = currency.change >= 0;
-        const changeIcon = isPositive ? '↗' : '↘';
+    // Döviz verilerini görüntüleyen fonksiyon
+    function displayCurrencyData(currencies) {
+        if (!currencies || currencies.length === 0) {
+            currencyContainer.innerHTML = '<div class="error">Döviz verisi bulunamadı.</div>';
+            return;
+        }
         
-        return `
-            <div class="currency-card">
-                <div class="currency-pair">
-                    <span>${currency.pair}</span>
-                    <span class="currency-flag">${getFlagEmoji(currency.pair)}</span>
+        currencyContainer.innerHTML = currencies.map(currency => {
+            const isPositive = currency.change >= 0;
+            const changeIcon = isPositive ? '↗' : '↘';
+            
+            return `
+                <div class="currency-card">
+                    <div class="currency-pair">
+                        <span>${currency.pair}</span>
+                        <span class="currency-flag">${getFlagEmoji(currency.pair)}</span>
+                    </div>
+                    <div class="currency-rate">${currency.rate.toFixed(4)}</div>
+                    <div class="currency-change ${isPositive ? 'positive' : 'negative'}">
+                        <span>${changeIcon} ${isPositive ? '+' : ''}${currency.change.toFixed(4)}</span>
+                        <span>(${isPositive ? '+' : ''}${currency.changePercent.toFixed(2)}%)</span>
+                    </div>
+                    <div class="currency-info">
+                        <span>Son güncelleme:</span>
+                        <span>${new Date(currency.lastUpdated).toLocaleTimeString('tr-TR')}</span>
+                    </div>
                 </div>
-                <div class="currency-rate">${currency.rate.toFixed(4)}</div>
-                <div class="currency-change ${isPositive ? 'positive' : 'negative'}">
-                    <span>${changeIcon} ${isPositive ? '+' : ''}${currency.change.toFixed(4)}</span>
-                    <span>(${isPositive ? '+' : ''}${currency.changePercent.toFixed(2)}%)</span>
-                </div>
-                <div class="currency-info">
-                    <span>Son güncelleme:</span>
-                    <span>${new Date(currency.lastUpdated).toLocaleTimeString('tr-TR')}</span>
-                </div>
-            </div>
-        `;
-    }).join('');
-}
-
-// Döviz çiftleri için bayrak emojilerini alan yardımcı fonksiyon
-function getFlagEmoji(pair) {
-    const flagMap = {
-        'USD': '🇺🇸',
-        'EUR': '🇪🇺',
-        'TRY': '🇹🇷',
-        'GBP': '🇬🇧'
-    };
+            `;
+        }).join('');
+    }
     
-    const [from, to] = pair.split('/');
-    return `${flagMap[from] || '💵'} → ${flagMap[to] || '💵'}`;
-}
-
-// Yenile butonu için olay dinleyicisi
-refreshCurrencyButton.addEventListener('click', fetchCurrencyData);
-
-// Sayfa yüklendiğinde döviz verilerini getir
-fetchCurrencyData();
-
-// Döviz verilerini her 5 dakikada bir yenile
-setInterval(fetchCurrencyData, 5 * 60 * 1000);
+    // Döviz çiftleri için bayrak emojilerini alan yardımcı fonksiyon
+    function getFlagEmoji(pair) {
+        const flagMap = {
+            'USD': '🇺🇸',
+            'EUR': '🇪🇺',
+            'TRY': '🇹🇷',
+            'GBP': '🇬🇧'
+        };
+        
+        const [from, to] = pair.split('/');
+        return `${flagMap[from] || '💵'} → ${flagMap[to] || '💵'}`;
+    }
+    
+    // Yenile butonu için olay dinleyicisi
+    refreshCurrencyButton.addEventListener('click', fetchCurrencyData);
+    
+    // Sayfa yüklendiğinde döviz verilerini getir
+    fetchCurrencyData();
+    
+    // Döviz verilerini her 5 dakikada bir yenile
+    setInterval(fetchCurrencyData, 5 * 60 * 1000);
         
         // Daha iyi döşeme kaynağı ile uydu haritasını başlat
         function initMap() {

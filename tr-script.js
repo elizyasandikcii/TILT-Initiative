@@ -673,9 +673,9 @@ let previousRates = {};
             
             const data = await response.json();
             
-            if (data && data.conversion_rates) {
-                const rates = data.conversion_rates;
-                const currentTime = new Date().toISOString();
+                 if (data && data.rates) {
+            const rates = data.rates;
+            const currentTime = new Date().toISOString();
                 
                 // Önceki verilerimiz varsa değişiklikleri hesapla
                 let changes = {};

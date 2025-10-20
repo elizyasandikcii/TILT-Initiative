@@ -650,18 +650,26 @@
     
     // Borsa verilerini başlat
     fetchStockData();
-          
+
+          // Currency Exchange Rates Section
+const currencyContainer = document.getElementById('currency-container');
+const refreshCurrencyButton = document.getElementById('refresh-currency');
+
+// Store previous rates to calculate changes
+let previousRates = {};
+
+
       // Döviz verilerini getiren fonksiyon
     async function fetchCurrencyData() {
         try {
             currencyContainer.innerHTML = '<div class="loading">Döviz verileri yükleniyor...</div>';
             
-            // ExchangeRate-API'den veri getir
-            const response = await fetch(`https://v6.exchangerate-api.com/v6/${EXCHANGE_RATE_API_KEY}/latest/USD`);
-            
-            if (!response.ok) {
-                throw new Error(`HTTP hatası! durum: ${response.status}`);
-            }
+           // Using Frankfurter API (free, no API key required)
+        const response = await fetch('https://api.frankfurter.app/latest?from=USD');
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
             
             const data = await response.json();
             
@@ -700,13 +708,6 @@
                         change: changes.EUR_TRY || 0,
                         changePercent: changes.EUR_TRY ? (changes.EUR_TRY / ((rates.TRY / rates.EUR) - changes.EUR_TRY)) * 100 : 0,
                         lastUpdated: currentTime
-                    },
-                    {
-                        pair: "USD/GBP",
-                        rate: rates.GBP || 0,
-                        change: changes.GBP || 0,
-                        changePercent: changes.GBP ? (changes.GBP / (rates.GBP - changes.GBP)) * 100 : 0,
-                        lastUpdated: currentTime
                     }
                 ];
                 
@@ -740,13 +741,6 @@
                     change: 0.12,
                     changePercent: 0.35,
                     lastUpdated: new Date().toISOString()
-                },
-                {
-                    pair: "USD/GBP",
-                    rate: 0.79,
-                    change: 0.005,
-                    changePercent: 0.64,
-                    lastUpdated: new Date().toISOString()
                 }
             ];
             
@@ -772,9 +766,6 @@
         }
         if (prevRates.TRY && currentRates.TRY) {
             changes.TRY = currentRates.TRY - prevRates.TRY;
-        }
-        if (prevRates.GBP && currentRates.GBP) {
-            changes.GBP = currentRates.GBP - prevRates.GBP;
         }
         
         // Çapraz oran değişikliklerini hesapla (EUR/TRY)
@@ -824,7 +815,7 @@
             'USD': '🇺🇸',
             'EUR': '🇪🇺',
             'TRY': '🇹🇷',
-            'GBP': '🇬🇧'
+          
         };
         
         const [from, to] = pair.split('/');

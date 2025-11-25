@@ -15,7 +15,8 @@
     --gray-700: #3f3f46;
     --gray-800: #27272a;
     --gray-900: #18181b;
-    
+
+        
     /* Semantic Colors - Light Mode */
     --bg-primary: var(--white);
     --bg-secondary: var(--gray-50);

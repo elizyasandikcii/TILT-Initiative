@@ -293,7 +293,30 @@ nav a:hover::after {
     background: var(--gray-300);
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
 }
+/* Add this to style.css */
 
+.btn {
+    display: inline-block;
+    padding: var(--space-sm) var(--space-lg);
+    background: var(--accent-blue);
+    color: var(--white) !important;
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+}
+
+.btn:hover,
+.btn:focus-visible {
+    background: var(--accent-blue-light);
+    transform: translateY(-2px) scale(1.03);
+    color: var(--white) !important;
+    text-decoration: none;
+}
 /* Main Content */
 main {
     max-width: var(--container-max-width);

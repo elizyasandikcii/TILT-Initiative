@@ -1277,6 +1277,5 @@ document.addEventListener('DOMContentLoaded', updateQuoteOfTheDay);
             attributes: true, 
             attributeFilter: ['class'] 
         });
-    });
-    });
-        
+              }
+          });

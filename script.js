@@ -21,26 +21,28 @@ document.addEventListener('DOMContentLoaded', function() {
             themeToggle.checked = true;
         }
     }
-        // Initial trigger for animations
-        window.dispatchEvent(new Event('scroll'));
 
-        // Shrink header on scroll
-        const header = document.getElementById('main-header');
-        let lastScroll = 0;
+    // Initial trigger for animations
+    window.dispatchEvent(new Event('scroll'));
+
+    // Shrink header on scroll
+    const header = document.getElementById('main-header');
+    let lastScroll = 0;
+    
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
         
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll > lastScroll && currentScroll > 100) {
-                // Scroll down
-                header.classList.add('shrink');
-            } else if (currentScroll < lastScroll || currentScroll <= 100) {
-                // Scroll up or at top
-                header.classList.remove('shrink');
-            }
-            
-            lastScroll = currentScroll;
-        });
+        if (currentScroll > lastScroll && currentScroll > 100) {
+            // Scroll down
+            header.classList.add('shrink');
+        } else if (currentScroll < lastScroll || currentScroll <= 100) {
+            // Scroll up or at top
+            header.classList.remove('shrink');
+        }
+        
+        lastScroll = currentScroll;
+    });
+
 
         // Calendar functionality
         let currentDate = new Date();
@@ -1275,5 +1277,6 @@ document.addEventListener('DOMContentLoaded', updateQuoteOfTheDay);
             attributes: true, 
             attributeFilter: ['class'] 
         });
+    });
     });
         

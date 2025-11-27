@@ -1,5 +1,8 @@
- // Dark/Light mode toggle
-        const themeToggle = document.getElementById('theme-toggle');
+// Dark/Light mode toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.getElementById('theme-toggle');
+    
+    if (themeToggle) {
         themeToggle.addEventListener('change', () => {
             document.body.classList.toggle('dark-mode');
             
@@ -17,6 +20,7 @@
             document.body.classList.add('dark-mode');
             themeToggle.checked = true;
         }
+    }
         // Initial trigger for animations
         window.dispatchEvent(new Event('scroll'));
 

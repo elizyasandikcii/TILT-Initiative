@@ -2926,13 +2926,13 @@ button[type="submit"]:focus-visible {
         display: none;
     }
 }
-/* Back to Board Button */
+/* Back to Board Button - Fixed Position */
 .back-to-board-btn {
     position: fixed;
     bottom: var(--space-xl);
     left: var(--space-xl);
     background: var(--accent-blue);
-    color: var(--white);
+    color: var(--white) !important;
     text-decoration: none;
     padding: var(--space-md) var(--space-lg);
     border-radius: var(--border-radius);
@@ -2941,11 +2941,11 @@ button[type="submit"]:focus-visible {
     transition: all var(--transition-normal);
     border: 2px solid transparent;
     box-shadow: var(--shadow-md);
-    z-index: 100;
+    z-index: 1000; /* High z-index to stay above everything */
     display: inline-flex;
     align-items: center;
     gap: var(--space-sm);
-    position: relative;
+    position: fixed; /* Double ensure it's fixed */
     overflow: hidden;
 }
 
@@ -2964,7 +2964,7 @@ button[type="submit"]:focus-visible {
     background: var(--accent-blue-light);
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
-    color: var(--white);
+    color: var(--white) !important;
     text-decoration: none;
 }
 
@@ -2985,5 +2985,4 @@ button[type="submit"]:focus-visible {
         padding: var(--space-sm) var(--space-md);
         font-size: 0.9rem;
     }
-}
-   
+}   

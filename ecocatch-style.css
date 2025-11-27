@@ -8,6 +8,7 @@
     --eco-green: #006644;
     --eco-green-light: #00875a;
     --white: #ffffff;
+    --black: #000000;
     --gray-50: #fafafa;
     --gray-100: #f4f4f5;
     --gray-200: #e4e4e7;
@@ -320,7 +321,7 @@ main {
 
 .btn-primary {
     background: var(--accent-blue);
-    color: var(--white);
+    color: var(--black);
 }
 
 .btn-primary:hover {
@@ -336,7 +337,6 @@ main {
 }
 
 .btn-secondary:hover {
-    background: var(--accent-blue);
     color: var(--white);
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
@@ -1279,4 +1279,50 @@ select:focus-visible {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
+}
+/* Image sizing for placeholders */
+.placeholder-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius-lg);
+}
+
+/* Specific sizing for different placeholder types */
+.hero-visual .placeholder-image {
+    height: 300px;
+}
+
+.implementation-visual .placeholder-image {
+    height: 400px;
+}
+
+.member-image {
+    height: 200px;
+}
+
+.member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Partner logos */
+.partner-logo img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+/* Ensure images don't overflow their containers */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Logo images */
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }

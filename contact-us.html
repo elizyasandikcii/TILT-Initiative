@@ -11,300 +11,1002 @@
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <style>
-        /* Contact Page Specific Styles */
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-2xl);
-            margin-bottom: var(--space-3xl);
-        }
-        
-        .contact-info-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            border-radius: var(--border-radius-lg);
-            padding: var(--space-2xl);
-            box-shadow: var(--shadow-sm);
-            transition: all var(--transition-normal);
-        }
-        
-        .contact-info-card:hover {
-            box-shadow: var(--shadow-md);
-            transform: translateY(-2px);
-        }
-        
-        .social-media-section {
-            margin: var(--space-2xl) 0;
-        }
-        
-        .social-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--space-lg);
-            margin-top: var(--space-lg);
-        }
-        
-        .social-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            border-radius: var(--border-radius);
-            padding: var(--space-xl);
-            text-align: center;
-            transition: all var(--transition-normal);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .social-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--accent-blue);
-        }
-        
-        .social-icon-large {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: var(--space-lg);
-            font-size: 1.8rem;
-            color: white;
-        }
-        
-        .instagram-icon {
-            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D, #F56040, #FFDC80);
-        }
-        
-        .linkedin-icon {
-            background: #0077B5;
-        }
-        
-        .youtube-icon {
-            background: #FF0000;
-        }
-        
-        .social-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: var(--space-sm);
-            color: var(--text-primary);
-        }
-        
-        .social-card p {
-            color: var(--text-secondary);
-            margin-bottom: var(--space-lg);
-            flex-grow: 1;
-        }
-        
-        .social-stats {
-            display: flex;
-            justify-content: center;
-            gap: var(--space-xl);
-            margin-top: var(--space-md);
-        }
-        
-        .stat {
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--accent-blue);
-        }
-        
-        .stat-label {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-        
-        .coming-soon-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: var(--white);
-            padding: var(--space-xs) var(--space-sm);
-            border-radius: var(--border-radius);
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-left: var(--space-sm);
-            animation: pulse 2s infinite;
-        }
-        
-        .get-involved-cta {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
-            border-radius: var(--border-radius-lg);
-            padding: var(--space-2xl);
-            margin-top: var(--space-3xl);
-            text-align: center;
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .get-involved-cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
-            background-size: cover;
-        }
-        
-        .get-involved-cta h2 {
-            color: var(--white);
-            font-size: 1.75rem;
-            margin-bottom: var(--space-lg);
-            position: relative;
-        }
-        
-        .get-involved-cta p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto var(--space-xl);
-            line-height: 1.6;
-            position: relative;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            gap: var(--space-lg);
-            justify-content: center;
-            position: relative;
-        }
-        
-        .cta-btn {
-            background: var(--white);
-            color: var(--accent-blue) !important;
-            border: none;
-            padding: var(--space-md) var(--space-xl);
-            border-radius: var(--border-radius);
-            font-weight: 600;
-            font-size: 1rem;
-            text-decoration: none;
-            transition: all var(--transition-normal);
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-sm);
-        }
-        
-        .cta-btn:hover {
-            background: rgba(255, 255, 255, 0.9);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-            color: var(--accent-blue) !important;
-        }
-        
-        .cta-btn.secondary {
-            background: transparent;
-            color: var(--white) !important;
-            border: 2px solid var(--white);
-        }
-        
-        .cta-btn.secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        .contact-details {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-lg);
-            margin-top: var(--space-xl);
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: var(--space-md);
-        }
-        
-        .contact-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--accent-blue);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-        
-        .contact-text h4 {
-            margin: 0 0 var(--space-xs) 0;
-            font-size: 1.1rem;
-            color: var(--text-primary);
-        }
-        
-        .contact-text p, .contact-text a {
-            margin: 0;
-            color: var(--text-secondary);
-            text-decoration: none;
-        }
-        
-        .contact-text a:hover {
-            color: var(--accent-blue);
-            text-decoration: underline;
-        }
-        
-        /* Dark mode adjustments */
-        .dark-mode .get-involved-cta {
-            background: linear-gradient(135deg, var(--primary-blue-light) 0%, var(--accent-blue-light) 100%);
-        }
-        
-        .dark-mode .social-card {
-            background: var(--bg-card);
-        }
-        
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .contact-container {
-                grid-template-columns: 1fr;
-                gap: var(--space-xl);
-            }
-            
-            .social-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .cta-btn {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .social-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .social-stats {
-                flex-direction: column;
-                gap: var(--space-md);
-            }
-            
-            .get-involved-cta {
-                padding: var(--space-xl);
-            }
-            
-            .get-involved-cta h2 {
-                font-size: 1.5rem;
-            }
-        }
+<style>
+
+/* Page Header */
+.page-header {
+    text-align: center;
+    padding: var(--space-3xl) 0 var(--space-2xl);
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
+    color: var(--white);
+    margin: calc(-1 * var(--space-2xl)) calc(-1 * var(--space-2xl)) var(--space-3xl);
+    border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+    background-size: cover;
+}
+
+.page-header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: var(--space-md);
+    color: var(--white);
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto var(--space-sm);
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+}
+
+.subtitle:last-of-type {
+    margin-bottom: 0;
+}
+
+/* Main Contact Container */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    margin-bottom: var(--space-3xl);
+}
+
+@media (max-width: 1024px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+}
+
+/* Contact Form Section */
+.contact-form {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-2xl);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-form:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent-blue);
+}
+
+.contact-form h2 {
+    font-size: 1.75rem;
+    margin: 0 0 var(--space-xl) 0;
+    color: var(--accent-blue);
+    font-weight: 600;
+    border-bottom: 2px solid var(--accent-blue);
+    padding-bottom: var(--space-sm);
+}
+
+.contact-form > p {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xl);
+    line-height: 1.6;
+}
+
+/* Form Elements */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.form-group {
+    position: relative;
+}
+
+input, textarea {
+    width: 100%;
+    padding: var(--space-lg);
+    border: 2px solid var(--border-light);
+    border-radius: var(--border-radius);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    transition: all var(--transition-normal);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    resize: vertical;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
+    transform: translateY(-1px);
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+textarea {
+    min-height: 150px;
+    line-height: 1.6;
+}
+
+/* Submit Button */
+button[type="submit"] {
+    padding: var(--space-lg) var(--space-2xl);
+    background: var(--accent-blue);
+    color: var(--white);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+}
+
+button[type="submit"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left var(--transition-slow);
+}
+
+button[type="submit"]:hover {
+    background: var(--accent-blue-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+button[type="submit"]:hover::before {
+    left: 100%;
+}
+
+button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+button[type="submit"]:disabled {
+    background: var(--gray-400);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Thank You Message */
+#thankYouMessage {
+    background: linear-gradient(135deg, rgba(0, 51, 102, 0.05), rgba(0, 64, 128, 0.1));
+    padding: var(--space-2xl);
+    border-radius: var(--border-radius-lg);
+    margin-top: var(--space-2xl);
+    text-align: center;
+    display: none;
+    border: 1px solid var(--accent-blue);
+    animation: slideInUp 0.6s ease-out;
+}
+
+#thankYouMessage h3 {
+    color: var(--accent-blue);
+    margin-top: 0;
+    font-size: 1.5rem;
+    margin-bottom: var(--space-md);
+}
+
+#thankYouMessage p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Contact Information Card */
+.contact-info-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-2xl);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-info-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    border-color: var(--accent-blue);
+}
+
+.contact-info-card h2 {
+    font-size: 1.75rem;
+    margin: 0 0 var(--space-lg) 0;
+    color: var(--accent-blue);
+    font-weight: 600;
+    border-bottom: 2px solid var(--accent-blue);
+    padding-bottom: var(--space-sm);
+}
+
+.contact-info-card > p {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xl);
+    line-height: 1.6;
+}
+
+/* Contact Details */
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+    margin-top: var(--space-xl);
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+    background: var(--bg-secondary);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-light);
+    transition: all var(--transition-fast);
+}
+
+.contact-item:hover {
+    background: var(--bg-primary);
+    border-color: var(--accent-blue);
+    transform: translateX(4px);
+}
+
+.contact-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    transition: all var(--transition-normal);
+}
+
+.contact-item:hover .contact-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.contact-text {
+    flex: 1;
+}
+
+.contact-text h4 {
+    margin: 0 0 var(--space-xs) 0;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.contact-text p, .contact-text a {
+    margin: 0;
+    color: var(--text-secondary);
+    text-decoration: none;
+    line-height: 1.6;
+}
+
+.contact-text a {
+    color: var(--accent-blue);
+    font-weight: 500;
+    transition: color var(--transition-fast);
+}
+
+.contact-text a:hover {
+    color: var(--accent-blue-light);
+    text-decoration: underline;
+}
+
+/* Social Media Section */
+.social-media-section {
+    margin: var(--space-3xl) 0;
+    padding: var(--space-2xl);
+    background: var(--bg-secondary);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.social-media-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-blue), var(--accent-blue), var(--primary-blue));
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite linear;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.social-media-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+    background: linear-gradient(135deg, var(--primary-blue), var(--accent-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.social-media-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-blue), var(--accent-blue));
+    border-radius: 2px;
+}
+
+.social-media-section > p {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: var(--space-md) auto var(--space-2xl);
+    line-height: 1.6;
+    padding: 0 var(--space-md);
+}
+
+/* Social Grid */
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-xl);
+    margin-top: var(--space-lg);
+}
+
+@media (max-width: 768px) {
+    .social-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+}
+
+/* Social Card */
+.social-card {
+    background: var(--bg-card);
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-xl);
+    transition: all var(--transition-normal);
+    border: 1px solid var(--border-light);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.social-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-blue), var(--accent-blue));
+    transform: scaleX(0);
+    transition: transform var(--transition-normal);
+    z-index: 1;
+}
+
+.social-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: transparent;
+}
+
+.social-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* Social Card Header */
+.social-card-header {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    position: relative;
+    z-index: 2;
+}
+
+.social-icon-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-md);
+    font-size: 1.8rem;
+    color: white;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.social-card:hover .social-icon-circle {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Platform-specific backgrounds */
+.instagram-bg {
+    background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+}
+
+.linkedin-bg {
+    background: linear-gradient(135deg, #0077B5, #00A0DC);
+}
+
+.youtube-bg {
+    background: linear-gradient(135deg, #FF0000, #FF4D4D);
+}
+
+.social-card-header h3 {
+    font-size: 1.4rem;
+    margin: 0;
+    color: var(--text-primary);
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.social-title-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+/* Coming Soon Badge */
+.coming-soon-badge {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 16px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    animation: badgePulse 2s infinite;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+}
+
+@keyframes badgePulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+    }
+}
+
+/* Social Card Body */
+.social-card-body {
+    flex-grow: 1;
+    margin-bottom: var(--space-lg);
+}
+
+.social-card-body p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-lg);
+    text-align: center;
+}
+
+.social-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.social-features li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    padding: var(--space-xs) 0;
+}
+
+.social-features li i {
+    color: var(--accent-blue);
+    width: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Social Card Footer */
+.social-card-footer {
+    text-align: center;
+    margin-top: auto;
+}
+
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    width: 100%;
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left var(--transition-slow);
+}
+
+.social-btn:hover::before {
+    left: 100%;
+}
+
+/* Platform-specific buttons */
+.instagram-btn {
+    background: linear-gradient(45deg, #405DE6, #C13584);
+    color: white !important;
+}
+
+.instagram-btn:hover {
+    background: linear-gradient(45deg, #C13584, #405DE6);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(193, 53, 132, 0.3);
+}
+
+.linkedin-btn {
+    background: linear-gradient(135deg, #0077B5, #00A0DC);
+    color: white !important;
+}
+
+.linkedin-btn:hover {
+    background: linear-gradient(135deg, #00A0DC, #0077B5);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 119, 181, 0.3);
+}
+
+/* YouTube Buttons */
+.dual-buttons {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.youtube-notify-btn {
+    background: linear-gradient(135deg, #FF0000, #FF4D4D);
+    color: white !important;
+    flex: 1;
+}
+
+.youtube-notify-btn:hover {
+    background: linear-gradient(135deg, #FF4D4D, #FF0000);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+}
+
+.youtube-learn-btn {
+    background: var(--bg-secondary);
+    color: var(--text-primary) !important;
+    border: 2px solid var(--border-medium);
+    flex: 1;
+}
+
+.youtube-learn-btn:hover {
+    background: var(--accent-blue);
+    color: white !important;
+    border-color: var(--accent-blue);
+    transform: translateY(-2px);
+}
+
+/* Get Involved CTA */
+.get-involved-cta {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-3xl) var(--space-2xl);
+    margin-top: var(--space-3xl);
+    text-align: center;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+.get-involved-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+    background-size: cover;
+}
+
+.get-involved-cta h2 {
+    color: var(--white);
+    font-size: 2rem;
+    margin-bottom: var(--space-lg);
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.get-involved-cta p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto var(--space-xl);
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: var(--space-lg);
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+}
+
+.cta-btn {
+    background: var(--white);
+    color: var(--accent-blue) !important;
+    border: none;
+    padding: var(--space-lg) var(--space-xl);
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all var(--transition-normal);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    position: relative;
+    overflow: hidden;
+    min-width: 180px;
+    justify-content: center;
+}
+
+.cta-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 51, 102, 0.1), transparent);
+    transition: left var(--transition-slow);
+}
+
+.cta-btn:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    color: var(--accent-blue) !important;
+}
+
+.cta-btn:hover::before {
+    left: 100%;
+}
+
+.cta-btn.secondary {
+    background: transparent;
+    color: var(--white) !important;
+    border: 2px solid var(--white);
+}
+
+.cta-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white) !important;
+}
+
+/* Animations */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Form Validation */
+input:invalid:not(:focus):not(:placeholder-shown),
+textarea:invalid:not(:focus):not(:placeholder-shown) {
+    border-color: #ef4444;
+    background: rgba(239, 68, 68, 0.05);
+}
+
+input:valid:not(:focus):not(:placeholder-shown),
+textarea:valid:not(:focus):not(:placeholder-shown) {
+    border-color: #10b981;
+    background: rgba(16, 185, 129, 0.05);
+}
+
+/* Loading State */
+.form-loading {
+    position: relative;
+}
+
+.form-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: var(--space-lg);
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top: 2px solid var(--accent-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: translateY(-50%) rotate(0deg); }
+    100% { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* Dark Mode Adjustments */
+.dark-mode .page-header {
+    background: linear-gradient(135deg, var(--primary-blue-light) 0%, var(--accent-blue-light) 100%);
+}
+
+.dark-mode .contact-form,
+.dark-mode .contact-info-card,
+.dark-mode .social-card {
+    background: var(--bg-card);
+}
+
+.dark-mode input,
+.dark-mode textarea {
+    background: var(--gray-800);
+    border-color: var(--gray-600);
+}
+
+.dark-mode input:focus,
+.dark-mode textarea:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.3);
+}
+
+.dark-mode .contact-item {
+    background: var(--gray-800);
+}
+
+.dark-mode .contact-item:hover {
+    background: var(--gray-700);
+}
+
+.dark-mode .social-media-section {
+    background: var(--gray-800);
+}
+
+.dark-mode .youtube-learn-btn {
+    background: var(--gray-700);
+    color: var(--gray-200) !important;
+}
+
+.dark-mode .get-involved-cta {
+    background: linear-gradient(135deg, var(--primary-blue-light) 0%, var(--accent-blue-light) 100%);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .page-header {
+        margin: calc(-1 * var(--space-lg)) calc(-1 * var(--space-lg)) var(--space-xl);
+        padding: var(--space-xl) var(--space-lg);
+    }
+    
+    .page-header h1 {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+        padding: 0 var(--space-md);
+    }
+    
+    .contact-form,
+    .contact-info-card {
+        padding: var(--space-lg);
+    }
+    
+    .contact-form h2,
+    .contact-info-card h2 {
+        font-size: 1.5rem;
+    }
+    
+    input, textarea {
+        padding: var(--space-md);
+    }
+    
+    button[type="submit"] {
+        padding: var(--space-md) var(--space-xl);
+        font-size: 1rem;
+    }
+    
+    #thankYouMessage {
+        padding: var(--space-xl);
+    }
+    
+    .contact-item {
+        padding: var(--space-md);
+        flex-direction: column;
+        gap: var(--space-md);
+        text-align: center;
+    }
+    
+    .contact-icon {
+        margin: 0 auto;
+    }
+    
+    .social-media-section {
+        padding: var(--space-lg);
+    }
+    
+    .social-media-section h2 {
+        font-size: 1.75rem;
+    }
+    
+    .social-card {
+        padding: var(--space-lg);
+    }
+    
+    .dual-buttons {
+        flex-direction: column;
+    }
+    
+    .get-involved-cta {
+        padding: var(--space-2xl) var(--space-lg);
+    }
+    
+    .get-involved-cta h2 {
+        font-size: 1.75rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .cta-btn {
+        width: 100%;
+        max-width: 300px;
+        padding: var(--space-md) var(--space-lg);
+    }
+}
+
+/* Focus States for Accessibility */
+input:focus-visible,
+textarea:focus-visible,
+button[type="submit"]:focus-visible,
+.social-btn:focus-visible,
+.cta-btn:focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
+}
+
+.contact-text a:focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+/* Print Styles */
+@media print {
+    .page-header {
+        background: var(--primary-blue) !important;
+        color: black !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    
+    .contact-form,
+    .contact-info-card,
+    .social-card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        break-inside: avoid;
+    }
+    
+    button[type="submit"],
+    .social-btn,
+    .cta-btn {
+        background: #333 !important;
+        color: white !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    
+    .get-involved-cta {
+        background: #333 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    
+    .social-icon-circle,
+    .coming-soon-badge {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
     </style>
 </head>
 <body>
@@ -346,7 +1048,7 @@
 
     <main>
         <section class="page-header">
-            <h1>Get in Touch</h1>
+            <h1>Contact Us</h1>
             <p class="subtitle">Connect with TILT Initiative - Let's shape the future together</p>
             <p class="subtitle">We're always excited to hear from potential collaborators, supporters, and curious minds</p>
         </section>
@@ -400,8 +1102,8 @@
                         </div>
                         <div class="contact-text">
                             <h4>Based In</h4>
-                            <p>Global initiative with team members across multiple continents</p>
-                            <p>Primarily operating in European and Asian time zones</p>
+                            <p>TILT is based in Turkiye</p>
+                            <p>Thats GMT+3 Time Zone!</p>
                         </div>
                     </div>
                     
@@ -419,55 +1121,85 @@
             </section>
         </div>
         
-        <!-- Social Media Section -->
-        <section class="social-media-section">
-            <h2>Connect With Us on Social Media</h2>
-            <p>Follow us for updates, insights, and to join our growing community of thinkers and innovators.</p>
-            
-            <div class="social-grid">
-                <!-- Instagram Card -->
-                <div class="social-card">
-                    <div class="social-icon-large instagram-icon">
-                        <i class="fab fa-instagram"></i>
-                    </div>
-                    <h3>Instagram</h3>
-                    <p>Follow us for visual stories, project updates, and behind-the-scenes content from our initiatives.</p>
-                    <a href="https://www.instagram.com/tilt_initiative?igsh=MW5qOWdndmpldmlheg==" target="_blank" class="btn" style="margin-top: var(--space-lg);">
-                        <i class="fab fa-instagram"></i> Follow Us
-                    </a>
+<!-- Social Media Section -->
+<section class="social-media-section">
+    <h2>Connect With Our Community</h2>
+    <p class="section-subtitle">Follow us for updates, insights, and to join our growing community of thinkers and innovators.</p>
+    
+    <div class="social-grid">
+        <!-- Instagram Card -->
+        <div class="social-card instagram-card">
+            <div class="social-card-header">
+                <div class="social-icon-circle instagram-bg">
+                    <i class="fab fa-instagram"></i>
                 </div>
-                
-                <!-- LinkedIn Card -->
-                <div class="social-card">
-                    <div class="social-icon-large linkedin-icon">
-                        <i class="fab fa-linkedin-in"></i>
-                    </div>
-                    <h3>LinkedIn</h3>
-                    <p>Connect with us professionally. Follow for thought leadership, career opportunities, and industry insights.</p>
-                    <div class="social-stats">
-                    <a href="https://linkedin.com" target="_blank" class="btn" style="margin-top: var(--space-lg);">
-                        <i class="fab fa-linkedin-in"></i> Connect
-                    </a>
+                <h3>Instagram</h3>
+            </div>
+            <div class="social-card-body">
+                <p>TILT Instagram Has:</p>
+                <ul class="social-features">
+                    <li><i class="fas fa-image"></i> Project teasers and showcases</li>
+                    <li><i class="fas fa-users"></i> TILT's Team</li>
+                    <li><i class="fas fa-calendar"></i> Event updates</li>
+                </ul>
+            </div>
+            <div class="social-card-footer">
+                <a href="https://www.instagram.com/tilt_initiative?igsh=MW5qOWdndmpldmlheg==" target="_blank" class="social-btn instagram-btn">
+                    <i class="fab fa-instagram"></i> Follow Us
+                </a>
+            </div>
+        </div>
+        
+        <!-- LinkedIn Card -->
+        <div class="social-card linkedin-card">
+            <div class="social-card-header">
+                <div class="social-icon-circle linkedin-bg">
+                    <i class="fab fa-linkedin-in"></i>
                 </div>
-                
-                <!-- YouTube Card -->
-                <div class="social-card">
-                    <div class="social-icon-large youtube-icon">
-                        <i class="fab fa-youtube"></i>
-                    </div>
-                    <h3>YouTube <span class="coming-soon-badge">Coming Soon</span></h3>
-                    <p>Our video channel featuring project documentaries, expert interviews, and educational content about life and thought initiatives.</p>
-                    <div class="actions" style="margin-top: var(--space-lg); width: 100%;">
-                        <button class="btn" style="flex: 1;" onclick="showYouTubeNotify()">
-                            <i class="fas fa-bell"></i> Notify Me
-                        </button>
-                        <a href="#" class="btn secondary" style="flex: 1; text-align: center;">
-                            <i class="fas fa-play-circle"></i> Learn More
-                        </a>
-                    </div>
+                <h3>LinkedIn</h3>
+            </div>
+            <div class="social-card-body">
+                <p>TILT's LinkedIN Has:</p>
+                <ul class="social-features">
+                    <li><i class="fas fa-briefcase"></i> Academic Information</li>
+                    <li><i class="fas fa-lightbulb"></i> Thought leadership</li>
+                    <li><i class="fas fa-network-wired"></i> Professional networking</li>
+                </ul>
+            </div>
+            <div class="social-card-footer">
+                <a href="https://linkedin.com" target="_blank" class="social-btn linkedin-btn">
+                    <i class="fab fa-linkedin-in"></i> Connect
+                </a>
+            </div>
+        </div>
+        
+        <!-- YouTube Card -->
+        <div class="social-card youtube-card">
+            <div class="social-card-header">
+                <div class="social-icon-circle youtube-bg">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <div class="social-title-wrapper">
+                    <h3>YouTube</h3>
+                    <span class="coming-soon-badge">Coming Soon</span>
                 </div>
             </div>
-        </section>
+            <div class="social-card-body">
+                <p>TILT's youTube will have:</p>
+                <ul class="social-features">
+                    <li><i class="fas fa-video"></i> Documentaries</li>
+                    <li><i class="fas fa-user-tie"></i> Expert interviews</li>
+                    <li><i class="fas fa-graduation-cap"></i> Educational content</li>
+                </ul>
+            </div>
+            <div class="social-card-footer dual-buttons">
+                <button class="social-btn youtube-notify-btn" onclick="showYouTubeNotify()">
+                    <i class="fas fa-bell"></i> Notify Me
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
         
         <!-- Get Involved CTA -->
         <section class="get-involved-cta">

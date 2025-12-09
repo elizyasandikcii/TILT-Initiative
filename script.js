@@ -1278,3 +1278,90 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 }); // Closing brace for main DOMContentLoaded function
+// Add this to your script.js file
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all quick navigation cards
+    const navCards = document.querySelectorAll('.quick-nav-card');
+    
+    // Add IDs to your existing sections (if they don't have them)
+    // You'll need to add these IDs to your HTML sections:
+    // #news-section, #stocks-section, #currency-section, 
+    // #map-section, #calendar-section, #doodle-section
+    
+    // Smooth scroll to section
+    navCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                // Calculate header height offset
+                const headerHeight = document.getElementById('main-header').offsetHeight;
+                const targetPosition = targetSection.offsetTop - headerHeight - 20;
+                
+                // Smooth scroll
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Highlight the section
+                targetSection.classList.add('section-highlight');
+                
+                // Remove highlight after animation
+                setTimeout(() => {
+                    targetSection.classList.remove('section-highlight');
+                }, 2000);
+            }
+        });
+    });
+    
+    // Scroll up/down buttons
+    const scrollUpBtn = document.querySelector('.scroll-up');
+    const scrollDownBtn = document.querySelector('.scroll-down');
+    
+    if (scrollUpBtn) {
+        scrollUpBtn.addEventListener('click', () => {
+            window.scrollBy({
+                top: -window.innerHeight * 0.8,
+                behavior: 'smooth'
+            });
+        });
+    }
+    
+    if (scrollDownBtn) {
+        scrollDownBtn.addEventListener('click', () => {
+            window.scrollBy({
+                top: window.innerHeight * 0.8,
+                behavior: 'smooth'
+            });
+        });
+    }
+    
+    // Keyboard navigation support
+    document.addEventListener('keydown', (e) => {
+        // Number keys 1-6 for quick navigation
+        if (e.key >= '1' && e.key <= '6') {
+            const index = parseInt(e.key) - 1;
+            const navCard = navCards[index];
+            
+            if (navCard) {
+                e.preventDefault();
+                navCard.click();
+            }
+        }
+        
+        // Arrow up/down for scrolling
+        if (e.key === 'ArrowUp' && e.ctrlKey) {
+            e.preventDefault();
+            window.scrollBy({ top: -500, behavior: 'smooth' });
+        }
+        
+        if (e.key === 'ArrowDown' && e.ctrlKey) {
+            e.preventDefault();
+            window.scrollBy({ top: 500, behavior: 'smooth' });
+        }
+    });
+});

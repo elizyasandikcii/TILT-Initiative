@@ -64,7 +64,7 @@
     <main>
         <div class="content-columns">
             <div class="content-column">
-                <section class="upcoming-episodes">
+                <section id="top" class="upcoming-episodes">
                     <h2>TILT - The Initiative for Life and Thoughts</h2>
                     <p>A Youth-Led Initiative led by no one but world citizen teens! </p>
   <div class="placeholder-image">
@@ -95,6 +95,108 @@
                 </section>
             </div>
         </div>
+
+<section class="quick-nav-section">
+    <div class="quick-nav-container">
+        <h3 class="quick-nav-title">Jump to Section</h3>
+        <p class="quick-nav-subtitle">Quickly navigate to different parts of our main page</p>
+        
+        <div class="quick-nav-grid">
+            
+                     <a href="#calendar" class="quick-nav-card" data-section="calendar">
+                <div class="nav-card-icon">📅</div>
+                <div class="nav-card-content">
+                    <h4>Calendar</h4>
+                    <p>Interactive monthly calendar of TILT</p>
+                    <span class="nav-card-indicator">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </span>
+                </div>
+            </a>
+            
+            <a href="#news" class="quick-nav-card" data-section="news">
+                <div class="nav-card-icon">📰</div>
+                <div class="nav-card-content">
+                    <h4>Latest News from NYT</h4>
+                    <p>Stay updated with current events</p>
+                    <span class="nav-card-indicator">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </span>
+                </div>
+            </a>
+            
+            <a href="#stocks" class="quick-nav-card" data-section="stocks">
+                <div class="nav-card-icon">📈</div>
+                <div class="nav-card-content">
+                    <h4>Stock Market</h4>
+                    <p>Real-time financial data</p>
+                    <span class="nav-card-indicator">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </span>
+                </div>
+            </a>
+            
+            <a href="#currency" class="quick-nav-card" data-section="currency">
+                <div class="nav-card-icon">💱</div>
+                <div class="nav-card-content">
+                    <h4>Currency Exchange</h4>
+                    <p>Live exchange rates</p>
+                    <span class="nav-card-indicator">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </span>
+                </div>
+            </a>
+            
+            <a href="#map" class="quick-nav-card" data-section="map">
+                <div class="nav-card-icon">🗺️</div>
+                <div class="nav-card-content">
+                    <h4>World Map & Clocks</h4>
+                    <p>Global view and time zones</p>
+                    <span class="nav-card-indicator">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </span>
+                </div>
+            </a>
+            
+            <a href="#doodleden" class="quick-nav-card" data-section="doodle">
+                <div class="nav-card-icon">🎨</div>
+                <div class="nav-card-content">
+                    <h4>Doodle Den</h4>
+                    <p>Unlessh your creavitiy with drawing tools!</p>
+                    <span class="nav-card-indicator">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </span>
+                </div>
+            </a>
+        </div>
+        
+        <!-- Quick scroll indicators -->
+        <div class="scroll-indicators">
+            <button class="scroll-btn scroll-up" aria-label="Scroll up">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 19V5M5 12l7-7 7 7"/>
+                </svg>
+            </button>
+            <button class="scroll-btn scroll-down" aria-label="Scroll down">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 5v14M5 12l7 7 7-7"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</section>
         <section class="tilt-hero-section">
     <div class="tilt-hero-grid">
         <div class="tilt-hero-main">
@@ -204,7 +306,7 @@
                     <button id="next-month">Next &gt;</button>
                 </div>
             </div>
-            <table class="calendar">
+            <table id="calendar" class="calendar">
                 <thead>
                     <tr>
                         <th>Sun</th>
@@ -222,7 +324,7 @@
             </table>
         </section>
         <!-- News Section -->
-        <section class="news-section">
+        <section id="news" class="news-section">
             <div class="news-header">
                 <h2>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -265,7 +367,7 @@
 </section>
         
         <!-- Stock Market Section -->
-        <section class="stocks-section">
+        <section id="stocks" class="stocks-section">
             <div class="stocks-header">
                 <h2>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -311,7 +413,7 @@
         </section>
         
         <!-- Currency Exchange Section -->
-        <section class="currency-section">
+        <section id="currency" class="currency-section">
             <div class="currency-header">
                 <h2>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -334,7 +436,7 @@
         </section>
        
         <!-- Map and Clocks Section -->
-        <section class="map-clocks-section">
+        <section id="map" class="map-clocks-section">
             <div class="map-container" id="satellite-map"></div>
             
             <div class="clocks-container">
@@ -384,7 +486,7 @@
         </div>
     </div>
 </section>
-        <section class="doodle-den-section">
+        <section id="doodleden" class="doodle-den-section">
     <div class="section-header">
         <h2>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

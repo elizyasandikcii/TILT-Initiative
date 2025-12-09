@@ -1365,3 +1365,44 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+// Add this to your script.js file
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+    
+    // Show/hide button based on scroll position
+    function toggleScrollToTop() {
+        if (window.scrollY > 300) {
+            scrollToTopBtn.classList.add('visible');
+        } else {
+            scrollToTopBtn.classList.remove('visible');
+        }
+    }
+    
+    // Scroll to top function
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+    
+    // Initialize
+    if (scrollToTopBtn) {
+        // Listen for scroll events
+        window.addEventListener('scroll', toggleScrollToTop);
+        
+        // Listen for click events
+        scrollToTopBtn.addEventListener('click', scrollToTop);
+        
+        // Listen for keyboard (Enter/Space)
+        scrollToTopBtn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                scrollToTop();
+            }
+        });
+        
+        // Initial check
+        toggleScrollToTop();
+    }
+});

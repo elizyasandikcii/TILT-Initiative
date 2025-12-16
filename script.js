@@ -1406,3 +1406,89 @@ document.addEventListener('DOMContentLoaded', function() {
         toggleScrollToTop();
     }
 });
+
+
+// TÜRKÇE SAYFA YÖNLENDİRİCİ, TÜRKÇE SAYFALAR YAPINCA SİLİNECEK!!!
+// Function to update all Turkish page links
+function updateTurkishLinks() {
+    // List of Turkish page hrefs that should redirect to tr.html
+    const turkishPages = [
+        '/tr/hakkinda',
+        '/tr/blog',
+        '/tr/yonetim-kurulu-baskani',
+        '/tr/bize-ulasin',
+        '/tr/ekobiz',
+        '/tr/etik-kurul',
+        '/tr/dahil-olun',
+        '/tr/ana-projeler',
+        '/tr/projeler',
+        '/tr/sosyal-projeler',
+    ];
+    
+    // Find all links in the page
+    const allLinks = document.querySelectorAll('a[href]');
+    
+    allLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        
+        // Check if the link is to a Turkish page
+        if (turkishPages.some(turkishPage => href === turkishPage || href.startsWith(turkishPage + '/'))) {
+            // Update the href to point to tr.html
+            link.setAttribute('href', '/tr');
+            
+            // Optional: Add a title attribute to inform users
+            if (!link.hasAttribute('title')) {
+                link.setAttribute('title', 'Türkçe sayfalar yapım aşamasındadır');
+            }
+    });
+}
+
+// Function to handle new links added dynamically
+function observeDOMForNewLinks() {
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.addedNodes.length) {
+                updateTurkishLinks();
+            }
+        });
+    });
+    
+    // Start observing the document for changes
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+}
+
+// Run when DOM is fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    updateTurkishLinks();
+    observeDOMForNewLinks();
+    
+    // Also check for navigation menu links specifically
+    const navLinks = document.querySelectorAll('nav a[href]');
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && (href.includes('/tr/') || href === '/tr')) {
+            link.setAttribute('href', '/tr');
+        }
+    });
+});
+
+// Also update language selector links
+document.addEventListener('DOMContentLoaded', function() {
+    // Update language selector dropdown links
+    const languageMenuLinks = document.querySelectorAll('.language-menu a[href]');
+    languageMenuLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && href.includes('/tr/')) {
+            link.setAttribute('href', '/tr');
+        }
+    });
+    
+    // Update the active Turkish link in navigation if it exists
+    const activeTurkishLink = document.querySelector('nav a.active[href*="/tr"]');
+    if (activeTurkishLink) {
+        activeTurkishLink.setAttribute('href', '/tr');
+    }
+});

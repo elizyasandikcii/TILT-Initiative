@@ -1423,6 +1423,8 @@ function updateTurkishLinks() {
         '/tr/ana-projeler',
         '/tr/projeler',
         '/tr/sosyal-projeler',
+        '/tr',  // Add the root Turkish path too
+        '/tr/'  // And with trailing slash
     ];
     
     // Find all links in the page
@@ -1432,14 +1434,18 @@ function updateTurkishLinks() {
         const href = link.getAttribute('href');
         
         // Check if the link is to a Turkish page
-        if (turkishPages.some(turkishPage => href === turkishPage || href.startsWith(turkishPage + '/'))) {
+        if (href && turkishPages.some(turkishPage => href === turkishPage || href.startsWith(turkishPage + '/'))) {
             // Update the href to point to tr.html
-            link.setAttribute('href', '/tr');
+            link.setAttribute('href', '/tr.html');
             
             // Optional: Add a title attribute to inform users
             if (!link.hasAttribute('title')) {
                 link.setAttribute('title', 'Türkçe sayfalar yapım aşamasındadır');
             }
+            
+            // Add a data attribute to mark it as a Turkish link
+            link.setAttribute('data-turkish-redirect', 'true');
+        }
     });
 }
 
@@ -1460,35 +1466,91 @@ function observeDOMForNewLinks() {
     });
 }
 
-// Run when DOM is fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-    updateTurkishLinks();
-    observeDOMForNewLinks();
-    
+// Function to update navigation and language selector
+function updateNavigationLinks() {
     // Also check for navigation menu links specifically
     const navLinks = document.querySelectorAll('nav a[href]');
     navLinks.forEach(link => {
         const href = link.getAttribute('href');
-        if (href && (href.includes('/tr/') || href === '/tr')) {
-            link.setAttribute('href', '/tr');
+        if (href && (href.includes('/tr/') || href === '/tr' || href === '/tr/')) {
+            link.setAttribute('href', '/tr.html');
+            link.setAttribute('data-turkish-redirect', 'true');
         }
     });
-});
-
-// Also update language selector links
-document.addEventListener('DOMContentLoaded', function() {
+    
     // Update language selector dropdown links
     const languageMenuLinks = document.querySelectorAll('.language-menu a[href]');
     languageMenuLinks.forEach(link => {
         const href = link.getAttribute('href');
         if (href && href.includes('/tr/')) {
-            link.setAttribute('href', '/tr');
+            link.setAttribute('href', '/tr.html');
+            link.setAttribute('data-turkish-redirect', 'true');
         }
     });
     
     // Update the active Turkish link in navigation if it exists
     const activeTurkishLink = document.querySelector('nav a.active[href*="/tr"]');
     if (activeTurkishLink) {
-        activeTurkishLink.setAttribute('href', '/tr');
+        activeTurkishLink.setAttribute('href', '/tr.html');
+        activeTurkishLink.setAttribute('data-turkish-redirect', 'true');
     }
-});
+}
+
+// Function to handle direct navigation to Turkish pages
+function handleDirectNavigation() {
+    const currentPath = window.location.pathname;
+    const turkishPaths = [
+        '/tr',
+        '/tr/',
+        '/tr/hakkinda',
+        '/tr/blog',
+        '/tr/yonetim-kurulu-baskani',
+        '/tr/bize-ulasin',
+        '/tr/ekobiz',
+        '/tr/etik-kurul',
+        '/tr/dahil-olun',
+        '/tr/ana-projeler',
+        '/tr/projeler',
+        '/tr/sosyal-projeler'
+    ];
+    
+    // If someone directly visits a Turkish page URL, redirect them to tr.html
+    if (turkishPaths.includes(currentPath) || currentPath.startsWith('/tr/')) {
+        // Only redirect if we're not already on tr.html
+        if (currentPath !== '/tr.html') {
+            window.location.href = '/tr.html';
+        }
+    }
+}
+
+// Main initialization function
+function initializeTurkishRedirect() {
+    // Handle direct navigation first
+    handleDirectNavigation();
+    
+    // Update all links on the page
+    updateTurkishLinks();
+    
+    // Update navigation and language selector links
+    updateNavigationLinks();
+    
+    // Start observing for dynamically added content
+    observeDOMForNewLinks();
+    
+    console.log('Turkish page redirect script loaded. All Turkish links will point to /tr.html');
+}
+
+// Run when DOM is fully loaded
+document.addEventListener('DOMContentLoaded', initializeTurkishRedirect);
+
+// Also run after a short delay to catch any late-loaded content
+setTimeout(initializeTurkishRedirect, 500);
+
+// Export functions if needed (for module systems)
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        updateTurkishLinks,
+        updateNavigationLinks,
+        handleDirectNavigation
+    };
+}

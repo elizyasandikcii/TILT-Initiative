@@ -347,6 +347,96 @@
             outline: 2px solid var(--accent-blue);
             outline-offset: 2px;
         }
+        /* Fix for features list spacing */
+.features-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-lg) 0;
+    text-align: left;
+}
+
+.features-list li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+    color: var(--text-secondary);
+    padding: var(--space-xs) 0;
+}
+
+.features-list li i {
+    color: var(--construction-orange);
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+/* Fix for action buttons on mobile */
+@media (max-width: 768px) {
+    .action-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-md);
+    }
+    
+    .back-btn {
+        width: 100%;
+        max-width: 300px;
+        padding: var(--space-md) var(--space-lg);
+    }
+}
+
+/* Fix for estimated time links */
+.estimated-time a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color var(--transition-fast);
+    margin-left: 6px;
+}
+
+.estimated-time a:hover {
+    color: var(--accent-blue-light);
+    text-decoration: underline;
+}
+
+/* Fix for construction icon animation */
+.construction-icon {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, var(--construction-orange), var(--construction-orange-light));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-xl);
+    color: white;
+    font-size: 3.5rem;
+    box-shadow: 0 8px 32px rgba(245, 158, 11, 0.2);
+    animation: bounce 2s infinite;
+    position: relative;
+}
+
+/* Add spinning animation for spinner icons */
+.fa-spinner {
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Fix for progress bar width on mobile */
+@media (max-width: 768px) {
+    .progress-container {
+        margin: var(--space-lg) 0;
+    }
+    
+    .progress-label {
+        font-size: 0.85rem;
+    }
+}
     </style>
 </head>
 <body>
@@ -461,8 +551,8 @@
                     </div>
                     
                     <ul class="features-list">
-                        <li><i class="fas fa-check-spinner"></i> Ana sayfa yapım aşamasında</li>
-                        <li><i class="fas fa-check-spinner"></i> Hakkında sayfası yapım aşamasında</li>
+                        <li><i class="fas fa-spinner"></i> Ana sayfa yapım aşamasında</li>
+                        <li><i class="fas fa-spinner"></i> Hakkında sayfası yapım aşamasında</li>
                         <li><i class="fas fa-spinner"></i> Projeler sayfası bekliyor</li>
                         <li><i class="fas fa-clock"></i> Blog çevirisi planlandı</li>
                         <li><i class="fas fa-clock"></i> İletişim sayfası yakında</li>
@@ -482,8 +572,7 @@
                 </a>
             </div>
                 </div>
-            </div>
-            
+               </div>
             
             <div class="estimated-time">
                 <p>
@@ -494,21 +583,19 @@
                     <i class="fas fa-calendar"></i>
                     <strong>Tahmini Tamamlanma:</strong> Türkçe sayfaların Erken 2026'da yayınlanması bekleniyor
                 </p>
-                  <p style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(245, 158, 11, 0.2);">
-        <i class="fas fa-users"></i>
-        <strong>Visit Isik HS TILT Club's page:</strong> 
-        <a href="https://elizyasandikcii.github.io/TILT-Club" target="_blank" style="color: var(--accent-blue); text-decoration: none; font-weight: 600; margin-left: 6px;">
-            elizyasandikcii.github.io/TILT-Club
-        </a>
-        <br>
-        <i class="fas fa-user-group"></i>
-        <strong>Işık Lisesi TILT Kulübü sayfasını ziyaret edin:</strong> 
-        <a href="https://elizyasandikcii.github.io/TILT-Club" target="_blank" style="color: var(--accent-blue); text-decoration: none; font-weight: 600; margin-left: 6px;">
-            elizyasandikcii.github.io/TILT-Club
-        </a>
-    </p>
-</div>
-
+                <p style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(245, 158, 11, 0.2);">
+                    <i class="fas fa-users"></i>
+                    <strong>Visit Isik HS TILT Club's page:</strong> 
+                    <a href="https://elizyasandikcii.github.io/TILT-Club" target="_blank" style="color: var(--accent-blue); text-decoration: none; font-weight: 600; margin-left: 6px;">
+                        elizyasandikcii.github.io/TILT-Club
+                    </a>
+                    <br>
+                    <i class="fas fa-user-group"></i>
+                    <strong>Işık Lisesi TILT Kulübü sayfasını ziyaret edin:</strong> 
+                    <a href="https://elizyasandikcii.github.io/TILT-Club" target="_blank" style="color: var(--accent-blue); text-decoration: none; font-weight: 600; margin-left: 6px;">
+                        elizyasandikcii.github.io/TILT-Club
+                    </a>
+                </p>
             </div>
         </div>
     </main>

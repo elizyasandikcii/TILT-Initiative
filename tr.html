@@ -1,1 +1,580 @@
 
+<!DOCTYPE html>
+<html lang="tr">
+<head>    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Türkçe Sayfalar - TILT</title>
+    
+    <link rel="icon" href="https://raw.githubusercontent.com/elizyasandikcii/TILT-Initiative/3802bf8741f027b4bfeaf7c6daf9f2223e1aeb1e/logokas%CC%A7e.png" type="image/png" />
+    <link rel="stylesheet" href="style.css">
+     <script src="script.js" defer></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Maintenance Page Styles */
+        :root {
+            --construction-orange: #f59e0b;
+            --construction-orange-light: #fbbf24;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: var(--bg-primary);
+        }
+        
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-2xl);
+            text-align: center;
+        }
+        
+        .maintenance-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        /* Header with construction icon */
+        .maintenance-header {
+            margin-bottom: var(--space-3xl);
+            position: relative;
+        }
+        
+        .construction-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--construction-orange), var(--construction-orange-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-xl);
+            color: white;
+            font-size: 3.5rem;
+            box-shadow: 0 8px 32px rgba(245, 158, 11, 0.2);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .maintenance-header h1 {
+            font-size: 3rem;
+            margin-bottom: var(--space-md);
+            background: linear-gradient(135deg, var(--construction-orange), var(--construction-orange-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .maintenance-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        /* Bilingual Content */
+        .bilingual-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2xl);
+            margin-bottom: var(--space-3xl);
+        }
+        
+        @media (max-width: 768px) {
+            .bilingual-content {
+                grid-template-columns: 1fr;
+                gap: var(--space-xl);
+            }
+        }
+        
+        .language-column {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--border-radius-lg);
+            padding: var(--space-2xl);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .language-column:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+        
+        .language-column::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--construction-orange), var(--construction-orange-light));
+        }
+        
+        .language-flag {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .language-title {
+            font-size: 1.5rem;
+            margin-bottom: var(--space-md);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        .language-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-lg);
+            line-height: 1.6;
+        }
+        
+        .progress-container {
+            margin: var(--space-xl) 0;
+        }
+        
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--space-sm);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: var(--bg-secondary);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--construction-orange), var(--construction-orange-light));
+            border-radius: 4px;
+            width: 35%; /* WIP progress */
+            animation: progressPulse 2s infinite;
+        }
+        
+        @keyframes progressPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        .wip-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--construction-orange), var(--construction-orange-light));
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: var(--space-lg);
+            animation: badgePulse 2s infinite;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+        }
+        
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: var(--space-lg) 0;
+            text-align: left;
+        }
+        
+        .features-list li {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+            color: var(--text-secondary);
+        }
+        
+        .features-list li i {
+            color: var(--construction-orange);
+            width: 20px;
+        }
+        
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: var(--space-lg);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: var(--space-xl);
+        }
+        
+        .back-btn {
+            background: var(--accent-blue);
+            color: white !important;
+            text-decoration: none;
+            padding: var(--space-lg) var(--space-xl);
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all var(--transition-normal);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            min-width: 200px;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .back-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left var(--transition-slow);
+        }
+        
+        .back-btn:hover {
+            background: var(--accent-blue-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .back-btn:hover::before {
+            left: 100%;
+        }
+        
+        .back-btn.secondary {
+            background: transparent;
+            color: var(--text-primary) !important;
+            border: 2px solid var(--border-medium);
+        }
+        
+        .back-btn.secondary:hover {
+            background: var(--bg-secondary);
+            border-color: var(--accent-blue);
+        }
+        
+        /* Estimated Time */
+        .estimated-time {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(251, 191, 36, 0.1));
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: var(--border-radius);
+            padding: var(--space-lg);
+            margin-top: var(--space-xl);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .estimated-time p {
+            color: var(--text-secondary);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+        }
+        
+        .estimated-time i {
+            color: var(--construction-orange);
+        }
+        
+        /* Dark Mode Adjustments */
+        .dark-mode .language-column {
+            background: var(--bg-card);
+        }
+        
+        .dark-mode .estimated-time {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(251, 191, 36, 0.15));
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+        
+        .dark-mode .back-btn.secondary {
+            color: var(--text-primary) !important;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .maintenance-header h1 {
+                font-size: 2rem;
+            }
+            
+            .construction-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2.5rem;
+            }
+            
+            .language-column {
+                padding: var(--space-xl);
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .back-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+        
+        /* Focus States */
+        .back-btn:focus-visible {
+            outline: 2px solid var(--accent-blue);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <header id="main-header">
+        <div class="logo">
+            <img src="https://raw.githubusercontent.com/elizyasandikcii/TILT-Initiative/3802bf8741f027b4bfeaf7c6daf9f2223e1aeb1e/logokas%CC%A7e.png" alt="TILT Logo" class="logo-image">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/tr">Ana sayfa</a></li>
+                <li><a href="/tr">Hakkında</a></li>
+                <li><a href="/tr">Projeler</a></li>
+                <li><a href="/tr">Blog</a></li>
+                <li><a href="/tr">Dahil Olun</a></li>
+                <li><a href="/tr">Bize Ulaşın</a></li>
+                <li><a href="/tr" style="color: var(--accent-blue); font-weight: 600;">TILT'ten...</a></li>
+
+            </ul>
+        </nav>
+        <div class="header-controls">
+            <div class="language-selector">
+                <button class="language-btn">TR</button>
+                <div class="language-menu">
+                    <a href="/tr">🇬🇧 English</a>
+                    <a href="/tr" class="active">🇹🇷 Türkçe</a>
+                </div>
+            </div>
+            <div class="theme-switch">
+                <input type="checkbox" id="theme-toggle" class="theme-toggle">
+                <div class="theme-icon sun">
+                    <div class="sun-icon"></div>
+                </div>
+                <div class="theme-icon moon">
+                    <div class="moon-icon"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="maintenance-container">
+            <div class="maintenance-header">
+                <div class="construction-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h1>Çalışma Aşamasında</h1>
+                <p class="maintenance-subtitle">TILT'in Türkçe Dil Sayfaları, şu anda yapılmaya devam ediyor. Bu süreçte anlayışınız için teşekkür ederiz...</p>
+            </div>
+            
+            <div class="bilingual-content">
+                <!-- English Column -->
+                <div class="language-column">
+                    <div class="language-flag">🇬🇧</div>
+                    <div class="wip-badge">Under Construction</div>
+                    <h2 class="language-title">English Version</h2>
+                    <p class="language-subtitle">
+                        The Turkish version of TILT's website is currently a Work in Progress (WIP). 
+                        Our team is working hard to translate and adapt all content for our Turkish-speaking audience.
+                    </p>
+                    
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Translation Progress</span>
+                            <span>NA%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                    
+                    <ul class="features-list">
+                        <li><i class="fas fa-spinner"></i> Home page in progress</li>
+                        <li><i class="fas fa-spinner"></i> About page in progress</li>
+                        <li><i class="fas fa-spinner"></i> Projects page pending</li>
+                        <li><i class="fas fa-clock"></i> Blog translation scheduled</li>
+                        <li><i class="fas fa-clock"></i> Contact page coming soon</li>
+                      <li><i class="fas fa-clock"></i> Other pages coming soon</li>
+                    </ul>
+                    
+                    <p class="language-subtitle">
+                        We appreciate your patience as we work to provide a complete Turkish experience. 
+                        For now, please use the English version or contact us for assistance.
+                    </p>
+                   <div class="action-buttons">
+                <a href="javascript:history.back()" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Go Back To The Previous page
+                </a>
+                <a href="/" class="back-btn secondary">
+                    <i class="fas fa-home"></i> Go Back To Home Page
+                </a>
+            </div>
+                </div>
+                
+                <!-- Turkish Column -->
+                <div class="language-column">
+                    <div class="language-flag">🇹🇷</div>
+                    <div class="wip-badge">Yapım Aşamasında</div>
+                    <h2 class="language-title">Türkçe Versiyon</h2>
+                    <p class="language-subtitle">
+                        TILT web sitesinin Türkçe versiyonu şu anda Yapım Aşamasında (WIP). 
+                        Ekibimiz, Türkçe konuşan kitlemiz için tüm içeriği çevirmek ve uyarlamak için sıkı çalışıyor.
+                    </p>
+                    
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Çeviri İlerlemesi</span>
+                            <span>%NA</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                    
+                    <ul class="features-list">
+                        <li><i class="fas fa-check-spinner"></i> Ana sayfa yapım aşamasında</li>
+                        <li><i class="fas fa-check-spinner"></i> Hakkında sayfası yapım aşamasında</li>
+                        <li><i class="fas fa-spinner"></i> Projeler sayfası bekliyor</li>
+                        <li><i class="fas fa-clock"></i> Blog çevirisi planlandı</li>
+                        <li><i class="fas fa-clock"></i> İletişim sayfası yakında</li>
+                      <li><i class="fas fa-clock"></i> Diğer sayfalar yakında</li>
+                    </ul>
+                    
+                    <p class="language-subtitle">
+                        Tam bir Türkçe deneyimi sunmak için çalışırken sabrınız için teşekkür ederiz. 
+                        Şimdilik lütfen İngilizce versiyonu kullanın veya yardım için bizimle iletişime geçin.
+                    </p>
+                   <div class="action-buttons">
+                <a href="javascript:history.back()" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Önceki Sayfaya Geri dönün
+                </a>
+                <a href="/" class="back-btn secondary">
+                    <i class="fas fa-home"></i> Ana Sayfaya Geri Dönün
+                </a>
+            </div>
+                </div>
+            </div>
+            
+            
+            <div class="estimated-time">
+                <p>
+                    <i class="fas fa-clock"></i>
+                    <strong>Estimated Completion:</strong> Turkish pages expected to be ready by early 2026
+                </p>
+                <p style="margin-top: 8px; font-size: 0.9rem;">
+                    <i class="fas fa-calendar"></i>
+                    <strong>Tahmini Tamamlanma:</strong> Türkçe sayfaların Erken 2026'da yayınlanması bekleniyor
+                </p>
+                  <p style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(245, 158, 11, 0.2);">
+        <i class="fas fa-users"></i>
+        <strong>Visit Isik HS TILT Club's page:</strong> 
+        <a href="https://elizyasandikcii.github.io/TILT-Club" target="_blank" style="color: var(--accent-blue); text-decoration: none; font-weight: 600; margin-left: 6px;">
+            elizyasandikcii.github.io/TILT-Club
+        </a>
+        <br>
+        <i class="fas fa-user-group"></i>
+        <strong>Işık Lisesi TILT Kulübü sayfasını ziyaret edin:</strong> 
+        <a href="https://elizyasandikcii.github.io/TILT-Club" target="_blank" style="color: var(--accent-blue); text-decoration: none; font-weight: 600; margin-left: 6px;">
+            elizyasandikcii.github.io/TILT-Club
+        </a>
+    </p>
+</div>
+
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="social-links">
+            <a href="https://www.instagram.com/tilt_initiative?igsh=MW5qOWdndmpldmlheg==" target="_blank" class="social-link">
+                <svg class="social-icon" viewBox="0 0 24 24" fill="var(--instagram-color)">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" class="social-link">
+                <svg class="social-icon" viewBox="0 0 24 24" fill="var(--linkedin-color)">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+            </a>
+        </div>
+        <p>© 2025 TILT – Hayat ve Düşünce için İnisiyatif</p>
+        <p>8.6 milyar nöron ve bir hayal ile tasarlandı... </p>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Check for saved theme or preferred scheme
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
+            document.body.classList.add('dark-mode');
+            themeToggle.checked = true;
+        }
+        
+        themeToggle.addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        // Header shrink on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('shrink');
+            } else {
+                header.classList.remove('shrink');
+            }
+        });
+        
+        // Language selector functionality
+        document.querySelector('.language-btn').addEventListener('click', function() {
+            const menu = document.querySelector('.language-menu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        });
+        
+        // Close language menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const languageSelector = document.querySelector('.language-selector');
+            if (!languageSelector.contains(event.target)) {
+                document.querySelector('.language-menu').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

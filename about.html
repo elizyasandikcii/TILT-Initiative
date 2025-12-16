@@ -3,36 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - TILT</title>
-   <!-- Favicon -->
+    <title>About - TILT Initiative</title>
+    <!-- Favicon -->
     <link rel="icon" href="https://raw.githubusercontent.com/elizyasandikcii/TILT-Initiative/3802bf8741f027b4bfeaf7c6daf9f2223e1aeb1e/logokas%CC%A7e.png" type="image/png" />
-   <!-- CSS dosyanı buraya bağla -->
+    <!-- CSS files -->
     <link rel="stylesheet" href="style.css">
-      <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <header id="main-header">
-           <div class="logo">
-            <img src="https://raw.githubusercontent.com/elizyasandikcii/TILT-Initiative/3802bf8741f027b4bfeaf7c6daf9f2223e1aeb1e/logokas%CC%A7e.png" alt="TILT Logo"class="logo-image">
+        <div class="logo">
+            <img src="https://raw.githubusercontent.com/elizyasandikcii/TILT-Initiative/3802bf8741f027b4bfeaf7c6daf9f2223e1aeb1e/logokas%CC%A7e.png" alt="TILT Logo" class="logo-image">
         </div>
         <nav>
             <ul>
-          <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about" class="active">About</a></li>
                 <li><a href="/projects">Projects</a></li>
                 <li><a href="/blog">Blog</a></li>
                 <li><a href="/get-involved">Get Involved</a></li>
-                <li><a href="/contact-us">Contact Us</a></li> 
+                <li><a href="/contact-us">Contact Us</a></li>
                 <li><a href="/tilt" style="color: var(--accent-blue); font-weight: 600;">More from TILT</a></li>
-
             </ul>
         </nav>
         <div class="header-controls">
             <div class="language-selector">
                 <button class="language-btn">EN</button>
                 <div class="language-menu">
-                    <a href="/about">🇬🇧English</a>
-                    <a href="/tr/hakkinda">🇹🇷Türkçe</a>
+                    <a href="/about">🇬🇧 English</a>
+                    <a href="/tr/hakkinda">🇹🇷 Türkçe</a>
                 </div>
             </div>
             <div class="theme-switch">
@@ -48,56 +48,191 @@
     </header>
 
     <main>
-        <div class="page-header">
-            <h1>About TILT</h1>
-            <p>The Initiative for Life and Thoughts</p>
-        </div>
-
-        <section class="content-section">
-            <h2>Our Vision</h2>
-            <p>TILT helps young people use their ideas, creativity, and emotions to make a better world. We combine science, art, and care to build tools that support healing, resilience, and positive change.</p>
-            
-            <p>TILT exists to empower youth to imagine the future, redesign reality, and bring bold ideas to life. We are a movement rooted in the belief that young minds, when equipped with knowledge, empathy, and creativity, can spark revolutions of thought and action. At TILT, we blend science, art, and humanity into dynamic tools that not only heal but also ignite innovation and purpose. From emotional resilience technologies to systems that simulate hope and possibility, we are building a future where youth are not just participants—but creators of change. Our mission is to transform trauma into strength, curiosity into courage, and dreams into data-driven solutions that shape a more just, beautiful, and sustainable world.</p>
-        </section>
-
-        <section class="content-section">
-            <h2>What We Do</h2>
-            <p>We lead interdisciplinary projects that tackle real-world problems, from neuroscience and emotional resilience to biodiversity and clean technology. TILT is a nonprofit driven by young minds, and our motto is simple: "Tilt your head and dream."</p>
-        </section>
-
-        <section class="content-section">
-            <h2>Our Values</h2>
-            <div class="values-grid">
-                <div class="value-item">
-                    <h3>✨ Innovation with depth</h3>
-                    <p>We believe in creating meaningful change through thoughtful innovation that addresses root causes.</p>
+        <!-- Enhanced Hero Section -->
+        <section class="about-hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">About TILT</h1>
+                    <p class="hero-subtitle">The Initiative for Life and Thoughts</p>
+                    <p class="hero-description">Empowering youth to imagine the future, redesign reality, and bring bold ideas to life</p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">20+</span>
+                            <span class="stat-label">Young Innovators</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">7+</span>
+                            <span class="stat-label">Active Projects</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="value-item">
-                    <h3>🧠 Science + soul</h3>
-                    <p>We integrate empirical evidence with human-centered design and emotional intelligence.</p>
-                </div>
-                <div class="value-item">
-                    <h3>🌍 Equity, sustainability, and empathy</h3>
-                    <p>Our work is guided by principles of justice, ecological stewardship, and deep compassion.</p>
-                </div>
-                <div class="value-item">
-                    <h3>🚀 Leadership by youth, for the world</h3>
-                    <p>We empower young people to lead initiatives that create global impact.</p>
+                <div class="hero-visual">
+                    <div class="visual-element">
+                        <i class="fas fa-brain"></i>
+                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
                 </div>
             </div>
         </section>
 
-            <section id="board" class="content-section">
-    <h2>Our Team</h2>
+        <!-- Vision Section with Image -->
+        <section class="content-section vision-section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h2>Our Vision</h2>
+                <p class="section-subtitle">Shaping a future where youth are creators of change</p>
+            </div>
+            <div class="vision-content">
+                <div class="vision-text">
+                    <p>TILT helps young people use their ideas, creativity, and emotions to make a better world. We combine science, art, and care to build tools that support healing, resilience, and positive change.</p>
+                    <p>TILT exists to empower youth to imagine the future, redesign reality, and bring bold ideas to life. We are a movement rooted in the belief that young minds, when equipped with knowledge, empathy, and creativity, can spark revolutions of thought and action.</p>
+                    <blockquote class="vision-quote">
+                        <i class="fas fa-quote-left"></i>
+                        <p>TILT your head and dream...</p>
+                        <footer>— TILT Motto</footer>
+                    </blockquote>
+                </div>
+                <div class="vision-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-users"></i>
+                        <p>TILT Community</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- Tab Navigation -->
-    <div class="board-tabs">
-        <button class="tab-button active" data-tab="board">Board of Directors</button>
-        <button class="tab-button" data-tab="academic">Academic Advisors</button>
-        <button class="tab-button" data-tab="ethics">Ethics Committee</button>
-    </div>
+        <!-- What We Do - Cards Grid -->
+        <section class="content-section what-we-do">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <h2>What We Do</h2>
+                <p class="section-subtitle">Interdisciplinary projects tackling real-world problems</p>
+            </div>
+            <div class="do-grid">
+                <div class="do-card">
+                    <div class="do-icon neuroscience">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Neuroscience & Emotional Resilience</h3>
+                    <p>Developing technologies and tools that support mental health and emotional wellbeing for young people.</p>
+                </div>
+                <div class="do-card">
+                    <div class="do-icon biodiversity">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Biodiversity & Clean Tech</h3>
+                    <p>Creating innovative solutions for environmental challenges through interdisciplinary research.</p>
+                </div>
+                <div class="do-card">
+                    <div class="do-icon social">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Social Impact Initiatives</h3>
+                    <p>Leading projects that create positive social change and community engagement worldwide.</p>
+                </div>
+                <div class="do-card">
+                    <div class="do-icon innovation">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Youth Innovation Labs</h3>
+                    <p>Providing platforms for young innovators to develop and test their ideas with expert guidance.</p>
+                </div>
+            </div>
+        </section>
 
-    <!-- Board of Directors Tab -->
+        <!-- Enhanced Values Section -->
+        <section class="content-section values-section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h2>Our Core Values</h2>
+                <p class="section-subtitle">The principles that guide everything we do</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Innovation with Depth</h3>
+                    <p>We believe in creating meaningful change through thoughtful innovation that addresses root causes, not just symptoms.</p>
+                    <ul class="value-points">
+                        <li><i class="fas fa-check"></i> Research-driven solutions</li>
+                        <li><i class="fas fa-check"></i> Long-term impact focus</li>
+                        <li><i class="fas fa-check"></i> Ethical innovation</li>
+                    </ul>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-heart-pulse"></i>
+                    </div>
+                    <h3>Science + Soul</h3>
+                    <p>We integrate empirical evidence with human-centered design and emotional intelligence for holistic solutions.</p>
+                    <ul class="value-points">
+                        <li><i class="fas fa-check"></i> Data-informed decisions</li>
+                        <li><i class="fas fa-check"></i> Empathy-driven design</li>
+                        <li><i class="fas fa-check"></i> Human-first approach</li>
+                    </ul>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h3>Equity & Sustainability</h3>
+                    <p>Our work is guided by principles of justice, ecological stewardship, and deep compassion for all beings.</p>
+                    <ul class="value-points">
+                        <li><i class="fas fa-check"></i> Inclusive practices</li>
+                        <li><i class="fas fa-check"></i> Environmental responsibility</li>
+                        <li><i class="fas fa-check"></i> Global perspective</li>
+                    </ul>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-users-gear"></i>
+                    </div>
+                    <h3>Youth Leadership</h3>
+                    <p>We empower young people to lead initiatives that create global impact, believing in their potential to change the world.</p>
+                    <ul class="value-points">
+                        <li><i class="fas fa-check"></i> Youth-led decision making</li>
+                        <li><i class="fas fa-check"></i> Mentorship & guidance</li>
+                        <li><i class="fas fa-check"></i> Global collaboration</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Team Section -->
+        <section id="board" class="content-section team-section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h2>Meet Our Team</h2>
+                <p class="section-subtitle">The passionate individuals driving TILT forward</p>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="team-tabs">
+                <button class="team-tab active" data-tab="board">
+                    <i class="fas fa-crown"></i>
+                    <span>Board of Directors</span>
+                </button>
+                <button class="team-tab" data-tab="academic">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Academic Advisors</span>
+                </button>
+                <button class="team-tab" data-tab="ethics">
+                    <i class="fas fa-balance-scale"></i>
+                    <span>Ethics Committee</span>
+                </button>
+            </div>
+
+             <!-- Board of Directors Tab -->
                  <div class="tab-content active" id="board-content">
         <div class="board-grid">
             <div class="board-member" onclick="window.location.href='/chairwoman'">
@@ -236,8 +371,28 @@
         </div>
     </div>
 </section>
+
+        <!-- Call to Action -->
+        <section class="about-cta">
+            <div class="cta-content">
+                <h2>Join Our Movement</h2>
+                <p>Be part of a community that's redefining what young minds can achieve.</p>
+                <div class="cta-buttons">
+                    <a href="/get-involved" class="cta-btn primary">
+                        <i class="fas fa-user-plus"></i> Get Involved
+                    </a>
+                    <a href="/projects" class="cta-btn secondary">
+                        <i class="fas fa-project-diagram"></i> Explore Projects
+                    </a>
+                    <a href="/contact-us" class="cta-btn outline">
+                        <i class="fas fa-envelope"></i> Contact Us
+                    </a>
+                </div>
+            </div>
+        </section>
     </main>
-<footer>
+
+   <footer>
     <div class="social-links">
         <a href="https://www.instagram.com/tilt_initiative?igsh=MW5qOWdndmpldmlheg==" target="_blank" class="social-link">
             <svg class="social-icon" viewBox="0 0 24 24" fill="var(--instagram-color)">
@@ -270,10 +425,15 @@
     <p>Designed with 8.6 billion neurons and a dream</p>
 </footer>
 
-        <script>
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script>
         // Tab functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabButtons = document.querySelectorAll('.team-tab');
             const tabContents = document.querySelectorAll('.tab-content');
             
             tabButtons.forEach(button => {
@@ -290,48 +450,37 @@
                     document.getElementById(tabId).classList.add('active');
                 });
             });
+
+            // Scroll to top functionality
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Team member card hover effects
+            const teamCards = document.querySelectorAll('.team-member-card');
+            teamCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                });
+            });
         });
     </script>
-    
-    <style>
-        /* LinkedIn Button Styles */
-        .linkedin-link {
-            margin-top: 12px;
-        }
-        
-        .linkedin-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            background-color: #0077b5;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .linkedin-btn:hover {
-            background-color: #005885;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        
-        .linkedin-icon {
-            width: 18px;
-            height: 18px;
-        }
-        
-        /* Dark mode adjustments */
-        .dark-mode .linkedin-btn {
-            background-color: #0077b5;
-        }
-        
-        .dark-mode .linkedin-btn:hover {
-            background-color: #005885;
-        }
-    </style>
 </body>
 </html>

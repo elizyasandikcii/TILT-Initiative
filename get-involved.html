@@ -7,137 +7,1108 @@
     
     <link rel="icon" href="https://raw.githubusercontent.com/elizyasandikcii/TILT-Initiative/3802bf8741f027b4bfeaf7c6daf9f2223e1aeb1e/logokas%CC%A7e.png" type="image/png" />
 
-  <script src="script.js" defer></script>
-
-  <!-- CSS dosyanı buraya bağla -->
-    <link rel="stylesheet" href="style.css">
-
+    <style>
+        /* ===========================================
+           MARINE DEAL NEWS STYLES - Professional, clean, business-oriented
+        =========================================== */
+        
+        :root {
+            /* Primary Colors - Marine Deal Blue Theme */
+            --primary-dark: #001F3F;      /* Deep Navy */
+            --primary-main: #003366;      /* Marine Blue */
+            --primary-light: #0055A4;     /* Ocean Blue */
+            --primary-accent: #0074D9;    /* Bright Blue */
+            
+            /* Secondary Colors */
+            --secondary-dark: #2E4053;
+            --secondary-main: #566573;
+            --secondary-light: #85929E;
+            
+            /* Accent Colors */
+            --accent-success: #2ECC71;
+            --accent-warning: #FF851B;
+            --accent-danger: #FF4136;
+            --accent-info: #7FDBFF;
+            --accent-yellow: #FFDC00;
+            
+            /* Neutral Colors */
+            --neutral-0: #FFFFFF;
+            --neutral-50: #F8F9FA;
+            --neutral-100: #E9ECEF;
+            --neutral-200: #DEE2E6;
+            --neutral-300: #CED4DA;
+            --neutral-400: #ADB5BD;
+            --neutral-500: #6C757D;
+            --neutral-600: #495057;
+            --neutral-700: #343A40;
+            --neutral-800: #212529;
+            --neutral-900: #000000;
+            
+            /* Typography */
+            --font-primary: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            --font-heading: 'Georgia', 'Times New Roman', 'Times', serif;
+            --font-mono: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+            
+            /* Spacing */
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-5: 24px;
+            --space-6: 32px;
+            --space-7: 48px;
+            --space-8: 64px;
+            --space-9: 96px;
+            
+            /* Border Radius */
+            --radius-sm: 2px;
+            --radius-md: 4px;
+            --radius-lg: 8px;
+            --radius-xl: 12px;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
+            
+            /* Transitions */
+            --transition-fast: 150ms ease;
+            --transition-normal: 250ms ease;
+            --transition-slow: 350ms ease;
+        }
+        
+        /* ===========================================
+           RESET & BASE STYLES
+        =========================================== */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--neutral-800);
+            background-color: var(--neutral-50);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: var(--space-4);
+        }
+        
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.75rem; }
+        h4 { font-size: 1.5rem; }
+        h5 { font-size: 1.25rem; }
+        h6 { font-size: 1rem; }
+        
+        p {
+            margin-bottom: var(--space-4);
+        }
+        
+        a {
+            color: var(--primary-light);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+        
+        a:hover {
+            color: var(--primary-accent);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        button, 
+        input, 
+        select, 
+        textarea {
+            font-family: inherit;
+            font-size: inherit;
+        }
+        
+        /* ===========================================
+           HEADER STYLES - Professional Navigation
+        =========================================== */
+        
+        #main-header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-main));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: var(--space-4) 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+        
+        .logo-image {
+            height: 40px;
+            width: auto;
+            filter: brightness(0) invert(1);
+            transition: transform var(--transition-normal);
+        }
+        
+        .logo-image:hover {
+            transform: scale(1.05);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: var(--space-5);
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav a {
+            color: var(--neutral-0);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-normal);
+            position: relative;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--accent-info);
+            transition: width var(--transition-normal);
+        }
+        
+        nav a:hover::after {
+            width: 80%;
+        }
+        
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        nav a.active {
+            background: var(--primary-accent);
+        }
+        
+        .more-tilt {
+            background: var(--neutral-0);
+            color: var(--primary-main) !important;
+            padding: var(--space-2) var(--space-5) !important;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            margin-left: var(--space-2);
+        }
+        
+        .more-tilt:hover {
+            background: var(--accent-info);
+            color: var(--primary-dark) !important;
+        }
+        
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+        
+        /* Language Selector */
+        .language-selector {
+            position: relative;
+        }
+        
+        .language-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--neutral-0);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-size: 0.9rem;
+            min-width: 60px;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .language-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--neutral-0);
+            border: 1px solid var(--neutral-200);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            min-width: 140px;
+            display: none;
+            z-index: 100;
+            margin-top: var(--space-2);
+        }
+        
+        .language-menu a {
+            display: block;
+            padding: var(--space-3) var(--space-4);
+            color: var(--neutral-700);
+            text-decoration: none;
+            border-bottom: 1px solid var(--neutral-100);
+            transition: background var(--transition-fast);
+        }
+        
+        .language-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        .language-menu a:hover {
+            background: var(--neutral-50);
+            color: var(--primary-main);
+        }
+        
+        .language-selector:hover .language-menu {
+            display: block;
+        }
+        
+        /* ===========================================
+           MAIN CONTENT LAYOUT
+        =========================================== */
+        
+        main {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: var(--space-6);
+        }
+        
+        /* ===========================================
+           GET INVOLVED HERO SECTION
+        =========================================== */
+        
+        .involve-hero-section {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-main));
+            border-radius: var(--radius-lg);
+            padding: var(--space-8) var(--space-6);
+            margin: var(--space-6) 0 var(--space-8);
+            position: relative;
+            overflow: hidden;
+            color: var(--neutral-0);
+        }
+        
+        .involve-hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 116, 217, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(127, 219, 255, 0.05) 0%, transparent 50%);
+        }
+        
+        .involve-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .involve-hero-badge {
+            display: inline-block;
+            background: var(--accent-yellow);
+            color: var(--primary-dark);
+            padding: var(--space-2) var(--space-5);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: var(--space-5);
+        }
+        
+        .involve-hero-section h1 {
+            color: var(--neutral-0) !important;
+            font-size: 3rem;
+            margin: var(--space-4) 0 var(--space-5);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .involve-hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin: var(--space-5) auto;
+            line-height: 1.8;
+            max-width: 700px;
+            color: var(--neutral-0);
+        }
+        
+        /* ===========================================
+           CONTENT SECTIONS
+        =========================================== */
+        
+        .content-section {
+            background: var(--neutral-0);
+            border: 1px solid var(--neutral-200);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin: var(--space-6) 0;
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+        }
+        
+        .content-section:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .section-header {
+            margin-bottom: var(--space-6);
+            text-align: center;
+        }
+        
+        .section-header h2 {
+            color: var(--primary-dark);
+            margin-bottom: var(--space-3);
+            display: inline-block;
+            padding-bottom: var(--space-3);
+            position: relative;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary-accent);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            color: var(--neutral-600);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* ===========================================
+           INVOLVEMENT OPTIONS SECTION
+        =========================================== */
+        
+        .involvement-options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-5);
+            margin: var(--space-5) 0;
+        }
+        
+        .involvement-card {
+            background: var(--neutral-50);
+            border-radius: var(--radius-md);
+            padding: var(--space-5);
+            text-align: center;
+            border: 1px solid var(--neutral-200);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .involvement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-accent), var(--accent-info));
+        }
+        
+        .researcher-card::before {
+            background: linear-gradient(90deg, var(--accent-success), var(--primary-light));
+        }
+        
+        .partner-card::before {
+            background: linear-gradient(90deg, var(--accent-yellow), var(--accent-warning));
+        }
+        
+        .team-card::before {
+            background: linear-gradient(90deg, var(--primary-accent), var(--accent-info));
+        }
+        
+        .involvement-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+            background: var(--neutral-0);
+        }
+        
+        .involvement-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-4);
+            font-size: 2.5rem;
+            color: white;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-accent));
+        }
+        
+        .researcher-icon {
+            background: linear-gradient(135deg, var(--accent-success), var(--primary-light));
+        }
+        
+        .partner-icon {
+            background: linear-gradient(135deg, var(--accent-yellow), var(--accent-warning));
+        }
+        
+        .team-icon {
+            background: linear-gradient(135deg, var(--primary-accent), var(--accent-info));
+        }
+        
+        .involvement-card h3 {
+            color: var(--primary-dark);
+            margin-bottom: var(--space-3);
+            font-size: 1.3rem;
+        }
+        
+        .involvement-card p {
+            color: var(--neutral-600);
+            line-height: 1.6;
+            margin-bottom: var(--space-5);
+            font-size: 0.95rem;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: var(--space-5) 0;
+        }
+        
+        .action-btn {
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-3);
+            transition: all var(--transition-normal);
+            border: 2px solid transparent;
+            justify-content: center;
+            min-width: 180px;
+            cursor: pointer;
+        }
+        
+        .action-btn.primary {
+            background: var(--primary-accent);
+            color: var(--neutral-0);
+        }
+        
+        .action-btn.primary:hover {
+            background: var(--primary-light);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .action-btn.secondary {
+            background: var(--accent-yellow);
+            color: var(--primary-dark);
+        }
+        
+        .action-btn.secondary:hover {
+            background: var(--neutral-0);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .action-btn.outline {
+            background: transparent;
+            color: var(--primary-main);
+            border-color: var(--primary-main);
+        }
+        
+        .action-btn.outline:hover {
+            background: var(--primary-main);
+            color: var(--neutral-0);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        /* ===========================================
+           QUICK LINKS SECTION
+        =========================================== */
+        
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-4);
+            margin: var(--space-5) 0;
+        }
+        
+        .quick-link-card {
+            background: var(--neutral-50);
+            border-radius: var(--radius-md);
+            padding: var(--space-5);
+            text-align: center;
+            border: 1px solid var(--neutral-200);
+            transition: all var(--transition-normal);
+            cursor: pointer;
+        }
+        
+        .quick-link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+            background: var(--neutral-0);
+        }
+        
+        .quick-link-card h3 {
+            color: var(--primary-dark);
+            margin-bottom: var(--space-3);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            justify-content: center;
+        }
+        
+        .quick-link-card p {
+            color: var(--neutral-600);
+            line-height: 1.6;
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+        
+        /* ===========================================
+           PARTNER POPUP STYLES
+        =========================================== */
+        
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            backdrop-filter: blur(3px);
+        }
+        
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--neutral-0);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            z-index: 1000;
+            box-shadow: var(--shadow-xl);
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid var(--neutral-200);
+        }
+        
+        .close-popup {
+            position: absolute;
+            top: var(--space-3);
+            right: var(--space-3);
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--neutral-600);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all var(--transition-fast);
+        }
+        
+        .close-popup:hover {
+            background: var(--neutral-100);
+            color: var(--primary-dark);
+        }
+        
+        .popup h2 {
+            color: var(--primary-dark);
+            margin-bottom: var(--space-5);
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        
+        .popup-content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+        
+        .popup-content button {
+            padding: var(--space-3) var(--space-4);
+            border-radius: var(--radius-md);
+            border: 2px solid var(--neutral-200);
+            background: var(--neutral-0);
+            color: var(--neutral-700);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+        }
+        
+        .popup-content button:hover {
+            background: var(--primary-light);
+            color: var(--neutral-0);
+            border-color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+        
+        /* ===========================================
+           CONTACT INFO SECTION
+        =========================================== */
+        
+        .contact-info {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-main));
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin: var(--space-6) 0;
+            text-align: center;
+            color: var(--neutral-0);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 70%, rgba(127, 219, 255, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(0, 116, 217, 0.2) 0%, transparent 50%);
+        }
+        
+        .contact-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .contact-content h2 {
+            color: var(--neutral-0);
+            font-size: 1.8rem;
+            margin-bottom: var(--space-4);
+        }
+        
+        .contact-content p {
+            color: var(--neutral-0);
+            opacity: 0.9;
+            margin-bottom: var(--space-4);
+            font-size: 1.1rem;
+        }
+        
+        .email-link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-5);
+            background: var(--accent-yellow);
+            color: var(--primary-dark);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all var(--transition-normal);
+        }
+        
+        .email-link:hover {
+            background: var(--neutral-0);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        /* ===========================================
+           FOOTER - Professional Business Footer
+        =========================================== */
+        
+        footer {
+            background: var(--primary-dark);
+            color: var(--neutral-0);
+            padding: var(--space-7) var(--space-6);
+            text-align: center;
+            margin-top: var(--space-8);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-5);
+            margin-bottom: var(--space-5);
+        }
+        
+        .social-link {
+            color: var(--neutral-0);
+            transition: all var(--transition-normal);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-link:hover {
+            background: var(--primary-accent);
+            color: var(--neutral-0);
+            transform: translateY(-2px);
+        }
+        
+        .social-icon {
+            width: 20px;
+            height: 20px;
+        }
+        
+        /* Social Media Colors */
+        :root {
+            --instagram-color: #E1306C;
+            --tiktok-color: #000000;
+            --linkedin-color: #0077B5;
+        }
+        
+        footer p {
+            margin: var(--space-2) 0;
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+        
+        /* ===========================================
+           SCROLL TO TOP - Professional Button
+        =========================================== */
+        
+        .scroll-to-top {
+            position: fixed;
+            bottom: var(--space-6);
+            right: var(--space-6);
+            background: var(--primary-accent);
+            color: var(--neutral-0);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-normal);
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .scroll-to-top:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+        
+        /* ===========================================
+           RESPONSIVE DESIGN
+        =========================================== */
+        
+        @media (max-width: 1024px) {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
+            .involve-hero-section h1 { font-size: 2.5rem; }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: var(--space-4);
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .involvement-options-grid,
+            .quick-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .action-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.5rem; }
+            .involve-hero-section h1 { font-size: 2rem; }
+            
+            .involvement-options-grid,
+            .quick-links-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .popup {
+                width: 95%;
+                padding: var(--space-4);
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Professional Header Structure -->
     <header id="main-header">
-        <div class="logo">
-            <img src="https://raw.githubusercontent.com/elizyasandikcii/TILT-Initiative/3802bf8741f027b4bfeaf7c6daf9f2223e1aeb1e/logokas%CC%A7e.png" alt="TILT Logo" class="logo-image">
-        </div>
-        <nav>
-            <ul>
-              <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/projects">Projects</a></li>
-                <li><a href="/blog">Blog</a></li>
-                <li><a href="/contact-us">Contact Us</a></li>
-                <li><a href="/get-involved">Get Involved</a></li>
-            </ul>
-        </nav>
-        <div class="header-controls">
-            <div class="language-selector">
-                <button class="language-btn">EN</button>
-                <div class="language-menu">
-                     <a href="/get-involved">🇬🇧English</a>
-                    <a href="/tr/dahil-olun">🇹🇷Türkçe</a>
-                
-                </div>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://raw.githubusercontent.com/elizyasandikcii/TILT-Initiative/3802bf8741f027b4bfeaf7c6daf9f2223e1aeb1e/logokas%CC%A7e.png" alt="TILT Logo" class="logo-image">
             </div>
-            <div class="theme-switch">
-                <input type="checkbox" id="theme-toggle" class="theme-toggle">
-                <div class="theme-icon sun">
-                    <div class="sun-icon"></div>
-                </div>
-                <div class="theme-icon moon">
-                    <div class="moon-icon"></div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/get-involved" class="active">Get Involved</a></li>
+                    <li><a href="/contact-us">Contact Us</a></li>
+                    <li><a href="/tilt" class="more-tilt">More from TILT</a></li>
+                </ul>
+            </nav>
+            <div class="header-controls">
+                <div class="language-selector">
+                    <button class="language-btn">EN</button>
+                    <div class="language-menu">
+                        <a href="/get-involved">🇬🇧 English</a>
+                        <a href="/tr/dahil-olun">🇹🇷 Türkçe</a>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
     <main>
-
-
-        <section class="page-header">
-            <h1>Get Involved</h1>
-            <p class="subtitle">Tilt your head. Dream with us. Work with us. Build the future.</p>
-        </section>
-
-        <section class="involvement-options">
-            <div class="option-card">
-                <h2>🔬 Join as a Researcher</h2>
-                <p>Are you a student or expert excited by neuroscience, sustainability, or innovation? Let's collaborate on something world-changing.</p>
-            </div>
-
-            <div class="option-card">
-                <h2>🤝 Become a Partner</h2>
-                <p>Collaborate with TILT on groundbreaking projects. Bring your expertise and resources to co-create impactful solutions together.</p>
-            </div>
-
-            <div class="option-card">
-                <h2>🌱 Become a Team Member</h2>
-                <p>Join TILT as a dedicated team member and help drive impactful projects with your skills and passion.</p>
+        <!-- Get Involved Hero Section -->
+        <section class="involve-hero-section">
+            <div class="involve-hero-content">
+                <span class="involve-hero-badge">Join Our Community</span>
+                <h1>Get Involved</h1>
+                <p class="involve-hero-subtitle">Tilt your head. Dream with us. Work with us. Build the future together. Join our community of innovators, researchers, and change-makers.</p>
             </div>
         </section>
 
-        <section class="mini-options">
-            <div class="mini-card" onclick="window.open('https://forms.gle/YOUR_RESEARCHER_FORM', '_blank')">
-                <h3>🔬 Researcher Form</h3>
-                <p>Help us with our research! Only accepting from Istanbul (For Now)</p>
+        <!-- Involvement Options Section -->
+        <section class="content-section involvement-section">
+            <div class="section-header">
+                <h2>How You Can Contribute</h2>
+                <p class="section-subtitle">Choose your path to join our mission and make a meaningful impact</p>
+            </div>
+            <div class="involvement-options-grid">
+                <div class="involvement-card researcher-card">
+                    <div class="involvement-icon researcher-icon">
+                        🔬
+                    </div>
+                    <h3>Join as a Researcher</h3>
+                    <p>Are you a student or expert excited by neuroscience, sustainability, or innovation? Let's collaborate on something world-changing. Contribute to groundbreaking research that pushes boundaries.</p>
+                </div>
+
+                <div class="involvement-card partner-card">
+                    <div class="involvement-icon partner-icon">
+                        🤝
+                    </div>
+                    <h3>Become a Partner</h3>
+                    <p>Collaborate with TILT on groundbreaking projects. Bring your expertise and resources to co-create impactful solutions together. Partner with us to amplify our collective impact.</p>
+                </div>
+
+                <div class="involvement-card team-card">
+                    <div class="involvement-icon team-icon">
+                        🌱
+                    </div>
+                    <h3>Become a Team Member</h3>
+                    <p>Join TILT as a dedicated team member and help drive impactful projects with your skills and passion. Be part of our core team shaping the future of innovation.</p>
+                </div>
             </div>
 
-            <div class="mini-card" onclick="showPartnerPopup()">
-                <h3>🤝 Partner Form</h3>
-                <p>Let's collaborate our brains!</p>
-            </div>
-
-            <div class="mini-card" onclick="window.open('https://forms.gle/dBhW1fhuRUyTynpe9', '_blank')">
-                <h3>🌱 Team Member Form</h3>
-                <p>Join our family, you are only a form away!</p>
+            <div class="action-buttons">
+                <a href="https://forms.gle/YOUR_RESEARCHER_FORM" target="_blank" class="action-btn primary">
+                    Apply as Researcher
+                </a>
+                <button onclick="showPartnerPopup()" class="action-btn secondary">
+                    Become a Partner
+                </button>
+                <a href="https://forms.gle/dBhW1fhuRUyTynpe9" target="_blank" class="action-btn outline">
+                    Join Our Team
+                </a>
             </div>
         </section>
 
+        <!-- Quick Links Section -->
+        <section class="content-section quick-links-section">
+            <div class="section-header">
+                <h2>Quick Application Links</h2>
+                <p class="section-subtitle">Direct access to our application forms</p>
+            </div>
+            <div class="quick-links-grid">
+                <div class="quick-link-card" onclick="window.open('https://forms.gle/YOUR_RESEARCHER_FORM', '_blank')">
+                    <h3>🔬 Researcher Form</h3>
+                    <p>Help us with our research! Currently accepting applications from Istanbul only</p>
+                </div>
+
+                <div class="quick-link-card" onclick="showPartnerPopup()">
+                    <h3>🤝 Partner Form</h3>
+                    <p>Let's collaborate and create something amazing together!</p>
+                </div>
+
+                <div class="quick-link-card" onclick="window.open('https://forms.gle/dBhW1fhuRUyTynpe9', '_blank')">
+                    <h3>🌱 Team Member Form</h3>
+                    <p>Join our family, you're only a form away from making a difference!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Info Section -->
+        <section class="contact-info">
+            <div class="contact-content">
+                <h2>Have Questions?</h2>
+                <p>Feel free to reach out to us directly for any inquiries about getting involved with TILT</p>
+                <a href="mailto:info@tiltinitiatives.org" class="email-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    info@tiltinitiatives.org
+                </a>
+            </div>
+        </section>
+
+        <!-- Partner Popup -->
         <div class="overlay" id="overlay" onclick="hidePartnerPopup()"></div>
 
         <div class="popup" id="partnerPopup">
             <button class="close-popup" onclick="closePopup()">×</button>
-            <h2>Choose your partnership type</h2>
+            <h2>Choose Your Partnership Type</h2>
             <div class="popup-content">
-                <button onclick="window.open('https://forms.gle/STUDENT_PARTNER_FORM', 'blank')">🎓 Student</button>
-                <button onclick="window.open('https://forms.gle/COMPANY_PARTNER_FORM', '_blank')">🏢 Company</button>
+                <button onclick="window.open('https://forms.gle/STUDENT_PARTNER_FORM', '_blank')">
+                    🎓 Student Partner
+                </button>
+                <button onclick="window.open('https://forms.gle/COMPANY_PARTNER_FORM', '_blank')">
+                    🏢 Company Partner
+                </button>
+                <button onclick="window.open('https://forms.gle/INDIVIDUAL_PARTNER_FORM', '_blank')">
+                    👤 Individual Partner
+                </button>
             </div>
         </div>
     </main>
 
     <footer>
-    <div class="social-links">
-        <a href="https://www.instagram.com/tilt_initiative?igsh=MW5qOWdndmpldmlheg==" target="_blank" class="social-link">
-            <svg class="social-icon" viewBox="0 0 24 24" fill="var(--instagram-color)">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
-        </a>
-        <a href="https://www.tiktok.com/@tilt_intiative" target="_blank" class="social-link">
-            <svg class="social-icon" viewBox="0 0 24 24" fill="var(--tiktok-color)">
-                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-            </svg>
-        </a>
-        <a href="https://linkedin.com" target="_blank" class="social-link">
-            <svg class="social-icon" viewBox="0 0 24 24" fill="var(--linkedin-color)">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-        </a>
-       <a href="https://x.com" target="_blank" class="social-link">
-  <svg class="social-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="nGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="#00c6ff"/>
-        <stop offset="100%" stop-color="#0072ff"/>
-      </linearGradient>
-    </defs>
-    <path fill="url(#nGradient)" d="M80 100h90l130 200V100h90v312h-90L170 212v200H80V100z"/>
-  </svg>
-</a>
-          <a href="mailto:info@tiltinitiatives.org">info@tiltinitiatives.org</a>
-    </div>
-    <p>© 2025 TILT – The Initiative for Life and Thoughts</p>
-    <p>Designed with 8.6 billion neurons and a dream</p>
-</footer>
-    <script>
+        <div class="social-links">
+            <a href="https://www.instagram.com/tilt_initiative?igsh=MW5qOWdndmpldmlheg==" target="_blank" class="social-link">
+                <svg class="social-icon" viewBox="0 0 24 24" fill="var(--instagram-color)">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+            </a>
+            <a href="https://www.tiktok.com/@tilt_intiative" target="_blank" class="social-link">
+                <svg class="social-icon" viewBox="0 0 24 24" fill="var(--tiktok-color)">
+                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" class="social-link">
+                <svg class="social-icon" viewBox="0 0 24 24" fill="var(--linkedin-color)">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+            </a>
+            <a href="https://x.com" target="_blank" class="social-link">
+                <svg class="social-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="nGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#00c6ff"/>
+                            <stop offset="100%" stop-color="#0072ff"/>
+                        </linearGradient>
+                    </defs>
+                    <path fill="url(#nGradient)" d="M80 100h90l130 200V100h90v312h-90L170 212v200H80V100z"/>
+                </svg>
+            </a>
+        </div>
+        <p>© 2025 TILT – The Initiative for Life and Thoughts</p>
+        <p>Designed with 8.6 billion neurons and a dream</p>
+    </footer>
 
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+        <svg class="scroll-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+        </svg>
+    </button>
+
+    <script>
         // Partner popup functions
         function showPartnerPopup() {
             document.getElementById("partnerPopup").style.display = "block";
@@ -152,6 +1123,83 @@
         function hidePartnerPopup() {
             closePopup();
         }
+
+        // Scroll to top functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Card hover effects
+            const cards = document.querySelectorAll('.involvement-card, .quick-link-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Language selector functionality
+            const languageBtn = document.querySelector('.language-btn');
+            const languageMenu = document.querySelector('.language-menu');
+            
+            languageBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                languageMenu.style.display = languageMenu.style.display === 'block' ? 'none' : 'block';
+            });
+            
+            // Close language menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.language-selector')) {
+                    languageMenu.style.display = 'none';
+                }
+            });
+            
+            // Close language menu when clicking on a language option
+            document.querySelectorAll('.language-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    languageMenu.style.display = 'none';
+                });
+            });
+
+            // Active Navigation Link
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('nav a');
+            
+            navLinks.forEach(link => {
+                const linkPath = link.getAttribute('href');
+                link.classList.remove('active');
+                
+                if (currentPath === linkPath || 
+                    (currentPath === '/get-involved' && linkPath === '/get-involved') ||
+                    (currentPath.includes('/get-involved') && linkPath === '/get-involved')) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Close popup when clicking escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closePopup();
+                }
+            });
+        });
     </script>
 </body>
 </html>

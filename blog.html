@@ -464,49 +464,6 @@
         }
         
         /* ===========================================
-           BLOG SIDEBAR (Optional, for future expansion)
-        =========================================== */
-        
-        .blog-sidebar {
-            background: var(--neutral-0);
-            border: 1px solid var(--neutral-200);
-            border-radius: var(--radius-lg);
-            padding: var(--space-5);
-            margin-bottom: var(--space-6);
-        }
-        
-        .sidebar-title {
-            color: var(--primary-dark);
-            font-size: 1.2rem;
-            margin-bottom: var(--space-4);
-            padding-bottom: var(--space-3);
-            border-bottom: 2px solid var(--neutral-100);
-        }
-        
-        .sidebar-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-2);
-        }
-        
-        .tag {
-            background: var(--neutral-50);
-            color: var(--neutral-600);
-            padding: var(--space-1) var(--space-3);
-            border-radius: var(--radius-sm);
-            font-size: 0.85rem;
-            text-decoration: none;
-            transition: all var(--transition-fast);
-            border: 1px solid var(--neutral-200);
-        }
-        
-        .tag:hover {
-            background: var(--primary-accent);
-            color: var(--neutral-0);
-            border-color: var(--primary-accent);
-        }
-        
-        /* ===========================================
            FOOTER - Professional Business Footer
         =========================================== */
         
@@ -641,20 +598,20 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/projects">Projects</a></li>
-                    <li><a href="/blog" class="active">Blog</a></li>
-                    <li><a href="/contact-us">Contact Us</a></li>
-                    <li><a href="/get-involved">Get Involved</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                    <li><a href="get-involved.html">Get Involved</a></li>
                 </ul>
             </nav>
             <div class="header-controls">
                 <div class="language-selector">
                     <button class="language-btn">EN</button>
                     <div class="language-menu">
-                        <a href="/blog">🇬🇧 English</a>
-                        <a href="/tr/blog">🇹🇷 Türkçe</a>
+                        <a href="blog.html">🇬🇧 English</a>
+                        <a href="tr/blog.html">🇹🇷 Türkçe</a>
                     </div>
                 </div>
             </div>
@@ -669,38 +626,38 @@
 
         <section class="blog-container">
             <div class="blog-post-preview" data-tag="Announcement">
-                <h2><a href="/blog-5">TILT's Future</a></h2>
+                <h2><a href="blog-5.html">TILT's Future</a></h2>
                 <p class="preview-date">August 31, 2025 · by Elizya</p>
                 <p class="preview-text">TILT's second anniversary is on its way, and we have really exciting plans for this year! We have a whole lot of new projects and I'm proud to introduce you to some of these projects.</p>
-                <a class="read-more" href="/blog-5">Read more</a>
+                <a class="read-more" href="blog-5.html">Read more</a>
             </div>
 
             <div class="blog-post-preview" data-tag="Environment">
-                <h2><a href="/blog-4">From Soil to Circuit: Building EcoFrame</a></h2>
+                <h2><a href="blog-4.html">From Soil to Circuit: Building EcoFrame</a></h2>
                 <p class="preview-date">April 8, 2025 · by Nazlı</p>
                 <p class="preview-text">A breakdown of how we approached biodiversity risk, climate coding, and design justice while building our environmental prediction tool.</p>
-                <a class="read-more" href="/blog-4">Read more</a>
+                <a class="read-more" href="blog-4.html">Read more</a>
             </div>
 
             <div class="blog-post-preview" data-tag="Psychology">
-                <h2><a href="/blog-3">The Psychology of Innovation: How Young Minds Solve Complex Problems</a></h2>
+                <h2><a href="blog-3.html">The Psychology of Innovation: How Young Minds Solve Complex Problems</a></h2>
                 <p class="preview-date">March 28, 2025 · by Ceren</p>
                 <p class="preview-text">Exploring the cognitive processes that enable young innovators to approach problems from unique perspectives and develop groundbreaking solutions.</p>
-                <a class="read-more" href="/blog-3">Read more</a>
+                <a class="read-more" href="blog-3.html">Read more</a>
             </div>
 
             <div class="blog-post-preview" data-tag="Technology">
-                <h2><a href="/blog-2">Emotional Intelligence in Technology: Designing for Human Connection</a></h2>
+                <h2><a href="blog-2.html">Emotional Intelligence in Technology: Designing for Human Connection</a></h2>
                 <p class="preview-date">March 15, 2025 · by Kutlu</p>
                 <p class="preview-text">How we're integrating emotional intelligence principles into our technological solutions to foster genuine human connection in a digital world.</p>
-                <a class="read-more" href="/blog-2">Read more</a>
+                <a class="read-more" href="blog-2.html">Read more</a>
             </div>
 
             <div class="blog-post-preview" data-tag="Welcome">
-                <h2><a href="/blog-1">Hello TILT!</a></h2>
+                <h2><a href="blog-1.html">Hello TILT!</a></h2>
                 <p class="preview-date">September 29, 2024 · by Elizya</p>
                 <p class="preview-text">TILT is here! In our first year, we have 2 major project plans.</p>
-                <a class="read-more" href="/blog-1">Read more</a>
+                <a class="read-more" href="blog-1.html">Read more</a>
             </div>
         </section>
     </main>
@@ -806,20 +763,27 @@
                 post.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
             });
 
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
+            // Highlight current page in navigation
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('nav a');
+            
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                if (linkHref === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            // Handle blog post links (prevent default for demo, add your actual routing)
+            document.querySelectorAll('.read-more, .blog-post-preview h2 a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // For demo purposes - in production, these would link to actual blog post pages
+                    const href = this.getAttribute('href');
+                    if (href.startsWith('blog-')) {
+                        e.preventDefault();
+                        alert(`This would navigate to: ${href}\n\nFor demo purposes, this link is disabled. In production, this would load the full blog post.`);
                     }
                 });
             });

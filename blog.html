@@ -6,7 +6,11 @@
     <title>Blog - TILT</title>
     
     <link rel="icon" href="https://raw.githubusercontent.com/elizyasandikcii/TILT-Initiative/3802bf8741f027b4bfeaf7c6daf9f2223e1aeb1e/logokas%CC%A7e.png" type="image/png" />
-
+    <script src="script.js" defer></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         /* ===========================================
            MARINE DEAL NEWS STYLES - Professional, clean, business-oriented
@@ -144,7 +148,7 @@
         }
         
         /* ===========================================
-           HEADER STYLES - Professional Navigation
+           HEADER STYLES - EXACT SAME AS CONTACT PAGE
         =========================================== */
         
         #main-header {
@@ -226,6 +230,20 @@
             background: var(--primary-accent);
         }
         
+        .more-tilt {
+            background: var(--neutral-0);
+            color: var(--primary-main) !important;
+            padding: var(--space-2) var(--space-5) !important;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            margin-left: var(--space-2);
+        }
+        
+        .more-tilt:hover {
+            background: var(--accent-info);
+            color: var(--primary-dark) !important;
+        }
+        
         .header-controls {
             display: flex;
             align-items: center;
@@ -303,10 +321,10 @@
         }
         
         /* ===========================================
-           BLOG HERO SECTION
+           BLOG HERO SECTION - SAME AS CONTACT PAGE
         =========================================== */
         
-        .page-header {
+        .blog-hero-section {
             background: linear-gradient(135deg, var(--primary-dark), var(--primary-main));
             border-radius: var(--radius-lg);
             padding: var(--space-8) var(--space-6);
@@ -317,7 +335,7 @@
             text-align: center;
         }
         
-        .page-header::before {
+        .blog-hero-section::before {
             content: '';
             position: absolute;
             top: 0;
@@ -329,14 +347,34 @@
                 radial-gradient(circle at 80% 20%, rgba(127, 219, 255, 0.05) 0%, transparent 50%);
         }
         
-        .page-header h1 {
-            color: var(--neutral-0) !important;
+        .blog-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .blog-hero-badge {
+            display: inline-block;
+            background: var(--accent-yellow);
+            color: var(--primary-dark);
+            padding: var(--space-2) var(--space-5);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: var(--space-5);
+        }
+        
+        .blog-hero-section h1 {
+            color: var(--neutral-0);
             font-size: 3rem;
             margin: var(--space-4) 0 var(--space-5);
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         
-        .page-header .subtitle {
+        .blog-hero-subtitle {
             font-size: 1.3rem;
             opacity: 0.9;
             margin: var(--space-5) auto;
@@ -554,7 +592,7 @@
         @media (max-width: 1024px) {
             h1 { font-size: 2.2rem; }
             h2 { font-size: 1.8rem; }
-            .page-header h1 { font-size: 2.5rem; }
+            .blog-hero-section h1 { font-size: 2.5rem; }
         }
         
         @media (max-width: 768px) {
@@ -576,7 +614,7 @@
         @media (max-width: 480px) {
             h1 { font-size: 1.8rem; }
             h2 { font-size: 1.5rem; }
-            .page-header h1 { font-size: 2rem; }
+            .blog-hero-section h1 { font-size: 2rem; }
             
             .blog-post-preview {
                 padding: var(--space-4);
@@ -591,6 +629,7 @@
     </style>
 </head>
 <body>
+    <!-- EXACT SAME HEADER AS CONTACT PAGE -->
     <header id="main-header">
         <div class="header-container">
             <div class="logo">
@@ -598,12 +637,12 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="blog.html" class="active">Blog</a></li>
-                    <li><a href="get-involved.html">Get Involved</a></li>
-                    <li><a href="contact-us.html">Contact Us</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/blog" class="active">Blog</a></li>
+                    <li><a href="/get-involved">Get Involved</a></li>
+                    <li><a href="/contact-us">Contact Us</a></li>
                     <li><a href="/tilt" class="more-tilt">More from TILT</a></li>
                 </ul>
             </nav>
@@ -611,8 +650,8 @@
                 <div class="language-selector">
                     <button class="language-btn">EN</button>
                     <div class="language-menu">
-                        <a href="blog.html">🇬🇧 English</a>
-                        <a href="tr/blog.html">🇹🇷 Türkçe</a>
+                        <a href="/blog">🇬🇧 English</a>
+                        <a href="/tr/blog">🇹🇷 Türkçe</a>
                     </div>
                 </div>
             </div>
@@ -620,9 +659,13 @@
     </header>
 
     <main>
-        <section class="page-header">
-            <h1>TILT Blog</h1>
-            <p class="subtitle">Ideas, research stories, project updates, and youth voices from our initiative.</p>
+        <!-- Blog Hero Section with same blue gradient as contact page -->
+        <section class="blog-hero-section">
+            <div class="blog-hero-content">
+                <span class="blog-hero-badge">Insights & Updates</span>
+                <h1>TILT Blog</h1>
+                <p class="blog-hero-subtitle">Ideas, research stories, project updates, and youth voices from our initiative.</p>
+            </div>
         </section>
 
         <section class="blog-container">
@@ -768,19 +811,6 @@
                 post.style.opacity = '0';
                 post.style.transform = 'translateY(20px)';
                 post.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            });
-
-            // Highlight current page in navigation
-            const currentPage = window.location.pathname.split('/').pop();
-            const navLinks = document.querySelectorAll('nav a');
-            
-            navLinks.forEach(link => {
-                const linkHref = link.getAttribute('href');
-                if (linkHref === currentPage) {
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
-                }
             });
 
             // Handle blog post links (prevent default for demo, add your actual routing)

@@ -14,48 +14,1806 @@
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-     <!-- Favicon -->
+    <!-- Favicon -->
     <link rel="icon" href="https://raw.githubusercontent.com/elizyasandikcii/TILT-Initiative/3802bf8741f027b4bfeaf7c6daf9f2223e1aeb1e/logokas%CC%A7e.png" type="image/png" />
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===========================================
+           MARINE DEAL NEWS INSPIRED STYLES
+           Professional, clean, business-oriented
+        =========================================== */
+        
+        :root {
+            /* Primary Colors - Marine Deal Blue Theme */
+            --primary-dark: #001F3F;      /* Deep Navy */
+            --primary-main: #003366;      /* Marine Blue */
+            --primary-light: #0055A4;     /* Ocean Blue */
+            --primary-accent: #0074D9;    /* Bright Blue */
+            
+            /* Secondary Colors */
+            --secondary-dark: #2E4053;
+            --secondary-main: #566573;
+            --secondary-light: #85929E;
+            
+            /* Accent Colors */
+            --accent-success: #2ECC71;
+            --accent-warning: #FF851B;
+            --accent-danger: #FF4136;
+            --accent-info: #7FDBFF;
+            --accent-yellow: #FFDC00;
+            
+            /* Neutral Colors */
+            --neutral-0: #FFFFFF;
+            --neutral-50: #F8F9FA;
+            --neutral-100: #E9ECEF;
+            --neutral-200: #DEE2E6;
+            --neutral-300: #CED4DA;
+            --neutral-400: #ADB5BD;
+            --neutral-500: #6C757D;
+            --neutral-600: #495057;
+            --neutral-700: #343A40;
+            --neutral-800: #212529;
+            --neutral-900: #000000;
+            
+            /* Typography */
+            --font-primary: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            --font-heading: 'Georgia', 'Times New Roman', 'Times', serif;
+            --font-mono: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+            
+            /* Spacing */
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-5: 24px;
+            --space-6: 32px;
+            --space-7: 48px;
+            --space-8: 64px;
+            --space-9: 96px;
+            
+            /* Border Radius */
+            --radius-sm: 2px;
+            --radius-md: 4px;
+            --radius-lg: 8px;
+            --radius-xl: 12px;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
+            
+            /* Transitions */
+            --transition-fast: 150ms ease;
+            --transition-normal: 250ms ease;
+            --transition-slow: 350ms ease;
+        }
+        
+        /* ===========================================
+           RESET & BASE STYLES
+        =========================================== */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--neutral-800);
+            background-color: var(--neutral-50);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            line-height: 1.3;
+            color: var(--primary-dark);
+            margin-bottom: var(--space-4);
+        }
+        
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.75rem; }
+        h4 { font-size: 1.5rem; }
+        h5 { font-size: 1.25rem; }
+        h6 { font-size: 1rem; }
+        
+        p {
+            margin-bottom: var(--space-4);
+        }
+        
+        a {
+            color: var(--primary-light);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+        
+        a:hover {
+            color: var(--primary-accent);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        button, 
+        input, 
+        select, 
+        textarea {
+            font-family: inherit;
+            font-size: inherit;
+        }
+        
+        /* ===========================================
+           HEADER STYLES - Professional Navigation
+        =========================================== */
+        
+        #main-header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-main));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: var(--space-4) 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+        
+        .logo-image {
+            height: 40px;
+            width: auto;
+            filter: brightness(0) invert(1);
+            transition: transform var(--transition-normal);
+        }
+        
+        .logo-image:hover {
+            transform: scale(1.05);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: var(--space-5);
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav a {
+            color: var(--neutral-0);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-normal);
+            position: relative;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--accent-info);
+            transition: width var(--transition-normal);
+        }
+        
+        nav a:hover::after {
+            width: 80%;
+        }
+        
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        nav a.active {
+            background: var(--primary-accent);
+        }
+        
+        .more-tilt {
+            background: var(--neutral-0);
+            color: var(--primary-main) !important;
+            padding: var(--space-2) var(--space-5) !important;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            margin-left: var(--space-2);
+        }
+        
+        .more-tilt:hover {
+            background: var(--accent-info);
+            color: var(--primary-dark) !important;
+        }
+        
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+        
+        /* ===========================================
+           MAIN CONTENT LAYOUT
+        =========================================== */
+        
+        main {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: var(--space-6);
+        }
+        
+        /* ===========================================
+           CONTENT COLUMNS - Fixing Quote & Blog
+        =========================================== */
+        
+        .content-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-6);
+            margin-bottom: var(--space-7);
+            align-items: start;
+        }
+        
+        @media (max-width: 768px) {
+            .content-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .content-column {
+            background: var(--neutral-0);
+            border: 1px solid var(--neutral-200);
+            border-radius: var(--radius-lg);
+            padding: var(--space-5);
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+        }
+        
+        .content-column:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .upcoming-episodes h2 {
+            color: var(--primary-dark);
+            margin-bottom: var(--space-3);
+            border-bottom: 2px solid var(--primary-accent);
+            padding-bottom: var(--space-3);
+        }
+        
+        .hero-image-container {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            border-radius: var(--radius-md);
+            margin: var(--space-5) 0;
+            border: 1px solid var(--neutral-200);
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-slow);
+        }
+        
+        .hero-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .learn-more {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            color: var(--primary-light);
+            font-weight: 600;
+            text-decoration: none;
+            padding: var(--space-3) var(--space-5);
+            border: 2px solid var(--primary-light);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-normal);
+            margin-top: var(--space-4);
+        }
+        
+        .learn-more:hover {
+            background: var(--primary-light);
+            color: var(--neutral-0);
+            transform: translateY(-1px);
+        }
+        
+        /* ===========================================
+           NEWSCARD STYLE - FIXED Quote & Blog Separation
+        =========================================== */
+        
+        .newsflash {
+            background: linear-gradient(135deg, var(--neutral-50), var(--neutral-100));
+            border-left: 4px solid var(--accent-yellow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .newsflash::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--accent-yellow), transparent);
+            opacity: 0.1;
+            border-radius: 0 0 0 100px;
+        }
+        
+        /* Quote Section Styling */
+        .newsflash > h2:first-of-type {
+            color: var(--primary-main);
+            font-size: 1.25rem;
+            margin-bottom: var(--space-3);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+        
+        .newsflash > h2:first-of-type::before {
+            content: "💬";
+            font-size: 1.2rem;
+        }
+        
+        .newsflash blockquote {
+            font-style: italic;
+            color: var(--neutral-700);
+            border-left: 3px solid var(--accent-yellow);
+            padding: var(--space-4) var(--space-5);
+            margin: var(--space-4) 0;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            background: var(--neutral-0);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .newsflash blockquote::before {
+            content: "❝";
+            color: var(--accent-yellow);
+            font-size: 2rem;
+            margin-right: var(--space-2);
+            vertical-align: top;
+            line-height: 0;
+        }
+        
+        /* Blog Section Styling */
+        .newsflash > h2:nth-of-type(2) {
+            color: var(--primary-main);
+            font-size: 1.25rem;
+            margin-top: var(--space-6);
+            margin-bottom: var(--space-3);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding-top: var(--space-4);
+            border-top: 2px solid var(--neutral-200);
+        }
+        
+        .newsflash > h2:nth-of-type(2)::before {
+            content: "📝";
+            font-size: 1.2rem;
+        }
+        
+        .newsflash h3 {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            margin: var(--space-3) 0 var(--space-2);
+        }
+        
+        .newsflash p {
+            color: var(--neutral-600);
+            margin-bottom: var(--space-3);
+            line-height: 1.6;
+        }
+        
+        .update-info {
+            display: flex;
+            justify-content: space-between;
+            color: var(--neutral-500);
+            font-size: 0.875rem;
+            padding-top: var(--space-4);
+            border-top: 1px solid var(--neutral-200);
+            margin-top: var(--space-4);
+        }
+        
+        /* ===========================================
+           TILT HERO SECTION - FIXED Icon Overlapping
+        =========================================== */
+        
+        .tilt-hero-section {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-main));
+            border-radius: var(--radius-lg);
+            padding: var(--space-7) var(--space-6);
+            margin: var(--space-7) 0;
+            position: relative;
+            overflow: hidden;
+            color: var(--neutral-0);
+        }
+        
+        .tilt-hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 116, 217, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(127, 219, 255, 0.05) 0%, transparent 50%);
+        }
+        
+        .tilt-hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-7);
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        @media (max-width: 1024px) {
+            .tilt-hero-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-6);
+                text-align: center;
+            }
+            
+            .tilt-hero-subtitle {
+                max-width: 100% !important;
+            }
+        }
+        
+        .tilt-badge {
+            display: inline-block;
+            background: var(--primary-accent);
+            color: var(--neutral-0);
+            padding: var(--space-2) var(--space-4);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: var(--space-4);
+        }
+        
+        .tilt-hero-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin: var(--space-5) 0;
+            line-height: 1.7;
+            max-width: 90%;
+        }
+        
+        .tilt-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-4);
+            margin: var(--space-6) 0;
+        }
+        
+        @media (max-width: 768px) {
+            .tilt-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .tilt-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: var(--space-4);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-info);
+            margin-bottom: var(--space-2);
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+        
+        .tilt-hero-cta {
+            display: flex;
+            gap: var(--space-4);
+            margin-top: var(--space-5);
+        }
+        
+        @media (max-width: 768px) {
+            .tilt-hero-cta {
+                flex-direction: column;
+            }
+        }
+        
+        .hero-btn {
+            padding: var(--space-3) var(--space-5);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-3);
+            transition: all var(--transition-normal);
+            border: 2px solid transparent;
+        }
+        
+        .hero-btn.primary {
+            background: var(--primary-accent);
+            color: var(--neutral-0);
+        }
+        
+        .hero-btn.primary:hover {
+            background: var(--accent-info);
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .hero-btn.secondary {
+            background: transparent;
+            color: var(--neutral-0);
+            border-color: var(--neutral-0);
+        }
+        
+        .hero-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        /* ===========================================
+           VISUAL ELEMENTS - FIXED Overlapping Icons
+        =========================================== */
+        
+        .visual-container {
+            position: relative;
+            height: 400px;
+            min-height: 400px;
+        }
+        
+        .visual-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .circle-1 {
+            width: 150px;
+            height: 150px;
+            top: 50px;
+            left: 50px;
+            animation-delay: 0s;
+        }
+        
+        .circle-2 {
+            width: 120px;
+            height: 120px;
+            top: 100px;
+            right: 100px;
+            animation-delay: 2s;
+        }
+        
+        .circle-3 {
+            width: 100px;
+            height: 100px;
+            bottom: 80px;
+            left: 150px;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg); 
+            }
+            50% { 
+                transform: translateY(-15px) rotate(5deg); 
+            }
+        }
+        
+        .visual-element {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-3);
+            background: rgba(255, 255, 255, 0.95);
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            z-index: 2;
+            width: 140px;
+            text-align: center;
+        }
+        
+        /* FIXED: Position each icon separately to prevent overlap */
+        .visual-element.brain {
+            top: 30%;
+            left: 10%;
+            transform: translate(-10%, -30%);
+        }
+        
+        .visual-element.visual-leaf {
+            top: 20%;
+            right: 15%;
+            transform: translate(15%, -20%);
+        }
+        
+        .visual-element.visual-innovation {
+            bottom: 25%;
+            right: 25%;
+            transform: translate(25%, 25%);
+        }
+        
+        .visual-element svg {
+            width: 60px;
+            height: 60px;
+            color: var(--primary-main);
+        }
+        
+        .visual-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: var(--space-2);
+        }
+        
+        /* Responsive adjustments for visual elements */
+        @media (max-width: 1024px) {
+            .visual-container {
+                height: 350px;
+                min-height: 350px;
+            }
+            
+            .visual-element {
+                width: 120px;
+                padding: var(--space-3);
+            }
+            
+            .visual-element.brain {
+                top: 25%;
+                left: 5%;
+            }
+            
+            .visual-element.visual-leaf {
+                top: 15%;
+                right: 10%;
+            }
+            
+            .visual-element.visual-innovation {
+                bottom: 20%;
+                right: 20%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .visual-container {
+                height: 300px;
+                min-height: 300px;
+                margin: var(--space-5) 0;
+            }
+            
+            .visual-element {
+                width: 100px;
+                padding: var(--space-2);
+            }
+            
+            .visual-element svg {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .visual-label {
+                font-size: 0.75rem;
+            }
+            
+            .circle-1 {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .circle-2 {
+                width: 80px;
+                height: 80px;
+                right: 50px;
+            }
+            
+            .circle-3 {
+                width: 60px;
+                height: 60px;
+                left: 100px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .visual-container {
+                height: 250px;
+                min-height: 250px;
+            }
+            
+            .visual-element {
+                width: 90px;
+                padding: var(--space-2);
+            }
+            
+            .visual-element svg {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .visual-label {
+                font-size: 0.7rem;
+            }
+            
+            .circle-1,
+            .circle-2,
+            .circle-3 {
+                display: none; /* Hide circles on very small screens */
+            }
+        }
+        
+        /* ===========================================
+           CALENDAR - Professional Business Style
+        =========================================== */
+        
+        .calendar-container {
+            background: var(--neutral-0);
+            border: 1px solid var(--neutral-200);
+            border-radius: var(--radius-lg);
+            padding: var(--space-5);
+            margin: var(--space-6) 0;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-5);
+            padding-bottom: var(--space-4);
+            border-bottom: 1px solid var(--neutral-200);
+        }
+        
+        #calendar-month-year {
+            color: var(--primary-dark);
+            margin: 0;
+        }
+        
+        .calendar-nav {
+            display: flex;
+            gap: var(--space-3);
+        }
+        
+        .calendar-nav button {
+            padding: var(--space-2) var(--space-4);
+            border: 1px solid var(--neutral-300);
+            background: var(--neutral-0);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all var(--transition-fast);
+            color: var(--neutral-700);
+        }
+        
+        .calendar-nav button:hover {
+            background: var(--primary-light);
+            color: var(--neutral-0);
+            border-color: var(--primary-light);
+        }
+        
+        .calendar-nav button:active {
+            transform: scale(0.98);
+        }
+        
+        .calendar {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .calendar th {
+            background: var(--neutral-100);
+            color: var(--neutral-700);
+            padding: var(--space-3) var(--space-2);
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 1px solid var(--neutral-200);
+        }
+        
+        .calendar td {
+            border: 1px solid var(--neutral-200);
+            padding: var(--space-3) var(--space-2);
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            height: 60px;
+            vertical-align: top;
+        }
+        
+        .calendar td:hover {
+            background: var(--light-blue);
+        }
+        
+        .calendar td.today {
+            background: var(--primary-light);
+            color: var(--neutral-0);
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .calendar td.today::after {
+            content: '';
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 6px;
+            height: 6px;
+            background: var(--neutral-0);
+            border-radius: 50%;
+        }
+        
+        /* ===========================================
+           NEWS SECTION - Marine Deal News Style
+        =========================================== */
+        
+        .news-section {
+            background: var(--neutral-0);
+            border: 1px solid var(--neutral-200);
+            border-radius: var(--radius-lg);
+            padding: var(--space-5);
+            margin: var(--space-6) 0;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .news-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-5);
+            padding-bottom: var(--space-4);
+            border-bottom: 2px solid var(--primary-accent);
+        }
+        
+        .news-header h2 {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin: 0;
+            color: var(--primary-dark);
+        }
+        
+        .refresh-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            background: var(--primary-light);
+            color: var(--neutral-0);
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all var(--transition-fast);
+        }
+        
+        .refresh-btn:hover {
+            background: var(--primary-accent);
+            transform: translateY(-1px);
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: var(--space-5);
+        }
+        
+        .news-card {
+            background: var(--neutral-50);
+            border: 1px solid var(--neutral-200);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: all var(--transition-normal);
+        }
+        
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+        }
+        
+        .news-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--neutral-200);
+        }
+        
+        .news-content {
+            padding: var(--space-4);
+        }
+        
+        .news-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: var(--space-2);
+            line-height: 1.4;
+        }
+        
+        .news-description {
+            color: var(--neutral-600);
+            font-size: 0.9rem;
+            margin-bottom: var(--space-3);
+            line-height: 1.6;
+        }
+        
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--neutral-500);
+            font-size: 0.8rem;
+            padding-top: var(--space-3);
+            border-top: 1px solid var(--neutral-200);
+        }
+        
+        /* ===========================================
+           PROJECTS PREVIEW - Professional Cards
+        =========================================== */
+        
+        .projects-preview {
+            background: var(--neutral-0);
+            border: 1px solid var(--neutral-200);
+            border-radius: var(--radius-lg);
+            padding: var(--space-5);
+            margin: var(--space-6) 0;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .preview-header {
+            margin-bottom: var(--space-5);
+        }
+        
+        .preview-header h2 {
+            color: var(--primary-dark);
+            margin-bottom: var(--space-2);
+        }
+        
+        .preview-header p {
+            color: var(--neutral-600);
+            font-size: 1.1rem;
+        }
+        
+        .project-mini-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-5);
+            margin: var(--space-5) 0;
+        }
+        
+        .mini-project {
+            background: var(--neutral-50);
+            padding: var(--space-5);
+            border-radius: var(--radius-md);
+            text-align: left;
+            border-left: 4px solid var(--primary-accent);
+            transition: all var(--transition-normal);
+        }
+        
+        .mini-project:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            background: var(--neutral-0);
+        }
+        
+        .project-tag {
+            display: inline-block;
+            background: var(--primary-accent);
+            color: var(--neutral-0);
+            padding: var(--space-1) var(--space-3);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: var(--space-3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .mini-project h4 {
+            font-size: 1.25rem;
+            margin-bottom: var(--space-2);
+            color: var(--primary-dark);
+        }
+        
+        .mini-project p {
+            color: var(--neutral-600);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .view-all-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            color: var(--primary-light);
+            text-decoration: none;
+            font-weight: 600;
+            padding: var(--space-3) var(--space-5);
+            border: 2px solid var(--primary-light);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-normal);
+            margin-top: var(--space-4);
+        }
+        
+        .view-all-btn:hover {
+            background: var(--primary-light);
+            color: var(--neutral-0);
+            transform: translateY(-2px);
+        }
+        
+        /* ===========================================
+           STOCK MARKET - Professional Trading View
+        =========================================== */
+        
+        .stocks-section {
+            background: var(--neutral-0);
+            border: 1px solid var(--neutral-200);
+            border-radius: var(--radius-lg);
+            padding: var(--space-5);
+            margin: var(--space-6) 0;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .stocks-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-5);
+        }
+        
+        .stocks-header h2 {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin: 0;
+            color: var(--primary-dark);
+        }
+        
+        .stock-controls {
+            display: flex;
+            gap: var(--space-3);
+            align-items: center;
+        }
+        
+        .stock-select,
+        .timeframe-select {
+            padding: var(--space-2) var(--space-3);
+            border: 1px solid var(--neutral-300);
+            border-radius: var(--radius-md);
+            background: var(--neutral-0);
+            color: var(--neutral-700);
+            font-size: 0.9rem;
+            min-width: 140px;
+        }
+        
+        .chart-container {
+            height: 400px;
+            margin: var(--space-5) 0;
+            background: var(--neutral-50);
+            border: 1px solid var(--neutral-200);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+        }
+        
+        #stock-chart {
+            width: 100% !important;
+            height: 100% !important;
+        }
+        
+        .stock-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-4);
+            background: var(--neutral-50);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--neutral-200);
+        }
+        
+        .stock-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-family: var(--font-mono);
+        }
+        
+        .stock-change {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .stock-change.positive {
+            color: var(--accent-success);
+        }
+        
+        .stock-change.negative {
+            color: var(--accent-danger);
+        }
+        
+        /* ===========================================
+           CURRENCY EXCHANGE - Professional Finance
+        =========================================== */
+        
+        .currency-section {
+            background: var(--neutral-0);
+            border: 1px solid var(--neutral-200);
+            border-radius: var(--radius-lg);
+            padding: var(--space-5);
+            margin: var(--space-6) 0;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .currency-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-5);
+        }
+        
+        .currency-header h2 {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin: 0;
+            color: var(--primary-dark);
+        }
+        
+        .currency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: var(--space-4);
+        }
+        
+        .currency-card {
+            background: var(--neutral-50);
+            padding: var(--space-4);
+            border-radius: var(--radius-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--neutral-200);
+            transition: all var(--transition-fast);
+        }
+        
+        .currency-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+            border-color: var(--primary-light);
+        }
+        
+        .currency-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .currency-flag {
+            font-size: 1.5rem;
+            margin-bottom: var(--space-2);
+        }
+        
+        .currency-code {
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-size: 1.1rem;
+        }
+        
+        .currency-name {
+            font-size: 0.85rem;
+            color: var(--neutral-600);
+        }
+        
+        .currency-rate {
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-size: 1.25rem;
+            font-family: var(--font-mono);
+        }
+        
+        /* ===========================================
+           MAP & CLOCKS - Global Business View
+        =========================================== */
+        
+        .map-clocks-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--space-6);
+            margin: var(--space-6) 0;
+        }
+        
+        @media (max-width: 1024px) {
+            .map-clocks-section {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .map-container {
+            height: 400px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--neutral-200);
+        }
+        
+        #satellite-map {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .clocks-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-4);
+            align-content: start;
+        }
+        
+        @media (max-width: 768px) {
+            .clocks-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .clocks-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .clock-card {
+            background: var(--neutral-0);
+            padding: var(--space-4);
+            border-radius: var(--radius-md);
+            text-align: center;
+            border: 1px solid var(--neutral-200);
+            transition: all var(--transition-fast);
+        }
+        
+        .clock-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+        }
+        
+        .clock-flag {
+            font-size: 2rem;
+            margin-bottom: var(--space-2);
+        }
+        
+        .clock-city {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: var(--space-2);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .clock-time {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: var(--space-1);
+            font-family: var(--font-mono);
+        }
+        
+        .clock-date {
+            color: var(--neutral-600);
+            font-size: 0.85rem;
+        }
+        
+        /* ===========================================
+           BLOG HIGHLIGHTS - Professional Articles
+        =========================================== */
+        
+        .blog-highlights {
+            background: var(--neutral-0);
+            border: 1px solid var(--neutral-200);
+            border-radius: var(--radius-lg);
+            padding: var(--space-5);
+            margin: var(--space-6) 0;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .blog-highlights h2 {
+            color: var(--primary-dark);
+            margin-bottom: var(--space-4);
+            border-bottom: 2px solid var(--primary-accent);
+            padding-bottom: var(--space-3);
+        }
+        
+        .blog-teasers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-5);
+        }
+        
+        .blog-teaser {
+            background: var(--neutral-50);
+            padding: var(--space-5);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--primary-accent);
+            transition: all var(--transition-normal);
+        }
+        
+        .blog-teaser:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            background: var(--neutral-0);
+        }
+        
+        .teaser-date {
+            color: var(--neutral-500);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: var(--space-2);
+            display: block;
+        }
+        
+        .blog-teaser h4 {
+            font-size: 1.25rem;
+            margin-bottom: var(--space-3);
+            color: var(--primary-dark);
+        }
+        
+        .blog-teaser p {
+            color: var(--neutral-600);
+            margin-bottom: var(--space-3);
+            line-height: 1.6;
+        }
+        
+        .read-teaser {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            color: var(--primary-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .read-teaser:hover {
+            color: var(--primary-accent);
+        }
+        
+        /* ===========================================
+           DOODLE DEN - Professional Creative Space
+        =========================================== */
+        
+        .doodle-den-section {
+            background: var(--neutral-0);
+            border: 1px solid var(--neutral-200);
+            border-radius: var(--radius-lg);
+            padding: var(--space-5);
+            margin: var(--space-6) 0;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .section-header {
+            margin-bottom: var(--space-5);
+        }
+        
+        .section-header h2 {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-2);
+            color: var(--primary-dark);
+        }
+        
+        .section-header p {
+            color: var(--neutral-600);
+            font-size: 1.1rem;
+        }
+        
+        .doodle-container {
+            margin-top: var(--space-4);
+        }
+        
+        #doodle-canvas {
+            width: 100%;
+            height: 400px;
+            border: 2px solid var(--neutral-300);
+            border-radius: var(--radius-md);
+            background: var(--neutral-0);
+            cursor: crosshair;
+            display: block;
+            margin-bottom: var(--space-4);
+        }
+        
+        .doodle-controls {
+            background: var(--neutral-50);
+            padding: var(--space-4);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--neutral-200);
+        }
+        
+        .tools-row {
+            display: flex;
+            gap: var(--space-5);
+            margin-bottom: var(--space-4);
+        }
+        
+        @media (max-width: 768px) {
+            .tools-row {
+                flex-direction: column;
+                gap: var(--space-4);
+            }
+        }
+        
+        .tool-group {
+            flex: 1;
+        }
+        
+        .tool-group h3 {
+            color: var(--primary-dark);
+            margin-bottom: var(--space-3);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .tool-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+        }
+        
+        .tool-btn {
+            padding: var(--space-2) var(--space-3);
+            background: var(--neutral-0);
+            border: 1px solid var(--neutral-300);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: 0.9rem;
+        }
+        
+        .tool-btn.active,
+        .tool-btn:hover {
+            background: var(--primary-light);
+            color: var(--neutral-0);
+            border-color: var(--primary-light);
+        }
+        
+        .colors-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: var(--space-2);
+            margin: var(--space-3) 0;
+        }
+        
+        @media (max-width: 768px) {
+            .colors-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .colors-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        .color-option {
+            width: 28px;
+            height: 28px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            border: 2px solid transparent;
+        }
+        
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+        
+        .color-option.active {
+            border-color: var(--primary-dark);
+            transform: scale(1.1);
+        }
+        
+        .actions {
+            display: flex;
+            gap: var(--space-3);
+        }
+        
+        @media (max-width: 768px) {
+            .actions {
+                flex-direction: column;
+            }
+        }
+        
+        .action-btn {
+            padding: var(--space-3) var(--space-4);
+            background: var(--primary-light);
+            color: var(--neutral-0);
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-weight: 500;
+        }
+        
+        .action-btn:hover {
+            background: var(--primary-accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        /* ===========================================
+           CONTACT PROMPT - Professional CTA
+        =========================================== */
+        
+        .contact-prompt {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-main));
+            border-radius: var(--radius-lg);
+            padding: var(--space-7);
+            margin: var(--space-7) 0;
+            text-align: center;
+            color: var(--neutral-0);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-prompt::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 70%, rgba(127, 219, 255, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(0, 116, 217, 0.2) 0%, transparent 50%);
+        }
+        
+        .prompt-content {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .prompt-icon {
+            font-size: 3.5rem;
+            margin-bottom: var(--space-4);
+            opacity: 0.9;
+        }
+        
+        .contact-prompt h3 {
+            color: var(--neutral-0);
+            font-size: 2rem;
+            margin-bottom: var(--space-4);
+        }
+        
+        .contact-prompt p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: var(--space-5);
+            line-height: 1.7;
+        }
+        
+        .contact-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-3);
+            background: var(--primary-accent);
+            color: var(--neutral-0);
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all var(--transition-normal);
+            border: 2px solid transparent;
+        }
+        
+        .contact-cta:hover {
+            background: var(--accent-info);
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        /* ===========================================
+           FOOTER - Professional Business Footer
+        =========================================== */
+        
+        footer {
+            background: var(--primary-dark);
+            color: var(--neutral-0);
+            padding: var(--space-7) var(--space-6);
+            text-align: center;
+            margin-top: var(--space-8);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-5);
+            margin-bottom: var(--space-5);
+        }
+        
+        .social-link {
+            color: var(--neutral-0);
+            transition: all var(--transition-normal);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-link:hover {
+            background: var(--primary-accent);
+            color: var(--neutral-0);
+            transform: translateY(-2px);
+        }
+        
+        .social-icon {
+            width: 20px;
+            height: 20px;
+        }
+        
+        footer p {
+            margin: var(--space-2) 0;
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+        
+        /* ===========================================
+           SCROLL TO TOP - Professional Button
+        =========================================== */
+        
+        .scroll-to-top {
+            position: fixed;
+            bottom: var(--space-6);
+            right: var(--space-6);
+            background: var(--primary-accent);
+            color: var(--neutral-0);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-normal);
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .scroll-to-top:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+        
+        .scroll-icon {
+            width: 20px;
+            height: 20px;
+        }
+        
+        /* ===========================================
+           LOADING STATES
+        =========================================== */
+        
+        .loading {
+            text-align: center;
+            padding: var(--space-6);
+            color: var(--neutral-500);
+            font-style: italic;
+            background: var(--neutral-50);
+            border-radius: var(--radius-md);
+            border: 1px dashed var(--neutral-300);
+        }
+    </style>
     
     <script src="script.js" defer></script>
-        <script src="quote-script.js" defer></script>
-
-    
-
+    <script src="quote-script.js" defer></script>
 </head>
 <body>
     <header id="main-header">
-                     <div class="logo">
-            <img src="https://raw.githubusercontent.com/elizyasandikcii/TILT-Initiative/3802bf8741f027b4bfeaf7c6daf9f2223e1aeb1e/logokas%CC%A7e.png" alt="TILT Logo" class="logo-image">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/projects">Projects</a></li>
-                <li><a href="/blog">Blog</a></li>
-                <li><a href="/get-involved">Get Involved</a></li>
-                <li><a href="/contact-us" class="active">Contact Us</a></li>
-                <li><a href="/tilt" style="color: var(--accent-blue); font-weight: 600;">More from TILT</a></li>
-            </ul>
-        </nav>
-        <div class="header-controls">
-            <div class="language-selector">
-                <button class="language-btn">EN</button>
-                <div class="language-menu">
-                    <a href="/">🇬🇧English</a>
-                    <a href="/tr">🇹🇷Türkçe</a>
-                </div>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://raw.githubusercontent.com/elizyasandikcii/TILT-Initiative/3802bf8741f027b4bfeaf7c6daf9f2223e1aeb1e/logokas%CC%A7e.png" alt="TILT Logo" class="logo-image">
             </div>
-            <div class="theme-switch">
-                <input type="checkbox" id="theme-toggle" class="theme-toggle">
-                <div class="theme-icon sun">
-                    <div class="sun-icon"></div>
-                </div>
-                <div class="theme-icon moon">
-                    <div class="moon-icon"></div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/get-involved">Get Involved</a></li>
+                    <li><a href="/contact-us" class="active">Contact Us</a></li>
+                    <li><a href="/tilt" class="more-tilt">More from TILT</a></li>
+                </ul>
+            </nav>
+            <div class="header-controls">
+                <div class="language-selector">
+                    <button class="language-btn">EN</button>
+                    <div class="language-menu">
+                        <a href="/">🇬🇧English</a>
+                        <a href="/tr">🇹🇷Türkçe</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -67,9 +1825,9 @@
                 <section id="top" class="upcoming-episodes">
                     <h2>TILT - The Initiative for Life and Thoughts</h2>
                     <p>A Youth-Led Initiative led by no one but world citizen teens! </p>
-  <div class="placeholder-image">
-    <img src="https://raw.githubusercontent.com/elizyasandikcii/TILT-Initiative/refs/heads/main/placeholder%20(1).jpg" alt="TILT Initiative" style="width: 100%; height: 100%; object-fit: cover;">
-</div>
+                    <div class="hero-image-container">
+                        <img src="https://raw.githubusercontent.com/elizyasandikcii/TILT-Initiative/refs/heads/main/placeholder%20(1).jpg" alt="TILT Initiative" class="hero-image">
+                    </div>
                     <p>The Initiative for Life and Thoughts (TILT) is dedicated to creating spaces for reflection, dialogue, and action on the most pressing questions of our time. We bring together every teen with ideas with our school clubs, production studios and more!</p>
                     <a href="/about" class="learn-more">Learn more about TILT...</a>
                 </section>
@@ -83,9 +1841,7 @@
                     </blockquote>
                     <h2>LATEST BLOG</h2>
                     <h3>TILT's Future</h3>
-                    <p>TILT's second anniversery is on it's way, and we have really exciting plans for this year! We have a whole lot of new projects and i'm proud to intruduce you to some of these projects
-
-...</p>
+                    <p>TILT's second anniversery is on it's way, and we have really exciting plans for this year! We have a whole lot of new projects and i'm proud to intruduce you to some of these projects...</p>
                     <a href="/blog" class="learn-more">Read more...</a>
                     
                     <div class="update-info">
@@ -96,160 +1852,84 @@
             </div>
         </div>
 
-<section class="quick-nav-section">
-    <div class="quick-nav-container">
-        <h3 class="quick-nav-title">Jump to Section</h3>
-        <p class="quick-nav-subtitle">Quickly navigate to different parts of our main page</p>
-        
-        <div class="quick-nav-grid">
-            
-                     <a href="#calendar" class="quick-nav-card" data-section="calendar">
-                <div class="nav-card-icon">📅</div>
-                <div class="nav-card-content">
-                    <h4>Calendar</h4>
-                    <p>Interactive monthly calendar of TILT</p>
-                    <span class="nav-card-indicator">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </span>
-                </div>
-            </a>
-            
-            <a href="#news" class="quick-nav-card" data-section="news">
-                <div class="nav-card-icon">📰</div>
-                <div class="nav-card-content">
-                    <h4>Latest News from NYT</h4>
-                    <p>Stay updated with current events</p>
-                    <span class="nav-card-indicator">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </span>
-                </div>
-            </a>
-            
-            <a href="#stocks" class="quick-nav-card" data-section="stocks">
-                <div class="nav-card-icon">📈</div>
-                <div class="nav-card-content">
-                    <h4>Stock Market</h4>
-                    <p>Real-time financial data</p>
-                    <span class="nav-card-indicator">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </span>
-                </div>
-            </a>
-            
-            <a href="#currency" class="quick-nav-card" data-section="currency">
-                <div class="nav-card-icon">💱</div>
-                <div class="nav-card-content">
-                    <h4>Currency Exchange</h4>
-                    <p>Live exchange rates</p>
-                    <span class="nav-card-indicator">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </span>
-                </div>
-            </a>
-            
-            <a href="#map" class="quick-nav-card" data-section="map">
-                <div class="nav-card-icon">🗺️</div>
-                <div class="nav-card-content">
-                    <h4>World Map & Clocks</h4>
-                    <p>Global view and time zones</p>
-                    <span class="nav-card-indicator">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </span>
-                </div>
-            </a>
-            
-            <a href="#doodleden" class="quick-nav-card" data-section="doodle">
-                <div class="nav-card-icon">🎨</div>
-                <div class="nav-card-content">
-                    <h4>Doodle Den</h4>
-                    <p>Unlessh your creavitiy with drawing tools!</p>
-                    <span class="nav-card-indicator">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </span>
-                </div>
-            </a>
-        </div>
-</section>
+        <!-- Hero Section -->
         <section class="tilt-hero-section">
-    <div class="tilt-hero-grid">
-        <div class="tilt-hero-main">
-            <div class="tilt-hero-header">
-                <span class="tilt-badge">Youth-Led Initiative</span>
-                <h2>Where Neuroscience Meets Sustainability</h2>
-                <p class="tilt-hero-subtitle">TILT empowers young minds to transform bold ideas into data-driven solutions that shape a more equal, beautiful, and sustainable world.</p>
-            </div>
-            
-            <div class="tilt-stats">
-                <div class="stat-item">
-                    <span class="stat-number">7+</span>
-                    <span class="stat-label">Active Projects</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">20+</span>
-                    <span class="stat-label">Team Members</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">2</span>
-                    <span class="stat-label">Years of Impact</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">∞</span>
-                    <span class="stat-label">Dreams to Build</span>
-                </div>
-            </div>
-            
-            <div class="tilt-hero-cta">
-                <a href="/about" class="hero-btn primary">
-                    <span>Learn More About TILT</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-                <a href="/get-involved" class="hero-btn secondary">
-                    <span>Get Involved</span>
-                </a>
-            </div>
-        </div>
-        
-        <div class="tilt-hero-visual">
-            <div class="visual-container">
-                <div class="visual-circle circle-1"></div>
-                <div class="visual-circle circle-2"></div>
-                <div class="visual-circle circle-3"></div>
-                
-                <div class="visual-element brain">
-                
-                <div class="visual-leaf">
-                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        <path d="M12 2v20"/>
-                    </svg>
-                    <span class="visual-label">Sustainability</span>
+            <div class="tilt-hero-grid">
+                <div class="tilt-hero-main">
+                    <div class="tilt-hero-header">
+                        <span class="tilt-badge">Youth-Led Initiative</span>
+                        <h2>Where Neuroscience Meets Sustainability</h2>
+                        <p class="tilt-hero-subtitle">TILT empowers young minds to transform bold ideas into data-driven solutions that shape a more equal, beautiful, and sustainable world.</p>
+                    </div>
+                    
+                    <div class="tilt-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">7+</span>
+                            <span class="stat-label">Active Projects</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">20+</span>
+                            <span class="stat-label">Team Members</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">2</span>
+                            <span class="stat-label">Years of Impact</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">∞</span>
+                            <span class="stat-label">Dreams to Build</span>
+                        </div>
+                    </div>
+                    
+                    <div class="tilt-hero-cta">
+                        <a href="/about" class="hero-btn primary">
+                            <span>Learn More About TILT</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <a href="/get-involved" class="hero-btn secondary">
+                            <span>Get Involved</span>
+                        </a>
+                    </div>
                 </div>
                 
-                <div class="visual-innovation">
-                    <svg width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="m9 12 2 2 4-4"/>
-                    </svg>
-                    <span class="visual-label">Innovation</span>
+                <div class="tilt-hero-visual">
+                    <div class="visual-container">
+                        <div class="visual-circle circle-1"></div>
+                        <div class="visual-circle circle-2"></div>
+                        <div class="visual-circle circle-3"></div>
+                        
+                        <div class="visual-element brain">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 2a3 3 0 0 0-3 3v2a3 3 0 0 0-3 3v2a3 3 0 0 0 3 3v2a3 3 0 0 0 3 3v1"/>
+                                <path d="M12 2a3 3 0 0 1 3 3v2a3 3 0 0 1 3 3v2a3 3 0 0 1-3 3v2a3 3 0 0 1-3 3v1"/>
+                                <path d="M12 11h.01"/>
+                                <path d="M12 13h.01"/>
+                            </svg>
+                            <span class="visual-label">Neuroscience</span>
+                        </div>
+                        
+                        <div class="visual-element visual-leaf">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                <path d="M12 2v20"/>
+                            </svg>
+                            <span class="visual-label">Sustainability</span>
+                        </div>
+                        
+                        <div class="visual-element visual-innovation">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="m9 12 2 2 4-4"/>
+                            </svg>
+                            <span class="visual-label">Innovation</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
+
         <!-- Calendar Section -->
         <section class="calendar-container">
             <div class="calendar-header">
@@ -277,6 +1957,7 @@
                 </tbody>
             </table>
         </section>
+
         <!-- News Section -->
         <section id="news" class="news-section">
             <div class="news-header">
@@ -300,25 +1981,26 @@
                 <div class="loading">Loading news...</div>
             </div>
         </section>
+
         <section class="projects-preview">
-    <div class="preview-header">
-        <h2>Our Innovation Hub</h2>
-        <p>See what we're building</p>
-    </div>
-    <div class="project-mini-cards">
-        <div class="mini-project">
-            <span class="project-tag">AI + Environment</span>
-            <h4>EcoCatch</h4>
-            <p>Environmental intelligence platform for biodiversity tracking</p>
-        </div>
-        <div class="mini-project">
-            <span class="project-tag">Neuroscience</span>
-            <h4>NeuroPrognos</h4>
-            <p>AI tool for Huntington's Disease risk prediction</p>
-        </div>
-    </div>
-    <a href="/projects" class="view-all-btn">View All Projects →</a>
-</section>
+            <div class="preview-header">
+                <h2>Our Innovation Hub</h2>
+                <p>See what we're building</p>
+            </div>
+            <div class="project-mini-cards">
+                <div class="mini-project">
+                    <span class="project-tag">AI + Environment</span>
+                    <h4>EcoCatch</h4>
+                    <p>Environmental intelligence platform for biodiversity tracking</p>
+                </div>
+                <div class="mini-project">
+                    <span class="project-tag">Neuroscience</span>
+                    <h4>NeuroPrognos</h4>
+                    <p>AI tool for Huntington's Disease risk prediction</p>
+                </div>
+            </div>
+            <a href="/projects" class="view-all-btn">View All Projects →</a>
+        </section>
         
         <!-- Stock Market Section -->
         <section id="stocks" class="stocks-section">
@@ -358,7 +2040,6 @@
             </div>
              <div class="stock-info" id="stock-info">
                 <div class="stock-price" id="stock-price">Loading...</div>
-          
                 <div class="stock-change" id="stock-change">
                     <span id="change-amount">--</span>
                     <span id="change-percent">(--)</span>
@@ -423,141 +2104,372 @@
                 </div>
             </div>
         </section>
+
         <section class="blog-highlights">
-    <h2>From Our Blog</h2>
-    <div class="blog-teasers">
-        <div class="blog-teaser">
-            <span class="teaser-date">Aug 31, 2025</span>
-            <h4>TILT's Future</h4>
-            <p>Exciting plans for our second anniversary year...</p>
-            <a href="/blog-5" class="read-teaser">Read more →</a>
-        </div>
-        <div class="blog-teaser">
-            <span class="teaser-date">Apr 8, 2025</span>
-            <h4>From Soil to Circuit</h4>
-            <p>Building EcoFrame: Our environmental prediction tool...</p>
-            <a href="/blog-4" class="read-teaser">Read more →</a>
-        </div>
-    </div>
-</section>
+            <h2>From Our Blog</h2>
+            <div class="blog-teasers">
+                <div class="blog-teaser">
+                    <span class="teaser-date">Aug 31, 2025</span>
+                    <h4>TILT's Future</h4>
+                    <p>Exciting plans for our second anniversary year...</p>
+                    <a href="/blog-5" class="read-teaser">Read more →</a>
+                </div>
+                <div class="blog-teaser">
+                    <span class="teaser-date">Apr 8, 2025</span>
+                    <h4>From Soil to Circuit</h4>
+                    <p>Building EcoFrame: Our environmental prediction tool...</p>
+                    <a href="/blog-4" class="read-teaser">Read more →</a>
+                </div>
+            </div>
+        </section>
+
         <section id="doodleden" class="doodle-den-section">
-    <div class="section-header">
-        <h2>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-            </svg>
-            Doodle Den
-        </h2>
-        <p>Unleash your creativity with our drawing tools</p>
-    </div>
-    
-    <div class="doodle-container">
-        <canvas id="doodle-canvas" width="800" height="500"></canvas>
-        
-        <div class="doodle-controls">
-            <div class="tools-row">
-                <div class="tool-group">
-                    <h3>Pens & Tools</h3>
-                    <div class="tool-buttons">
-                        <button class="tool-btn active" data-tool="ballpoint" title="Ballpoint Pen">
-                            <span class="tool-icon">•</span> Ballpoint
-                        </button>
-                        <button class="tool-btn" data-tool="pencil" title="Pencil">
-                            <span class="tool-icon">✏️</span> Pencil
-                        </button>
-                        <button class="tool-btn" data-tool="marker" title="Marker">
-                            <span class="tool-icon">🖊️</span> Marker
-                        </button>
-                        <button class="tool-btn" data-tool="brush" title="Paint Brush">
-                            <span class="tool-icon">🖌️</span> Brush
-                        </button>
-                        <button class="tool-btn" data-tool="highlighter" title="Highlighter">
-                            <span class="tool-icon">🖍️</span> Highlighter
-                        </button>
-                        <button class="tool-btn" data-tool="calligraphy" title="Calligraphy Pen">
-                            <span class="tool-icon">✒️</span> Calligraphy
-                        </button>
-                        <button class="tool-btn" data-tool="eraser" title="Eraser">
-                            <span class="tool-icon">🧽</span> Eraser
-                        </button>
-                        <button class="tool-btn" data-tool="spray" title="Spray Can">
-                            <span class="tool-icon">💨</span> Spray
-                        </button>
-                    </div>
-                </div>
+            <div class="section-header">
+                <h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg>
+                    Doodle Den
+                </h2>
+                <p>Unleash your creativity with our drawing tools</p>
+            </div>
+            
+            <div class="doodle-container">
+                <canvas id="doodle-canvas" width="800" height="500"></canvas>
                 
-                <div class="tool-group">
-                    <h3>Line Width</h3>
-                    <input type="range" id="brush-size" min="1" max="50" value="5">
-                    <span id="brush-size-value">5px</span>
-                </div>
-            </div>
-            
-            <div class="tools-row">
-                <div class="tool-group color-palette">
-                    <h3>Colors</h3>
-                    <div class="colors-grid">
-                        <div class="color-option" data-color="#000000" style="background-color: #000000;"></div>
-                        <div class="color-option" data-color="#ff0000" style="background-color: #ff0000;"></div>
-                        <div class="color-option" data-color="#ff9900" style="background-color: #ff9900;"></div>
-                        <div class="color-option" data-color="#ffff00" style="background-color: #ffff00;"></div>
-                        <div class="color-option" data-color="#00ff00" style="background-color: #00ff00;"></div>
-                        <div class="color-option" data-color="#00ffff" style="background-color: #00ffff;"></div>
-                        <div class="color-option" data-color="#0000ff" style="background-color: #0000ff;"></div>
-                        <div class="color-option" data-color="#9900ff" style="background-color: #9900ff;"></div>
-                        <div class="color-option" data-color="#ff00ff" style="background-color: #ff00ff;"></div>
-                        <div class="color-option" data-color="#ffffff" style="background-color: #ffffff; border: 1px solid #ccc;"></div>
-                        <div class="color-option" data-color="#aaaaaa" style="background-color: #aaaaaa;"></div>
-                        <div class="color-option" data-color="#555555" style="background-color: #555555;"></div>
+                <div class="doodle-controls">
+                    <div class="tools-row">
+                        <div class="tool-group">
+                            <h3>Pens & Tools</h3>
+                            <div class="tool-buttons">
+                                <button class="tool-btn active" data-tool="ballpoint" title="Ballpoint Pen">
+                                    <span class="tool-icon">•</span> Ballpoint
+                                </button>
+                                <button class="tool-btn" data-tool="pencil" title="Pencil">
+                                    <span class="tool-icon">✏️</span> Pencil
+                                </button>
+                                <button class="tool-btn" data-tool="marker" title="Marker">
+                                    <span class="tool-icon">🖊️</span> Marker
+                                </button>
+                                <button class="tool-btn" data-tool="brush" title="Paint Brush">
+                                    <span class="tool-icon">🖌️</span> Brush
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="tool-group">
+                            <h3>Line Width</h3>
+                            <input type="range" id="brush-size" min="1" max="50" value="5">
+                            <span id="brush-size-value">5px</span>
+                        </div>
                     </div>
-                    <div class="custom-color">
-                        <label for="custom-color-picker">Custom:</label>
-                        <input type="color" id="custom-color-picker" value="#ff0000">
+                    
+                    <div class="tools-row">
+                        <div class="tool-group color-palette">
+                            <h3>Colors</h3>
+                            <div class="colors-grid">
+                                <div class="color-option" data-color="#000000" style="background-color: #000000;"></div>
+                                <div class="color-option" data-color="#ff0000" style="background-color: #ff0000;"></div>
+                                <div class="color-option" data-color="#ff9900" style="background-color: #ff9900;"></div>
+                                <div class="color-option" data-color="#ffff00" style="background-color: #ffff00;"></div>
+                                <div class="color-option" data-color="#00ff00" style="background-color: #00ff00;"></div>
+                                <div class="color-option" data-color="#00ffff" style="background-color: #00ffff;"></div>
+                                <div class="color-option" data-color="#0000ff" style="background-color: #0000ff;"></div>
+                                <div class="color-option" data-color="#9900ff" style="background-color: #9900ff;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tools-row">
+                        <div class="tool-group actions">
+                            <button id="clear-canvas" class="action-btn">🧹 Clear Canvas</button>
+                            <button id="save-doodle" class="action-btn">💾 Save Drawing</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="tools-row">
-                <div class="tool-group actions">
-                    <button id="clear-canvas" class="action-btn">🧹 Clear Canvas</button>
-                    <button id="save-doodle" class="action-btn">💾 Save Drawing</button>
-                    <button id="toggle-fullscreen" class="action-btn">📺 Fullscreen</button>
-                </div>
+        </section>
+
+        <section class="contact-prompt">
+            <div class="prompt-content">
+                <div class="prompt-icon">💭</div>
+                <h3>Have an idea or question?</h3>
+                <p>We're always excited to connect with potential collaborators and curious minds.</p>
+                <a href="/contact-us" class="contact-cta">Reach Out →</a>
             </div>
-        </div>
-    </div>
-</section>
-            <section class="contact-prompt">
-    <div class="prompt-content">
-        <div class="prompt-icon">💭</div>
-        <h3>Have an idea or question?</h3>
-        <p>We're always excited to connect with potential collaborators and curious minds.</p>
-        <a href="/contact-us" class="contact-cta">Reach Out →</a>
-    </div>
-</section>
+        </section>
     </main>
- <footer>
-    <div class="social-links">
-        <a href="https://www.instagram.com/tilt_initiative" target="_blank" class="social-link">
-            <svg class="social-icon" viewBox="0 0 24 24" fill="var(--instagram-color)">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
-        </a>
-        <a href="https://linkedin.com" target="_blank" class="social-link">
-            <svg class="social-icon" viewBox="0 0 24 24" fill="var(--linkedin-color)">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-        </a>
-    </div>
-    <p>© 2025 TILT – The Initiative for Life and Thoughts</p>
-    <p>Designed with 8.6 billion neurons and a dream</p>
-</footer>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://www.instagram.com/tilt_initiative" target="_blank" class="social-link">
+                <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" class="social-link">
+                <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+            </a>
+        </div>
+        <p>© 2025 TILT – The Initiative for Life and Thoughts</p>
+        <p>Designed with 8.6 billion neurons and a dream</p>
+    </footer>
+
     <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
-    <svg class="scroll-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M5 10l7-7m0 0l7 7m-7-7v18"/>
-    </svg>
-</button>
+        <svg class="scroll-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+        </svg>
+    </button>
+
+    <script>
+        // Simple JavaScript for basic functionality
+        
+        // Scroll to top button
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Calendar functionality
+        const calendarBody = document.getElementById('calendar-body');
+        const monthYearDisplay = document.getElementById('calendar-month-year');
+        const prevMonthBtn = document.getElementById('prev-month');
+        const nextMonthBtn = document.getElementById('next-month');
+        const todayBtn = document.getElementById('today');
+        
+        let currentDate = new Date();
+        
+        function renderCalendar(date) {
+            const year = date.getFullYear();
+            const month = date.getMonth();
+            
+            // Update month/year display
+            const monthNames = [
+                "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+            ];
+            monthYearDisplay.textContent = `${monthNames[month]} ${year}`;
+            
+            // Clear calendar
+            calendarBody.innerHTML = '';
+            
+            // Get first day of month and total days
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            
+            // Create calendar cells
+            let day = 1;
+            for (let i = 0; i < 6; i++) {
+                const row = document.createElement('tr');
+                
+                for (let j = 0; j < 7; j++) {
+                    const cell = document.createElement('td');
+                    
+                    if (i === 0 && j < firstDay) {
+                        // Empty cells before first day
+                        cell.textContent = '';
+                    } else if (day > daysInMonth) {
+                        // Empty cells after last day
+                        cell.textContent = '';
+                    } else {
+                        cell.textContent = day;
+                        
+                        // Highlight today
+                        const today = new Date();
+                        if (day === today.getDate() && 
+                            month === today.getMonth() && 
+                            year === today.getFullYear()) {
+                            cell.classList.add('today');
+                        }
+                        
+                        day++;
+                    }
+                    
+                    row.appendChild(cell);
+                }
+                
+                calendarBody.appendChild(row);
+                
+                if (day > daysInMonth) break;
+            }
+        }
+        
+        // Initialize calendar
+        renderCalendar(currentDate);
+        
+        // Event listeners for calendar navigation
+        prevMonthBtn.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar(currentDate);
+        });
+        
+        nextMonthBtn.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar(currentDate);
+        });
+        
+        todayBtn.addEventListener('click', () => {
+            currentDate = new Date();
+            renderCalendar(currentDate);
+        });
+        
+        // Doodle Den functionality
+        const canvas = document.getElementById('doodle-canvas');
+        const ctx = canvas.getContext('2d');
+        const brushSizeInput = document.getElementById('brush-size');
+        const brushSizeValue = document.getElementById('brush-size-value');
+        const colorOptions = document.querySelectorAll('.color-option');
+        const toolButtons = document.querySelectorAll('.tool-btn');
+        const clearCanvasBtn = document.getElementById('clear-canvas');
+        
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+        let currentColor = '#000000';
+        let currentTool = 'ballpoint';
+        let lineWidth = 5;
+        
+        // Set canvas background to white
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Update brush size display
+        brushSizeInput.addEventListener('input', () => {
+            lineWidth = brushSizeInput.value;
+            brushSizeValue.textContent = `${lineWidth}px`;
+        });
+        
+        // Color selection
+        colorOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                currentColor = option.dataset.color;
+                colorOptions.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+            });
+        });
+        
+        // Tool selection
+        toolButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                toolButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                currentTool = button.dataset.tool;
+            });
+        });
+        
+        // Drawing functions
+        function startDrawing(e) {
+            isDrawing = true;
+            [lastX, lastY] = [e.offsetX, e.offsetY];
+        }
+        
+        function draw(e) {
+            if (!isDrawing) return;
+            
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(e.offsetX, e.offsetY);
+            ctx.strokeStyle = currentColor;
+            ctx.lineWidth = lineWidth;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            
+            // Tool-specific adjustments
+            switch(currentTool) {
+                case 'pencil':
+                    ctx.globalAlpha = 0.7;
+                    ctx.lineWidth = lineWidth * 0.8;
+                    break;
+                case 'marker':
+                    ctx.globalAlpha = 0.9;
+                    ctx.lineWidth = lineWidth * 1.2;
+                    break;
+                case 'brush':
+                    ctx.globalAlpha = 0.8;
+                    break;
+                case 'eraser':
+                    ctx.strokeStyle = '#ffffff';
+                    ctx.lineWidth = lineWidth * 2;
+                    break;
+                default:
+                    ctx.globalAlpha = 1;
+            }
+            
+            ctx.stroke();
+            ctx.globalAlpha = 1;
+            
+            [lastX, lastY] = [e.offsetX, e.offsetY];
+        }
+        
+        function stopDrawing() {
+            isDrawing = false;
+        }
+        
+        // Event listeners for drawing
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+        
+        // Clear canvas
+        clearCanvasBtn.addEventListener('click', () => {
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        });
+        
+        // Save doodle
+        document.getElementById('save-doodle').addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.download = 'tilt-doodle.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        });
+        
+        // World clocks
+        function updateClocks() {
+            const cities = [
+                { id: 'ny', city: 'New York', offset: -5 },
+                { id: 'istanbul', city: 'Istanbul', offset: 3 },
+                { id: 'london', city: 'London', offset: 0 },
+                { id: 'tokyo', city: 'Tokyo', offset: 9 }
+            ];
+            
+            const now = new Date();
+            
+            cities.forEach(city => {
+                const cityTime = new Date(now.getTime() + (city.offset * 60 * 60 * 1000));
+                
+                const timeString = cityTime.toUTCString().split(' ')[4];
+                const dateString = cityTime.toLocaleDateString('en-US', { 
+                    weekday: 'short', 
+                    year: 'numeric', 
+                    month: 'short', 
+                    day: 'numeric' 
+                });
+                
+                document.getElementById(`time-${city.id}`).textContent = timeString;
+                document.getElementById(`date-${city.id}`).textContent = dateString;
+            });
+        }
+        
+        // Update clocks every second
+        setInterval(updateClocks, 1000);
+        updateClocks(); // Initial call
+    </script>
 </body>
 </html>
-

@@ -412,7 +412,6 @@
         
         .newsflash {
             background: var(--neutral-0);
-            border-left: 4px solid var(--accent-yellow);
             position: relative;
             overflow: hidden;
         }
@@ -475,7 +474,7 @@
             border-top: 1px solid var(--neutral-200);
         }
         
-        /* Blog Section - Clean Separation */
+        /* Blog Section - Clean Separation WITHOUT yellow border */
         .blog-section {
             padding-top: var(--space-5);
         }
@@ -966,119 +965,6 @@
         
         .stock-change.negative {
             color: var(--accent-danger);
-        }
-        
-        /* ===========================================
-           CURRENCY EXCHANGE - Professional Finance
-        =========================================== */
-        
-        .currency-section {
-            background: var(--neutral-0);
-            border: 1px solid var(--neutral-200);
-            border-radius: var(--radius-lg);
-            padding: var(--space-5);
-            margin: var(--space-6) 0;
-            box-shadow: var(--shadow-sm);
-        }
-        
-        .currency-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: var(--space-5);
-        }
-        
-        .currency-header h2 {
-            display: flex;
-            align-items: center;
-            gap: var(--space-3);
-            margin: 0;
-            color: var(--primary-dark);
-        }
-        
-        .currency-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: var(--space-4);
-        }
-        
-        .currency-card {
-            background: var(--neutral-50);
-            padding: var(--space-5);
-            border-radius: var(--radius-md);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid var(--neutral-200);
-            transition: all var(--transition-fast);
-            min-height: 100px;
-        }
-        
-        .currency-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-sm);
-            border-color: var(--primary-light);
-            background: var(--neutral-0);
-        }
-        
-        .currency-info {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        
-        .currency-flag {
-            font-size: 2rem;
-            margin-bottom: var(--space-2);
-            line-height: 1;
-        }
-        
-        .currency-code {
-            font-weight: 700;
-            color: var(--primary-dark);
-            font-size: 1.1rem;
-            margin-bottom: var(--space-1);
-        }
-        
-        .currency-name {
-            font-size: 0.85rem;
-            color: var(--neutral-600);
-            line-height: 1.2;
-        }
-        
-        .currency-rate {
-            font-weight: 700;
-            color: var(--primary-dark);
-            font-size: 1.25rem;
-            font-family: var(--font-mono);
-            text-align: right;
-            min-width: 80px;
-        }
-        
-        @media (max-width: 768px) {
-            .currency-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .currency-card {
-                padding: var(--space-4);
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .currency-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .currency-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: var(--space-3);
-            }
-            
-            .currency-header h2 {
-                margin-bottom: 0;
-            }
         }
         
         /* ===========================================
@@ -1607,21 +1493,21 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/projects">Projects</a></li>
-                    <li><a href="/blog">Blog</a></li>
-                    <li><a href="/get-involved">Get Involved</a></li>
-                    <li><a href="/contact-us" class="active">Contact Us</a></li>
-                    <li><a href="/tilt" class="more-tilt">More from TILT</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="get-involved.html">Get Involved</a></li>
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                    <li><a href="tilt.html" class="more-tilt">More from TILT</a></li>
                 </ul>
             </nav>
             <div class="header-controls">
                 <div class="language-selector">
                     <button class="language-btn">EN</button>
                     <div class="language-menu">
-                        <a href="/">🇬🇧 English</a>
-                        <a href="/tr">🇹🇷 Türkçe</a>
+                        <a href="index.html">🇬🇧 English</a>
+                        <a href="index-tr.html">🇹🇷 Türkçe</a>
                     </div>
                 </div>
             </div>
@@ -1638,13 +1524,13 @@
                         <img src="https://raw.githubusercontent.com/elizyasandikcii/TILT-Initiative/refs/heads/main/placeholder%20(1).jpg" alt="TILT Initiative" class="hero-image">
                     </div>
                     <p>The Initiative for Life and Thoughts (TILT) is dedicated to creating spaces for reflection, dialogue, and action on the most pressing questions of our time. We bring together every teen with ideas with our school clubs, production studios and more!</p>
-                    <a href="/about" class="learn-more">Learn more about TILT...</a>
+                    <a href="about.html" class="learn-more">Learn more about TILT...</a>
                 </section>
             </div>
             
             <div class="content-column">
                 <section class="newsflash">
-                    <!-- QUOTE SECTION -->
+                    <!-- QUOTE SECTION - KEEPS yellow border -->
                     <div class="quote-section">
                         <h2>QUOTE OF THE DAY</h2>
                         <blockquote>
@@ -1653,12 +1539,12 @@
                         </blockquote>
                     </div>
                     
-                    <!-- BLOG SECTION -->
+                    <!-- BLOG SECTION - NO yellow border -->
                     <div class="blog-section">
                         <h2>LATEST BLOG</h2>
                         <h3>TILT's Future</h3>
                         <p>TILT's second anniversary is on its way, and we have really exciting plans for this year! We have a whole lot of new projects and I'm proud to introduce you to some of these projects...</p>
-                        <a href="/blog" class="learn-more">Read more...</a>
+                        <a href="blog.html" class="learn-more">Read more...</a>
                         
                         <div class="update-info">
                            By: Elizya 
@@ -1697,13 +1583,13 @@
             </div>
             
             <div class="tilt-hero-cta">
-                <a href="/about" class="hero-btn primary">
+                <a href="about.html" class="hero-btn primary">
                     <span>Learn More About TILT</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </a>
-                <a href="/get-involved" class="hero-btn secondary">
+                <a href="get-involved.html" class="hero-btn secondary">
                     <span>Get Involved</span>
                 </a>
             </div>
@@ -1805,29 +1691,6 @@
                 </div>
             </div>
         </section>
-        
-        <!-- Currency Exchange Section - FIXED -->
-        <section id="currency" class="currency-section">
-            <div class="currency-header">
-                <h2>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="8"></circle>
-                        <line x1="12" y1="8" x2="12" y2="16"></line>
-                        <line x1="8" y1="12" x2="16" y2="12"></line>
-                    </svg>
-                    Currency Exchange Rates
-                </h2>
-                <button class="refresh-btn" id="refresh-currency">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 0 1 9-9"></path>
-                    </svg>
-                    Refresh
-                </button>
-            </div>
-            <div class="currency-grid" id="currency-container">
-                <!-- Currency cards will be generated by JavaScript -->
-            </div>
-        </section>
        
         <!-- Map and Clocks Section -->
         <section id="map" class="map-clocks-section">
@@ -1871,13 +1734,13 @@
                     <span class="teaser-date">Aug 31, 2025</span>
                     <h4>TILT's Future</h4>
                     <p>Exciting plans for our second anniversary year...</p>
-                    <a href="/blog-5" class="read-teaser">Read more →</a>
+                    <a href="blog-5.html" class="read-teaser">Read more →</a>
                 </div>
                 <div class="blog-teaser">
                     <span class="teaser-date">Apr 8, 2025</span>
                     <h4>From Soil to Circuit</h4>
                     <p>Building EcoFrame: Our environmental prediction tool...</p>
-                    <a href="/blog-4" class="read-teaser">Read more →</a>
+                    <a href="blog-4.html" class="read-teaser">Read more →</a>
                 </div>
             </div>
         </section>
@@ -1955,7 +1818,7 @@
                 <div class="prompt-icon">💭</div>
                 <h3>Have an idea or question?</h3>
                 <p>We're always excited to connect with potential collaborators and curious minds.</p>
-                <a href="/contact-us" class="contact-cta">Reach Out →</a>
+                <a href="contact-us.html" class="contact-cta">Reach Out →</a>
             </div>
         </section>
     </main>
@@ -1984,115 +1847,27 @@
     </button>
 
     <script>
-        // Currency Exchange Functionality - FIXED
-        const currencyContainer = document.getElementById('currency-container');
-        const refreshCurrencyBtn = document.getElementById('refresh-currency');
-
-        // List of currencies to display (with flags and names)
-        const currencies = [
-            { code: 'EUR', name: 'Euro', flag: '🇪🇺' },
-            { code: 'GBP', name: 'British Pound', flag: '🇬🇧' },
-            { code: 'JPY', name: 'Japanese Yen', flag: '🇯🇵' },
-            { code: 'CAD', name: 'Canadian Dollar', flag: '🇨🇦' },
-            { code: 'AUD', name: 'Australian Dollar', flag: '🇦🇺' },
-            { code: 'CHF', name: 'Swiss Franc', flag: '🇨🇭' },
-            { code: 'CNY', name: 'Chinese Yuan', flag: '🇨🇳' },
-            { code: 'INR', name: 'Indian Rupee', flag: '🇮🇳' },
-            { code: 'TRY', name: 'Turkish Lira', flag: '🇹🇷' },
-            { code: 'BRL', name: 'Brazilian Real', flag: '🇧🇷' }
-        ];
-
-        // Base currency (we'll convert everything from USD)
-        const baseCurrency = 'USD';
-
-        // Mock exchange rates (in a real app, you'd fetch from an API)
-        const mockExchangeRates = {
-            EUR: 0.92,
-            GBP: 0.79,
-            JPY: 150.25,
-            CAD: 1.36,
-            AUD: 1.53,
-            CHF: 0.88,
-            CNY: 7.24,
-            INR: 83.12,
-            TRY: 32.15,
-            BRL: 5.05
-        };
-
-        // Format exchange rate
-        function formatExchangeRate(value) {
-            return value.toFixed(4);
-        }
-
-        // Create currency card HTML
-        function createCurrencyCard(currency, rate) {
-            const formattedRate = formatExchangeRate(rate);
-            return `
-                <div class="currency-card">
-                    <div class="currency-info">
-                        <div class="currency-flag">${currency.flag}</div>
-                        <div class="currency-code">${currency.code}</div>
-                        <div class="currency-name">${currency.name}</div>
-                    </div>
-                    <div class="currency-rate">
-                        1 ${currency.code}<br>
-                        <small>= ${formattedRate} ${baseCurrency}</small>
-                    </div>
-                </div>
-            `;
-        }
-
-        // Update currency display
-        function updateCurrencies() {
-            currencyContainer.innerHTML = '';
-            
-            currencies.forEach(currency => {
-                const rate = mockExchangeRates[currency.code] || 1;
-                const cardHTML = createCurrencyCard(currency, 1/rate); // Convert from base currency
-                currencyContainer.innerHTML += cardHTML;
+        // ===========================================
+        // NAVIGATION FIXES
+        // ===========================================
+        
+        // Remove active class from Contact Us and add it to Home
+        document.querySelector('nav a[href="contact-us.html"]').classList.remove('active');
+        document.querySelector('nav a[href="index.html"]').classList.add('active');
+        
+        // Make all navigation links work properly
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Remove active class from all links
+                document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+                // Add active class to clicked link
+                this.classList.add('active');
             });
-        }
-
-        // Simulate real-time updates
-        function simulateRateChange() {
-            currencies.forEach(currency => {
-                // Random small fluctuation (+/- 0.5%)
-                const fluctuation = 1 + (Math.random() * 0.01 - 0.005);
-                mockExchangeRates[currency.code] *= fluctuation;
-            });
-            updateCurrencies();
-        }
-
-        // Initialize currencies
-        updateCurrencies();
-
-        // Refresh button event listener
-        refreshCurrencyBtn.addEventListener('click', () => {
-            refreshCurrencyBtn.disabled = true;
-            refreshCurrencyBtn.innerHTML = `
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 0 1 9-9"></path>
-                </svg>
-                Refreshing...
-            `;
-            
-            simulateRateChange();
-            
-            setTimeout(() => {
-                refreshCurrencyBtn.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 0 1 9-9"></path>
-                    </svg>
-                    Refresh
-                `;
-                refreshCurrencyBtn.disabled = false;
-            }, 1000);
         });
-
-        // Auto-refresh every 30 seconds
-        setInterval(simulateRateChange, 30000);
-
-        // Scroll to top button
+        
+        // ===========================================
+        // SCROLL TO TOP
+        // ===========================================
         const scrollToTopBtn = document.getElementById('scrollToTop');
         
         window.addEventListener('scroll', () => {
@@ -2110,7 +1885,9 @@
             });
         });
         
-        // Calendar functionality
+        // ===========================================
+        // CALENDAR FUNCTIONALITY
+        // ===========================================
         const calendarBody = document.getElementById('calendar-body');
         const monthYearDisplay = document.getElementById('calendar-month-year');
         const prevMonthBtn = document.getElementById('prev-month');
@@ -2193,7 +1970,9 @@
             renderCalendar(currentDate);
         });
         
-        // Doodle Den functionality
+        // ===========================================
+        // DOODLE DEN FUNCTIONALITY
+        // ===========================================
         const canvas = document.getElementById('doodle-canvas');
         const ctx = canvas.getContext('2d');
         const brushSizeInput = document.getElementById('brush-size');
@@ -2305,7 +2084,9 @@
             link.click();
         });
         
-        // World clocks
+        // ===========================================
+        // WORLD CLOCKS
+        // ===========================================
         function updateClocks() {
             const cities = [
                 { id: 'ny', city: 'New York', offset: -5 },
@@ -2336,7 +2117,9 @@
         setInterval(updateClocks, 1000);
         updateClocks(); // Initial call
         
-        // Fixed Language Selector Interaction
+        // ===========================================
+        // LANGUAGE SELECTOR
+        // ===========================================
         const languageBtn = document.querySelector('.language-btn');
         const languageMenu = document.querySelector('.language-menu');
         

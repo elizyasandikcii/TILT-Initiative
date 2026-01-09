@@ -1,34 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Initiative for Life and Thoughts - TILT</title>
-
-    <!-- Chart.js for stock charts -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-    <!-- Favicon -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - TILT</title>
+   
     <link rel="icon" href="https://raw.githubusercontent.com/elizyasandikcii/TILT-Initiative/3802bf8741f027b4bfeaf7c6daf9f2223e1aeb1e/logokas%CC%A7e.png" type="image/png" />
+
+    <script src="script.js" defer></script>
 
     <style>
         /* ===========================================
-           MARINE DEAL NEWS INSPIRED STYLES
+           MARINE DEAL NEWS STYLES FOR PROJECTS PAGE
            Professional, clean, business-oriented
         =========================================== */
         
         :root {
             /* Primary Colors - Marine Deal Blue Theme */
-            --primary-dark: #001F3F;      /* Deep Navy */
-            --primary-main: #003366;      /* Marine Blue */
-            --primary-light: #0055A4;     /* Ocean Blue */
-            --primary-accent: #0074D9;    /* Bright Blue */
+            --primary-dark: #001F3F;
+            --primary-main: #003366;
+            --primary-light: #0055A4;
+            --primary-accent: #0074D9;
             
             /* Secondary Colors */
             --secondary-dark: #2E4053;
@@ -129,6 +121,7 @@
         
         p {
             margin-bottom: var(--space-4);
+            color: var(--neutral-700);
         }
         
         a {
@@ -156,31 +149,26 @@
         
         /* ===========================================
            HEADER STYLES - Professional Navigation
+           Clean Version without Theme Toggle
         =========================================== */
         
         #main-header {
             background: linear-gradient(135deg, var(--primary-dark), var(--primary-main));
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding: var(--space-4) 0;
+            padding: var(--space-3) var(--space-6);
             position: sticky;
             top: 0;
             z-index: 1000;
             backdrop-filter: blur(10px);
-        }
-        
-        .header-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 var(--space-6);
             display: flex;
             align-items: center;
             justify-content: space-between;
+            min-height: 70px;
         }
         
         .logo {
             display: flex;
             align-items: center;
-            gap: var(--space-4);
         }
         
         .logo-image {
@@ -194,10 +182,15 @@
             transform: scale(1.05);
         }
         
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        
         nav ul {
             display: flex;
             list-style: none;
-            gap: var(--space-5);
+            gap: var(--space-3);
             margin: 0;
             padding: 0;
         }
@@ -207,10 +200,11 @@
             text-decoration: none;
             font-weight: 500;
             font-size: 0.95rem;
-            padding: var(--space-2) var(--space-4);
+            padding: var(--space-2) var(--space-3);
             border-radius: var(--radius-md);
             transition: all var(--transition-normal);
             position: relative;
+            white-space: nowrap;
         }
         
         nav a::after {
@@ -235,29 +229,16 @@
         
         nav a.active {
             background: var(--primary-accent);
-        }
-        
-        .more-tilt {
-            background: var(--neutral-0);
-            color: var(--primary-main) !important;
-            padding: var(--space-2) var(--space-5) !important;
-            border-radius: var(--radius-md);
-            font-weight: 600;
-            margin-left: var(--space-2);
-        }
-        
-        .more-tilt:hover {
-            background: var(--accent-info);
-            color: var(--primary-dark) !important;
+            color: var(--neutral-0);
         }
         
         .header-controls {
             display: flex;
             align-items: center;
-            gap: var(--space-4);
+            gap: var(--space-3);
         }
         
-        /* FIXED: Language Selector */
+        /* Language Selector */
         .language-selector {
             position: relative;
         }
@@ -279,6 +260,7 @@
         
         .language-btn:hover {
             background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
         }
         
         .language-menu {
@@ -293,6 +275,7 @@
             display: none;
             z-index: 100;
             margin-top: var(--space-2);
+            overflow: hidden;
         }
         
         .language-menu a {
@@ -301,7 +284,8 @@
             color: var(--neutral-700);
             text-decoration: none;
             border-bottom: 1px solid var(--neutral-100);
-            transition: background var(--transition-fast);
+            transition: all var(--transition-fast);
+            background: var(--neutral-0);
         }
         
         .language-menu a:last-child {
@@ -313,7 +297,8 @@
             color: var(--primary-main);
         }
         
-        .language-selector:hover .language-menu {
+        .language-selector:hover .language-menu,
+        .language-menu:hover {
             display: block;
         }
         
@@ -325,215 +310,25 @@
             max-width: 1280px;
             margin: 0 auto;
             padding: var(--space-6);
-        }
-        
-        /* ===========================================
-           CONTENT COLUMNS - Fixed Quote & Blog
-        =========================================== */
-        
-        .content-columns {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-6);
-            margin-bottom: var(--space-7);
-            align-items: start;
-        }
-        
-        @media (max-width: 768px) {
-            .content-columns {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .content-column {
-            background: var(--neutral-0);
-            border: 1px solid var(--neutral-200);
-            border-radius: var(--radius-lg);
-            padding: var(--space-5);
-            box-shadow: var(--shadow-sm);
-            transition: transform var(--transition-normal), box-shadow var(--transition-normal);
-        }
-        
-        .content-column:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-        
-        .upcoming-episodes h2 {
-            color: var(--primary-dark);
-            margin-bottom: var(--space-3);
-            border-bottom: 2px solid var(--primary-accent);
-            padding-bottom: var(--space-3);
-        }
-        
-        .hero-image-container {
-            width: 100%;
-            height: 280px;
-            overflow: hidden;
-            border-radius: var(--radius-md);
-            margin: var(--space-5) 0;
-            border: 1px solid var(--neutral-200);
-        }
-        
-        .hero-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform var(--transition-slow);
-        }
-        
-        .hero-image:hover {
-            transform: scale(1.02);
-        }
-        
-        .learn-more {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-2);
-            color: var(--primary-light);
-            font-weight: 600;
-            text-decoration: none;
-            padding: var(--space-3) var(--space-5);
-            border: 2px solid var(--primary-light);
-            border-radius: var(--radius-md);
-            transition: all var(--transition-normal);
-            margin-top: var(--space-4);
-        }
-        
-        .learn-more:hover {
-            background: var(--primary-light);
-            color: var(--neutral-0);
-            transform: translateY(-1px);
-        }
-        
-        /* ===========================================
-           NEWSCARD STYLE - FIXED Quote & Blog Spacing
-        =========================================== */
-        
-        .newsflash {
-            background: var(--neutral-0);
-            border-left: 4px solid var(--accent-yellow);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* Quote Section - Clean Separation */
-        .quote-section {
-            margin-bottom: var(--space-8);
-            padding-bottom: var(--space-5);
-            border-bottom: 2px solid var(--neutral-200);
-        }
-        
-        .quote-section h2 {
-            color: var(--primary-main);
-            font-size: 1.25rem;
-            margin-bottom: var(--space-4);
-            display: flex;
-            align-items: center;
-            gap: var(--space-3);
-        }
-        
-        .quote-section h2::before {
-            content: "";
-            font-size: 1.2rem;
-        }
-        
-        .quote-section blockquote {
-            font-style: italic;
-            color: var(--neutral-800);
-            background: linear-gradient(135deg, var(--neutral-50), var(--neutral-100));
-            padding: var(--space-5) var(--space-6);
-            margin: var(--space-4) 0;
-            font-size: 1.2rem;
-            line-height: 1.8;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-sm);
-            border-left: 5px solid var(--accent-yellow);
-            position: relative;
-        }
-        
-        .quote-section blockquote::before {
-            content: "❝";
-            color: var(--accent-yellow);
-            font-size: 3rem;
-            position: absolute;
-            top: -20px;
-            left: 20px;
-            opacity: 0.3;
-            line-height: 1;
-        }
-        
-        .quote-author {
-            display: block;
-            text-align: right;
-            color: var(--neutral-600);
-            font-size: 1rem;
-            font-style: normal;
-            margin-top: var(--space-4);
-            font-weight: 600;
-            padding-top: var(--space-3);
-            border-top: 1px solid var(--neutral-200);
-        }
-        
-        /* Blog Section - Clean Separation */
-        .blog-section {
-            padding-top: var(--space-5);
-        }
-        
-        .blog-section h2 {
-            color: var(--primary-main);
-            font-size: 1.25rem;
-            margin-bottom: var(--space-5);
-            display: flex;
-            align-items: center;
-            gap: var(--space-3);
-            padding-top: var(--space-3);
-        }
-        
-        .blog-section h2::before {
-            content: "";
-            font-size: 1.2rem;
-        }
-        
-        .blog-section h3 {
-            color: var(--primary-dark);
-            font-size: 1.5rem;
-            margin: var(--space-4) 0 var(--space-3);
-        }
-        
-        .blog-section p {
-            color: var(--neutral-700);
-            margin-bottom: var(--space-4);
-            line-height: 1.7;
-            font-size: 1.05rem;
-        }
-        
-        .update-info {
-            display: flex;
-            justify-content: space-between;
-            color: var(--neutral-500);
-            font-size: 0.875rem;
             padding-top: var(--space-4);
-            border-top: 1px solid var(--neutral-200);
-            margin-top: var(--space-4);
         }
         
         /* ===========================================
-           TILT HERO SECTION - FIXED Title Color
+           HERO SECTION - Marine Deal News Style
         =========================================== */
         
-        .tilt-hero-section {
+        .projects-hero {
             background: linear-gradient(135deg, var(--primary-dark), var(--primary-main));
             border-radius: var(--radius-lg);
             padding: var(--space-7) var(--space-6);
-            margin: var(--space-7) 0;
-            position: relative;
-            overflow: hidden;
+            margin: var(--space-6) 0;
             color: var(--neutral-0);
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
         
-        .tilt-hero-section::before {
+        .projects-hero::before {
             content: '';
             position: absolute;
             top: 0;
@@ -545,894 +340,331 @@
                 radial-gradient(circle at 80% 20%, rgba(127, 219, 255, 0.05) 0%, transparent 50%);
         }
         
-        .tilt-badge {
-            display: inline-block;
-            background: var(--accent-yellow);
-            color: var(--primary-dark);
-            padding: var(--space-2) var(--space-4);
-            border-radius: 50px;
-            font-size: 0.875rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-bottom: var(--space-4);
+        .projects-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
-        .tilt-hero-section h2 {
-            color: var(--neutral-0) !important;
-            font-size: 2.5rem;
-            margin: var(--space-4) 0 var(--space-5);
+        .projects-hero h1 {
+            color: var(--neutral-0);
+            font-size: 3rem;
+            margin-bottom: var(--space-4);
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         
-        .tilt-hero-subtitle {
-            font-size: 1.2rem;
+        .projects-hero .subtitle {
+            font-size: 1.5rem;
             opacity: 0.9;
-            margin: var(--space-5) auto;
-            line-height: 1.8;
-            max-width: 800px;
-            color: var(--neutral-0);
+            margin-bottom: var(--space-4);
+            color: var(--accent-info);
+            font-weight: 300;
         }
         
-        .tilt-stats {
+        .projects-hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            color: var(--neutral-0);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* ===========================================
+           PROJECTS CATEGORIES
+        =========================================== */
+        
+        .projects-categories {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: var(--space-4);
-            margin: var(--space-6) auto;
-            max-width: 800px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-6);
+            margin: var(--space-8) 0;
         }
         
         @media (max-width: 768px) {
-            .tilt-stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .tilt-stats {
+            .projects-categories {
                 grid-template-columns: 1fr;
             }
         }
         
-        .stat-item {
-            text-align: center;
-            padding: var(--space-4);
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius-md);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .stat-number {
-            display: block;
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--accent-info);
-            margin-bottom: var(--space-2);
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        
-        .stat-label {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            color: var(--neutral-0);
-        }
-        
-        .tilt-hero-cta {
-            display: flex;
-            gap: var(--space-4);
-            margin-top: var(--space-6);
-            justify-content: center;
-        }
-        
-        @media (max-width: 768px) {
-            .tilt-hero-cta {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-        
-        .hero-btn {
-            padding: var(--space-3) var(--space-5);
-            border-radius: var(--radius-md);
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-3);
-            transition: all var(--transition-normal);
-            border: 2px solid transparent;
-            min-width: 180px;
-            justify-content: center;
-        }
-        
-        .hero-btn.primary {
-            background: var(--accent-yellow);
-            color: var(--primary-dark);
-        }
-        
-        .hero-btn.primary:hover {
-            background: var(--neutral-0);
-            color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-        
-        .hero-btn.secondary {
-            background: transparent;
-            color: var(--neutral-0);
-            border-color: var(--neutral-0);
-        }
-        
-        .hero-btn.secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-        
-        /* ===========================================
-           CALENDAR - Professional Business Style
-        =========================================== */
-        
-        .calendar-container {
+        .category-card {
             background: var(--neutral-0);
             border: 1px solid var(--neutral-200);
             border-radius: var(--radius-lg);
-            padding: var(--space-5);
-            margin: var(--space-6) 0;
+            padding: var(--space-6);
+            text-align: center;
+            transition: all var(--transition-normal);
             box-shadow: var(--shadow-sm);
-        }
-        
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: var(--space-5);
-            padding-bottom: var(--space-4);
-            border-bottom: 1px solid var(--neutral-200);
-        }
-        
-        #calendar-month-year {
-            color: var(--primary-dark);
-            margin: 0;
-        }
-        
-        .calendar-nav {
-            display: flex;
-            gap: var(--space-3);
-        }
-        
-        .calendar-nav button {
-            padding: var(--space-2) var(--space-4);
-            border: 1px solid var(--neutral-300);
-            background: var(--neutral-0);
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            font-weight: 500;
-            transition: all var(--transition-fast);
-            color: var(--neutral-700);
-        }
-        
-        .calendar-nav button:hover {
-            background: var(--primary-light);
-            color: var(--neutral-0);
-            border-color: var(--primary-light);
-        }
-        
-        .calendar-nav button:active {
-            transform: scale(0.98);
-        }
-        
-        .calendar {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .calendar th {
-            background: var(--neutral-100);
-            color: var(--neutral-700);
-            padding: var(--space-3) var(--space-2);
-            text-align: center;
-            font-weight: 600;
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border: 1px solid var(--neutral-200);
-        }
-        
-        .calendar td {
-            border: 1px solid var(--neutral-200);
-            padding: var(--space-3) var(--space-2);
-            text-align: center;
-            cursor: pointer;
-            transition: all var(--transition-fast);
-            height: 60px;
-            vertical-align: top;
-        }
-        
-        .calendar td:hover {
-            background: var(--light-blue);
-        }
-        
-        .calendar td.today {
-            background: var(--primary-light);
-            color: var(--neutral-0);
-            font-weight: 700;
             position: relative;
+            overflow: hidden;
         }
         
-        .calendar td.today::after {
+        .category-card::before {
             content: '';
             position: absolute;
-            top: 4px;
-            right: 4px;
-            width: 6px;
-            height: 6px;
-            background: var(--neutral-0);
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+        
+        .main-projects::before {
+            background: linear-gradient(90deg, var(--primary-accent), var(--accent-info));
+        }
+        
+        .social-projects::before {
+            background: linear-gradient(90deg, var(--accent-success), var(--accent-yellow));
+        }
+        
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+        
+        .category-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto var(--space-4);
+            background: var(--neutral-100);
             border-radius: 50%;
-        }
-        
-        /* ===========================================
-           NEWS SECTION - Marine Deal News Style
-        =========================================== */
-        
-        .news-section {
-            background: var(--neutral-0);
-            border: 1px solid var(--neutral-200);
-            border-radius: var(--radius-lg);
-            padding: var(--space-5);
-            margin: var(--space-6) 0;
-            box-shadow: var(--shadow-sm);
-        }
-        
-        .news-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: var(--space-5);
-            padding-bottom: var(--space-4);
-            border-bottom: 2px solid var(--primary-accent);
-        }
-        
-        .news-header h2 {
             display: flex;
             align-items: center;
-            gap: var(--space-3);
-            margin: 0;
+            justify-content: center;
+            color: var(--primary-main);
+        }
+        
+        .category-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+        
+        .category-card h2 {
             color: var(--primary-dark);
+            margin-bottom: var(--space-3);
+            font-size: 1.5rem;
         }
         
-        .refresh-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-2);
-            padding: var(--space-2) var(--space-4);
+        .category-card p {
+            color: var(--neutral-600);
+            margin-bottom: var(--space-5);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: var(--space-3) var(--space-5);
             background: var(--primary-light);
             color: var(--neutral-0);
-            border: none;
             border-radius: var(--radius-md);
-            cursor: pointer;
-            font-weight: 500;
-            transition: all var(--transition-fast);
-        }
-        
-        .refresh-btn:hover {
-            background: var(--primary-accent);
-            transform: translateY(-1px);
-        }
-        
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: var(--space-5);
-        }
-        
-        .news-card {
-            background: var(--neutral-50);
-            border: 1px solid var(--neutral-200);
-            border-radius: var(--radius-md);
-            overflow: hidden;
+            font-weight: 600;
+            font-size: 0.9rem;
             transition: all var(--transition-normal);
-        }
-        
-        .news-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--primary-light);
-        }
-        
-        .news-image {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-bottom: 1px solid var(--neutral-200);
-        }
-        
-        .news-content {
-            padding: var(--space-4);
-        }
-        
-        .news-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--primary-dark);
-            margin-bottom: var(--space-2);
-            line-height: 1.4;
-        }
-        
-        .news-description {
-            color: var(--neutral-600);
-            font-size: 0.9rem;
-            margin-bottom: var(--space-3);
-            line-height: 1.6;
-        }
-        
-        .news-meta {
-            display: flex;
-            justify-content: space-between;
-            color: var(--neutral-500);
-            font-size: 0.8rem;
-            padding-top: var(--space-3);
-            border-top: 1px solid var(--neutral-200);
-        }
-        
-        /* ===========================================
-           STOCK MARKET - Professional Trading View
-        =========================================== */
-        
-        .stocks-section {
-            background: var(--neutral-0);
-            border: 1px solid var(--neutral-200);
-            border-radius: var(--radius-lg);
-            padding: var(--space-5);
-            margin: var(--space-6) 0;
-            box-shadow: var(--shadow-sm);
-        }
-        
-        .stocks-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: var(--space-5);
-        }
-        
-        .stocks-header h2 {
-            display: flex;
-            align-items: center;
-            gap: var(--space-3);
-            margin: 0;
-            color: var(--primary-dark);
-        }
-        
-        .stock-controls {
-            display: flex;
-            gap: var(--space-3);
-            align-items: center;
-        }
-        
-        .stock-select,
-        .timeframe-select {
-            padding: var(--space-2) var(--space-3);
-            border: 1px solid var(--neutral-300);
-            border-radius: var(--radius-md);
-            background: var(--neutral-0);
-            color: var(--neutral-700);
-            font-size: 0.9rem;
-            min-width: 140px;
-        }
-        
-        .chart-container {
-            height: 400px;
-            margin: var(--space-5) 0;
-            background: var(--neutral-50);
-            border: 1px solid var(--neutral-200);
-            border-radius: var(--radius-md);
-            padding: var(--space-4);
-        }
-        
-        #stock-chart {
-            width: 100% !important;
-            height: 100% !important;
-        }
-        
-        .stock-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: var(--space-4);
-            background: var(--neutral-50);
-            border-radius: var(--radius-md);
-            border: 1px solid var(--neutral-200);
-        }
-        
-        .stock-price {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            font-family: var(--font-mono);
-        }
-        
-        .stock-change {
-            display: flex;
-            align-items: center;
-            gap: var(--space-2);
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-        
-        .stock-change.positive {
-            color: var(--accent-success);
-        }
-        
-        .stock-change.negative {
-            color: var(--accent-danger);
-        }
-        
-        /* ===========================================
-           CURRENCY EXCHANGE - Professional Finance
-        =========================================== */
-        
-        .currency-section {
-            background: var(--neutral-0);
-            border: 1px solid var(--neutral-200);
-            border-radius: var(--radius-lg);
-            padding: var(--space-5);
-            margin: var(--space-6) 0;
-            box-shadow: var(--shadow-sm);
-        }
-        
-        .currency-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: var(--space-5);
-        }
-        
-        .currency-header h2 {
-            display: flex;
-            align-items: center;
-            gap: var(--space-3);
-            margin: 0;
-            color: var(--primary-dark);
-        }
-        
-        .currency-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: var(--space-4);
-        }
-        
-        .currency-card {
-            background: var(--neutral-50);
-            padding: var(--space-5);
-            border-radius: var(--radius-md);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid var(--neutral-200);
-            transition: all var(--transition-fast);
-            min-height: 100px;
-        }
-        
-        .currency-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-sm);
-            border-color: var(--primary-light);
-            background: var(--neutral-0);
-        }
-        
-        .currency-info {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        
-        .currency-flag {
-            font-size: 2rem;
-            margin-bottom: var(--space-2);
-            line-height: 1;
-        }
-        
-        .currency-code {
-            font-weight: 700;
-            color: var(--primary-dark);
-            font-size: 1.1rem;
-            margin-bottom: var(--space-1);
-        }
-        
-        .currency-name {
-            font-size: 0.85rem;
-            color: var(--neutral-600);
-            line-height: 1.2;
-        }
-        
-        .currency-rate {
-            font-weight: 700;
-            color: var(--primary-dark);
-            font-size: 1.25rem;
-            font-family: var(--font-mono);
-            text-align: right;
-            min-width: 80px;
-        }
-        
-        @media (max-width: 768px) {
-            .currency-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .currency-card {
-                padding: var(--space-4);
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .currency-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .currency-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: var(--space-3);
-            }
-            
-            .currency-header h2 {
-                margin-bottom: 0;
-            }
-        }
-        
-        /* ===========================================
-           MAP & CLOCKS - Global Business View
-        =========================================== */
-        
-        .map-clocks-section {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: var(--space-6);
-            margin: var(--space-6) 0;
-        }
-        
-        @media (max-width: 1024px) {
-            .map-clocks-section {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .map-container {
-            height: 400px;
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--neutral-200);
-        }
-        
-        #satellite-map {
-            width: 100%;
-            height: 100%;
-        }
-        
-        .clocks-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-4);
-            align-content: start;
-        }
-        
-        @media (max-width: 768px) {
-            .clocks-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .clocks-container {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .clock-card {
-            background: var(--neutral-0);
-            padding: var(--space-4);
-            border-radius: var(--radius-md);
-            text-align: center;
-            border: 1px solid var(--neutral-200);
-            transition: all var(--transition-fast);
-        }
-        
-        .clock-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--primary-light);
-        }
-        
-        .clock-flag {
-            font-size: 2rem;
-            margin-bottom: var(--space-2);
-        }
-        
-        .clock-city {
-            font-weight: 600;
-            color: var(--primary-dark);
-            margin-bottom: var(--space-2);
-            font-size: 0.95rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-        }
-        
-        .clock-time {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: var(--space-1);
-            font-family: var(--font-mono);
-        }
-        
-        .clock-date {
-            color: var(--neutral-600);
-            font-size: 0.85rem;
-        }
-        
-        /* ===========================================
-           BLOG HIGHLIGHTS - Professional Articles
-        =========================================== */
-        
-        .blog-highlights {
-            background: var(--neutral-0);
-            border: 1px solid var(--neutral-200);
-            border-radius: var(--radius-lg);
-            padding: var(--space-5);
-            margin: var(--space-6) 0;
-            box-shadow: var(--shadow-sm);
-        }
-        
-        .blog-highlights h2 {
-            color: var(--primary-dark);
-            margin-bottom: var(--space-4);
-            border-bottom: 2px solid var(--primary-accent);
-            padding-bottom: var(--space-3);
-        }
-        
-        .blog-teasers {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--space-5);
-        }
-        
-        .blog-teaser {
-            background: var(--neutral-50);
-            padding: var(--space-5);
-            border-radius: var(--radius-md);
-            border-left: 4px solid var(--primary-accent);
-            transition: all var(--transition-normal);
-        }
-        
-        .blog-teaser:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-            background: var(--neutral-0);
-        }
-        
-        .teaser-date {
-            color: var(--neutral-500);
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: var(--space-2);
-            display: block;
-        }
-        
-        .blog-teaser h4 {
-            font-size: 1.25rem;
-            margin-bottom: var(--space-3);
-            color: var(--primary-dark);
-        }
-        
-        .blog-teaser p {
-            color: var(--neutral-600);
-            margin-bottom: var(--space-3);
-            line-height: 1.6;
-        }
-        
-        .read-teaser {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-2);
-            color: var(--primary-light);
+            border: 2px solid transparent;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
+            cursor: pointer;
         }
         
-        .read-teaser:hover {
-            color: var(--primary-accent);
+        .btn:hover {
+            background: var(--primary-accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+            color: var(--neutral-0);
+        }
+        
+        .category-btn {
+            background: var(--primary-light);
+            color: var(--neutral-0);
+        }
+        
+        .category-btn:hover {
+            background: var(--primary-accent);
         }
         
         /* ===========================================
-           DOODLE DEN - Professional Creative Space
+           FEATURED PROJECTS
         =========================================== */
         
-        .doodle-den-section {
-            background: var(--neutral-0);
-            border: 1px solid var(--neutral-200);
-            border-radius: var(--radius-lg);
-            padding: var(--space-5);
-            margin: var(--space-6) 0;
-            box-shadow: var(--shadow-sm);
+        .featured-projects {
+            margin: var(--space-8) 0;
         }
         
         .section-header {
-            margin-bottom: var(--space-5);
+            text-align: center;
+            margin-bottom: var(--space-7);
         }
         
         .section-header h2 {
-            display: flex;
-            align-items: center;
-            gap: var(--space-3);
-            margin-bottom: var(--space-2);
             color: var(--primary-dark);
+            font-size: 2.2rem;
+            margin-bottom: var(--space-3);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary-accent);
+            border-radius: var(--radius-sm);
         }
         
         .section-header p {
             color: var(--neutral-600);
             font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
         
-        .doodle-container {
-            margin-top: var(--space-4);
-        }
-        
-        #doodle-canvas {
-            width: 100%;
-            height: 400px;
-            border: 2px solid var(--neutral-300);
-            border-radius: var(--radius-md);
-            background: var(--neutral-0);
-            cursor: crosshair;
-            display: block;
-            margin-bottom: var(--space-4);
-        }
-        
-        .doodle-controls {
-            background: var(--neutral-50);
-            padding: var(--space-4);
-            border-radius: var(--radius-md);
-            border: 1px solid var(--neutral-200);
-        }
-        
-        .tools-row {
-            display: flex;
-            gap: var(--space-5);
-            margin-bottom: var(--space-4);
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-6);
         }
         
         @media (max-width: 768px) {
-            .tools-row {
-                flex-direction: column;
-                gap: var(--space-4);
+            .featured-grid {
+                grid-template-columns: 1fr;
             }
         }
         
-        .tool-group {
-            flex: 1;
-        }
-        
-        .tool-group h3 {
-            color: var(--primary-dark);
-            margin-bottom: var(--space-3);
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .tool-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-2);
-        }
-        
-        .tool-btn {
-            padding: var(--space-2) var(--space-3);
+        .featured-card {
             background: var(--neutral-0);
-            border: 1px solid var(--neutral-300);
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            transition: all var(--transition-fast);
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-2);
-            font-size: 0.9rem;
+            border: 1px solid var(--neutral-200);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            position: relative;
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
         }
         
-        .tool-btn.active,
-        .tool-btn:hover {
-            background: var(--primary-light);
-            color: var(--neutral-0);
+        .featured-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
             border-color: var(--primary-light);
         }
         
-        .colors-grid {
-            display: grid;
-            grid-template-columns: repeat(8, 1fr);
-            gap: var(--space-2);
-            margin: var(--space-3) 0;
+        .featured-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-yellow), var(--accent-warning));
         }
         
-        @media (max-width: 768px) {
-            .colors-grid {
-                grid-template-columns: repeat(6, 1fr);
-            }
+        .featured-badge {
+            position: absolute;
+            top: var(--space-4);
+            right: var(--space-4);
+            background: var(--accent-yellow);
+            color: var(--primary-dark);
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
         
-        @media (max-width: 480px) {
-            .colors-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-        
-        .color-option {
-            width: 28px;
-            height: 28px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all var(--transition-fast);
-            border: 2px solid transparent;
-        }
-        
-        .color-option:hover {
-            transform: scale(1.1);
-        }
-        
-        .color-option.active {
-            border-color: var(--primary-dark);
-            transform: scale(1.1);
-        }
-        
-        .actions {
-            display: flex;
-            gap: var(--space-3);
-        }
-        
-        @media (max-width: 768px) {
-            .actions {
-                flex-direction: column;
-            }
-        }
-        
-        .action-btn {
-            padding: var(--space-3) var(--space-4);
-            background: var(--primary-light);
+        .ec-badge {
+            display: inline-block;
+            background: var(--accent-warning);
             color: var(--neutral-0);
-            border: none;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            transition: all var(--transition-normal);
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin: var(--space-2) 0 var(--space-3);
+        }
+        
+        .featured-card h3 {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            margin-bottom: var(--space-3);
+            margin-top: var(--space-2);
+        }
+        
+        .featured-card p {
+            color: var(--neutral-700);
+            margin-bottom: var(--space-5);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+        
+        .project-status {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-5);
+            font-size: 0.9rem;
+            color: var(--neutral-600);
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        .status-dot.active {
+            background: var(--accent-success);
+            box-shadow: 0 0 8px var(--accent-success);
+        }
+        
+        .status-dot.development {
+            background: var(--accent-warning);
+            box-shadow: 0 0 8px var(--accent-warning);
+        }
+        
+        .featured-card .btn {
             display: inline-flex;
             align-items: center;
             gap: var(--space-2);
-            font-weight: 500;
+            padding: var(--space-3) var(--space-5);
+            background: var(--primary-light);
+            color: var(--neutral-0);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all var(--transition-normal);
+            border: 2px solid transparent;
         }
         
-        .action-btn:hover {
+        .featured-card .btn:hover {
             background: var(--primary-accent);
             transform: translateY(-2px);
             box-shadow: var(--shadow-sm);
+            color: var(--neutral-0);
         }
         
         /* ===========================================
-           CONTACT PROMPT - Professional CTA
+           CALL TO ACTION
         =========================================== */
         
-        .contact-prompt {
+        .projects-cta {
             background: linear-gradient(135deg, var(--primary-dark), var(--primary-main));
             border-radius: var(--radius-lg);
-            padding: var(--space-7);
-            margin: var(--space-7) 0;
+            padding: var(--space-8) var(--space-6);
+            margin: var(--space-8) 0;
             text-align: center;
             color: var(--neutral-0);
             position: relative;
             overflow: hidden;
         }
         
-        .contact-prompt::before {
+        .projects-cta::before {
             content: '';
             position: absolute;
             top: 0;
@@ -1444,50 +676,65 @@
                 radial-gradient(circle at 70% 30%, rgba(0, 116, 217, 0.2) 0%, transparent 50%);
         }
         
-        .prompt-content {
-            max-width: 600px;
-            margin: 0 auto;
+        .cta-content {
             position: relative;
             z-index: 2;
+            max-width: 700px;
+            margin: 0 auto;
         }
         
-        .prompt-icon {
-            font-size: 3.5rem;
-            margin-bottom: var(--space-4);
-            opacity: 0.9;
-        }
-        
-        .contact-prompt h3 {
+        .cta-content h2 {
             color: var(--neutral-0);
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: var(--space-4);
         }
         
-        .contact-prompt p {
-            font-size: 1.1rem;
+        .cta-content p {
+            color: var(--neutral-0);
             opacity: 0.9;
-            margin-bottom: var(--space-5);
+            font-size: 1.1rem;
+            margin-bottom: var(--space-6);
             line-height: 1.7;
         }
         
-        .contact-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-3);
-            background: var(--primary-accent);
-            color: var(--neutral-0);
+        .cta-buttons {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .cta-buttons .btn {
             padding: var(--space-3) var(--space-6);
             border-radius: var(--radius-md);
-            text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: all var(--transition-normal);
+            min-width: 160px;
+            text-align: center;
+        }
+        
+        .cta-buttons .btn:first-child {
+            background: var(--accent-yellow);
+            color: var(--primary-dark);
             border: 2px solid transparent;
         }
         
-        .contact-cta:hover {
-            background: var(--accent-info);
+        .cta-buttons .btn:first-child:hover {
+            background: var(--neutral-0);
             color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--neutral-0);
+            border: 2px solid var(--neutral-0);
+        }
+        
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
             transform: translateY(-2px);
             box-shadow: var(--shadow-md);
         }
@@ -1535,6 +782,13 @@
             height: 20px;
         }
         
+        /* Social Media Colors */
+        :root {
+            --instagram-color: #E1306C;
+            --tiktok-color: #000000;
+            --linkedin-color: #0077B5;
+        }
+        
         footer p {
             margin: var(--space-2) 0;
             opacity: 0.8;
@@ -1542,822 +796,374 @@
         }
         
         /* ===========================================
-           SCROLL TO TOP - Professional Button
+           RESPONSIVE STYLES
         =========================================== */
         
-        .scroll-to-top {
-            position: fixed;
-            bottom: var(--space-6);
-            right: var(--space-6);
-            background: var(--primary-accent);
-            color: var(--neutral-0);
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--shadow-lg);
-            transition: all var(--transition-normal);
-            z-index: 1000;
-            opacity: 0;
-            transform: translateY(20px);
+        @media (max-width: 1024px) {
+            #main-header {
+                padding: var(--space-3) var(--space-4);
+            }
+            
+            nav ul {
+                gap: var(--space-2);
+            }
+            
+            nav a {
+                padding: var(--space-2);
+                font-size: 0.9rem;
+            }
         }
         
-        .scroll-to-top.visible {
-            opacity: 1;
-            transform: translateY(0);
+        @media (max-width: 768px) {
+            #main-header {
+                flex-direction: column;
+                gap: var(--space-3);
+                padding: var(--space-3);
+                min-height: auto;
+                position: relative;
+            }
+            
+            .logo {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            nav {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: var(--space-2);
+            }
+            
+            nav a {
+                padding: var(--space-2) var(--space-3);
+                font-size: 0.85rem;
+            }
+            
+            .header-controls {
+                width: 100%;
+                justify-content: center;
+                gap: var(--space-4);
+            }
+            
+            main {
+                padding: var(--space-4);
+                padding-top: var(--space-3);
+            }
+            
+            .projects-hero {
+                padding: var(--space-6) var(--space-4);
+                margin: var(--space-4) 0;
+            }
+            
+            .projects-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .projects-hero .subtitle {
+                font-size: 1.2rem;
+            }
         }
         
-        .scroll-to-top:hover {
-            background: var(--primary-light);
-            transform: translateY(-2px);
-        }
-        
-        .scroll-icon {
-            width: 20px;
-            height: 20px;
-        }
-        
-        /* ===========================================
-           LOADING STATES
-        =========================================== */
-        
-        .loading {
-            text-align: center;
-            padding: var(--space-6);
-            color: var(--neutral-500);
-            font-style: italic;
-            background: var(--neutral-50);
-            border-radius: var(--radius-md);
-            border: 1px dashed var(--neutral-300);
+        @media (max-width: 480px) {
+            nav ul {
+                gap: var(--space-1);
+            }
+            
+            nav a {
+                padding: var(--space-1) var(--space-2);
+                font-size: 0.8rem;
+            }
+            
+            .header-controls {
+                justify-content: center;
+            }
+            
+            .language-btn {
+                width: 100%;
+            }
+            
+            .projects-hero h1 {
+                font-size: 1.75rem;
+            }
+            
+            .projects-categories {
+                gap: var(--space-4);
+                margin: var(--space-6) 0;
+            }
+            
+            .category-card,
+            .featured-card {
+                padding: var(--space-4);
+            }
+            
+            .featured-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-4);
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+            }
         }
     </style>
-    
-    <script src="script.js" defer></script>
-    <script src="quote-script.js" defer></script>
 </head>
 <body>
+    <!-- Clean Header Structure without Theme Toggle -->
     <header id="main-header">
-        <div class="header-container">
-            <div class="logo">
-                <img src="https://raw.githubusercontent.com/elizyasandikcii/TILT-Initiative/3802bf8741f027b4bfeaf7c6daf9f2223e1aeb1e/logokas%CC%A7e.png" alt="TILT Logo" class="logo-image">
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/projects">Projects</a></li>
-                    <li><a href="/blog">Blog</a></li>
-                    <li><a href="/get-involved">Get Involved</a></li>
-                    <li><a href="/contact-us" class="active">Contact Us</a></li>
-                    <li><a href="/tilt" class="more-tilt">More from TILT</a></li>
-                </ul>
-            </nav>
-            <div class="header-controls">
-                <div class="language-selector">
-                    <button class="language-btn">EN</button>
-                    <div class="language-menu">
-                        <a href="/">🇬🇧 English</a>
-                        <a href="/tr">🇹🇷 Türkçe</a>
-                    </div>
+       <div class="logo">
+            <img src="https://raw.githubusercontent.com/elizyasandikcii/TILT-Initiative/3802bf8741f027b4bfeaf7c6daf9f2223e1aeb1e/logokas%CC%A7e.png" alt="TILT Logo" class="logo-image">
+        </div>
+        <nav>
+            <ul>
+               <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/projects" class="active">Projects</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/contact-us">Contact Us</a></li>
+                <li><a href="/get-involved">Get Involved</a></li>
+            </ul>
+        </nav>
+        <div class="header-controls">
+            <div class="language-selector">
+                <button class="language-btn">EN</button>
+                <div class="language-menu">
+                    <a href="/projects">🇬🇧 English</a>
+                    <a href="/tr/projeler">🇹🇷 Türkçe</a>
                 </div>
             </div>
         </div>
     </header>
 
     <main>
-        <div class="content-columns">
-            <div class="content-column">
-                <section id="top" class="upcoming-episodes">
-                    <h2>TILT - The Initiative for Life and Thoughts</h2>
-                    <p>A Youth-Led Initiative led by no one but world citizen teens! </p>
-                    <div class="hero-image-container">
-                        <img src="https://raw.githubusercontent.com/elizyasandikcii/TILT-Initiative/refs/heads/main/placeholder%20(1).jpg" alt="TILT Initiative" class="hero-image">
-                    </div>
-                    <p>The Initiative for Life and Thoughts (TILT) is dedicated to creating spaces for reflection, dialogue, and action on the most pressing questions of our time. We bring together every teen with ideas with our school clubs, production studios and more!</p>
-                    <a href="/about" class="learn-more">Learn more about TILT...</a>
-                </section>
-            </div>
-            
-            <div class="content-column">
-                <section class="newsflash">
-                    <!-- QUOTE SECTION -->
-                    <div class="quote-section">
-                        <h2>QUOTE OF THE DAY</h2>
-                        <blockquote>
-                            "The unexamined life is not worth living."
-                            <span class="quote-author">- Socrates</span>
-                        </blockquote>
-                    </div>
-                    
-                    <!-- BLOG SECTION -->
-                    <div class="blog-section">
-                        <h2>LATEST BLOG</h2>
-                        <h3>TILT's Future</h3>
-                        <p>TILT's second anniversary is on its way, and we have really exciting plans for this year! We have a whole lot of new projects and I'm proud to introduce you to some of these projects...</p>
-                        <a href="/blog" class="learn-more">Read more...</a>
-                        
-                        <div class="update-info">
-                           By: Elizya 
-                            31 August 2025
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-
-        <!-- Hero Section - FIXED Title Color -->
-        <section class="tilt-hero-section">
-            <div class="tilt-hero-header">
-                <span class="tilt-badge">Youth-Led Initiative</span>
-                <h2>Where Neuroscience Meets Sustainability</h2>
-                <p class="tilt-hero-subtitle">TILT empowers young minds to transform bold ideas into data-driven solutions that shape a more equal, beautiful, and sustainable world.</p>
-            </div>
-            
-            <div class="tilt-stats">
-                <div class="stat-item">
-                    <span class="stat-number">7+</span>
-                    <span class="stat-label">Active Projects</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">20+</span>
-                    <span class="stat-label">Team Members</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">2</span>
-                    <span class="stat-label">Years of Impact</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">∞</span>
-                    <span class="stat-label">Dreams to Build</span>
-                </div>
-            </div>
-            
-            <div class="tilt-hero-cta">
-                <a href="/about" class="hero-btn primary">
-                    <span>Learn More About TILT</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-                <a href="/get-involved" class="hero-btn secondary">
-                    <span>Get Involved</span>
-                </a>
+        <!-- Hero Section -->
+        <section class="projects-hero">
+            <div class="projects-hero-content">
+                <h1>Our Projects</h1>
+                <p class="subtitle">Ideas born from bold dreams and built by young minds.</p>
+                <p>Explore our innovative initiatives that bridge technology, research, and social impact</p>
             </div>
         </section>
 
-        <!-- Calendar Section -->
-        <section class="calendar-container">
-            <div class="calendar-header">
-                <h2 id="calendar-month-year">Month Year</h2>
-                <div class="calendar-nav">
-                    <button id="prev-month">&lt; Prev</button>
-                    <button id="today">Today</button>
-                    <button id="next-month">Next &gt;</button>
+        <!-- Projects Categories -->
+        <section class="projects-categories">
+            <div class="category-card main-projects">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </div>
+                <h2>Main Projects</h2>
+                <p>Our core initiatives focused on technological innovation and scientific research</p>
+                <a href="/main-projects" class="btn category-btn">Explore Projects</a>
             </div>
-            <table id="calendar" class="calendar">
-                <thead>
-                    <tr>
-                        <th>Sun</th>
-                        <th>Mon</th>
-                        <th>Tue</th>
-                        <th>Wed</th>
-                        <th>Thu</th>
-                        <th>Fri</th>
-                        <th>Sat</th>
-                    </tr>
-                </thead>
-                <tbody id="calendar-body">
-                    <!-- Calendar will be generated by JavaScript -->
-                </tbody>
-            </table>
-        </section>
 
-        <!-- News Section -->
-        <section id="news" class="news-section">
-            <div class="news-header">
-                <h2>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"></path>
-                        <path d="M18 14h-8"></path>
-                        <path d="M15 18h-5"></path>
-                        <path d="M10 6h8v4h-8V6Z"></path>
+            <div class="category-card social-projects">
+                <div class="category-icon">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88M13 7C13 9.20914 11.2091 11 9 11C6.79086 11 5 9.20914 5 7C5 4.79086 6.79086 3 9 3C11.2091 3 13 4.79086 13 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    Latest News from New York Times
-                </h2>
-                <button class="refresh-btn" id="refresh-news">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 0 1 9-9"></path>
-                    </svg>
-                    Refresh
-                </button>
-            </div>
-            <div class="news-grid" id="news-container">
-                <div class="loading">Loading news...</div>
+                </div>
+                <h2>Social Responsibility</h2>
+                <p>Initiatives that create positive social impact and community engagement</p>
+                <a href="/social-projects" class="btn category-btn">Explore Projects</a>
             </div>
         </section>
 
-        <!-- Stock Market Section -->
-        <section id="stocks" class="stocks-section">
-            <div class="stocks-header">
-                <h2>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
-                        <path d="M7 14l4-4 4 4 6-6"></path>
-                        <path d="M18 8h3v3"></path>
-                    </svg>
-                    Stock Market Data
-                </h2>
-                <div class="stock-controls">
-                    <select id="stock-select" class="stock-select">
-                        <option value="AAPL">Apple (AAPL)</option>
-                        <option value="MSFT">Microsoft (MSFT)</option>
-                        <option value="GOOGL">Google (GOOGL)</option>
-                        <option value="AMZN">Amazon (AMZN)</option>
-                        <option value="TSLA">Tesla (TSLA)</option>
-                        <option value="SPY">S&P 500 (SPY)</option>
-                    </select>
-                    <select id="timeframe-select" class="timeframe-select">
-                        <option value="TIME_SERIES_DAILY">Daily</option>
-                        <option value="TIME_SERIES_WEEKLY">Weekly</option>
-                        <option value="TIME_SERIES_MONTHLY">Monthly</option>
-                    </select>
-                    <button class="refresh-btn" id="refresh-stocks">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 0 1 9-9"></path>
-                        </svg>
-                        Refresh
-                    </button>
-                </div>
-            </div>
-            <div class="chart-container">
-                <canvas id="stock-chart"></canvas>
-            </div>
-             <div class="stock-info" id="stock-info">
-                <div class="stock-price" id="stock-price">Loading...</div>
-                <div class="stock-change" id="stock-change">
-                    <span id="change-amount">--</span>
-                    <span id="change-percent">(--)</span>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Currency Exchange Section - FIXED -->
-        <section id="currency" class="currency-section">
-            <div class="currency-header">
-                <h2>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="8"></circle>
-                        <line x1="12" y1="8" x2="12" y2="16"></line>
-                        <line x1="8" y1="12" x2="16" y2="12"></line>
-                    </svg>
-                    Currency Exchange Rates
-                </h2>
-                <button class="refresh-btn" id="refresh-currency">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 0 1 9-9"></path>
-                    </svg>
-                    Refresh
-                </button>
-            </div>
-            <div class="currency-grid" id="currency-container">
-                <!-- Currency cards will be generated by JavaScript -->
-            </div>
-        </section>
-       
-        <!-- Map and Clocks Section -->
-        <section id="map" class="map-clocks-section">
-            <div class="map-container" id="satellite-map"></div>
-            
-            <div class="clocks-container">
-                <div class="clock-card">
-                    <div class="clock-flag">🇺🇸</div>
-                    <div class="clock-city">New York</div>
-                    <div class="clock-time" id="time-ny">--:--:--</div>
-                    <div class="clock-date" id="date-ny">--</div>
-                </div>
-                
-                <div class="clock-card">
-                    <div class="clock-flag">🇹🇷</div>
-                    <div class="clock-city">Istanbul</div>
-                    <div class="clock-time" id="time-istanbul">--:--:--</div>
-                    <div class="clock-date" id="date-istanbul">--</div>
-                </div>
-                
-                <div class="clock-card">
-                    <div class="clock-flag">🇬🇧</div>
-                    <div class="clock-city">London</div>
-                    <div class="clock-time" id="time-london">--:--:--</div>
-                    <div class="clock-date" id="date-london">--</div>
-                </div>
-                
-                <div class="clock-card">
-                    <div class="clock-flag">🇯🇵</div>
-                    <div class="clock-city">Tokyo</div>
-                    <div class="clock-time" id="time-tokyo">--:--:--</div>
-                    <div class="clock-date" id="date-tokyo">--</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="blog-highlights">
-            <h2>From Our Blog</h2>
-            <div class="blog-teasers">
-                <div class="blog-teaser">
-                    <span class="teaser-date">Aug 31, 2025</span>
-                    <h4>TILT's Future</h4>
-                    <p>Exciting plans for our second anniversary year...</p>
-                    <a href="/blog-5" class="read-teaser">Read more →</a>
-                </div>
-                <div class="blog-teaser">
-                    <span class="teaser-date">Apr 8, 2025</span>
-                    <h4>From Soil to Circuit</h4>
-                    <p>Building EcoFrame: Our environmental prediction tool...</p>
-                    <a href="/blog-4" class="read-teaser">Read more →</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="doodleden" class="doodle-den-section">
+        <!-- Featured Projects -->
+        <section class="featured-projects">
             <div class="section-header">
-                <h2>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                    </svg>
-                    Doodle Den
-                </h2>
-                <p>Unleash your creativity with our drawing tools</p>
+                <h2>Featured Projects</h2>
+                <p>A glimpse into our most impactful initiatives</p>
             </div>
-            
-            <div class="doodle-container">
-                <canvas id="doodle-canvas" width="800" height="500"></canvas>
-                
-                <div class="doodle-controls">
-                    <div class="tools-row">
-                        <div class="tool-group">
-                            <h3>Pens & Tools</h3>
-                            <div class="tool-buttons">
-                                <button class="tool-btn active" data-tool="ballpoint" title="Ballpoint Pen">
-                                    <span class="tool-icon">•</span> Ballpoint
-                                </button>
-                                <button class="tool-btn" data-tool="pencil" title="Pencil">
-                                    <span class="tool-icon">✏️</span> Pencil
-                                </button>
-                                <button class="tool-btn" data-tool="marker" title="Marker">
-                                    <span class="tool-icon">🖊️</span> Marker
-                                </button>
-                                <button class="tool-btn" data-tool="brush" title="Paint Brush">
-                                    <span class="tool-icon">🖌️</span> Brush
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="tool-group">
-                            <h3>Line Width</h3>
-                            <input type="range" id="brush-size" min="1" max="50" value="5">
-                            <span id="brush-size-value">5px</span>
-                        </div>
+
+            <div class="featured-grid">
+                <div class="featured-card">
+                    <div class="featured-badge">Featured</div>
+                    <h3>EcoCatch</h3>
+                    <p>An all-in-one environmental intelligence platform that unifies ecosystem modeling, biodiversity risk analysis, and conservation tracking.</p>
+                    <div class="project-status">
+                        <span class="status-dot active"></span>
+                        <span>Active Development</span>
                     </div>
-                    
-                    <div class="tools-row">
-                        <div class="tool-group color-palette">
-                            <h3>Colors</h3>
-                            <div class="colors-grid">
-                                <div class="color-option" data-color="#000000" style="background-color: #000000;"></div>
-                                <div class="color-option" data-color="#ff0000" style="background-color: #ff0000;"></div>
-                                <div class="color-option" data-color="#ff9900" style="background-color: #ff9900;"></div>
-                                <div class="color-option" data-color="#ffff00" style="background-color: #ffff00;"></div>
-                                <div class="color-option" data-color="#00ff00" style="background-color: #00ff00;"></div>
-                                <div class="color-option" data-color="#00ffff" style="background-color: #00ffff;"></div>
-                                <div class="color-option" data-color="#0000ff" style="background-color: #0000ff;"></div>
-                                <div class="color-option" data-color="#9900ff" style="background-color: #9900ff;"></div>
-                            </div>
-                        </div>
+                    <a href="/ecocatch" class="btn">Learn More</a>
+                </div>
+
+                <div class="featured-card">
+                    <div class="featured-badge">Featured</div>
+                    <span class="ec-badge">Under Ethics Committee</span>
+                    <h3>NeuroPrognos</h3>
+                    <p>AI-based tool that predicts the risk of developing Huntington's Disease and provides personalized insights for early intervention.</p>
+                    <div class="project-status">
+                        <span class="status-dot development"></span>
+                        <span>Ethics Review</span>
                     </div>
-                    
-                    <div class="tools-row">
-                        <div class="tool-group actions">
-                            <button id="clear-canvas" class="action-btn">🧹 Clear Canvas</button>
-                            <button id="save-doodle" class="action-btn">💾 Save Drawing</button>
-                        </div>
+                    <a href="/neuroprognos" class="btn">Learn More</a>
+                </div>
+
+                <div class="featured-card">
+                    <div class="featured-badge">Featured</div>
+                    <span class="ec-badge">Under Ethics Committee</span>
+                    <h3>Aether</h3>
+                    <p>AI-driven fire prevention and suppression system for lithium-ion battery environments in enclosed spaces.</p>
+                    <div class="project-status">
+                        <span class="status-dot development"></span>
+                        <span>Ethics Review</span>
                     </div>
+                    <a href="/aether" class="btn">Learn More</a>
                 </div>
             </div>
         </section>
 
-        <section class="contact-prompt">
-            <div class="prompt-content">
-                <div class="prompt-icon">💭</div>
-                <h3>Have an idea or question?</h3>
-                <p>We're always excited to connect with potential collaborators and curious minds.</p>
-                <a href="/contact-us" class="contact-cta">Reach Out →</a>
+        <!-- Call to Action -->
+        <section class="projects-cta">
+            <div class="cta-content">
+                <h2>Have an Idea?</h2>
+                <p>Join us in turning innovative ideas into reality. Whether you're a researcher, developer, or passionate about making a difference, there's a place for you at TILT.</p>
+                <div class="cta-buttons">
+                    <a href="/get-involved" class="btn">Get Involved</a>
+                    <a href="/contact-us" class="btn btn-outline">Contact Us</a>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="social-links">
-            <a href="https://www.instagram.com/tilt_initiative" target="_blank" class="social-link">
-                <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-            </a>
-            <a href="https://linkedin.com" target="_blank" class="social-link">
-                <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-            </a>
-        </div>
-        <p>© 2025 TILT – The Initiative for Life and Thoughts</p>
-        <p>Designed with 8.6 billion neurons and a dream</p>
-    </footer>
+   <footer>
+    <div class="social-links">
+        <a href="https://www.instagram.com/tilt_initiative?igsh=MW5qOWdndmpldmlheg==" target="_blank" class="social-link">
+            <svg class="social-icon" viewBox="0 0 24 24" fill="var(--instagram-color)">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+        </a>
+        <a href="https://www.tiktok.com/@tilt_intiative" target="_blank" class="social-link">
+            <svg class="social-icon" viewBox="0 0 24 24" fill="var(--tiktok-color)">
+                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+            </svg>
+        </a>
+        <a href="https://linkedin.com" target="_blank" class="social-link">
+            <svg class="social-icon" viewBox="0 0 24 24" fill="var(--linkedin-color)">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+        </a>
+         <a href="https://x.com" target="_blank" class="social-link">
+            <svg class="social-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="nGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#00c6ff"/>
+                        <stop offset="100%" stop-color="#0072ff"/>
+                    </linearGradient>
+                </defs>
+                <path fill="url(#nGradient)" d="M80 100h90l130 200V100h90v312h-90L170 212v200H80V100z"/>
+            </svg>
+        </a>
+    </div>
+    <p>© 2025 TILT – The Initiative for Life and Thoughts</p>
+    <p>Designed with 8.6 billion neurons and a dream</p>
+</footer>
 
-    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
-        <svg class="scroll-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 10l7-7m0 0l7 7m-7-7v18"/>
-        </svg>
-    </button>
-
-    <script>
-        // Currency Exchange Functionality - FIXED
-        const currencyContainer = document.getElementById('currency-container');
-        const refreshCurrencyBtn = document.getElementById('refresh-currency');
-
-        // List of currencies to display (with flags and names)
-        const currencies = [
-            { code: 'EUR', name: 'Euro', flag: '🇪🇺' },
-            { code: 'GBP', name: 'British Pound', flag: '🇬🇧' },
-            { code: 'JPY', name: 'Japanese Yen', flag: '🇯🇵' },
-            { code: 'CAD', name: 'Canadian Dollar', flag: '🇨🇦' },
-            { code: 'AUD', name: 'Australian Dollar', flag: '🇦🇺' },
-            { code: 'CHF', name: 'Swiss Franc', flag: '🇨🇭' },
-            { code: 'CNY', name: 'Chinese Yuan', flag: '🇨🇳' },
-            { code: 'INR', name: 'Indian Rupee', flag: '🇮🇳' },
-            { code: 'TRY', name: 'Turkish Lira', flag: '🇹🇷' },
-            { code: 'BRL', name: 'Brazilian Real', flag: '🇧🇷' }
-        ];
-
-        // Base currency (we'll convert everything from USD)
-        const baseCurrency = 'USD';
-
-        // Mock exchange rates (in a real app, you'd fetch from an API)
-        const mockExchangeRates = {
-            EUR: 0.92,
-            GBP: 0.79,
-            JPY: 150.25,
-            CAD: 1.36,
-            AUD: 1.53,
-            CHF: 0.88,
-            CNY: 7.24,
-            INR: 83.12,
-            TRY: 32.15,
-            BRL: 5.05
-        };
-
-        // Format exchange rate
-        function formatExchangeRate(value) {
-            return value.toFixed(4);
+<script>
+    // Language Selector Functionality
+    const languageBtn = document.querySelector('.language-btn');
+    const languageMenu = document.querySelector('.language-menu');
+    
+    languageBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isVisible = languageMenu.style.display === 'block';
+        languageMenu.style.display = isVisible ? 'none' : 'block';
+    });
+    
+    // Close language menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.language-selector')) {
+            languageMenu.style.display = 'none';
         }
-
-        // Create currency card HTML
-        function createCurrencyCard(currency, rate) {
-            const formattedRate = formatExchangeRate(rate);
-            return `
-                <div class="currency-card">
-                    <div class="currency-info">
-                        <div class="currency-flag">${currency.flag}</div>
-                        <div class="currency-code">${currency.code}</div>
-                        <div class="currency-name">${currency.name}</div>
-                    </div>
-                    <div class="currency-rate">
-                        1 ${currency.code}<br>
-                        <small>= ${formattedRate} ${baseCurrency}</small>
-                    </div>
-                </div>
-            `;
+    });
+    
+    // Close language menu when clicking on a language option
+    document.querySelectorAll('.language-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            languageMenu.style.display = 'none';
+        });
+    });
+    
+    // Active Navigation Link
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('nav a');
+    
+    navLinks.forEach(link => {
+        const linkPath = link.getAttribute('href');
+        // Remove active class from all links
+        link.classList.remove('active');
+        
+        // Check if current path matches link path
+        if (currentPath === linkPath || 
+            (currentPath === '/projects' && linkPath === '/projects') ||
+            (currentPath.includes('/projects') && linkPath === '/projects')) {
+            link.classList.add('active');
         }
-
-        // Update currency display
-        function updateCurrencies() {
-            currencyContainer.innerHTML = '';
+    });
+    
+    // Set Projects as active by default if no match found
+    const hasActive = document.querySelector('nav a.active');
+    if (!hasActive && currentPath.includes('projects')) {
+        document.querySelector('nav a[href="/projects"]').classList.add('active');
+    }
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
             
-            currencies.forEach(currency => {
-                const rate = mockExchangeRates[currency.code] || 1;
-                const cardHTML = createCurrencyCard(currency, 1/rate); // Convert from base currency
-                currencyContainer.innerHTML += cardHTML;
-            });
-        }
-
-        // Simulate real-time updates
-        function simulateRateChange() {
-            currencies.forEach(currency => {
-                // Random small fluctuation (+/- 0.5%)
-                const fluctuation = 1 + (Math.random() * 0.01 - 0.005);
-                mockExchangeRates[currency.code] *= fluctuation;
-            });
-            updateCurrencies();
-        }
-
-        // Initialize currencies
-        updateCurrencies();
-
-        // Refresh button event listener
-        refreshCurrencyBtn.addEventListener('click', () => {
-            refreshCurrencyBtn.disabled = true;
-            refreshCurrencyBtn.innerHTML = `
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 0 1 9-9"></path>
-                </svg>
-                Refreshing...
-            `;
-            
-            simulateRateChange();
-            
-            setTimeout(() => {
-                refreshCurrencyBtn.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 0 1 9-9"></path>
-                    </svg>
-                    Refresh
-                `;
-                refreshCurrencyBtn.disabled = false;
-            }, 1000);
-        });
-
-        // Auto-refresh every 30 seconds
-        setInterval(simulateRateChange, 30000);
-
-        // Scroll to top button
-        const scrollToTopBtn = document.getElementById('scrollToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                scrollToTopBtn.classList.add('visible');
-            } else {
-                scrollToTopBtn.classList.remove('visible');
-            }
-        });
-        
-        scrollToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Calendar functionality
-        const calendarBody = document.getElementById('calendar-body');
-        const monthYearDisplay = document.getElementById('calendar-month-year');
-        const prevMonthBtn = document.getElementById('prev-month');
-        const nextMonthBtn = document.getElementById('next-month');
-        const todayBtn = document.getElementById('today');
-        
-        let currentDate = new Date();
-        
-        function renderCalendar(date) {
-            const year = date.getFullYear();
-            const month = date.getMonth();
-            
-            // Update month/year display
-            const monthNames = [
-                "January", "February", "March", "April", "May", "June",
-                "July", "August", "September", "October", "November", "December"
-            ];
-            monthYearDisplay.textContent = `${monthNames[month]} ${year}`;
-            
-            // Clear calendar
-            calendarBody.innerHTML = '';
-            
-            // Get first day of month and total days
-            const firstDay = new Date(year, month, 1).getDay();
-            const daysInMonth = new Date(year, month + 1, 0).getDate();
-            
-            // Create calendar cells
-            let day = 1;
-            for (let i = 0; i < 6; i++) {
-                const row = document.createElement('tr');
-                
-                for (let j = 0; j < 7; j++) {
-                    const cell = document.createElement('td');
-                    
-                    if (i === 0 && j < firstDay) {
-                        // Empty cells before first day
-                        cell.textContent = '';
-                    } else if (day > daysInMonth) {
-                        // Empty cells after last day
-                        cell.textContent = '';
-                    } else {
-                        cell.textContent = day;
-                        
-                        // Highlight today
-                        const today = new Date();
-                        if (day === today.getDate() && 
-                            month === today.getMonth() && 
-                            year === today.getFullYear()) {
-                            cell.classList.add('today');
-                        }
-                        
-                        day++;
-                    }
-                    
-                    row.appendChild(cell);
-                }
-                
-                calendarBody.appendChild(row);
-                
-                if (day > daysInMonth) break;
-            }
-        }
-        
-        // Initialize calendar
-        renderCalendar(currentDate);
-        
-        // Event listeners for calendar navigation
-        prevMonthBtn.addEventListener('click', () => {
-            currentDate.setMonth(currentDate.getMonth() - 1);
-            renderCalendar(currentDate);
-        });
-        
-        nextMonthBtn.addEventListener('click', () => {
-            currentDate.setMonth(currentDate.getMonth() + 1);
-            renderCalendar(currentDate);
-        });
-        
-        todayBtn.addEventListener('click', () => {
-            currentDate = new Date();
-            renderCalendar(currentDate);
-        });
-        
-        // Doodle Den functionality
-        const canvas = document.getElementById('doodle-canvas');
-        const ctx = canvas.getContext('2d');
-        const brushSizeInput = document.getElementById('brush-size');
-        const brushSizeValue = document.getElementById('brush-size-value');
-        const colorOptions = document.querySelectorAll('.color-option');
-        const toolButtons = document.querySelectorAll('.tool-btn');
-        const clearCanvasBtn = document.getElementById('clear-canvas');
-        
-        let isDrawing = false;
-        let lastX = 0;
-        let lastY = 0;
-        let currentColor = '#000000';
-        let currentTool = 'ballpoint';
-        let lineWidth = 5;
-        
-        // Set canvas background to white
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        // Update brush size display
-        brushSizeInput.addEventListener('input', () => {
-            lineWidth = brushSizeInput.value;
-            brushSizeValue.textContent = `${lineWidth}px`;
-        });
-        
-        // Color selection
-        colorOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                currentColor = option.dataset.color;
-                colorOptions.forEach(opt => opt.classList.remove('active'));
-                option.classList.add('active');
-            });
-        });
-        
-        // Tool selection
-        toolButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                toolButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                currentTool = button.dataset.tool;
-            });
-        });
-        
-        // Drawing functions
-        function startDrawing(e) {
-            isDrawing = true;
-            [lastX, lastY] = [e.offsetX, e.offsetY];
-        }
-        
-        function draw(e) {
-            if (!isDrawing) return;
-            
-            ctx.beginPath();
-            ctx.moveTo(lastX, lastY);
-            ctx.lineTo(e.offsetX, e.offsetY);
-            ctx.strokeStyle = currentColor;
-            ctx.lineWidth = lineWidth;
-            ctx.lineCap = 'round';
-            ctx.lineJoin = 'round';
-            
-            // Tool-specific adjustments
-            switch(currentTool) {
-                case 'pencil':
-                    ctx.globalAlpha = 0.7;
-                    ctx.lineWidth = lineWidth * 0.8;
-                    break;
-                case 'marker':
-                    ctx.globalAlpha = 0.9;
-                    ctx.lineWidth = lineWidth * 1.2;
-                    break;
-                case 'brush':
-                    ctx.globalAlpha = 0.8;
-                    break;
-                case 'eraser':
-                    ctx.strokeStyle = '#ffffff';
-                    ctx.lineWidth = lineWidth * 2;
-                    break;
-                default:
-                    ctx.globalAlpha = 1;
-            }
-            
-            ctx.stroke();
-            ctx.globalAlpha = 1;
-            
-            [lastX, lastY] = [e.offsetX, e.offsetY];
-        }
-        
-        function stopDrawing() {
-            isDrawing = false;
-        }
-        
-        // Event listeners for drawing
-        canvas.addEventListener('mousedown', startDrawing);
-        canvas.addEventListener('mousemove', draw);
-        canvas.addEventListener('mouseup', stopDrawing);
-        canvas.addEventListener('mouseout', stopDrawing);
-        
-        // Clear canvas
-        clearCanvasBtn.addEventListener('click', () => {
-            ctx.fillStyle = '#ffffff';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-        });
-        
-        // Save doodle
-        document.getElementById('save-doodle').addEventListener('click', () => {
-            const link = document.createElement('a');
-            link.download = 'tilt-doodle.png';
-            link.href = canvas.toDataURL('image/png');
-            link.click();
-        });
-        
-        // World clocks
-        function updateClocks() {
-            const cities = [
-                { id: 'ny', city: 'New York', offset: -5 },
-                { id: 'istanbul', city: 'Istanbul', offset: 3 },
-                { id: 'london', city: 'London', offset: 0 },
-                { id: 'tokyo', city: 'Tokyo', offset: 9 }
-            ];
-            
-            const now = new Date();
-            
-            cities.forEach(city => {
-                const cityTime = new Date(now.getTime() + (city.offset * 60 * 60 * 1000));
-                
-                const timeString = cityTime.toUTCString().split(' ')[4];
-                const dateString = cityTime.toLocaleDateString('en-US', { 
-                    weekday: 'short', 
-                    year: 'numeric', 
-                    month: 'short', 
-                    day: 'numeric' 
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
                 });
-                
-                document.getElementById(`time-${city.id}`).textContent = timeString;
-                document.getElementById(`date-${city.id}`).textContent = dateString;
-            });
-        }
-        
-        // Update clocks every second
-        setInterval(updateClocks, 1000);
-        updateClocks(); // Initial call
-        
-        // Fixed Language Selector Interaction
-        const languageBtn = document.querySelector('.language-btn');
-        const languageMenu = document.querySelector('.language-menu');
-        
-        languageBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            languageMenu.style.display = languageMenu.style.display === 'block' ? 'none' : 'block';
-        });
-        
-        // Close language menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.language-selector')) {
-                languageMenu.style.display = 'none';
             }
         });
-        
-        // Close language menu when clicking on a language option
-        document.querySelectorAll('.language-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                languageMenu.style.display = 'none';
-            });
+    });
+    
+    // Add hover effects to project cards
+    document.querySelectorAll('.category-card, .featured-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-4px)';
         });
-    </script>
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+    
+    // Fix header on scroll
+    let lastScrollTop = 0;
+    const header = document.getElementById('main-header');
+    
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // Scrolling down
+            header.style.transform = 'translateY(-100%)';
+        } else {
+            // Scrolling up
+            header.style.transform = 'translateY(0)';
+        }
+        
+        lastScrollTop = scrollTop;
+    });
+</script>
 </body>
 </html>

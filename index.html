@@ -117,7 +117,6 @@
             font-family: var(--font-heading);
             font-weight: 600;
             line-height: 1.3;
-            color: var(--primary-dark);
             margin-bottom: var(--space-4);
         }
         
@@ -258,6 +257,66 @@
             gap: var(--space-4);
         }
         
+        /* FIXED: Language Selector */
+        .language-selector {
+            position: relative;
+        }
+        
+        .language-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--neutral-0);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-size: 0.9rem;
+            min-width: 60px;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .language-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--neutral-0);
+            border: 1px solid var(--neutral-200);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            min-width: 140px;
+            display: none;
+            z-index: 100;
+            margin-top: var(--space-2);
+        }
+        
+        .language-menu a {
+            display: block;
+            padding: var(--space-3) var(--space-4);
+            color: var(--neutral-700);
+            text-decoration: none;
+            border-bottom: 1px solid var(--neutral-100);
+            transition: background var(--transition-fast);
+        }
+        
+        .language-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        .language-menu a:hover {
+            background: var(--neutral-50);
+            color: var(--primary-main);
+        }
+        
+        .language-selector:hover .language-menu {
+            display: block;
+        }
+        
         /* ===========================================
            MAIN CONTENT LAYOUT
         =========================================== */
@@ -269,7 +328,7 @@
         }
         
         /* ===========================================
-           CONTENT COLUMNS - Fixing Quote & Blog
+           CONTENT COLUMNS - Fixed Quote & Blog
         =========================================== */
         
         .content-columns {
@@ -348,93 +407,105 @@
         }
         
         /* ===========================================
-           NEWSCARD STYLE - FIXED Quote & Blog Separation
+           NEWSCARD STYLE - FIXED Quote & Blog Spacing
         =========================================== */
         
         .newsflash {
-            background: linear-gradient(135deg, var(--neutral-50), var(--neutral-100));
+            background: var(--neutral-0);
             border-left: 4px solid var(--accent-yellow);
             position: relative;
             overflow: hidden;
         }
         
-        .newsflash::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, var(--accent-yellow), transparent);
-            opacity: 0.1;
-            border-radius: 0 0 0 100px;
+        /* Quote Section - Clean Separation */
+        .quote-section {
+            margin-bottom: var(--space-8);
+            padding-bottom: var(--space-5);
+            border-bottom: 2px solid var(--neutral-200);
         }
         
-        /* Quote Section Styling */
-        .newsflash > h2:first-of-type {
+        .quote-section h2 {
             color: var(--primary-main);
             font-size: 1.25rem;
-            margin-bottom: var(--space-3);
+            margin-bottom: var(--space-4);
             display: flex;
             align-items: center;
             gap: var(--space-3);
         }
         
-        .newsflash > h2:first-of-type::before {
+        .quote-section h2::before {
             content: "💬";
             font-size: 1.2rem;
         }
         
-        .newsflash blockquote {
+        .quote-section blockquote {
             font-style: italic;
-            color: var(--neutral-700);
-            border-left: 3px solid var(--accent-yellow);
-            padding: var(--space-4) var(--space-5);
+            color: var(--neutral-800);
+            background: linear-gradient(135deg, var(--neutral-50), var(--neutral-100));
+            padding: var(--space-5) var(--space-6);
             margin: var(--space-4) 0;
-            font-size: 1.1rem;
-            line-height: 1.7;
-            background: var(--neutral-0);
+            font-size: 1.2rem;
+            line-height: 1.8;
             border-radius: var(--radius-md);
             box-shadow: var(--shadow-sm);
+            border-left: 5px solid var(--accent-yellow);
+            position: relative;
         }
         
-        .newsflash blockquote::before {
+        .quote-section blockquote::before {
             content: "❝";
             color: var(--accent-yellow);
-            font-size: 2rem;
-            margin-right: var(--space-2);
-            vertical-align: top;
-            line-height: 0;
+            font-size: 3rem;
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            opacity: 0.3;
+            line-height: 1;
         }
         
-        /* Blog Section Styling */
-        .newsflash > h2:nth-of-type(2) {
+        .quote-author {
+            display: block;
+            text-align: right;
+            color: var(--neutral-600);
+            font-size: 1rem;
+            font-style: normal;
+            margin-top: var(--space-4);
+            font-weight: 600;
+            padding-top: var(--space-3);
+            border-top: 1px solid var(--neutral-200);
+        }
+        
+        /* Blog Section - Clean Separation */
+        .blog-section {
+            padding-top: var(--space-5);
+        }
+        
+        .blog-section h2 {
             color: var(--primary-main);
             font-size: 1.25rem;
-            margin-top: var(--space-6);
-            margin-bottom: var(--space-3);
+            margin-bottom: var(--space-5);
             display: flex;
             align-items: center;
             gap: var(--space-3);
-            padding-top: var(--space-4);
-            border-top: 2px solid var(--neutral-200);
+            padding-top: var(--space-3);
         }
         
-        .newsflash > h2:nth-of-type(2)::before {
+        .blog-section h2::before {
             content: "📝";
             font-size: 1.2rem;
         }
         
-        .newsflash h3 {
+        .blog-section h3 {
             color: var(--primary-dark);
             font-size: 1.5rem;
-            margin: var(--space-3) 0 var(--space-2);
+            margin: var(--space-4) 0 var(--space-3);
         }
         
-        .newsflash p {
-            color: var(--neutral-600);
-            margin-bottom: var(--space-3);
-            line-height: 1.6;
+        .blog-section p {
+            color: var(--neutral-700);
+            margin-bottom: var(--space-4);
+            line-height: 1.7;
+            font-size: 1.05rem;
         }
         
         .update-info {
@@ -448,7 +519,7 @@
         }
         
         /* ===========================================
-           TILT HERO SECTION - FIXED Icon Overlapping
+           TILT HERO SECTION - FIXED Title Color
         =========================================== */
         
         .tilt-hero-section {
@@ -459,6 +530,7 @@
             position: relative;
             overflow: hidden;
             color: var(--neutral-0);
+            text-align: center;
         }
         
         .tilt-hero-section::before {
@@ -473,53 +545,41 @@
                 radial-gradient(circle at 80% 20%, rgba(127, 219, 255, 0.05) 0%, transparent 50%);
         }
         
-        .tilt-hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-7);
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
-        
-        @media (max-width: 1024px) {
-            .tilt-hero-grid {
-                grid-template-columns: 1fr;
-                gap: var(--space-6);
-                text-align: center;
-            }
-            
-            .tilt-hero-subtitle {
-                max-width: 100% !important;
-            }
-        }
-        
         .tilt-badge {
             display: inline-block;
-            background: var(--primary-accent);
-            color: var(--neutral-0);
+            background: var(--accent-yellow);
+            color: var(--primary-dark);
             padding: var(--space-2) var(--space-4);
             border-radius: 50px;
             font-size: 0.875rem;
-            font-weight: 600;
+            font-weight: 700;
             letter-spacing: 0.5px;
             text-transform: uppercase;
             margin-bottom: var(--space-4);
         }
         
+        .tilt-hero-section h2 {
+            color: var(--neutral-0) !important;
+            font-size: 2.5rem;
+            margin: var(--space-4) 0 var(--space-5);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
         .tilt-hero-subtitle {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             opacity: 0.9;
-            margin: var(--space-5) 0;
-            line-height: 1.7;
-            max-width: 90%;
+            margin: var(--space-5) auto;
+            line-height: 1.8;
+            max-width: 800px;
+            color: var(--neutral-0);
         }
         
         .tilt-stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: var(--space-4);
-            margin: var(--space-6) 0;
+            margin: var(--space-6) auto;
+            max-width: 800px;
         }
         
         @media (max-width: 768px) {
@@ -545,26 +605,30 @@
         
         .stat-number {
             display: block;
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 700;
             color: var(--accent-info);
             margin-bottom: var(--space-2);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
         
         .stat-label {
-            font-size: 0.875rem;
+            font-size: 0.9rem;
             opacity: 0.9;
+            color: var(--neutral-0);
         }
         
         .tilt-hero-cta {
             display: flex;
             gap: var(--space-4);
-            margin-top: var(--space-5);
+            margin-top: var(--space-6);
+            justify-content: center;
         }
         
         @media (max-width: 768px) {
             .tilt-hero-cta {
                 flex-direction: column;
+                align-items: center;
             }
         }
         
@@ -578,15 +642,17 @@
             gap: var(--space-3);
             transition: all var(--transition-normal);
             border: 2px solid transparent;
+            min-width: 180px;
+            justify-content: center;
         }
         
         .hero-btn.primary {
-            background: var(--primary-accent);
-            color: var(--neutral-0);
+            background: var(--accent-yellow);
+            color: var(--primary-dark);
         }
         
         .hero-btn.primary:hover {
-            background: var(--accent-info);
+            background: var(--neutral-0);
             color: var(--primary-dark);
             transform: translateY(-2px);
             box-shadow: var(--shadow-md);
@@ -602,202 +668,6 @@
             background: rgba(255, 255, 255, 0.1);
             transform: translateY(-2px);
             box-shadow: var(--shadow-md);
-        }
-        
-        /* ===========================================
-           VISUAL ELEMENTS - FIXED Overlapping Icons
-        =========================================== */
-        
-        .visual-container {
-            position: relative;
-            height: 400px;
-            min-height: 400px;
-        }
-        
-        .visual-circle {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            animation: float 8s ease-in-out infinite;
-        }
-        
-        .circle-1 {
-            width: 150px;
-            height: 150px;
-            top: 50px;
-            left: 50px;
-            animation-delay: 0s;
-        }
-        
-        .circle-2 {
-            width: 120px;
-            height: 120px;
-            top: 100px;
-            right: 100px;
-            animation-delay: 2s;
-        }
-        
-        .circle-3 {
-            width: 100px;
-            height: 100px;
-            bottom: 80px;
-            left: 150px;
-            animation-delay: 4s;
-        }
-        
-        @keyframes float {
-            0%, 100% { 
-                transform: translateY(0) rotate(0deg); 
-            }
-            50% { 
-                transform: translateY(-15px) rotate(5deg); 
-            }
-        }
-        
-        .visual-element {
-            position: absolute;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: var(--space-3);
-            background: rgba(255, 255, 255, 0.95);
-            padding: var(--space-4);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-md);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            z-index: 2;
-            width: 140px;
-            text-align: center;
-        }
-        
-        /* FIXED: Position each icon separately to prevent overlap */
-        .visual-element.brain {
-            top: 30%;
-            left: 10%;
-            transform: translate(-10%, -30%);
-        }
-        
-        .visual-element.visual-leaf {
-            top: 20%;
-            right: 15%;
-            transform: translate(15%, -20%);
-        }
-        
-        .visual-element.visual-innovation {
-            bottom: 25%;
-            right: 25%;
-            transform: translate(25%, 25%);
-        }
-        
-        .visual-element svg {
-            width: 60px;
-            height: 60px;
-            color: var(--primary-main);
-        }
-        
-        .visual-label {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--primary-dark);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: var(--space-2);
-        }
-        
-        /* Responsive adjustments for visual elements */
-        @media (max-width: 1024px) {
-            .visual-container {
-                height: 350px;
-                min-height: 350px;
-            }
-            
-            .visual-element {
-                width: 120px;
-                padding: var(--space-3);
-            }
-            
-            .visual-element.brain {
-                top: 25%;
-                left: 5%;
-            }
-            
-            .visual-element.visual-leaf {
-                top: 15%;
-                right: 10%;
-            }
-            
-            .visual-element.visual-innovation {
-                bottom: 20%;
-                right: 20%;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .visual-container {
-                height: 300px;
-                min-height: 300px;
-                margin: var(--space-5) 0;
-            }
-            
-            .visual-element {
-                width: 100px;
-                padding: var(--space-2);
-            }
-            
-            .visual-element svg {
-                width: 50px;
-                height: 50px;
-            }
-            
-            .visual-label {
-                font-size: 0.75rem;
-            }
-            
-            .circle-1 {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .circle-2 {
-                width: 80px;
-                height: 80px;
-                right: 50px;
-            }
-            
-            .circle-3 {
-                width: 60px;
-                height: 60px;
-                left: 100px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .visual-container {
-                height: 250px;
-                min-height: 250px;
-            }
-            
-            .visual-element {
-                width: 90px;
-                padding: var(--space-2);
-            }
-            
-            .visual-element svg {
-                width: 40px;
-                height: 40px;
-            }
-            
-            .visual-label {
-                font-size: 0.7rem;
-            }
-            
-            .circle-1,
-            .circle-2,
-            .circle-3 {
-                display: none; /* Hide circles on very small screens */
-            }
         }
         
         /* ===========================================
@@ -1004,101 +874,6 @@
             font-size: 0.8rem;
             padding-top: var(--space-3);
             border-top: 1px solid var(--neutral-200);
-        }
-        
-        /* ===========================================
-           PROJECTS PREVIEW - Professional Cards
-        =========================================== */
-        
-        .projects-preview {
-            background: var(--neutral-0);
-            border: 1px solid var(--neutral-200);
-            border-radius: var(--radius-lg);
-            padding: var(--space-5);
-            margin: var(--space-6) 0;
-            text-align: center;
-            box-shadow: var(--shadow-sm);
-        }
-        
-        .preview-header {
-            margin-bottom: var(--space-5);
-        }
-        
-        .preview-header h2 {
-            color: var(--primary-dark);
-            margin-bottom: var(--space-2);
-        }
-        
-        .preview-header p {
-            color: var(--neutral-600);
-            font-size: 1.1rem;
-        }
-        
-        .project-mini-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--space-5);
-            margin: var(--space-5) 0;
-        }
-        
-        .mini-project {
-            background: var(--neutral-50);
-            padding: var(--space-5);
-            border-radius: var(--radius-md);
-            text-align: left;
-            border-left: 4px solid var(--primary-accent);
-            transition: all var(--transition-normal);
-        }
-        
-        .mini-project:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-            background: var(--neutral-0);
-        }
-        
-        .project-tag {
-            display: inline-block;
-            background: var(--primary-accent);
-            color: var(--neutral-0);
-            padding: var(--space-1) var(--space-3);
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: var(--space-3);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .mini-project h4 {
-            font-size: 1.25rem;
-            margin-bottom: var(--space-2);
-            color: var(--primary-dark);
-        }
-        
-        .mini-project p {
-            color: var(--neutral-600);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        
-        .view-all-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-2);
-            color: var(--primary-light);
-            text-decoration: none;
-            font-weight: 600;
-            padding: var(--space-3) var(--space-5);
-            border: 2px solid var(--primary-light);
-            border-radius: var(--radius-md);
-            transition: all var(--transition-normal);
-            margin-top: var(--space-4);
-        }
-        
-        .view-all-btn:hover {
-            background: var(--primary-light);
-            color: var(--neutral-0);
-            transform: translateY(-2px);
         }
         
         /* ===========================================
@@ -1811,8 +1586,8 @@
                 <div class="language-selector">
                     <button class="language-btn">EN</button>
                     <div class="language-menu">
-                        <a href="/">🇬🇧English</a>
-                        <a href="/tr">🇹🇷Türkçe</a>
+                        <a href="/">🇬🇧 English</a>
+                        <a href="/tr">🇹🇷 Türkçe</a>
                     </div>
                 </div>
             </div>
@@ -1835,98 +1610,68 @@
             
             <div class="content-column">
                 <section class="newsflash">
-                    <h2>QUOTE OF THE DAY:</h2>
-                    <blockquote>
-                        "The unexamined life is not worth living." - Socrates
-                    </blockquote>
-                    <h2>LATEST BLOG</h2>
-                    <h3>TILT's Future</h3>
-                    <p>TILT's second anniversery is on it's way, and we have really exciting plans for this year! We have a whole lot of new projects and i'm proud to intruduce you to some of these projects...</p>
-                    <a href="/blog" class="learn-more">Read more...</a>
+                    <!-- QUOTE SECTION -->
+                    <div class="quote-section">
+                        <h2>QUOTE OF THE DAY</h2>
+                        <blockquote>
+                            "The unexamined life is not worth living."
+                            <span class="quote-author">- Socrates</span>
+                        </blockquote>
+                    </div>
                     
-                    <div class="update-info">
-                       By: Elizya 
-                        31 August 2025
+                    <!-- BLOG SECTION -->
+                    <div class="blog-section">
+                        <h2>LATEST BLOG</h2>
+                        <h3>TILT's Future</h3>
+                        <p>TILT's second anniversary is on its way, and we have really exciting plans for this year! We have a whole lot of new projects and I'm proud to introduce you to some of these projects...</p>
+                        <a href="/blog" class="learn-more">Read more...</a>
+                        
+                        <div class="update-info">
+                           By: Elizya 
+                            31 August 2025
+                        </div>
                     </div>
                 </section>
             </div>
         </div>
 
-        <!-- Hero Section -->
+        <!-- Hero Section - FIXED Title Color -->
         <section class="tilt-hero-section">
-            <div class="tilt-hero-grid">
-                <div class="tilt-hero-main">
-                    <div class="tilt-hero-header">
-                        <span class="tilt-badge">Youth-Led Initiative</span>
-                        <h2>Where Neuroscience Meets Sustainability</h2>
-                        <p class="tilt-hero-subtitle">TILT empowers young minds to transform bold ideas into data-driven solutions that shape a more equal, beautiful, and sustainable world.</p>
-                    </div>
-                    
-                    <div class="tilt-stats">
-                        <div class="stat-item">
-                            <span class="stat-number">7+</span>
-                            <span class="stat-label">Active Projects</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">20+</span>
-                            <span class="stat-label">Team Members</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">2</span>
-                            <span class="stat-label">Years of Impact</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">∞</span>
-                            <span class="stat-label">Dreams to Build</span>
-                        </div>
-                    </div>
-                    
-                    <div class="tilt-hero-cta">
-                        <a href="/about" class="hero-btn primary">
-                            <span>Learn More About TILT</span>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </a>
-                        <a href="/get-involved" class="hero-btn secondary">
-                            <span>Get Involved</span>
-                        </a>
-                    </div>
+            <div class="tilt-hero-header">
+                <span class="tilt-badge">Youth-Led Initiative</span>
+                <h2>Where Neuroscience Meets Sustainability</h2>
+                <p class="tilt-hero-subtitle">TILT empowers young minds to transform bold ideas into data-driven solutions that shape a more equal, beautiful, and sustainable world.</p>
+            </div>
+            
+            <div class="tilt-stats">
+                <div class="stat-item">
+                    <span class="stat-number">7+</span>
+                    <span class="stat-label">Active Projects</span>
                 </div>
-                
-                <div class="tilt-hero-visual">
-                    <div class="visual-container">
-                        <div class="visual-circle circle-1"></div>
-                        <div class="visual-circle circle-2"></div>
-                        <div class="visual-circle circle-3"></div>
-                        
-                        <div class="visual-element brain">
-                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M12 2a3 3 0 0 0-3 3v2a3 3 0 0 0-3 3v2a3 3 0 0 0 3 3v2a3 3 0 0 0 3 3v1"/>
-                                <path d="M12 2a3 3 0 0 1 3 3v2a3 3 0 0 1 3 3v2a3 3 0 0 1-3 3v2a3 3 0 0 1-3 3v1"/>
-                                <path d="M12 11h.01"/>
-                                <path d="M12 13h.01"/>
-                            </svg>
-                            <span class="visual-label">Neuroscience</span>
-                        </div>
-                        
-                        <div class="visual-element visual-leaf">
-                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                                <path d="M12 2v20"/>
-                            </svg>
-                            <span class="visual-label">Sustainability</span>
-                        </div>
-                        
-                        <div class="visual-element visual-innovation">
-                            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="m9 12 2 2 4-4"/>
-                            </svg>
-                            <span class="visual-label">Innovation</span>
-                        </div>
-                    </div>
+                <div class="stat-item">
+                    <span class="stat-number">20+</span>
+                    <span class="stat-label">Team Members</span>
                 </div>
+                <div class="stat-item">
+                    <span class="stat-number">2</span>
+                    <span class="stat-label">Years of Impact</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">∞</span>
+                    <span class="stat-label">Dreams to Build</span>
+                </div>
+            </div>
+            
+            <div class="tilt-hero-cta">
+                <a href="/about" class="hero-btn primary">
+                    <span>Learn More About TILT</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="/get-involved" class="hero-btn secondary">
+                    <span>Get Involved</span>
+                </a>
             </div>
         </section>
 
@@ -1982,26 +1727,6 @@
             </div>
         </section>
 
-        <section class="projects-preview">
-            <div class="preview-header">
-                <h2>Our Innovation Hub</h2>
-                <p>See what we're building</p>
-            </div>
-            <div class="project-mini-cards">
-                <div class="mini-project">
-                    <span class="project-tag">AI + Environment</span>
-                    <h4>EcoCatch</h4>
-                    <p>Environmental intelligence platform for biodiversity tracking</p>
-                </div>
-                <div class="mini-project">
-                    <span class="project-tag">Neuroscience</span>
-                    <h4>NeuroPrognos</h4>
-                    <p>AI tool for Huntington's Disease risk prediction</p>
-                </div>
-            </div>
-            <a href="/projects" class="view-all-btn">View All Projects →</a>
-        </section>
-        
         <!-- Stock Market Section -->
         <section id="stocks" class="stocks-section">
             <div class="stocks-header">
@@ -2470,6 +2195,29 @@
         // Update clocks every second
         setInterval(updateClocks, 1000);
         updateClocks(); // Initial call
+        
+        // Fixed Language Selector Interaction
+        const languageBtn = document.querySelector('.language-btn');
+        const languageMenu = document.querySelector('.language-menu');
+        
+        languageBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            languageMenu.style.display = languageMenu.style.display === 'block' ? 'none' : 'block';
+        });
+        
+        // Close language menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.language-selector')) {
+                languageMenu.style.display = 'none';
+            }
+        });
+        
+        // Close language menu when clicking on a language option
+        document.querySelectorAll('.language-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                languageMenu.style.display = 'none';
+            });
+        });
     </script>
 </body>
 </html>

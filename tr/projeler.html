@@ -1,1 +1,1480 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeler - TILT</title>
+   
+    <link rel="icon" href="https://raw.githubusercontent.com/elizyasandikcii/TILT-Initiative/3802bf8741f027b4bfeaf7c6daf9f2223e1aeb1e/logokas%CC%A7e.png" type="image/png" />
 
+    <script src="script.js" defer></script>
+
+    <style>
+        /* ===========================================
+           MARINE DEAL NEWS STYLES - Professional, clean, business-oriented
+        =========================================== */
+        
+        :root {
+            /* Primary Colors - Marine Deal Blue Theme */
+            --primary-dark: #001F3F;      /* Deep Navy */
+            --primary-main: #003366;      /* Marine Blue */
+            --primary-light: #0055A4;     /* Ocean Blue */
+            --primary-accent: #0074D9;    /* Bright Blue */
+            
+            /* Secondary Colors */
+            --secondary-dark: #2E4053;
+            --secondary-main: #566573;
+            --secondary-light: #85929E;
+            
+            /* Accent Colors */
+            --accent-success: #2ECC71;
+            --accent-warning: #FF851B;
+            --accent-danger: #FF4136;
+            --accent-info: #7FDBFF;
+            --accent-yellow: #FFDC00;
+            
+            /* Neutral Colors */
+            --neutral-0: #FFFFFF;
+            --neutral-50: #F8F9FA;
+            --neutral-100: #E9ECEF;
+            --neutral-200: #DEE2E6;
+            --neutral-300: #CED4DA;
+            --neutral-400: #ADB5BD;
+            --neutral-500: #6C757D;
+            --neutral-600: #495057;
+            --neutral-700: #343A40;
+            --neutral-800: #212529;
+            --neutral-900: #000000;
+            
+            /* Typography */
+            --font-primary: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            --font-heading: 'Georgia', 'Times New Roman', 'Times', serif;
+            --font-mono: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+            
+            /* Spacing */
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-5: 24px;
+            --space-6: 32px;
+            --space-7: 48px;
+            --space-8: 64px;
+            --space-9: 96px;
+            
+            /* Border Radius */
+            --radius-sm: 2px;
+            --radius-md: 4px;
+            --radius-lg: 8px;
+            --radius-xl: 12px;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
+            
+            /* Transitions */
+            --transition-fast: 150ms ease;
+            --transition-normal: 250ms ease;
+            --transition-slow: 350ms ease;
+        }
+        
+        /* ===========================================
+           RESET & BASE STYLES
+        =========================================== */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--neutral-800);
+            background-color: var(--neutral-50);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: var(--space-4);
+        }
+        
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.75rem; }
+        h4 { font-size: 1.5rem; }
+        h5 { font-size: 1.25rem; }
+        h6 { font-size: 1rem; }
+        
+        p {
+            margin-bottom: var(--space-4);
+        }
+        
+        a {
+            color: var(--primary-light);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+        
+        a:hover {
+            color: var(--primary-accent);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        button, 
+        input, 
+        select, 
+        textarea {
+            font-family: inherit;
+            font-size: inherit;
+        }
+        
+        /* ===========================================
+           HEADER STYLES - Professional Navigation
+        =========================================== */
+        
+        #main-header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-main));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: var(--space-4) 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+        
+        .logo-image {
+            height: 40px;
+            width: auto;
+            filter: brightness(0) invert(1);
+            transition: transform var(--transition-normal);
+        }
+        
+        .logo-image:hover {
+            transform: scale(1.05);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: var(--space-5);
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav a {
+            color: var(--neutral-0);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-normal);
+            position: relative;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--accent-info);
+            transition: width var(--transition-normal);
+        }
+        
+        nav a:hover::after {
+            width: 80%;
+        }
+        
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        nav a.active {
+            background: var(--primary-accent);
+        }
+        
+        .more-tilt {
+            background: var(--neutral-0);
+            color: var(--primary-main) !important;
+            padding: var(--space-2) var(--space-5) !important;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            margin-left: var(--space-2);
+        }
+        
+        .more-tilt:hover {
+            background: var(--accent-info);
+            color: var(--primary-dark) !important;
+        }
+        
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+        
+        /* Language Selector */
+        .language-selector {
+            position: relative;
+        }
+        
+        .language-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--neutral-0);
+            padding: var(--space-2) var(--space-4);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-size: 0.9rem;
+            min-width: 60px;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .language-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .language-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--neutral-0);
+            border: 1px solid var(--neutral-200);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            min-width: 140px;
+            display: none;
+            z-index: 100;
+            margin-top: var(--space-2);
+        }
+        
+        .language-menu a {
+            display: block;
+            padding: var(--space-3) var(--space-4);
+            color: var(--neutral-700);
+            text-decoration: none;
+            border-bottom: 1px solid var(--neutral-100);
+            transition: background var(--transition-fast);
+        }
+        
+        .language-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        .language-menu a:hover {
+            background: var(--neutral-50);
+            color: var(--primary-main);
+        }
+        
+        .language-selector:hover .language-menu {
+            display: block;
+        }
+        
+        /* ===========================================
+           MAIN CONTENT LAYOUT
+        =========================================== */
+        
+        main {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: var(--space-6);
+        }
+        
+        /* ===========================================
+           PROJECTS HERO SECTION
+        =========================================== */
+        
+        .projects-hero-section {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-main));
+            border-radius: var(--radius-lg);
+            padding: var(--space-8) var(--space-6);
+            margin: var(--space-6) 0 var(--space-8);
+            position: relative;
+            overflow: hidden;
+            color: var(--neutral-0);
+        }
+        
+        .projects-hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 116, 217, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(127, 219, 255, 0.05) 0%, transparent 50%);
+        }
+        
+        .projects-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .projects-hero-badge {
+            display: inline-block;
+            background: var(--accent-yellow);
+            color: var(--primary-dark);
+            padding: var(--space-2) var(--space-5);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: var(--space-5);
+        }
+        
+        .projects-hero-section h1 {
+            color: var(--neutral-0) !important;
+            font-size: 3rem;
+            margin: var(--space-4) 0 var(--space-5);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .projects-hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin: var(--space-5) auto;
+            line-height: 1.8;
+            max-width: 700px;
+            color: var(--neutral-0);
+        }
+        
+        .projects-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-5);
+            margin: var(--space-6) auto;
+            max-width: 800px;
+        }
+        
+        @media (max-width: 768px) {
+            .projects-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .projects-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .projects-stat-item {
+            text-align: center;
+            padding: var(--space-5);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform var(--transition-normal);
+        }
+        
+        .projects-stat-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .projects-stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-info);
+            margin-bottom: var(--space-2);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .projects-stat-label {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            color: var(--neutral-0);
+        }
+        
+        /* ===========================================
+           CONTENT SECTIONS
+        =========================================== */
+        
+        .content-section {
+            background: var(--neutral-0);
+            border: 1px solid var(--neutral-200);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin: var(--space-6) 0;
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+        }
+        
+        .content-section:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .section-header {
+            margin-bottom: var(--space-6);
+            text-align: center;
+        }
+        
+        .section-header h2 {
+            color: var(--primary-dark);
+            margin-bottom: var(--space-3);
+            display: inline-block;
+            padding-bottom: var(--space-3);
+            position: relative;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary-accent);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            color: var(--neutral-600);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* ===========================================
+           PROJECT CATEGORIES SECTION
+        =========================================== */
+        
+        .projects-categories-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-5);
+            margin: var(--space-5) 0;
+        }
+        
+        @media (max-width: 768px) {
+            .projects-categories-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .category-card {
+            background: var(--neutral-50);
+            border-radius: var(--radius-md);
+            padding: var(--space-5);
+            text-align: center;
+            border: 1px solid var(--neutral-200);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+        
+        .main-projects::before {
+            background: linear-gradient(90deg, var(--primary-accent), var(--accent-info));
+        }
+        
+        .social-projects::before {
+            background: linear-gradient(90deg, var(--accent-success), var(--accent-yellow));
+        }
+        
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+            background: var(--neutral-0);
+        }
+        
+        .category-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-4);
+            font-size: 2.5rem;
+            color: white;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-accent));
+        }
+        
+        .category-card h3 {
+            color: var(--primary-dark);
+            margin-bottom: var(--space-3);
+            font-size: 1.3rem;
+        }
+        
+        .category-card p {
+            color: var(--neutral-600);
+            line-height: 1.6;
+            margin-bottom: var(--space-5);
+            font-size: 0.95rem;
+        }
+        
+        .category-btn {
+            padding: var(--space-3) var(--space-5);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-3);
+            transition: all var(--transition-normal);
+            border: 2px solid transparent;
+            justify-content: center;
+            background: var(--primary-light);
+            color: var(--neutral-0);
+            min-width: 160px;
+        }
+        
+        .category-btn:hover {
+            background: var(--primary-accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+            color: var(--neutral-0);
+        }
+        
+        /* ===========================================
+           FEATURED PROJECTS SECTION
+        =========================================== */
+        
+        .featured-projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--space-5);
+            margin: var(--space-5) 0;
+        }
+        
+        @media (max-width: 768px) {
+            .featured-projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .featured-card {
+            background: var(--neutral-50);
+            border-radius: var(--radius-md);
+            padding: var(--space-5);
+            border: 1px solid var(--neutral-200);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .featured-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+            background: var(--neutral-0);
+        }
+        
+        .featured-badge {
+            position: absolute;
+            top: var(--space-4);
+            right: var(--space-4);
+            background: var(--accent-yellow);
+            color: var(--primary-dark);
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        
+        .ec-badge {
+            display: inline-block;
+            background: var(--accent-warning);
+            color: var(--neutral-0);
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin: var(--space-2) 0 var(--space-3);
+        }
+        
+        .featured-card h3 {
+            color: var(--primary-dark);
+            margin-bottom: var(--space-3);
+            font-size: 1.25rem;
+            margin-top: var(--space-2);
+        }
+        
+        .featured-card p {
+            color: var(--neutral-600);
+            line-height: 1.6;
+            margin-bottom: var(--space-4);
+            font-size: 0.95rem;
+        }
+        
+        .project-status {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-5);
+            font-size: 0.9rem;
+            color: var(--neutral-600);
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        .status-dot.active {
+            background: var(--accent-success);
+            box-shadow: 0 0 8px var(--accent-success);
+        }
+        
+        .status-dot.development {
+            background: var(--accent-warning);
+            box-shadow: 0 0 8px var(--accent-warning);
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            background: var(--primary-light);
+            color: var(--neutral-0);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all var(--transition-normal);
+            border: 2px solid transparent;
+            text-decoration: none;
+        }
+        
+        .project-link:hover {
+            background: var(--primary-accent);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+            color: var(--neutral-0);
+        }
+        
+        /* ===========================================
+           PROJECT TABS SECTION
+        =========================================== */
+        
+        .projects-tabs {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-6);
+            flex-wrap: wrap;
+        }
+        
+        .project-tab {
+            padding: var(--space-3) var(--space-5);
+            background: var(--neutral-50);
+            border: 1px solid var(--neutral-300);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            color: var(--neutral-700);
+        }
+        
+        .project-tab:hover {
+            border-color: var(--primary-light);
+            color: var(--primary-dark);
+            background: var(--neutral-0);
+        }
+        
+        .project-tab.active {
+            background: var(--primary-accent);
+            color: var(--neutral-0);
+            border-color: var(--primary-accent);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .all-projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--space-5);
+        }
+        
+        .project-item {
+            background: var(--neutral-50);
+            border-radius: var(--radius-md);
+            padding: var(--space-5);
+            text-align: center;
+            border: 1px solid var(--neutral-200);
+            transition: all var(--transition-normal);
+            cursor: pointer;
+        }
+        
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+            background: var(--neutral-0);
+        }
+        
+        .project-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-accent));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto var(--space-4);
+        }
+        
+        .project-info h3 {
+            color: var(--primary-dark);
+            margin-bottom: var(--space-2);
+            font-size: 1.2rem;
+        }
+        
+        .project-category {
+            color: var(--primary-accent);
+            font-weight: 600;
+            margin-bottom: var(--space-3);
+            font-size: 0.95rem;
+        }
+        
+        .project-description {
+            color: var(--neutral-600);
+            line-height: 1.6;
+            margin-bottom: var(--space-4);
+            font-size: 0.9rem;
+        }
+        
+        /* ===========================================
+           CTA SECTION
+        =========================================== */
+        
+        .projects-cta {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-main));
+            border-radius: var(--radius-lg);
+            padding: var(--space-8);
+            margin: var(--space-8) 0;
+            text-align: center;
+            color: var(--neutral-0);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .projects-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 70%, rgba(127, 219, 255, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(0, 116, 217, 0.2) 0%, transparent 50%);
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-content h2 {
+            color: var(--neutral-0);
+            font-size: 2.5rem;
+            margin-bottom: var(--space-4);
+        }
+        
+        .cta-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: var(--space-6);
+            line-height: 1.7;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .cta-btn {
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-3);
+            transition: all var(--transition-normal);
+            border: 2px solid transparent;
+            min-width: 180px;
+            justify-content: center;
+        }
+        
+        .cta-btn.primary {
+            background: var(--accent-yellow);
+            color: var(--primary-dark);
+        }
+        
+        .cta-btn.primary:hover {
+            background: var(--neutral-0);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .cta-btn.secondary {
+            background: var(--primary-accent);
+            color: var(--neutral-0);
+        }
+        
+        .cta-btn.secondary:hover {
+            background: var(--neutral-0);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .cta-btn.outline {
+            background: transparent;
+            color: var(--neutral-0);
+            border-color: var(--neutral-0);
+        }
+        
+        .cta-btn.outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        /* ===========================================
+           FOOTER - Professional Business Footer
+        =========================================== */
+        
+        footer {
+            background: var(--primary-dark);
+            color: var(--neutral-0);
+            padding: var(--space-7) var(--space-6);
+            text-align: center;
+            margin-top: var(--space-8);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-5);
+            margin-bottom: var(--space-5);
+        }
+        
+        .social-link {
+            color: var(--neutral-0);
+            transition: all var(--transition-normal);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-link:hover {
+            background: var(--primary-accent);
+            color: var(--neutral-0);
+            transform: translateY(-2px);
+        }
+        
+        .social-icon {
+            width: 20px;
+            height: 20px;
+        }
+        
+        /* Social Media Colors */
+        :root {
+            --instagram-color: #E1306C;
+            --tiktok-color: #000000;
+            --linkedin-color: #0077B5;
+        }
+        
+        footer p {
+            margin: var(--space-2) 0;
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+        
+        /* ===========================================
+           SCROLL TO TOP - Professional Button
+        =========================================== */
+        
+        .scroll-to-top {
+            position: fixed;
+            bottom: var(--space-6);
+            right: var(--space-6);
+            background: var(--primary-accent);
+            color: var(--neutral-0);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-normal);
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .scroll-to-top:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+        
+        /* ===========================================
+           RESPONSIVE DESIGN
+        =========================================== */
+        
+        @media (max-width: 1024px) {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
+            .projects-hero-section h1 { font-size: 2.5rem; }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: var(--space-4);
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .projects-stats,
+            .projects-categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.5rem; }
+            .projects-hero-section h1 { font-size: 2rem; }
+            
+            .projects-stats,
+            .projects-categories-grid,
+            .featured-projects-grid,
+            .all-projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .projects-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .project-tab {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Professional Header Structure -->
+    <header id="main-header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://raw.githubusercontent.com/elizyasandikcii/TILT-Initiative/3802bf8741f027b4bfeaf7c6daf9f2223e1aeb1e/logokas%CC%A7e.png" alt="TILT Logo" class="logo-image">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/tr">Ana Sayfa</a></li>
+                    <li><a href="/tr/hakkimizda">Hakkımızda</a></li>
+                    <li><a href="/tr/projeler" class="active">Projeler</a></li>
+                    <li><a href="/tr/blog">Blog</a></li>
+                    <li><a href="/tr/katil">Katıl</a></li>
+                    <li><a href="/tr/iletisim">İletişim</a></li>
+                    <li><a href="/tr/tilt" class="more-tilt">TILT'tan Daha Fazlası</a></li>
+                </ul>
+            </nav>
+            <div class="header-controls">
+                <div class="language-selector">
+                    <button class="language-btn">TR</button>
+                    <div class="language-menu">
+                        <a href="/tr/projeler">🇹🇷 Türkçe</a>
+                        <a href="/projects">🇬🇧 English</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Projects Hero Section -->
+        <section class="projects-hero-section">
+            <div class="projects-hero-content">
+                <span class="projects-hero-badge">Yenilik Eylemi</span>
+                <h1>Projelerimiz</h1>
+                <p class="projects-hero-subtitle">Cesur hayallerden doğan fikirler ve genç zihinler tarafından inşa edilen projeler. Teknoloji, araştırma ve sosyal etkiyi birleştiren yenilikçi girişimlerimizi keşfedin</p>
+                
+                <div class="projects-stats">
+                    <div class="projects-stat-item">
+                        <span class="projects-stat-number">7+</span>
+                        <span class="projects-stat-label">Aktif Proje</span>
+                    </div>
+                    <div class="projects-stat-item">
+                        <span class="projects-stat-number">2</span>
+                        <span class="projects-stat-label">Kategori</span>
+                    </div>
+                    <div class="projects-stat-item">
+                        <span class="projects-stat-number">∞</span>
+                        <span class="projects-stat-label">Potansiyel Etki</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Categories Section -->
+        <section class="content-section categories-section">
+            <div class="section-header">
+                <h2>Odak Alanlarımız</h2>
+                <p class="section-subtitle">Yeniliğin farklı alanlarındaki projelerimizi keşfedin</p>
+            </div>
+            <div class="projects-categories-grid">
+                <div class="category-card main-projects">
+                    <div class="category-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>Ana Projeler</h3>
+                    <p>Teknolojik yenilik ve bilimsel araştırmaya odaklanan, mümkün olanın sınırlarını zorlayan temel girişimlerimiz.</p>
+                    <a href="/tr/ana-projeler" class="category-btn">Projeleri Keşfet</a>
+                </div>
+
+                <div class="category-card social-projects">
+                    <div class="category-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88M13 7C13 9.20914 11.2091 11 9 11C6.79086 11 5 9.20914 5 7C5 4.79086 6.79086 3 9 3C11.2091 3 13 4.79086 13 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>Sosyal Sorumluluk</h3>
+                    <p>Yenilikçi yaklaşımlar ve anlamlı eylemlerle olumlu sosyal etki ve toplum katılımı yaratan girişimler!</p>
+                    <a href="/tr/sosyal-projeler" class="category-btn">Projeleri Keşfet</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Projects Section -->
+        <section class="content-section featured-section">
+            <div class="section-header">
+                <h2>Yenilikçi / Bilimsel Projeler</h2>
+                <p class="section-subtitle">En etkili ve yenilikçi girişimlerimizden bir kesit</p>
+            </div>
+            <div class="featured-grid">
+                <div class="featured-card">
+                    <h3>EcoCatch</h3>
+                    <p>Ekosistem modellemesi, biyoçeşitlilik risk analizi ve koruma takibini birleştiren kapsamlı bir çevresel istihbarat platformu.</p>
+                    <div class="project-status">
+                        <span class="status-dot active"></span>
+                        <span>Aktif Geliştirme</span>
+                    </div>
+                    <a href="/tr/ecocatch" class="btn">Daha Fazla</a>
+                </div>
+
+                <div class="featured-card">
+                    <h3>NeuroPrognos</h3>
+                    <p>Huntington Hastalığı geliştirme riskini tahmin eden ve erken müdahale için kişiselleştirilmiş öngörüler sunan yapay zeka temelli araç.</p>
+                    <div class="project-status">
+                        <span class="status-dot active"></span>
+                        <span>Aktif Geliştirme</span>
+                    </div>
+                    <a href="/tr/neuroprognos" class="btn">Daha Fazla</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- All Projects Tabs Section -->
+        <section class="content-section all-projects-section">
+            <div class="section-header">
+                <h2>Tüm Projeler</h2>
+                <p class="section-subtitle">Yenilikçi girişimlerimizin tam portföyünü gözden geçirin</p>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="projects-tabs">
+                <button class="project-tab active" data-tab="all">
+                    <span>Tüm Projeler</span>
+                </button>
+                <button class="project-tab" data-tab="main">
+                    <span>Ana Projeler</span>
+                </button>
+                <button class="project-tab" data-tab="social">
+                    <span>Sosyal Projeler</span>
+                </button>
+            </div>
+
+            <!-- All Projects Tab -->
+            <div class="tab-content active" id="all-content">
+                <div class="all-projects-grid">
+                    <div class="project-item" onclick="window.location.href='/tr/ecocatch'">
+                        <div class="project-icon">EC</div>
+                        <div class="project-info">
+                            <h3>EcoCatch</h3>
+                            <p class="project-category">Ana Proje • Çevre Teknolojisi</p>
+                            <p class="project-description">Biyoçeşitlilik koruması için çevresel istihbarat platformu</p>
+                        </div>
+                    </div>
+                    <div class="project-item" onclick="window.location.href='/tr/neuroprognos'">
+                        <div class="project-icon">NP</div>
+                        <div class="project-info">
+                            <h3>NeuroPrognos</h3>
+                            <p class="project-category">Ana Proje • Sağlık Teknolojisi</p>
+                            <p class="project-description">Huntington Hastalığı risk tahmini için yapay zeka aracı</p>
+                        </div>
+                    </div>
+                    <div class="project-item" onclick="window.location.href='/tr/aether'">
+                        <div class="project-icon">AE</div>
+                        <div class="project-info">
+                            <h3>Aether</h3>
+                            <p class="project-category">Ana Proje • Güvenlik Teknolojisi</p>
+                            <p class="project-description">Pil ortamları için yapay zeka destekli yangın önleme</p>
+                        </div>
+                    </div>
+                    <div class="project-item" onclick="window.location.href='/tr/topluluk-etkilesimi'">
+                        <div class="project-icon">TE</div>
+                        <div class="project-info">
+                            <h3>Topluluk Etkileşimi</h3>
+                            <p class="project-category">Sosyal Proje • Eğitim</p>
+                            <p class="project-description">Yetersiz hizmet alan topluluklar için STEM eğitim programları</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Projects Tab -->
+            <div class="tab-content" id="main-content">
+                <div class="all-projects-grid">
+                    <div class="project-item" onclick="window.location.href='/tr/ecocatch'">
+                        <div class="project-icon">EC</div>
+                        <div class="project-info">
+                            <h3>EcoCatch</h3>
+                            <p class="project-category">Çevre Teknolojisi</p>
+                            <p class="project-description">Kapsamlı çevresel izleme platformu</p>
+                        </div>
+                    </div>
+                    <div class="project-item" onclick="window.location.href='/tr/neuroprognos'">
+                        <div class="project-icon">NP</div>
+                        <div class="project-info">
+                            <h3>NeuroPrognos</h3>
+                            <p class="project-category">Sağlık Teknolojisi</p>
+                            <p class="project-description">Yapay zeka destekli nörolojik risk değerlendirmesi</p>
+                        </div>
+                    </div>
+                    <div class="project-item" onclick="window.location.href='/tr/aether'">
+                        <div class="project-icon">AE</div>
+                        <div class="project-info">
+                            <h3>Aether</h3>
+                            <p class="project-category">Güvenlik Teknolojisi</p>
+                            <p class="project-description">Akıllı yangın söndürme sistemi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Projects Tab -->
+            <div class="tab-content" id="social-content">
+                <div class="all-projects-grid">
+                    <div class="project-item" onclick="window.location.href='/tr/topluluk-etkilesimi'">
+                        <div class="project-icon">TE</div>
+                        <div class="project-info">
+                            <h3>Topluluk Etkileşimi</h3>
+                            <p class="project-category">Eğitim</p>
+                            <p class="project-description">Yetersiz hizmet alan topluluklar için STEM programları</p>
+                        </div>
+                    </div>
+                    <div class="project-item" onclick="window.location.href='/tr/genclik-mentorlugu'">
+                        <div class="project-icon">GM</div>
+                        <div class="project-info">
+                            <h3>Gençlik Mentorluğu</h3>
+                            <p class="project-category">Gelişim</p>
+                            <p class="project-description">Kariyer rehberliği ve beceri geliştirme</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="projects-cta">
+            <div class="cta-content">
+                <h2>Bir Fikrin Mi Var?</h2>
+                <p>Yenilikçi fikirleri gerçeğe dönüştürme yolculuğunda bize katılın. Araştırmacı, geliştirici veya fark yaratmak isteyen biri olun, TILT'ta sizin için bir yer var.</p>
+                <div class="cta-buttons">
+                    <a href="/tr/katil" class="cta-btn primary">
+                        Katıl
+                    </a>
+                    <a href="/tr/iletisim" class="cta-btn secondary">
+                        İletişime Geç
+                    </a>
+                    <a href="/tr/proje-oner" class="cta-btn outline">
+                        Proje Öner
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://www.instagram.com/tilt_initiative?igsh=MW5qOWdndmpldmlheg==" target="_blank" class="social-link">
+                <svg class="social-icon" viewBox="0 0 24 24" fill="var(--instagram-color)">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+            </a>
+            <a href="https://www.tiktok.com/@tilt_intiative" target="_blank" class="social-link">
+                <svg class="social-icon" viewBox="0 0 24 24" fill="var(--tiktok-color)">
+                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" class="social-link">
+                <svg class="social-icon" viewBox="0 0 24 24" fill="var(--linkedin-color)">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+            </a>
+            <a href="https://x.com" target="_blank" class="social-link">
+                <svg class="social-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="nGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#00c6ff"/>
+                            <stop offset="100%" stop-color="#0072ff"/>
+                        </linearGradient>
+                    </defs>
+                    <path fill="url(#nGradient)" d="M80 100h90l130 200V100h90v312h-90L170 212v200H80V100z"/>
+                </svg>
+            </a>
+        </div>
+        <p>© 2025 TILT – Yaşam ve Düşünceler İnisiyatifi</p>
+        <p>8.6 milyar nöron ve bir hayal ile tasarlandı</p>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Yukarı çık">
+        <svg class="scroll-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+        </svg>
+    </button>
+
+    <script>
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.project-tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    // Show corresponding content
+                    const tabId = button.getAttribute('data-tab') + '-content';
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+
+            // Scroll to top functionality
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Project card hover effects
+            const projectCards = document.querySelectorAll('.category-card, .featured-card, .project-item');
+            projectCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Language selector functionality
+            const languageBtn = document.querySelector('.language-btn');
+            const languageMenu = document.querySelector('.language-menu');
+            
+            languageBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                languageMenu.style.display = languageMenu.style.display === 'block' ? 'none' : 'block';
+            });
+            
+            // Close language menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.language-selector')) {
+                    languageMenu.style.display = 'none';
+                }
+            });
+            
+            // Close language menu when clicking on a language option
+            document.querySelectorAll('.language-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    languageMenu.style.display = 'none';
+                });
+            });
+
+            // Active Navigation Link
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('nav a');
+            
+            navLinks.forEach(link => {
+                const linkPath = link.getAttribute('href');
+                // Remove active class from all links
+                link.classList.remove('active');
+                
+                // Check if current path matches link path
+                if (currentPath === linkPath || 
+                    (currentPath === '/tr/projeler' && linkPath === '/tr/projeler') ||
+                    (currentPath.includes('/projeler') && linkPath === '/tr/projeler')) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Add smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                const header = document.getElementById('main-header');
+                if (window.scrollY > 50) {
+                    header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.boxShadow = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1277,9 +1277,7 @@ document.addEventListener('DOMContentLoaded', function() {
             attributeFilter: ['class'] 
         });
     }
-}); // Closing brace for main DOMContentLoaded function
-// Add this to your script.js file
-document.addEventListener('DOMContentLoaded', function() {
+
     // Get all quick navigation cards
     const navCards = document.querySelectorAll('.quick-nav-card');
     
@@ -1364,9 +1362,8 @@ document.addEventListener('DOMContentLoaded', function() {
             window.scrollBy({ top: 500, behavior: 'smooth' });
         }
     });
-});
-// Add this to your script.js file
-document.addEventListener('DOMContentLoaded', function() {
+
+    // Scroll to top button
     const scrollToTopBtn = document.getElementById('scrollToTop');
     
     // Show/hide button based on scroll position
@@ -1405,8 +1402,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Initial check
         toggleScrollToTop();
     }
-});
-    // Quote of the Day Feature
+
+    // Quote of the Day Feature (now inside DOMContentLoaded)
     function getQuoteOfTheDay() {
         const quotes = [
             "The unexamined life is not worth living. - Socrates",
@@ -1432,58 +1429,58 @@ document.addEventListener('DOMContentLoaded', function() {
             "It is during our darkest moments that we must focus to see the light. - Aristotle",
             "Whoever is happy will make others happy too. - Anne Frank",
             "The only way to do great work is to love what you do. - Steve Jobs",
-"Do what you can, with what you have, where you are. - Theodore Roosevelt",
-"Success is not final, failure is not fatal: it is the courage to continue that counts. - Winston Churchill",
-"It always seems impossible until it's done. - Nelson Mandela",
-"Believe you can and you're halfway there. - Theodore Roosevelt",
-"The journey of a thousand miles begins with one step. - Lao Tzu",
-"Happiness depends upon ourselves. - Aristotle",
-"Turn your wounds into wisdom. - Oprah Winfrey",
-"What we think, we become. - Buddha",
-"Act as if what you do makes a difference. It does. - William James",
-"Everything you can imagine is real. - Pablo Picasso",
-"Dream big and dare to fail. - Norman Vaughan",
-"Keep going. Be all in. - Bryan Hutchinson",
-"Stay hungry, stay foolish. - Steve Jobs",
-"The secret of getting ahead is getting started. - Mark Twain",
-"The harder you work for something, the greater you'll feel when you achieve it. - Anonymous",
-"Opportunities don't happen. You create them. - Chris Grosser",
-"Don't watch the clock; do what it does. Keep going. - Sam Levenson",
-"Quality is not an act, it is a habit. - Aristotle",
-"Do one thing every day that scares you. - Eleanor Roosevelt",
-"The best revenge is massive success. - Frank Sinatra",
+            "Do what you can, with what you have, where you are. - Theodore Roosevelt",
+            "Success is not final, failure is not fatal: it is the courage to continue that counts. - Winston Churchill",
+            "It always seems impossible until it's done. - Nelson Mandela",
+            "Believe you can and you're halfway there. - Theodore Roosevelt",
+            "The journey of a thousand miles begins with one step. - Lao Tzu",
+            "Happiness depends upon ourselves. - Aristotle",
+            "Turn your wounds into wisdom. - Oprah Winfrey",
+            "What we think, we become. - Buddha",
+            "Act as if what you do makes a difference. It does. - William James",
+            "Everything you can imagine is real. - Pablo Picasso",
+            "Dream big and dare to fail. - Norman Vaughan",
+            "Keep going. Be all in. - Bryan Hutchinson",
+            "Stay hungry, stay foolish. - Steve Jobs",
+            "The secret of getting ahead is getting started. - Mark Twain",
+            "The harder you work for something, the greater you'll feel when you achieve it. - Anonymous",
+            "Opportunities don't happen. You create them. - Chris Grosser",
+            "Don't watch the clock; do what it does. Keep going. - Sam Levenson",
+            "Quality is not an act, it is a habit. - Aristotle",
+            "Do one thing every day that scares you. - Eleanor Roosevelt",
+            "The best revenge is massive success. - Frank Sinatra",
             "I have two hands: one for me, one for other people. - Millie Bobby Brown",
-"Limit your 'always' and your 'nevers'. - Amy Poehler",
-"Wherever you go, go with all your heart. - Confucius",
-"The power of imagination makes us infinite. - John Muir",
-"Everything has beauty, but not everyone sees it. - Confucius",
-"If you want to lift yourself up, lift up someone else. - Booker T. Washington",
-"Strive not to be a success, but rather to be of value. - Albert Einstein",
-"Small deeds done are better than great deeds planned. - Peter Marshall",
-"Success usually comes to those who are too busy to be looking for it. - Henry David Thoreau",
-"Do not let what you cannot do interfere with what you can do. - John Wooden",
-"You must be the change you wish to see in the world. - Mahatma Gandhi",
-"Knowing yourself is the beginning of all wisdom. - Aristotle",
+            "Limit your 'always' and your 'nevers'. - Amy Poehler",
+            "Wherever you go, go with all your heart. - Confucius",
+            "The power of imagination makes us infinite. - John Muir",
+            "Everything has beauty, but not everyone sees it. - Confucius",
+            "If you want to lift yourself up, lift up someone else. - Booker T. Washington",
+            "Strive not to be a success, but rather to be of value. - Albert Einstein",
+            "Small deeds done are better than great deeds planned. - Peter Marshall",
+            "Success usually comes to those who are too busy to be looking for it. - Henry David Thoreau",
+            "Do not let what you cannot do interfere with what you can do. - John Wooden",
+            "You must be the change you wish to see in the world. - Mahatma Gandhi",
+            "Knowing yourself is the beginning of all wisdom. - Aristotle",
             "Perhaps this was how you coped… you just kept going, and looking for little ways to make things better. - Millie Bobby Brown",
-"A goal without a plan is just a wish. - Antoine de Saint-Exupéry",
-"Start where you are. Use what you have. Do what you can. - Arthur Ashe",
-"The mind is everything. What you think you become. - Buddha",
-"Energy and persistence conquer all things. - Benjamin Franklin",
-"Well done is better than well said. - Benjamin Franklin",
-"The best preparation for tomorrow is doing your best today. - H. Jackson Brown Jr.",
-"You miss 100% of the shots you don't take. - Wayne Gretzky",
-"If opportunity doesn't knock, build a door. - Milton Berle",
-"Do what you feel in your heart to be right. - Eleanor Roosevelt",
-"The only limit to our realization of tomorrow is our doubts of today. - Franklin D. Roosevelt",
-"An investment in knowledge pays the best interest. - Benjamin Franklin",
-"Success is walking from failure to failure with no loss of enthusiasm. - Winston Churchill",
-"Live as if you were to die tomorrow. Learn as if you were to live forever. - Mahatma Gandhi",
-"The roots of education are bitter, but the fruit is sweet. - Aristotle",
-"Great minds discuss ideas; average minds discuss events; small minds discuss people. - Eleanor Roosevelt",
-        "Nothing will work unless you do. - Maya Angelou",
-        "The only true wisdom is in knowing you know nothing. - Socrates",
-        "The purpose of life is a life of purpose. - Robert Byrne"
-        "At the end of the day, I just do my job, I love my art, and I genuinely want to change the world. - Millie Bobby Brown"
+            "A goal without a plan is just a wish. - Antoine de Saint-Exupéry",
+            "Start where you are. Use what you have. Do what you can. - Arthur Ashe",
+            "The mind is everything. What you think you become. - Buddha",
+            "Energy and persistence conquer all things. - Benjamin Franklin",
+            "Well done is better than well said. - Benjamin Franklin",
+            "The best preparation for tomorrow is doing your best today. - H. Jackson Brown Jr.",
+            "You miss 100% of the shots you don't take. - Wayne Gretzky",
+            "If opportunity doesn't knock, build a door. - Milton Berle",
+            "Do what you feel in your heart to be right. - Eleanor Roosevelt",
+            "The only limit to our realization of tomorrow is our doubts of today. - Franklin D. Roosevelt",
+            "An investment in knowledge pays the best interest. - Benjamin Franklin",
+            "Success is walking from failure to failure with no loss of enthusiasm. - Winston Churchill",
+            "Live as if you were to die tomorrow. Learn as if you were to live forever. - Mahatma Gandhi",
+            "The roots of education are bitter, but the fruit is sweet. - Aristotle",
+            "Great minds discuss ideas; average minds discuss events; small minds discuss people. - Eleanor Roosevelt",
+            "Nothing will work unless you do. - Maya Angelou",
+            "The only true wisdom is in knowing you know nothing. - Socrates",
+            "The purpose of life is a life of purpose. - Robert Byrne",
+            "At the end of the day, I just do my job, I love my art, and I genuinely want to change the world. - Millie Bobby Brown"
         ];
         
         // Get today's date as a unique seed for the day
@@ -1506,3 +1503,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Update the quote when the page loads
     updateQuoteOfTheDay();
+});

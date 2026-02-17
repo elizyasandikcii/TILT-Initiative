@@ -2119,29 +2119,6 @@
         setInterval(updateClocks, 1000);
         updateClocks(); // Initial call
         
-        // ===========================================
-        // LANGUAGE SELECTOR
-        // ===========================================
-        const languageBtn = document.querySelector('.language-btn');
-        const languageMenu = document.querySelector('.language-menu');
-        
-        languageBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            languageMenu.style.display = languageMenu.style.display === 'block' ? 'none' : 'block';
-        });
-        
-        // Close language menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.language-selector')) {
-                languageMenu.style.display = 'none';
-            }
-        });
-        
-        // Close language menu when clicking on a language option
-        document.querySelectorAll('.language-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                languageMenu.style.display = 'none';
-            });
         });
     </script>
 </body>
